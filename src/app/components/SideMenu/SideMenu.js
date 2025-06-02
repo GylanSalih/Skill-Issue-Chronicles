@@ -2,6 +2,7 @@
 
 // SideMenu.jsx
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './SideMenu.module.css';
 import { 
   Home, 
@@ -23,108 +24,118 @@ import {
   Star,
   Zap,
   Crown,
-  Activity
+  Activity,
+  Heart,
+  Handshake
 } from 'lucide-react';
 
 const SideMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeItem, setActiveItem] = useState('dashboard');
   const [expandedCategories, setExpandedCategories] = useState({});
+  const router = useRouter();
 
-  const menuCategories = [
-    {
-      label: 'Overview',
-      items: [
-        {
-          id: 'dashboard',
-          title: 'Dashboard',
-          icon: Home,
-          path: '/'
-        },
-        {
-          id: 'character',
-          title: 'Character',
-          icon: Crown,
-          path: '/character'
-        }
-      ]
-    },
-    {
-      label: 'Combat',
-      items: [
-        {
-          id: 'combat',
-          title: 'Combat',
-          icon: Sword,
-          hasSubmenu: true,
-          submenu: [
-            { id: 'dungeon', title: 'Dungeons', icon: Shield },
-            { id: 'slayer', title: 'Slayer', icon: Sword },
-            { id: 'combat_areas', title: 'Combat Areas', icon: Activity }
-          ]
-        }
-      ]
-    },
-    {
-      label: 'Skills',
-      items: [
-        {
-          id: 'skills',
-          title: 'Skills',
-          icon: Activity,
-          hasSubmenu: true,
-          submenu: [
-            { id: 'woodcutting', title: 'Woodcutting', icon: TreePine },
-            { id: 'fishing', title: 'Fishing', icon: Star },
-            { id: 'firemaking', title: 'Firemaking', icon: Flame },
-            { id: 'cooking', title: 'Cooking', icon: Flame },
-            { id: 'mining', title: 'Mining', icon: Pickaxe },
-            { id: 'smithing', title: 'Smithing', icon: Hammer }
-          ]
-        }
-      ]
-    },
-    {
-      label: 'Items',
-      items: [
-        {
-          id: 'bank',
-          title: 'Bank',
-          icon: ShoppingBag,
-          path: '/bank'
-        },
-        {
-          id: 'shop',
-          title: 'Shop',
-          icon: Coins,
-          path: '/shop'
-        },
-        {
-          id: 'equipment',
-          title: 'Equipment',
-          icon: Shield,
-          path: '/equipment'
-        }
-      ]
-    },
-    {
-      label: 'Other',
-      items: [
-        {
-          id: 'statistics',
-          title: 'Statistics',
-          icon: Trophy,
-          path: '/statistics'
-        },
-        {
-          id: 'settings',
-          title: 'Settings',
-          icon: Settings,
-          path: '/settings'
-        }
-      ]
-    }
-  ];
+const menuCategories = [
+  {
+    items: [
+      {
+        id: 'dashboard',
+        title: 'Dashboard',
+        icon: Home,
+        path: '/'
+      },
+      {
+        id: 'character',
+        title: 'Character',
+        icon: Shield,
+        path: '/character'
+      }
+    ]
+  },
+  {
+    items: [
+      {
+        id: 'combat',
+        title: 'Combat',
+        icon: Sword,
+        hasSubmenu: true,
+        submenu: [
+          { id: 'dungeon', title: 'Dungeons', icon: Shield, path: '/dungeon' },
+          { id: 'slayer', title: 'Slayer', icon: Sword, path: '/slayer' },
+          { id: 'combat_areas', title: 'Combat Areas', icon: Activity, path: '/combat-areas' }
+        ]
+      }
+    ]
+  },
+  {
+    items: [
+      {
+        id: 'skills',
+        title: 'Skills',
+        icon: Activity,
+        hasSubmenu: true,
+        submenu: [
+          { id: 'woodcutting', title: 'Woodcutting', icon: TreePine, path: '/woodcutting' },
+          { id: 'fishing', title: 'Fishing', icon: Star, path: '/fishing' },
+          { id: 'firemaking', title: 'Firemaking', icon: Flame, path: '/firemaking' },
+          { id: 'cooking', title: 'Cooking', icon: Flame, path: '/cooking' },
+          { id: 'mining', title: 'Mining', icon: Pickaxe, path: '/mining' },
+          { id: 'smithing', title: 'Smithing', icon: Hammer, path: '/smithing' }
+        ]
+      }
+    ]
+  },
+  {
+    items: [
+      {
+        id: 'pets',
+        title: 'Pets',
+        icon: Heart,
+        hasSubmenu: true,
+        submenu: [
+          { id: 'my-pets', title: 'My Pets', icon: Heart, path: '/pets' },
+          { id: 'pet-training', title: 'Training', icon: Activity, path: '/pets/training' },
+          { id: 'pet-battles', title: 'Battles', icon: Sword, path: '/pets/battles' },
+          { id: 'pet-evolution', title: 'Evolution', icon: Star, path: '/pets/evolution' },
+          { id: 'pet-trading', title: 'Trading', icon: Handshake, path: '/pets/trade' }
+        ]
+      }
+    ]
+  },
+  {
+    items: [
+      {
+        id: 'bank',
+        title: 'Bank',
+        icon: ShoppingBag,
+        path: '/bank'
+      },
+      {
+        id: 'shop',
+        title: 'Shop',
+        icon: Coins,
+        path: '/shop'
+      }
+    ]
+  },
+  {
+    items: [
+      {
+        id: 'statistics',
+        title: 'Statistics',
+        icon: Trophy,
+        path: '/statistics'
+      },
+      {
+        id: 'settings',
+        title: 'Settings',
+        icon: Settings,
+        path: '/settings'
+      }
+    ]
+  }
+];
+
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -137,24 +148,22 @@ const SideMenu = () => {
     }));
   };
 
-  const handleItemClick = (item) => {
-    if (item.hasSubmenu) {
-      toggleCategory(item.id);
-    } else {
-      setActiveItem(item.id);
-      // Hier würdest du die Navigation implementieren
-      console.log(`Navigating to: ${item.path || item.id}`);
-      // Beispiel für NextJS Router:
-      // router.push(item.path || `/${item.id}`);
+const handleItemClick = (item) => {
+  if (item.hasSubmenu) {
+    toggleCategory(item.id);
+  } else {
+    setActiveItem(item.id);
+    if (item.path) {
+      router.push(item.path);
     }
-  };
+  }
+};
 
-  const handleSubmenuClick = (subItem) => {
-    setActiveItem(subItem.id);
-    console.log(`Navigating to submenu: ${subItem.id}`);
-    // Hier würdest du die Navigation implementieren
-    // router.push(`/${subItem.id}`);
-  };
+const handleSubmenuClick = (subItem) => {
+  setActiveItem(subItem.id);
+  router.push(`/${subItem.id}`);
+};
+
 
   return (
     <>
@@ -167,85 +176,76 @@ const SideMenu = () => {
         {isOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
-      {/* Overlay */}
-      {isOpen && (
-        <div 
-          className={styles.overlay}
-          onClick={toggleMenu}
-        />
-      )}
-
       {/* Side Menu */}
       <div className={`${styles.sideMenu} ${isOpen ? styles.open : ''}`}>
         
         {/* Header with Logo */}
         <div className={styles.header}>
           <div className={styles.logo}>
-            <Crown className={styles.logoIcon} />
-            <h2 className={styles.logoText}>Melvor</h2>
+            <Flame className={styles.logoIcon} />
+            <h2 className={styles.logoText}>Skill Issue Chronicles</h2>
           </div>
-          <p className={styles.version}>v1.3.1</p>
+          <p className={styles.version}>v0.0.1</p>
         </div>
 
-        {/* Menu Categories */}
-        <div className={styles.menuContainer}>
-          {menuCategories.map((category, categoryIndex) => (
-            <div key={category.label}>
-              {categoryIndex > 0 && <div className={styles.categorySeparator} />}
-              <div className={styles.categoryLabel}>{category.label}</div>
-              
-              {category.items.map((item) => {
-                const IconComponent = item.icon;
-                const isActive = activeItem === item.id;
-                const isExpanded = expandedCategories[item.id];
+          {/* Menu Categories */}
+          <div className={styles.menuContainer}>
+            {menuCategories.map((category, categoryIndex) => (
+              <div key={categoryIndex}>
+                {categoryIndex > 0 && <div className={styles.categorySeparator} />}
 
-                return (
-                  <div key={item.id} className={styles.menuItem}>
-                    {/* Main Menu Item */}
-                    <button
-                      onClick={() => handleItemClick(item)}
-                      className={`${styles.menuButton} ${isActive ? styles.active : ''}`}
-                    >
-                      <div className={styles.menuButtonContent}>
-                        <IconComponent className={styles.menuIcon} />
-                        <span>{item.title}</span>
-                      </div>
-                      
-                      {item.hasSubmenu && (
-                        <ChevronRight 
-                          className={`${styles.chevronIcon} ${isExpanded ? styles.expanded : ''}`}
-                        />
-                      )}
-                    </button>
+                {category.items.map((item) => {
+                  const IconComponent = item.icon;
+                  const isActive = activeItem === item.id;
+                  const isExpanded = expandedCategories[item.id];
 
-                    {/* Submenu */}
-                    {item.hasSubmenu && (
-                      <div className={`${styles.submenu} ${isExpanded ? styles.expanded : ''}`}>
-                        <div className={styles.submenuContainer}>
-                          {item.submenu?.map((subItem) => {
-                            const SubIconComponent = subItem.icon;
-                            const isSubActive = activeItem === subItem.id;
-                            
-                            return (
-                              <button
-                                key={subItem.id}
-                                onClick={() => handleSubmenuClick(subItem)}
-                                className={`${styles.submenuButton} ${isSubActive ? styles.active : ''}`}
-                              >
-                                <SubIconComponent className={styles.submenuIcon} />
-                                <span>{subItem.title}</span>
-                              </button>
-                            );
-                          })}
+                  return (
+                    <div key={item.id} className={styles.menuItem}>
+                      {/* Main Menu Item */}
+                      <button
+                        onClick={() => handleItemClick(item)}
+                        className={`${styles.menuButton} ${isActive ? styles.active : ''}`}
+                      >
+                        <div className={styles.menuButtonContent}>
+                          <IconComponent className={styles.menuIcon} />
+                          <span>{item.title}</span>
                         </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          ))}
-        </div>
+
+                        {item.hasSubmenu && (
+                          <ChevronRight
+                            className={`${styles.chevronIcon} ${isExpanded ? styles.expanded : ''}`}
+                          />
+                        )}
+                      </button>
+
+                      {/* Submenu */}
+                      {item.hasSubmenu && (
+                        <div className={`${styles.submenu} ${isExpanded ? styles.expanded : ''}`}>
+                          <div className={styles.submenuContainer}>
+                            {item.submenu?.map((subItem) => {
+                              const SubIconComponent = subItem.icon;
+                              const isSubActive = activeItem === subItem.id;
+
+                              return (
+                                <button
+                                  key={subItem.id}
+                                  onClick={() => handleSubmenuClick(subItem)}
+                                  className={`${styles.submenuButton} ${isSubActive ? styles.active : ''}`}
+                                >
+                                  <SubIconComponent className={styles.submenuIcon} />
+                                  <span>{subItem.title}</span>
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
 
         {/* Footer */}
         <div className={styles.footer}>

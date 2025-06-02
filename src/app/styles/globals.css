@@ -35,7 +35,14 @@ background-color: #000000;
 
 
 
-
+/* globals.css */
+h1 {
+  color: white;
+  font-size: 4rem;      /* sehr groß */
+  font-weight: 800;     /* extra fett */
+  text-align: center;   /* zentriert */
+  margin: 4rem 0;       /* oben und unten Abstand */
+}
 
 
 
