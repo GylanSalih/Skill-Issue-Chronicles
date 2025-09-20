@@ -26,9 +26,6 @@ const GameHeader: React.FC = () => {
         {/* Right: Player Profile */}
         <div className={styles.rightSection}>
           <div className={styles.playerProfile}>
-            <div className={styles.profileImage}>
-              <User size={24} />
-            </div>
             <div className={styles.playerInfo}>
               <div className={styles.playerName}>PlayerName</div>
               <div className={styles.playerStats}>
@@ -41,6 +38,9 @@ const GameHeader: React.FC = () => {
                   <span>{gameState.resources.primary.toLocaleString()}</span>
                 </div>
               </div>
+            </div>
+            <div className={styles.profileImage}>
+              <User size={24} />
             </div>
           </div>
         </div>

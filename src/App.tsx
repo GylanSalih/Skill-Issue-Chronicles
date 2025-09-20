@@ -41,9 +41,7 @@ function App() {
               <Route path="/dungeon" element={<Dungeon />} />
             </Routes>
           </div>
-          <div className={styles.sidebar}>
-            <ResourcePanel />
-          </div>
+          <ResourcePanel />
         </main>
       </div>
     </div>

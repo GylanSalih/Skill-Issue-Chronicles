@@ -1,4 +1,6 @@
 // components/CharacterSlot.js
+import styles from './CharacterManager.module.scss';
+
 const CharacterSlot = ({ slotId, character, onClick }) => {
   const getClassIcon = (characterClass) => {
     const icons = {
@@ -46,53 +48,53 @@ const CharacterSlot = ({ slotId, character, onClick }) => {
 
   return (
     <div 
-      className={`character-slot ${character ? 'occupied' : 'empty'}`}
+      className={`${styles.characterSlot} ${character ? styles.occupied : styles.empty}`}
       onClick={onClick}
     >
-      <div className="slot-header">
-        <span className="slot-number">Slot {slotId}</span>
+      <div className={styles.slotHeader}>
+        <span className={styles.slotNumber}>Slot {slotId}</span>
       </div>
 
-      <div className="slot-content">
+      <div className={styles.slotContent}>
         {character ? (
           <>
-            <div className="character-avatar">
-              <span className="class-icon">
+            <div className={styles.characterAvatar}>
+              <span className={styles.classIcon}>
                 {getClassIcon(character.characterClass)}
               </span>
               {character.gender && (
-                <span className="gender-indicator">
+                <span className={styles.genderIndicator}>
                   {character.gender === 'male' ? '♂' : '♀'}
                 </span>
               )}
             </div>
             
-            <div className="character-info">
-              <h3 className="character-name">{character.playerName}</h3>
-              <p className="character-class">
+            <div className={styles.characterInfo}>
+              <h3 className={styles.characterName}>{character.playerName}</h3>
+              <p className={styles.characterClass}>
                 {getClassDisplayName(character.characterClass)}
               </p>
-              <div className="character-stats">
-                <span className="level">Level {character.level}</span>
-                <span className="last-login">
+              <div className={styles.characterStats}>
+                <span className={styles.level}>Level {character.level}</span>
+                <span className={styles.lastLogin}>
                   {formatLastLogin(character.lastLogin)}
                 </span>
               </div>
             </div>
           </>
         ) : (
-          <div className="empty-slot">
-            <div className="create-icon">+</div>
+          <div className={styles.emptySlot}>
+            <div className={styles.createIcon}>+</div>
             <p>Neuen Charakter erstellen</p>
           </div>
         )}
       </div>
 
-      <div className="slot-footer">
+      <div className={styles.slotFooter}>
         {character ? (
-          <button className="play-button">Spielen</button>
+          <button className={styles.playButton}>Spielen</button>
         ) : (
-          <button className="create-button">Erstellen</button>
+          <button className={styles.createButton}>Erstellen</button>
         )}
       </div>
     </div>

@@ -1,21 +1,23 @@
 import React from 'react';
 import { useGameState } from '../hooks/useGameState';
 import SkillCard from '../components/SkillCard';
+import { Crown, Zap, Coins } from 'lucide-react';
+import styles from './Home.module.scss';
 
 export default function Home() {
   const { gameState, toggleSkill } = useGameState();
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold text-white mb-2">Welcome to Skill Issue Chronicles!</h1>
-        <p className="text-gray-400">Your idle adventure begins here. Start by activating skills to generate resources!</p>
+    <div className={styles.container}>
+      <div className={styles.header}>
+        <h1 className={styles.title}>Welcome to Skill Issue Chronicles!</h1>
+        <p className={styles.subtitle}>Your idle adventure begins here. Start by activating skills to generate resources!</p>
       </div>
 
       {/* Active Skills Section */}
-      <div>
-        <h2 className="text-2xl font-semibold text-white mb-4">Active Skills</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className={styles.skillsSection}>
+        <h2 className={styles.sectionTitle}>Active Skills</h2>
+        <div className={styles.skillsGrid}>
           {Object.values(gameState.skills).map(skill => (
             <SkillCard
               key={skill.id}
@@ -27,24 +29,39 @@ export default function Home() {
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-gray-800 p-4 rounded-lg">
-          <h3 className="text-lg font-semibold text-white mb-2">Character Level</h3>
-          <p className="text-3xl font-bold text-blue-400">{gameState.character.totalLevel}</p>
+      <div className={styles.statsGrid}>
+        <div className={styles.statCard}>
+          <div className={styles.statIcon}>
+            <Crown size={24} />
+          </div>
+          <div className={styles.statContent}>
+            <h3 className={styles.statTitle}>Character Level</h3>
+            <p className={styles.statValue}>{gameState.character.totalLevel}</p>
+          </div>
         </div>
         
-        <div className="bg-gray-800 p-4 rounded-lg">
-          <h3 className="text-lg font-semibold text-white mb-2">Active Skills</h3>
-          <p className="text-3xl font-bold text-green-400">
-            {Object.values(gameState.skills).filter(skill => skill.isActive).length}
-          </p>
+        <div className={styles.statCard}>
+          <div className={styles.statIcon}>
+            <Zap size={24} />
+          </div>
+          <div className={styles.statContent}>
+            <h3 className={styles.statTitle}>Active Skills</h3>
+            <p className={styles.statValue}>
+              {Object.values(gameState.skills).filter(skill => skill.isActive).length}
+            </p>
+          </div>
         </div>
         
-        <div className="bg-gray-800 p-4 rounded-lg">
-          <h3 className="text-lg font-semibold text-white mb-2">Total Resources</h3>
-          <p className="text-3xl font-bold text-yellow-400">
-            {Object.values(gameState.resources.secondary).reduce((sum, val) => sum + val, 0)}
-          </p>
+        <div className={styles.statCard}>
+          <div className={styles.statIcon}>
+            <Coins size={24} />
+          </div>
+          <div className={styles.statContent}>
+            <h3 className={styles.statTitle}>Total Resources</h3>
+            <p className={styles.statValue}>
+              {Object.values(gameState.resources.secondary).reduce((sum, val) => sum + val, 0)}
+            </p>
+          </div>
         </div>
       </div>
     </div>

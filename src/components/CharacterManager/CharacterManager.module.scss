@@ -1,0 +1,280 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* CharacterManager.module.scss - Elegant Dark Theme matching Sidebar */
+
+.characterManager {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 100%);
+  min-height: 100vh;
+}
+
+.characterHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border: 1px solid #444;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.characterHeader h1 {
+  color: #ffffff;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.characterHeader p {
+  color: #9ca3af;
+  font-size: 1.125rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.characterSlotsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+/* Character Slot Styles */
+.characterSlot {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border: 1px solid #444;
+  border-radius: 12px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #ff6b35 0%, #ffd700 50%, #ff6b35 100%);
+    opacity: 0.6;
+  }
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    border-color: #555;
+  }
+  
+  &.occupied {
+    background: linear-gradient(135deg, #1a2a1a 0%, #2a3a2a 100%);
+    border-color: #4a5d4a;
+  }
+  
+  &.empty {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    border: 1px dashed #555;
+  }
+}
+
+.slotHeader {
+  margin-bottom: 1rem;
+}
+
+.slotNumber {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.slotContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Besetzter Slot */
+.characterAvatar {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.classIcon {
+  font-size: 3rem;
+  display: block;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.genderIndicator {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  color: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+}
+
+.characterInfo {
+  text-align: center;
+}
+
+.characterName {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.characterClass {
+  color: #9ca3af;
+  margin: 0 0 1rem 0;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.9rem;
+}
+
+.characterStats {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.level {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+}
+
+.lastLogin {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+/* Leerer Slot */
+.emptySlot {
+  text-align: center;
+  color: #6b7280;
+}
+
+.createIcon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  color: #4b5563;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.emptySlot p {
+  margin: 0;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.slotFooter {
+  margin-top: 1rem;
+}
+
+.playButton, .createButton {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.playButton {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  
+  &:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+  }
+}
+
+.createButton {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  
+  &:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .characterManager {
+    padding: 1rem;
+  }
+  
+  .characterHeader h1 {
+    font-size: 2rem;
+  }
+  
+  .characterSlotsGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .characterSlot {
+    min-height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .characterManager {
+    padding: 0.5rem;
+  }
+  
+  .characterHeader {
+    padding: 1rem;
+  }
+  
+  .characterHeader h1 {
+    font-size: 1.8rem;
+  }
+  
+  .characterHeader p {
+    font-size: 1rem;
+  }
+}

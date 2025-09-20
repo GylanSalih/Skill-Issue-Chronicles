@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import CharacterSlot from './CharacterSlot.js';
 import CharacterCreator from './CharacterCreator.js';
 import CharacterDetails from './CharacterDetails.js';
-import Style from './CharacterManager.css'
+import styles from './CharacterManager.module.scss';
 
 const CharacterManager = () => {
   const [characters, setCharacters] = useState({});
@@ -108,13 +108,13 @@ const CharacterManager = () => {
   // Übersichts-View
   if (currentView === 'overview') {
     return (
-      <div className="character-manager">
-        <div className="character-header">
+      <div className={styles.characterManager}>
+        <div className={styles.characterHeader}>
           <h1>Charakter-Verwaltung</h1>
           <p>Wähle einen Slot aus, um einen neuen Charakter zu erstellen oder einen bestehenden zu verwalten.</p>
         </div>
         
-        <div className="character-slots-grid">
+        <div className={styles.characterSlotsGrid}>
           {Array.from({ length: 10 }, (_, index) => (
             <CharacterSlot
               key={index + 1}
