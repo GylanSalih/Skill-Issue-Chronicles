@@ -25,7 +25,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  flex: 1;
+  flex: 0 0 auto;
+  margin-left: 1rem;
 }
 
 .centerSection {
@@ -143,4 +144,226 @@
     filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
   }
 }
+
+.sliderContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 80px;
+}
+
+.sliderHeader {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  width: 100%;
+}
+
+.sliderContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.stopButton {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  border: 1px solid #991b1b;
+  border-radius: 4px;
+  color: white;
+  padding: 4px 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(220, 38, 38, 0.3);
+  flex-shrink: 0;
+  
+  &:hover {
+    background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(220, 38, 38, 0.4);
+  }
+  
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 2px rgba(220, 38, 38, 0.3);
+  }
+}
+
+
+.sliderLabels {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+}
+
+.sliderLabelLeft {
+  font-size: 10px;
+  color: #888;
+  font-weight: 500;
+}
+
+.sliderLabelRight {
+  font-size: 10px;
+  color: #888;
+  font-weight: 500;
+}
+
+.slider {
+  position: relative;
+  height: 8px;
+  background: linear-gradient(90deg, #333 0%, #444 100%);
+  border-radius: 4px;
+  border: 1px solid #555;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.sliderFill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff6b35 0%, #ff8c42 100%);
+  border-radius: 3px;
+  transition: width 0.05s ease;
+  box-shadow: 0 1px 3px rgba(255, 107, 53, 0.4);
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+    border-radius: 3px;
+  }
+}
+
+.sliderValue {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  color: #ffffff;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+  white-space: nowrap;
+}
+
+/* Woodcutting Progress Styles */
+.woodcuttingContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 200px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 8px 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease;
+  
+  &:hover {
+    border-color: #555;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.woodcuttingHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.woodcuttingControls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.woodcuttingIcon {
+  color: #10b981;
+  flex-shrink: 0;
+  filter: drop-shadow(0 1px 2px rgba(16, 185, 129, 0.3));
+}
+
+.woodcuttingInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.woodcuttingTitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.woodcuttingDuration {
+  font-size: 10px;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.loopIndicator {
+  color: #f59e0b;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(245, 158, 11, 0.3);
+}
+
+.woodcuttingProgress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.progressBar {
+  flex: 1;
+  height: 6px;
+  background: linear-gradient(90deg, #333 0%, #444 100%);
+  border-radius: 3px;
+  border: 1px solid #555;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+  border-radius: 2px;
+  transition: width 0.1s ease;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+    border-radius: 2px;
+  }
+}
+
+.progressValue {
+  font-size: 10px;
+  color: #10b981;
+  font-weight: 600;
+  min-width: 30px;
+  text-align: right;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
 

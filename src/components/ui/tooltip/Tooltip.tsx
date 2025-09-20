@@ -136,12 +136,24 @@ const Tooltip: React.FC<TooltipProps> = ({
         }
       };
 
+      const handleButtonClick = (event: MouseEvent) => {
+        // Check if the clicked element is a button inside the tooltip
+        if (tooltipRef.current && tooltipRef.current.contains(event.target as Node)) {
+          const target = event.target as HTMLElement;
+          if (target.tagName === 'BUTTON' || target.closest('button')) {
+            setIsVisible(false);
+          }
+        }
+      };
+
       document.addEventListener('mousedown', handleClickOutside);
       document.addEventListener('keydown', handleEscapeKey);
+      document.addEventListener('click', handleButtonClick);
       
       return () => {
         document.removeEventListener('mousedown', handleClickOutside);
         document.removeEventListener('keydown', handleEscapeKey);
+        document.removeEventListener('click', handleButtonClick);
       };
     }
   }, [trigger, isVisible]);

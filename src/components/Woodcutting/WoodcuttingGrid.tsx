@@ -1,133 +1,23 @@
 import React from 'react';
-import { useGameState } from '../../hooks/useGameState';
 import { TreePine, Lock } from 'lucide-react';
+import { useWoodcutting } from '../../hooks/useWoodcutting';
 import Tooltip from '../ui/tooltip';
 import WoodTooltip from './WoodTooltip';
 import styles from './WoodcuttingGrid.module.scss';
 
-interface WoodType {
-  id: string;
-  name: string;
-  image: string;
-  requiredLevel: number;
-  baseReward: number;
-  rarity: 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary';
-  description: string;
-}
-
-const woodTypes: WoodType[] = [
-  {
-    id: 'normalWood',
-    name: 'Normal Wood',
-    image: '/assets/img/Resources/Wood/NormalWood.png',
-    requiredLevel: 1,
-    baseReward: 1,
-    rarity: 'common',
-    description: 'Basic wood for crafting'
-  },
-  {
-    id: 'softwood',
-    name: 'Softwood',
-    image: '/assets/img/Resources/Wood/Softwood.png',
-    requiredLevel: 3,
-    baseReward: 2,
-    rarity: 'common',
-    description: 'Light and easy to work with'
-  },
-  {
-    id: 'willowWood',
-    name: 'Willow Wood',
-    image: '/assets/img/Resources/Wood/WillowWood.png',
-    requiredLevel: 5,
-    baseReward: 3,
-    rarity: 'uncommon',
-    description: 'Flexible and durable'
-  },
-  {
-    id: 'glowwood',
-    name: 'Glowwood',
-    image: '/assets/img/Resources/Wood/Glowwood.png',
-    requiredLevel: 8,
-    baseReward: 5,
-    rarity: 'rare',
-    description: 'Magically glowing wood'
-  },
-  {
-    id: 'frostbark',
-    name: 'Frostbark',
-    image: '/assets/img/Resources/Wood/Frostbark.png',
-    requiredLevel: 12,
-    baseReward: 7,
-    rarity: 'rare',
-    description: 'Ice-cold bark from frozen trees'
-  },
-  {
-    id: 'ebonyWood',
-    name: 'Ebony Wood',
-    image: '/assets/img/Resources/Wood/EbonyWood.png',
-    requiredLevel: 15,
-    baseReward: 10,
-    rarity: 'epic',
-    description: 'Dark and mysterious wood'
-  },
-  {
-    id: 'voidbark',
-    name: 'Voidbark',
-    image: '/assets/img/Resources/Wood/Voidbark.png',
-    requiredLevel: 20,
-    baseReward: 15,
-    rarity: 'epic',
-    description: 'Wood from the void dimension'
-  },
-  {
-    id: 'yangWood',
-    name: 'Yang Wood',
-    image: '/assets/img/Resources/Wood/YangWood.png',
-    requiredLevel: 25,
-    baseReward: 20,
-    rarity: 'legendary',
-    description: 'Wood of pure light energy'
-  },
-  {
-    id: 'yingWood',
-    name: 'Ying Wood',
-    image: '/assets/img/Resources/Wood/YingWood.png',
-    requiredLevel: 25,
-    baseReward: 20,
-    rarity: 'legendary',
-    description: 'Wood of pure dark energy'
-  }
-];
-
 const WoodcuttingGrid: React.FC = () => {
-  const { gameState, toggleSkill } = useGameState();
-  const woodcuttingSkill = gameState.skills.woodcutting;
+  const {
+    woodTypes,
+    startChopping,
+    canChopWood,
+    getWoodAmount,
+    activeSession
+  } = useWoodcutting();
 
-  const getRarityColor = (rarity: string) => {
-    switch (rarity) {
-      case 'common': return '#9ca3af';
-      case 'uncommon': return '#10b981';
-      case 'rare': return '#3b82f6';
-      case 'epic': return '#8b5cf6';
-      case 'legendary': return '#f59e0b';
-      default: return '#9ca3af';
-    }
-  };
-
-  const canChop = (woodType: WoodType) => {
-    return woodcuttingSkill.level >= woodType.requiredLevel;
-  };
-
-  const getCurrentWoodAmount = (woodId: string) => {
-    return gameState.resources.secondary[woodId as keyof typeof gameState.resources.secondary] || 0;
-  };
-
-  const handleWoodChop = (woodType: WoodType) => {
-    if (canChop(woodType)) {
-      // Hier würde die Logik für das Holzfällen implementiert werden
-      console.log(`Chopping ${woodType.name}`);
-      // Starte das Holzfällen für diese Holzart
-      toggleSkill('woodcutting');
+  const handleWoodChop = (woodTypeId: string) => {
+    if (canChopWood(woodTypeId)) {
+      console.log(`Starting to chop ${woodTypeId} in loop mode`);
+      startChopping(woodTypeId, true); // Starte standardmäßig im Loop-Modus
     }
   };
 
@@ -162,8 +52,9 @@ const WoodcuttingGrid: React.FC = () => {
 
       <div className={styles.woodGrid}>
         {woodTypes.map((woodType) => {
-          const isUnlocked = canChop(woodType);
-          const currentAmount = getCurrentWoodAmount(woodType.id);
+          const isUnlocked = canChopWood(woodType.id);
+          const currentAmount = getWoodAmount(woodType.id);
+          const isCurrentlyChopping = activeSession?.woodTypeId === woodType.id;
           
           return (
             <Tooltip
@@ -171,16 +62,17 @@ const WoodcuttingGrid: React.FC = () => {
               content={
                 <WoodTooltip
                   woodType={woodType}
-                  currentLevel={woodcuttingSkill.level}
                   isUnlocked={isUnlocked}
-                  onStartChopping={() => handleWoodChop(woodType)}
+                  onStartChopping={() => handleWoodChop(woodType.id)}
+                  isCurrentlyChopping={isCurrentlyChopping}
+                  progress={activeSession?.progress || 0}
                 />
               }
               position="center"
               trigger="click"
             >
               <div
-                className={`${styles.woodCard} ${!isUnlocked ? styles.locked : ''}`}
+                className={`${styles.woodCard} ${!isUnlocked ? styles.locked : ''} ${isCurrentlyChopping ? styles.chopping : ''}`}
               >
                 <div className={`${styles.rarityTag} ${styles[woodType.rarity]}`}>
                   {woodType.rarity.toUpperCase()}
@@ -197,6 +89,16 @@ const WoodcuttingGrid: React.FC = () => {
                       <span>Level {woodType.requiredLevel}</span>
                     </div>
                   )}
+                  {isCurrentlyChopping && (
+                    <div className={styles.progressOverlay}>
+                      <div className={styles.progressBar}>
+                        <div 
+                          className={styles.progressFill}
+                          style={{ width: `${activeSession?.progress || 0}%` }}
+                        />
+                      </div>
+                    </div>
+                  )}
                 </div>
                 
                 <div className={styles.woodInfo}>
@@ -210,6 +112,10 @@ const WoodcuttingGrid: React.FC = () => {
                     <div className={styles.stat}>
                       <span>Owned:</span>
                       <span className={styles.statValue}>{currentAmount}</span>
+                    </div>
+                    <div className={styles.stat}>
+                      <span>Duration:</span>
+                      <span className={styles.statValue}>{woodType.baseTime}s</span>
                     </div>
                   </div>
                 </div>

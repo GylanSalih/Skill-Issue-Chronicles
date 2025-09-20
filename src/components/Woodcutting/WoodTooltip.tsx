@@ -1,61 +1,30 @@
 import React from 'react';
-import { Star, Clock, Zap, Shield } from 'lucide-react';
+import { Play, Pause } from 'lucide-react';
+import { WoodTypeConfig } from '../../config/woodConfig';
+import { useWoodcutting } from '../../hooks/useWoodcutting';
 import styles from '../ui/tooltip/Tooltip.module.scss';
 
 interface WoodTooltipProps {
-  woodType: {
-    id: string;
-    name: string;
-    requiredLevel: number;
-    baseReward: number;
-    rarity: 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary';
-    description: string;
-  };
-  currentLevel: number;
+  woodType: WoodTypeConfig;
   isUnlocked: boolean;
   onStartChopping: () => void;
+  isCurrentlyChopping: boolean;
+  progress: number;
 }
 
 const WoodTooltip: React.FC<WoodTooltipProps> = ({
   woodType,
-  currentLevel,
   isUnlocked,
-  onStartChopping
+  onStartChopping,
+  isCurrentlyChopping,
+  progress
 }) => {
-  const getRarityColor = (rarity: string) => {
-    switch (rarity) {
-      case 'common': return '#9ca3af';
-      case 'uncommon': return '#10b981';
-      case 'rare': return '#3b82f6';
-      case 'epic': return '#8b5cf6';
-      case 'legendary': return '#f59e0b';
-      default: return '#9ca3af';
-    }
-  };
+  const { getEstimatedRewards } = useWoodcutting();
+  const estimatedRewards = getEstimatedRewards(woodType.id);
 
-  const calculateReward = () => {
-    const baseReward = woodType.baseReward;
-    const levelMultiplier = Math.max(1, currentLevel - woodType.requiredLevel + 1);
-    const minReward = Math.floor(baseReward * levelMultiplier * 0.8);
-    const maxReward = Math.floor(baseReward * levelMultiplier * 1.2);
-    return { min: minReward, max: maxReward };
-  };
-
-  const calculateEssenceChance = () => {
-    const baseChance = 0.01; // 1% base chance
-    const levelBonus = Math.max(0, currentLevel - woodType.requiredLevel) * 0.005; // 0.5% per level above required
-    return Math.min(0.1, baseChance + levelBonus); // Max 10%
-  };
-
-  const calculateRareChance = () => {
-    const baseChance = 0.0001; // 0.01% base chance
-    const levelBonus = Math.max(0, currentLevel - woodType.requiredLevel) * 0.00005; // 0.005% per level above required
-    return Math.min(0.01, baseChance + levelBonus); // Max 1%
-  };
-
-  const reward = calculateReward();
-  const essenceChance = calculateEssenceChance();
-  const rareChance = calculateRareChance();
+  if (!estimatedRewards) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
@@ -69,6 +38,35 @@ const WoodTooltip: React.FC<WoodTooltipProps> = ({
         {woodType.description}
       </div>
 
+      {/* Spezielle Eigenschaften */}
+      {woodType.specialProperties && (
+        <div className={styles.tooltipSection}>
+          <div className={styles.tooltipSectionTitle}>Special Properties</div>
+          <div className={styles.tooltipStats}>
+            {woodType.specialProperties.glowing && (
+              <div className={styles.tooltipStat}>
+                <span className={styles.label}>✨ Glowing</span>
+                <span className={styles.value} style={{ color: '#fbbf24' }}>Yes</span>
+              </div>
+            )}
+            {woodType.specialProperties.magical && (
+              <div className={styles.tooltipStat}>
+                <span className={styles.label}>🔮 Magical</span>
+                <span className={styles.value} style={{ color: '#8b5cf6' }}>Yes</span>
+              </div>
+            )}
+            {woodType.specialProperties.elemental && (
+              <div className={styles.tooltipStat}>
+                <span className={styles.label}>⚡ Element</span>
+                <span className={styles.value} style={{ color: '#3b82f6' }}>
+                  {woodType.specialProperties.elemental}
+                </span>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
       <div className={styles.tooltipSection}>
         <div className={styles.tooltipSectionTitle}>Requirements</div>
         <div className={styles.tooltipStats}>
@@ -79,8 +77,10 @@ const WoodTooltip: React.FC<WoodTooltipProps> = ({
             </span>
           </div>
           <div className={styles.tooltipStat}>
-            <span className={styles.label}>Your Level</span>
-            <span className={styles.value}>{currentLevel}</span>
+            <span className={styles.label}>Stamina Cost</span>
+            <span className={styles.value} style={{ color: '#f59e0b' }}>
+              {woodType.stats.staminaCost}
+            </span>
           </div>
         </div>
       </div>
@@ -91,13 +91,19 @@ const WoodTooltip: React.FC<WoodTooltipProps> = ({
           <div className={styles.tooltipStat}>
             <span className={styles.label}>Wood</span>
             <span className={styles.value} style={{ color: '#f59e0b' }}>
-              {reward.min} - {reward.max}
+              {estimatedRewards.minWood} - {estimatedRewards.maxWood}
             </span>
           </div>
           <div className={styles.tooltipStat}>
             <span className={styles.label}>Duration</span>
             <span className={styles.value} style={{ color: '#3b82f6' }}>
-              6s
+              {estimatedRewards.duration}s
+            </span>
+          </div>
+          <div className={styles.tooltipStat}>
+            <span className={styles.label}>Experience</span>
+            <span className={styles.value} style={{ color: '#10b981' }}>
+              {estimatedRewards.experience} XP
             </span>
           </div>
         </div>
@@ -109,36 +115,51 @@ const WoodTooltip: React.FC<WoodTooltipProps> = ({
           <div className={styles.tooltipStat}>
             <span className={styles.label}>Essences</span>
             <span className={styles.value} style={{ color: '#8b5cf6' }}>
-              {(essenceChance * 100).toFixed(2)}%
+              {(estimatedRewards.essenceChance * 100).toFixed(2)}%
             </span>
           </div>
           <div className={styles.tooltipStat}>
             <span className={styles.label}>Rares</span>
             <span className={styles.value} style={{ color: '#f59e0b' }}>
-              {(rareChance * 100).toFixed(3)}%
+              {(estimatedRewards.rareChance * 100).toFixed(3)}%
             </span>
           </div>
         </div>
       </div>
 
-      <div className={styles.tooltipSection}>
-        <div className={styles.tooltipSectionTitle}>Bonuses</div>
-        <div className={styles.tooltipStats}>
-          <div className={styles.tooltipStat}>
-            <span className={styles.label}>Gather</span>
-            <span className={styles.value} style={{ color: '#10b981' }}>
-              ∞
-            </span>
+      {/* Progress Bar wenn aktiv */}
+      {isCurrentlyChopping && (
+        <div className={styles.tooltipSection}>
+          <div className={styles.tooltipSectionTitle}>Progress</div>
+          <div className={styles.progressContainer}>
+            <div className={styles.progressBar}>
+              <div 
+                className={styles.progressFill}
+                style={{ width: `${progress}%` }}
+              />
+            </div>
+            <span className={styles.progressText}>{Math.round(progress)}%</span>
           </div>
         </div>
-      </div>
+      )}
 
       {isUnlocked && (
         <button
-          className={styles.tooltipButton}
+          className={`${styles.tooltipButton} ${isCurrentlyChopping ? styles.buttonActive : ''}`}
           onClick={onStartChopping}
+          disabled={isCurrentlyChopping}
         >
-          Start Chopping
+          {isCurrentlyChopping ? (
+            <>
+              <Pause size={16} />
+              Chopping... {Math.round(progress)}%
+            </>
+          ) : (
+            <>
+              <Play size={16} />
+              Start Chopping
+            </>
+          )}
         </button>
       )}
       

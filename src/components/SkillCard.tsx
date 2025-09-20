@@ -73,6 +73,6 @@ const SkillCard: React.FC<SkillCardProps> = ({ skill, onToggle }) => {
       </div>
     </div>
   );
-};
+};export default SkillCard;
 
-export default SkillCard;
+

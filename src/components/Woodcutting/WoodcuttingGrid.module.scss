@@ -22,14 +22,14 @@
 }
 
 .headerIcon {
-  color: #10b981;
-  filter: drop-shadow(0 2px 4px rgba(16, 185, 129, 0.3));
+  color: #ffffff;
+  filter: drop-shadow(0 2px 4px rgba(255, 255, 255, 0.3));
   transition: all 0.3s ease;
   flex-shrink: 0;
   
   &:hover {
     transform: scale(1.1);
-    filter: drop-shadow(0 4px 8px rgba(16, 185, 129, 0.5));
+    filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.5));
   }
 }
 
@@ -217,6 +217,17 @@
       color: #dc2626;
     }
   }
+  
+  &.chopping {
+    border-color: #10b981;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    
+    &::after {
+      content: 'Chopping...';
+      color: #10b981;
+      opacity: 1;
+    }
+  }
 }
 
 .woodImageContainer {
@@ -261,6 +272,33 @@
   color: #ffffff;
   font-weight: 600;
   border-radius: 8px;
+}
+
+.progressOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 0.5rem;
+  border-radius: 0 0 8px 8px;
+}
+
+.progressBar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 0.25rem;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+  border-radius: 2px;
+  transition: width 0.1s ease;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
 }
 
 .rarityTag {

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useGameState } from '../../hooks/useGameState';
 import { 
   Coins, 
@@ -28,7 +29,15 @@ interface ResourceTab {
 
 const ResourcePanel: React.FC = () => {
   const { gameState } = useGameState();
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('inventory');
+  const [forceUpdate, setForceUpdate] = useState(0);
+
+  // Force re-render when gameState changes
+  useEffect(() => {
+    console.log('ResourcePanel: gameState.resources.secondary changed:', gameState.resources.secondary);
+    setForceUpdate(prev => prev + 1);
+  }, [gameState.resources.secondary]);
 
   const resourceIcons: Record<string, React.ComponentType<any>> = {
     primary: Coins,
@@ -42,7 +51,17 @@ const ResourcePanel: React.FC = () => {
     energy: Zap,
     experience: Star,
     defense: Shield,
-    attack: Sword
+    attack: Sword,
+    // Wood Types - alle verwenden TreePine Icon
+    normalWood: TreePine,
+    softwood: TreePine,
+    willowWood: TreePine,
+    glowwood: TreePine,
+    frostbark: TreePine,
+    ebonyWood: TreePine,
+    voidbark: TreePine,
+    yangWood: TreePine,
+    yingWood: TreePine
   };
 
   const tabs: ResourceTab[] = [
@@ -76,7 +95,12 @@ const ResourcePanel: React.FC = () => {
     if (resourceKey === 'primary') {
       return gameState.resources.primary;
     }
-    return gameState.resources.secondary[resourceKey] || 0;
+    const value = gameState.resources.secondary[resourceKey] || 0;
+    if (resourceKey === 'normalWood') {
+      console.log(`ResourcePanel reading ${resourceKey}:`, value);
+      console.log('Full secondary resources:', gameState.resources.secondary);
+    }
+    return value;
   };
 
   const getResourceName = (resourceKey: string): string => {
@@ -105,6 +129,31 @@ const ResourcePanel: React.FC = () => {
       yingWood: 'Ying Wood'
     };
     return names[resourceKey] || resourceKey;
+  };
+
+  const handleResourceClick = (resourceKey: string) => {
+    const resourceToPageMap: Record<string, string> = {
+      wood: '/woodcutting',
+      stone: '/mining',
+      metal: '/smithing',
+      food: '/cooking',
+      primary: '/bank',
+      // Wood Types - alle führen zur Woodcutting Seite
+      normalWood: '/woodcutting',
+      softwood: '/woodcutting',
+      willowWood: '/woodcutting',
+      glowwood: '/woodcutting',
+      frostbark: '/woodcutting',
+      ebonyWood: '/woodcutting',
+      voidbark: '/woodcutting',
+      yangWood: '/woodcutting',
+      yingWood: '/woodcutting'
+    };
+    
+    const page = resourceToPageMap[resourceKey];
+    if (page) {
+      navigate(page);
+    }
   };
 
   const activeTabData = tabs.find(tab => tab.id === activeTab);
@@ -139,7 +188,12 @@ const ResourcePanel: React.FC = () => {
               const name = getResourceName(resourceKey);
               
               return (
-                <div key={resourceKey} className={styles.resourceItem}>
+                <div 
+                  key={resourceKey} 
+                  className={styles.resourceItem}
+                  onClick={() => handleResourceClick(resourceKey)}
+                  style={{ cursor: 'pointer' }}
+                >
                   <div className={styles.resourceInfo}>
                     <div className={styles.resourceIconContainer}>
                       <IconComponent className={styles.resourceIcon} />
