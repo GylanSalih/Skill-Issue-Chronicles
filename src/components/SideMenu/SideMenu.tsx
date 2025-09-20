@@ -291,8 +291,11 @@ const handleSubmenuClick = (subItem: SubMenuItem) => {
         {/* Header with Logo */}
         <div className={styles.header}>
           <div className={styles.logo}>
-            <Flame className={styles.logoIcon} />
-            <h2 className={styles.logoText}>Skill Issue Chronicles</h2>
+            <img 
+              src="/assets/logo/logo.png" 
+              alt="Skill Issue Chronicles" 
+              className={styles.logoImage}
+            />
           </div>
           <p className={styles.version}>v0.0.1</p>
         </div>
