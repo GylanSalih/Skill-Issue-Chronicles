@@ -1,6 +1,6 @@
 import React from 'react';
 import { Star, Clock, Zap, Shield } from 'lucide-react';
-import styles from '../ui/Tooltip.module.scss';
+import styles from '../ui/tooltip/Tooltip.module.scss';
 
 interface WoodTooltipProps {
   woodType: {

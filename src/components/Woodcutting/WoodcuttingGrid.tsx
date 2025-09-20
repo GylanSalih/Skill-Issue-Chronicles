@@ -1,7 +1,7 @@
 import React from 'react';
 import { useGameState } from '../../hooks/useGameState';
-import { TreePine, Lock, Star } from 'lucide-react';
-import Tooltip from '../ui/Tooltip';
+import { TreePine, Lock } from 'lucide-react';
+import Tooltip from '../ui/tooltip';
 import WoodTooltip from './WoodTooltip';
 import styles from './WoodcuttingGrid.module.scss';
 
@@ -141,18 +141,6 @@ const WoodcuttingGrid: React.FC = () => {
         </div>
       </div>
 
-      <div className={styles.skillInfo}>
-        <div className={styles.skillLevel}>
-          <span>Woodcutting Level: {woodcuttingSkill.level}</span>
-          <span>Experience: {woodcuttingSkill.experience} XP</span>
-        </div>
-        <button
-          onClick={() => toggleSkill('woodcutting')}
-          className={`${styles.toggleButton} ${woodcuttingSkill.isActive ? styles.active : styles.inactive}`}
-        >
-          {woodcuttingSkill.isActive ? 'Stop Chopping' : 'Start Chopping'}
-        </button>
-      </div>
 
       <div className={styles.woodGrid}>
         {woodTypes.map((woodType) => {
@@ -176,6 +164,9 @@ const WoodcuttingGrid: React.FC = () => {
               <div
                 className={`${styles.woodCard} ${!isUnlocked ? styles.locked : ''}`}
               >
+                <div className={`${styles.rarityTag} ${styles[woodType.rarity]}`}>
+                  {woodType.rarity.toUpperCase()}
+                </div>
                 <div className={styles.woodImageContainer}>
                   <img 
                     src={woodType.image} 
@@ -188,9 +179,6 @@ const WoodcuttingGrid: React.FC = () => {
                       <span>Level {woodType.requiredLevel}</span>
                     </div>
                   )}
-                  <div className={styles.rarityIndicator} style={{ backgroundColor: getRarityColor(woodType.rarity) }}>
-                    <Star size={12} />
-                  </div>
                 </div>
                 
                 <div className={styles.woodInfo}>
@@ -200,10 +188,6 @@ const WoodcuttingGrid: React.FC = () => {
                     <div className={styles.stat}>
                       <span>Level Required:</span>
                       <span className={styles.statValue}>{woodType.requiredLevel}</span>
-                    </div>
-                    <div className={styles.stat}>
-                      <span>Reward:</span>
-                      <span className={styles.statValue}>{woodType.baseReward} wood</span>
                     </div>
                     <div className={styles.stat}>
                       <span>Owned:</span>

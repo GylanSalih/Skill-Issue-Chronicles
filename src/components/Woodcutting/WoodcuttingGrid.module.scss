@@ -19,17 +19,6 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #10b981 0%, #059669 100%);
-    opacity: 0.6;
-  }
 }
 
 .headerIcon {
@@ -130,7 +119,7 @@
 
 .woodGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
 }
 
@@ -144,17 +133,6 @@
   position: relative;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #10b981 0%, #059669 100%);
-    opacity: 0.6;
-  }
   
   &::after {
     content: 'Click for details';
@@ -199,18 +177,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 120px;
+  height: 150px;
   background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
   border-radius: 8px;
   border: 1px solid #444;
 }
 
 .woodImage {
-  max-width: 80px;
-  max-height: 80px;
+  width: 100px;
+  height: 100px;
   object-fit: contain;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
   transition: all 0.3s ease;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
   
   .woodCard:hover & {
     transform: scale(1.1);
@@ -234,18 +215,43 @@
   border-radius: 8px;
 }
 
-.rarityIndicator {
+.rarityTag {
   position: absolute;
   top: 8px;
-  right: 8px;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
+  left: 8px;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  z-index: 10;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  
+  &.common {
+    background: rgba(156, 163, 175, 0.9);
+    color: #ffffff;
+  }
+  
+  &.uncommon {
+    background: rgba(16, 185, 129, 0.9);
+    color: #ffffff;
+  }
+  
+  &.rare {
+    background: rgba(59, 130, 246, 0.9);
+    color: #ffffff;
+  }
+  
+  &.epic {
+    background: rgba(139, 92, 246, 0.9);
+    color: #ffffff;
+  }
+  
+  &.legendary {
+    background: rgba(245, 158, 11, 0.9);
+    color: #000000;
+  }
 }
 
 .woodInfo {
@@ -288,6 +294,18 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1200px) {
+  .woodGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .woodGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 768px) {
   .woodcuttingGrid {
     padding: 1rem;
@@ -309,17 +327,6 @@
   
   .headerContent p {
     font-size: 0.8rem;
-  }
-  
-  .skillInfo {
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
-  }
-  
-  .skillLevel {
-    flex-direction: column;
-    gap: 0.5rem;
   }
   
   .woodGrid {
