@@ -141,6 +141,24 @@ const WoodcuttingGrid: React.FC = () => {
         </div>
       </div>
 
+      <div className={styles.scenerySection}>
+        <div className={styles.sceneryImage}>
+          <img 
+            src="/assets/img/scenery/wood_scenery.png" 
+            alt="Mystical Forest with Elves"
+            className={styles.sceneryImg}
+          />
+        </div>
+        <div className={styles.sceneryDescription}>
+          <h2>Mystical Forest of Eldoria</h2>
+          <p>
+            Deep within the enchanted woods of Eldoria, ancient trees whisper secrets of the old world. 
+            Elven guardians watch over these sacred groves, where magical wood types grow in harmony with nature. 
+            Each tree holds unique properties - from the common oak to the legendary Ying and Yang woods that pulse 
+            with elemental energy. Master woodcutters must prove their worth to harvest these precious resources.
+          </p>
+        </div>
+      </div>
 
       <div className={styles.woodGrid}>
         {woodTypes.map((woodType) => {
