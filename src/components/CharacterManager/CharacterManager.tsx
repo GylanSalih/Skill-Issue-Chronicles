@@ -2,14 +2,15 @@
 
 // components/CharacterManager.js
 import { useState, useEffect } from 'react';
+import { Crown } from 'lucide-react';
 import CharacterSlot from './CharacterSlot.js';
 import CharacterCreator from './CharacterCreator.js';
 import CharacterDetails from './CharacterDetails.js';
 import styles from './CharacterManager.module.scss';
 
 const CharacterManager = () => {
-  const [characters, setCharacters] = useState({});
-  const [selectedSlot, setSelectedSlot] = useState(null);
+  const [characters, setCharacters] = useState<Record<number, any>>({});
+  const [selectedSlot, setSelectedSlot] = useState<number | null>(null);
   const [currentView, setCurrentView] = useState('overview'); // 'overview', 'create', 'details'
 
   // Lade Charaktere beim Mount
@@ -25,7 +26,7 @@ const CharacterManager = () => {
     localStorage.setItem('idleGameCharacters', JSON.stringify(characters));
   }, [characters]);
 
-  const createCharacter = (slotId, characterData) => {
+  const createCharacter = (slotId: number, characterData: any) => {
     const newCharacter = {
       ...characterData,
       id: `char_${slotId}_${Date.now()}`,
@@ -47,7 +48,7 @@ const CharacterManager = () => {
     setSelectedSlot(null);
   };
 
-  const deleteCharacter = (slotId) => {
+  const deleteCharacter = (slotId: number) => {
     const newCharacters = { ...characters };
     delete newCharacters[slotId];
     setCharacters(newCharacters);
@@ -55,7 +56,7 @@ const CharacterManager = () => {
     setSelectedSlot(null);
   };
 
-  const getClassBaseStats = (characterClass) => {
+  const getClassBaseStats = (characterClass: string) => {
     const baseStats = {
       strength: 10,
       agility: 10,
@@ -91,7 +92,7 @@ const CharacterManager = () => {
     }
   };
 
-  const handleSlotClick = (slotId) => {
+  const handleSlotClick = (slotId: number) => {
     setSelectedSlot(slotId);
     if (characters[slotId]) {
       setCurrentView('details');
@@ -108,14 +109,37 @@ const CharacterManager = () => {
   // Übersichts-View
   if (currentView === 'overview') {
     return (
-      <div className={styles.characterManager}>
-        <div className={styles.characterHeader}>
-          <h1>Charakter-Verwaltung</h1>
-          <p>Wähle einen Slot aus, um einen neuen Charakter zu erstellen oder einen bestehenden zu verwalten.</p>
+      <div className={styles.characterGrid}>
+        <div className={styles.header}>
+          <Crown className={styles.headerIcon} size={32} />
+          <div className={styles.headerContent}>
+            <h1>Character Management</h1>
+            <p>Create and manage your characters to embark on epic adventures</p>
+          </div>
         </div>
-        
+
+        <div className={styles.scenerySection}>
+          <div className={styles.sceneryImage}>
+            <img 
+              src="/assets/img/scenery/halloffame_scenery.png" 
+              alt="Heroic Warriors in Battle"
+              className={styles.sceneryImg}
+            />
+          </div>
+          <div className={styles.sceneryDescription}>
+            <h2>Hall of Heroes</h2>
+            <p>
+              Welcome to the sacred Hall of Heroes, where legends are born and destinies are forged. 
+              Here, brave warriors, cunning rogues, and powerful mages gather to prepare for their greatest adventures. 
+              Each character you create will embark on a unique journey through mystical realms, facing challenges 
+              that will test their strength, wisdom, and courage. Choose your path wisely, for every decision 
+              shapes the fate of your hero.
+            </p>
+          </div>
+        </div>
+
         <div className={styles.characterSlotsGrid}>
-          {Array.from({ length: 10 }, (_, index) => (
+          {Array.from({ length: 6 }, (_, index) => (
             <CharacterSlot
               key={index + 1}
               slotId={index + 1}
@@ -143,9 +167,9 @@ const CharacterManager = () => {
   if (currentView === 'details') {
     return (
       <CharacterDetails
-        character={characters[selectedSlot]}
+        character={selectedSlot ? characters[selectedSlot] : null}
         onBack={handleBackToOverview}
-        onDelete={() => deleteCharacter(selectedSlot)}
+        onDelete={() => selectedSlot && deleteCharacter(selectedSlot)}
       />
     );
   }

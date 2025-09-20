@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useGameState } from '../../hooks/useGameState';
 import { useWoodcutting } from '../../hooks/useWoodcutting';
 import { Coins, Crown, User, PanelRight, PanelLeft, TreePine, Square } from 'lucide-react';
@@ -14,10 +14,39 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
   const { gameState } = useGameState();
   const { activeSession, stopChopping, isLooping } = useWoodcutting();
 
+  // Einfacher Ladebalken State
+  const [simpleProgress, setSimpleProgress] = useState(0);
+
   // Handle Woodcutting Progress
   const currentWoodTypeConfig = activeSession ? getWoodTypeById(activeSession.woodTypeId) : null;
   const isWoodcutting = activeSession?.isActive || false;
-  const woodcuttingProgress = activeSession?.progress || 0;
+
+  // Einfacher Timer basierend auf Resource-Zeit
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    
+    if (isWoodcutting && currentWoodTypeConfig) {
+      setSimpleProgress(0);
+      
+      const duration = currentWoodTypeConfig.baseTime * 1000; // in ms
+      const updateInterval = duration / 100; // 100 Updates für smooth progress
+      
+      interval = setInterval(() => {
+        setSimpleProgress(prev => {
+          if (prev >= 100) {
+            return 0; // Zurück auf 0% setzen
+          }
+          return prev + 1;
+        });
+      }, updateInterval);
+    } else {
+      setSimpleProgress(0);
+    }
+
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [isWoodcutting, currentWoodTypeConfig]);
 
   const handleStopWoodcutting = () => {
     if (activeSession) {
@@ -36,23 +65,32 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
             <div className={styles.woodcuttingContainer}>
               <div className={styles.woodcuttingHeader}>
                 <div className={styles.woodcuttingIcon}>
-                  <TreePine size={16} />
+                  <TreePine size={14} />
                 </div>
                 <div className={styles.woodcuttingInfo}>
                   <div className={styles.woodcuttingTitle}>
                     {isWoodcutting && currentWoodTypeConfig 
-                      ? `Chopping ${currentWoodTypeConfig.name}` 
-                      : 'Woodcutting Activity'
+                      ? currentWoodTypeConfig.name
+                      : 'Woodcutting'
                     }
                   </div>
-                  <div className={styles.woodcuttingDuration}>
+                  <div className={styles.woodcuttingMeta}>
                     {isWoodcutting && currentWoodTypeConfig ? (
-                      <>
-                        {currentWoodTypeConfig.baseTime}s • {currentWoodTypeConfig.rarity.toUpperCase()}
-                        {isLooping && <span className={styles.loopIndicator}> • LOOPING</span>}
-                      </>
+                      <div className={styles.metaRow}>
+                        <span className={styles.duration}>{currentWoodTypeConfig.baseTime}s</span>
+                        <span className={styles.separator}>•</span>
+                        <span className={`${styles.rarity} ${styles[currentWoodTypeConfig.rarity]}`}>
+                          {currentWoodTypeConfig.rarity}
+                        </span>
+                        {isLooping && (
+                          <>
+                            <span className={styles.separator}>•</span>
+                            <span className={styles.looping}>Looping</span>
+                          </>
+                        )}
+                      </div>
                     ) : (
-                      'Click on wood to start chopping'
+                      <span className={styles.idleText}>Click wood to start</span>
                     )}
                   </div>
                 </div>
@@ -63,22 +101,24 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
                       onClick={handleStopWoodcutting}
                       title="Stop Chopping"
                     >
-                      <Square size={12} />
+                      <Square size={10} />
                     </button>
                   </div>
                 )}
               </div>
-              <div className={styles.woodcuttingProgress}>
-                <div className={styles.progressBar}>
-                  <div 
-                    className={styles.progressFill} 
-                    style={{ width: `${woodcuttingProgress}%` }}
-                  />
+              {isWoodcutting && (
+                <div className={styles.woodcuttingProgress}>
+                  <div className={styles.progressBar}>
+                    <div 
+                      className={styles.progressFill} 
+                      style={{ width: `${simpleProgress}%` }}
+                    />
+                    <div className={styles.progressValue}>
+                      {Math.round(simpleProgress)}%
+                    </div>
+                  </div>
                 </div>
-                <div className={styles.progressValue}>
-                  {isWoodcutting ? `${Math.round(woodcuttingProgress)}%` : '0%'}
-                </div>
-              </div>
+              )}
             </div>
 
 

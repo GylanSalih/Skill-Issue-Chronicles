@@ -70,6 +70,7 @@ const SideMenu = () => {
   const navigate = useNavigate();
 
 const menuCategories: { items: MenuItem[] }[] = [
+  // 1. Dashboard – Startpunkt
   {
     items: [
       {
@@ -77,7 +78,12 @@ const menuCategories: { items: MenuItem[] }[] = [
         title: 'Dashboard',
         icon: Home,
         path: '/'
-      },
+      }
+    ]
+  },
+  // 2. Character – Verwaltung der Spielfigur
+  {
+    items: [
       {
         id: 'character',
         title: 'Character',
@@ -86,6 +92,7 @@ const menuCategories: { items: MenuItem[] }[] = [
       }
     ]
   },
+  // 3. Combat – zentrale Kernmechanik
   {
     items: [
       {
@@ -103,6 +110,7 @@ const menuCategories: { items: MenuItem[] }[] = [
       }
     ]
   },
+  // 4. Gathering – Rohstoffe beschaffen
   {
     items: [
       {
@@ -120,6 +128,7 @@ const menuCategories: { items: MenuItem[] }[] = [
       }
     ]
   },
+  // 5. Crafting – aus Rohstoffen herstellen
   {
     items: [
       {
@@ -138,6 +147,7 @@ const menuCategories: { items: MenuItem[] }[] = [
       }
     ]
   },
+  // 6. Magic – erweiterte Fähigkeiten
   {
     items: [
       {
@@ -154,6 +164,7 @@ const menuCategories: { items: MenuItem[] }[] = [
       }
     ]
   },
+  // 7. Pets & Companions – Unterstützungssystem
   {
     items: [
       {
@@ -172,6 +183,7 @@ const menuCategories: { items: MenuItem[] }[] = [
       }
     ]
   },
+  // 8. Economy – Handel und Ressourcenmanagement
   {
     items: [
       {
@@ -189,6 +201,7 @@ const menuCategories: { items: MenuItem[] }[] = [
       }
     ]
   },
+  // 9. World – Umgebung, Karten, Exploration
   {
     items: [
       {
@@ -206,6 +219,7 @@ const menuCategories: { items: MenuItem[] }[] = [
       }
     ]
   },
+  // 10. Statistics – Fortschritt, Werte
   {
     items: [
       {
@@ -213,21 +227,28 @@ const menuCategories: { items: MenuItem[] }[] = [
         title: 'Statistics',
         icon: BookOpen,
         path: '/statistics'
-      },
-      {
-        id: 'news',
-        title: 'News',
-        icon: Newspaper,
-        path: '/news'
-      },
-      {
-        id: 'settings',
-        title: 'Settings',
-        icon: Settings,
-        path: '/settings'
       }
     ]
   },
+  // 11. Community – Interaktion mit anderen
+  {
+    items: [
+      {
+        id: 'community',
+        title: 'Community',
+        icon: Users,
+        hasSubmenu: true,
+        submenu: [
+          { id: 'news', title: 'News', icon: Newspaper, path: '/news' },
+          { id: 'discord', title: 'Discord', icon: MessageSquare, path: '/discord' },
+          { id: 'reddit', title: 'Reddit', icon: MessageCircle, path: '/reddit' },
+          { id: 'wiki', title: 'Wiki', icon: Wiki, path: '/wiki' },
+          { id: 'game-rules', title: 'Game Rules', icon: FileText, path: '/game-rules' }
+        ]
+      }
+    ]
+  },
+  // 12. Switch Character – alternative Spielfiguren
   {
     items: [
       {
@@ -238,19 +259,14 @@ const menuCategories: { items: MenuItem[] }[] = [
       }
     ]
   },
+  // 13. Settings – technische und persönliche Anpassungen
   {
     items: [
       {
-        id: 'community',
-        title: 'Community',
-        icon: Users,
-        hasSubmenu: true,
-        submenu: [
-          { id: 'discord', title: 'Discord', icon: MessageSquare, path: '/discord' },
-          { id: 'reddit', title: 'Reddit', icon: MessageCircle, path: '/reddit' },
-          { id: 'wiki', title: 'Wiki', icon: Wiki, path: '/wiki' },
-          { id: 'game-rules', title: 'Game Rules', icon: FileText, path: '/game-rules' }
-        ]
+        id: 'settings',
+        title: 'Settings',
+        icon: Settings,
+        path: '/settings'
       }
     ]
   }
@@ -362,8 +378,14 @@ const handleSubmenuClick = (subItem: SubMenuItem) => {
         {/* Footer */}
         <div className={styles.footer}>
           <div className={styles.footerContent}>
-            <p className={styles.footerText}>Online</p>
-            <span className={styles.statusDot}></span>
+            <div className={styles.activePlayers}>
+              <span className={styles.playerCount}>48,500</span>
+              <span className={styles.playerLabel}>Active Players</span>
+            </div>
+            <div className={styles.onlineStatus}>
+              <p className={styles.footerText}>Online</p>
+              <span className={styles.statusDot}></span>
+            </div>
           </div>
         </div>
       </div>

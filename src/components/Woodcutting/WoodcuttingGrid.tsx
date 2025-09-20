@@ -89,16 +89,6 @@ const WoodcuttingGrid: React.FC = () => {
                       <span>Level {woodType.requiredLevel}</span>
                     </div>
                   )}
-                  {isCurrentlyChopping && (
-                    <div className={styles.progressOverlay}>
-                      <div className={styles.progressBar}>
-                        <div 
-                          className={styles.progressFill}
-                          style={{ width: `${activeSession?.progress || 0}%` }}
-                        />
-                      </div>
-                    </div>
-                  )}
                 </div>
                 
                 <div className={styles.woodInfo}>

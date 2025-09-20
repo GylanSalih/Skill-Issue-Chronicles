@@ -1,13 +1,33 @@
 // components/CharacterCreator.js
 import { useState } from 'react';
+import { ArrowLeft } from 'lucide-react';
+import styles from './CharacterCreator.module.scss';
 
-const CharacterCreator = ({ slotId, onCreateCharacter, onBack }) => {
-  const [formData, setFormData] = useState({
+interface CharacterCreatorProps {
+  slotId: number;
+  onCreateCharacter: (slotId: number, characterData: any) => void;
+  onBack: () => void;
+}
+
+interface FormData {
+  playerName: string;
+  characterClass: string;
+  gender: string;
+}
+
+interface Errors {
+  playerName?: string;
+  characterClass?: string;
+  gender?: string;
+}
+
+const CharacterCreator: React.FC<CharacterCreatorProps> = ({ slotId, onCreateCharacter, onBack }) => {
+  const [formData, setFormData] = useState<FormData>({
     playerName: '',
     characterClass: '',
     gender: ''
   });
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<Errors>({});
 
   const characterClasses = [
     { id: 'warrior', name: 'Krieger', icon: '⚔️', description: 'Starker Nahkämpfer mit hoher Verteidigung' },
@@ -22,7 +42,7 @@ const CharacterCreator = ({ slotId, onCreateCharacter, onBack }) => {
     { id: 'elementalist', name: 'Elementarist', icon: '⚡', description: 'Meister der Elementar-Magie' }
   ];
 
-  const handleInputChange = (field, value) => {
+  const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData(prev => ({
       ...prev,
       [field]: value
@@ -38,7 +58,7 @@ const CharacterCreator = ({ slotId, onCreateCharacter, onBack }) => {
   };
 
   const validateForm = () => {
-    const newErrors = {};
+    const newErrors: Errors = {};
 
     // Spielername validieren
     if (!formData.playerName.trim()) {
@@ -60,7 +80,7 @@ const CharacterCreator = ({ slotId, onCreateCharacter, onBack }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     if (validateForm()) {
@@ -69,79 +89,82 @@ const CharacterCreator = ({ slotId, onCreateCharacter, onBack }) => {
   };
 
   return (
-    <div className="character-creator">
-      <div className="creator-header">
-        <button className="back-button" onClick={onBack}>
-          ← Zurück zur Übersicht
+    <div className={styles.characterCreator}>
+      <div className={styles.header}>
+        <button className={styles.backButton} onClick={onBack}>
+          <ArrowLeft size={16} />
+          Zurück zur Übersicht
         </button>
-        <h1>Neuen Charakter erstellen</h1>
-        <p>Slot {slotId}</p>
+        <div className={styles.headerContent}>
+          <h1>Character Creation</h1>
+          <p>Create a new character for slot {slotId}</p>
+        </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="creator-form">
+      <form onSubmit={handleSubmit} className={styles.creatorForm}>
         {/* Spielername */}
-        <div className="form-section">
-          <h2>Grundinformationen</h2>
+        <div className={styles.formSection}>
+          <h2>Basic Information</h2>
           
-          <div className="form-group">
-            <label htmlFor="playerName">Spielername *</label>
+          <div className={styles.formGroup}>
+            <label htmlFor="playerName">Character Name *</label>
             <input
               type="text"
               id="playerName"
               value={formData.playerName}
-              onChange={(e) => handleInputChange('playerName', e.target.value)}
-              placeholder="Gib deinen Charakternamen ein..."
-              maxLength="20"
-              className={errors.playerName ? 'error' : ''}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('playerName', e.target.value)}
+              placeholder="Enter your character name..."
+              maxLength={20}
+              className={errors.playerName ? styles.error : ''}
             />
             {errors.playerName && (
-              <span className="error-message">{errors.playerName}</span>
+              <span className={styles.errorMessage}>{errors.playerName}</span>
             )}
-            <small>3-20 Zeichen, nur Buchstaben, Zahlen, _ und -</small>
+            <small>3-20 characters, letters, numbers, _ and - only</small>
           </div>
 
-          <div className="form-group">
-            <label>Geschlecht (optional)</label>
-            <div className="radio-group">
-              <label className="radio-option">
+          <div className={styles.formGroup}>
+            <label>Gender (optional)</label>
+            <div className={styles.radioGroup}>
+              <label className={styles.radioOption}>
                 <input
                   type="radio"
                   name="gender"
                   value="male"
                   checked={formData.gender === 'male'}
-                  onChange={(e) => handleInputChange('gender', e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('gender', e.target.value)}
                 />
-                <span className="radio-custom">♂ Männlich</span>
+                <span className={styles.radioCustom}>♂ Male</span>
               </label>
-              <label className="radio-option">
+              <label className={styles.radioOption}>
                 <input
                   type="radio"
                   name="gender"
                   value="female"
                   checked={formData.gender === 'female'}
-                  onChange={(e) => handleInputChange('gender', e.target.value)}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleInputChange('gender', e.target.value)}
                 />
-                <span className="radio-custom">♀ Weiblich</span>
+                <span className={styles.radioCustom}>♀ Female</span>
               </label>
             </div>
           </div>
         </div>
 
         {/* Klassenauswahl */}
-        <div className="form-section">
-          <h2>Klasse auswählen *</h2>
+        <div className={styles.formSection}>
+          <h2>Choose Class *</h2>
           {errors.characterClass && (
-            <span className="error-message">{errors.characterClass}</span>
+            <span className={styles.errorMessage}>{errors.characterClass}</span>
           )}
           
-          <div className="class-grid">
+          <div className={styles.classGrid}>
             {characterClasses.map((charClass) => (
               <div
                 key={charClass.id}
-                className={`class-option ${formData.characterClass === charClass.id ? 'selected' : ''}`}
+                className={`${styles.classOption} ${formData.characterClass === charClass.id ? styles.selected : ''}`}
                 onClick={() => handleInputChange('characterClass', charClass.id)}
               >
-                <div className="class-icon">{charClass.icon}</div>
+                <div className={styles.classIcon}>{charClass.icon}</div>
                 <h3>{charClass.name}</h3>
                 <p>{charClass.description}</p>
               </div>
@@ -150,12 +173,12 @@ const CharacterCreator = ({ slotId, onCreateCharacter, onBack }) => {
         </div>
 
         {/* Submit Button */}
-        <div className="form-actions">
-          <button type="button" onClick={onBack} className="cancel-button">
-            Abbrechen
+        <div className={styles.formActions}>
+          <button type="button" onClick={onBack} className={styles.cancelButton}>
+            Cancel
           </button>
-          <button type="submit" className="create-button">
-            Charakter erstellen
+          <button type="submit" className={styles.createButton}>
+            Create Character
           </button>
         </div>
       </form>

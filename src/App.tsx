@@ -4,6 +4,7 @@ import SideMenu from './components/SideMenu/SideMenu'
 import GameHeader from './components/GameHeader'
 import ResourcePanel from './components/ResourcePanel'
 import Home from './pages/Home'
+import Dashboard from './pages/Dashboard'
 import Character from './pages/Character'
 import Woodcutting from './pages/Woodcutting'
 import Fishing from './pages/Fishing'
@@ -16,6 +17,7 @@ import Statistics from './pages/Statistics'
 import Settings from './pages/Settings'
 import MyPets from './pages/MyPets'
 import Dungeon from './pages/Dungeon'
+import News from './pages/News'
 import styles from './App.module.scss'
 
 function App() {
@@ -35,7 +37,8 @@ function App() {
         <main className={styles.content}>
           <div className={styles.pageContent}>
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/home" element={<Home />} />
               <Route path="/character" element={<Character />} />
               <Route path="/woodcutting" element={<Woodcutting />} />
               <Route path="/fishing" element={<Fishing />} />
@@ -48,6 +51,7 @@ function App() {
               <Route path="/settings" element={<Settings />} />
               <Route path="/my-pets" element={<MyPets />} />
               <Route path="/dungeon" element={<Dungeon />} />
+              <Route path="/news" element={<News />} />
             </Routes>
           </div>
           {isResourcePanelVisible && <ResourcePanel />}

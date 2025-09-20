@@ -1,6 +1,6 @@
 import React from 'react';
-import { useGameState } from '../hooks/useGameState';
-import SkillCard from '../components/SkillCard';
+import { useGameState } from '../../hooks/useGameState';
+import SkillCard from '../../components/SkillCard';
 import { Crown, Zap, Coins } from 'lucide-react';
 import styles from './Home.module.scss';
 

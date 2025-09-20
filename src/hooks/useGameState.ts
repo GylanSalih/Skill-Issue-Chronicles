@@ -46,7 +46,7 @@ let globalGameState: GameState = {
     woodcutting: {
       id: 'woodcutting',
       name: 'Woodcutting',
-      level: 1,
+      level: 5,
       experience: 0,
       isActive: false,
       progress: 0,
