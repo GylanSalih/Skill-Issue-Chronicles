@@ -1,6 +1,8 @@
 import React from 'react';
 import { useGameState } from '../../hooks/useGameState';
 import { TreePine, Lock, Star } from 'lucide-react';
+import Tooltip from '../ui/Tooltip';
+import WoodTooltip from './WoodTooltip';
 import styles from './WoodcuttingGrid.module.scss';
 
 interface WoodType {
@@ -124,6 +126,8 @@ const WoodcuttingGrid: React.FC = () => {
     if (canChop(woodType)) {
       // Hier würde die Logik für das Holzfällen implementiert werden
       console.log(`Chopping ${woodType.name}`);
+      // Starte das Holzfällen für diese Holzart
+      toggleSkill('woodcutting');
     }
   };
 
@@ -156,47 +160,59 @@ const WoodcuttingGrid: React.FC = () => {
           const currentAmount = getCurrentWoodAmount(woodType.id);
           
           return (
-            <div
+            <Tooltip
               key={woodType.id}
-              className={`${styles.woodCard} ${!isUnlocked ? styles.locked : ''}`}
-              onClick={() => handleWoodChop(woodType)}
-            >
-              <div className={styles.woodImageContainer}>
-                <img 
-                  src={woodType.image} 
-                  alt={woodType.name}
-                  className={styles.woodImage}
+              content={
+                <WoodTooltip
+                  woodType={woodType}
+                  currentLevel={woodcuttingSkill.level}
+                  isUnlocked={isUnlocked}
+                  onStartChopping={() => handleWoodChop(woodType)}
                 />
-                {!isUnlocked && (
-                  <div className={styles.lockOverlay}>
-                    <Lock size={24} />
-                    <span>Level {woodType.requiredLevel}</span>
-                  </div>
-                )}
-                <div className={styles.rarityIndicator} style={{ backgroundColor: getRarityColor(woodType.rarity) }}>
-                  <Star size={12} />
-                </div>
-              </div>
-              
-              <div className={styles.woodInfo}>
-                <h3 className={styles.woodName}>{woodType.name}</h3>
-                <p className={styles.woodDescription}>{woodType.description}</p>
-                <div className={styles.woodStats}>
-                  <div className={styles.stat}>
-                    <span>Level Required:</span>
-                    <span className={styles.statValue}>{woodType.requiredLevel}</span>
-                  </div>
-                  <div className={styles.stat}>
-                    <span>Reward:</span>
-                    <span className={styles.statValue}>{woodType.baseReward} wood</span>
-                  </div>
-                  <div className={styles.stat}>
-                    <span>Owned:</span>
-                    <span className={styles.statValue}>{currentAmount}</span>
+              }
+              position="center"
+              trigger="click"
+            >
+              <div
+                className={`${styles.woodCard} ${!isUnlocked ? styles.locked : ''}`}
+              >
+                <div className={styles.woodImageContainer}>
+                  <img 
+                    src={woodType.image} 
+                    alt={woodType.name}
+                    className={styles.woodImage}
+                  />
+                  {!isUnlocked && (
+                    <div className={styles.lockOverlay}>
+                      <Lock size={24} />
+                      <span>Level {woodType.requiredLevel}</span>
+                    </div>
+                  )}
+                  <div className={styles.rarityIndicator} style={{ backgroundColor: getRarityColor(woodType.rarity) }}>
+                    <Star size={12} />
                   </div>
                 </div>
+                
+                <div className={styles.woodInfo}>
+                  <h3 className={styles.woodName}>{woodType.name}</h3>
+                  <p className={styles.woodDescription}>{woodType.description}</p>
+                  <div className={styles.woodStats}>
+                    <div className={styles.stat}>
+                      <span>Level Required:</span>
+                      <span className={styles.statValue}>{woodType.requiredLevel}</span>
+                    </div>
+                    <div className={styles.stat}>
+                      <span>Reward:</span>
+                      <span className={styles.statValue}>{woodType.baseReward} wood</span>
+                    </div>
+                    <div className={styles.stat}>
+                      <span>Owned:</span>
+                      <span className={styles.statValue}>{currentAmount}</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
+            </Tooltip>
           );
         })}
       </div>
