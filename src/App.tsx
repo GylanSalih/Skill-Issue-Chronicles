@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import { useState } from 'react'
 import SideMenu from './components/SideMenu/SideMenu'
 import GameHeader from './components/GameHeader'
 import ResourcePanel from './components/ResourcePanel'
@@ -18,11 +19,19 @@ import Dungeon from './pages/Dungeon'
 import styles from './App.module.scss'
 
 function App() {
+  const [isResourcePanelVisible, setIsResourcePanelVisible] = useState(true);
+
+  const toggleResourcePanel = () => {
+    setIsResourcePanelVisible(!isResourcePanelVisible);
+  };
   return (
     <div className={styles.app}>
       <SideMenu />
       <div className={styles.mainContent}>
-        <GameHeader />
+        <GameHeader 
+          onToggleResourcePanel={toggleResourcePanel}
+          isResourcePanelVisible={isResourcePanelVisible}
+        />
         <main className={styles.content}>
           <div className={styles.pageContent}>
             <Routes>
@@ -41,7 +50,7 @@ function App() {
               <Route path="/dungeon" element={<Dungeon />} />
             </Routes>
           </div>
-          <ResourcePanel />
+          {isResourcePanelVisible && <ResourcePanel />}
         </main>
       </div>
     </div>

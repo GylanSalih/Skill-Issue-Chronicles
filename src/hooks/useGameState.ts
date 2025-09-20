@@ -8,7 +8,17 @@ const initialGameState: GameState = {
       wood: 0,
       stone: 0,
       metal: 0,
-      food: 0
+      food: 0,
+      // Verschiedene Holzarten
+      normalWood: 0,
+      softwood: 0,
+      willowWood: 0,
+      glowwood: 0,
+      frostbark: 0,
+      ebonyWood: 0,
+      voidbark: 0,
+      yangWood: 0,
+      yingWood: 0
     }
   },
   character: {

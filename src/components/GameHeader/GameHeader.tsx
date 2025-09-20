@@ -1,9 +1,14 @@
-import React from 'react';
-import { useGameState } from '../hooks/useGameState';
-import { Coins, Crown, User } from 'lucide-react';
+import React, { useState } from 'react';
+import { useGameState } from '../../hooks/useGameState';
+import { Coins, Crown, User, PanelRight, PanelLeft } from 'lucide-react';
 import styles from './GameHeader.module.scss';
 
-const GameHeader: React.FC = () => {
+interface GameHeaderProps {
+  onToggleResourcePanel: () => void;
+  isResourcePanelVisible: boolean;
+}
+
+const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResourcePanelVisible }) => {
   const { gameState } = useGameState();
 
   return (
@@ -25,6 +30,21 @@ const GameHeader: React.FC = () => {
 
         {/* Right: Player Profile */}
         <div className={styles.rightSection}>
+          {isResourcePanelVisible ? (
+            <PanelLeft 
+              className={styles.toggleIcon} 
+              size={20} 
+              onClick={onToggleResourcePanel}
+              title="Resource Panel ausblenden"
+            />
+          ) : (
+            <PanelRight 
+              className={styles.toggleIcon} 
+              size={20} 
+              onClick={onToggleResourcePanel}
+              title="Resource Panel anzeigen"
+            />
+          )}
           <div className={styles.playerProfile}>
             <div className={styles.playerInfo}>
               <div className={styles.playerName}>PlayerName</div>

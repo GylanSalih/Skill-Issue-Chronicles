@@ -53,6 +53,12 @@ const ResourcePanel: React.FC = () => {
       resources: ['primary', 'wood', 'stone', 'metal', 'food']
     },
     {
+      id: 'wood',
+      name: 'Wood Types',
+      icon: TreePine,
+      resources: ['normalWood', 'softwood', 'willowWood', 'glowwood', 'frostbark', 'ebonyWood', 'voidbark', 'yangWood', 'yingWood']
+    },
+    {
       id: 'equipment',
       name: 'Equipment',
       icon: ShieldCheck,
@@ -86,7 +92,17 @@ const ResourcePanel: React.FC = () => {
       energy: 'Energy',
       experience: 'Experience',
       defense: 'Defense',
-      attack: 'Attack'
+      attack: 'Attack',
+      // Holzarten
+      normalWood: 'Normal Wood',
+      softwood: 'Softwood',
+      willowWood: 'Willow Wood',
+      glowwood: 'Glowwood',
+      frostbark: 'Frostbark',
+      ebonyWood: 'Ebony Wood',
+      voidbark: 'Voidbark',
+      yangWood: 'Yang Wood',
+      yingWood: 'Ying Wood'
     };
     return names[resourceKey] || resourceKey;
   };
