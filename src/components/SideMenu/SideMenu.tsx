@@ -29,12 +29,39 @@ import {
   Flame, 
   Trophy, 
   Settings, 
-  ChevronRight,
+  ChevronDown,
   Coins,
   Star,
-  Activity,
   Heart,
-  Handshake
+  Handshake,
+  Target,
+  MapPin,
+  Gem,
+  Crown,
+  Scroll,
+  BookOpen,
+  Compass,
+  Skull,
+  Crosshair,
+  Fish,
+  ChefHat,
+  Anvil,
+  Wand2,
+  ScrollText,
+  Leaf,
+  Footprints,
+  Sparkles,
+  SwordIcon,
+  ShieldCheck,
+  Eye,
+  ArrowRight,
+  MessageSquare,
+  BookOpen as Wiki,
+  MessageCircle,
+  FileText,
+  Users,
+  Newspaper,
+  RefreshCw,
 } from 'lucide-react';
 
 const SideMenu = () => {
@@ -54,7 +81,7 @@ const menuCategories: { items: MenuItem[] }[] = [
       {
         id: 'character',
         title: 'Character',
-        icon: Shield,
+        icon: Crown,
         path: '/character'
       }
     ]
@@ -67,9 +94,11 @@ const menuCategories: { items: MenuItem[] }[] = [
         icon: Sword,
         hasSubmenu: true,
         submenu: [
-          { id: 'dungeon', title: 'Dungeons', icon: Shield, path: '/dungeon' },
-          { id: 'slayer', title: 'Slayer', icon: Sword, path: '/slayer' },
-          { id: 'combat_areas', title: 'Combat Areas', icon: Activity, path: '/combat-areas' }
+          { id: 'dungeon', title: 'Dungeons', icon: Skull, path: '/dungeon' },
+          { id: 'slayer', title: 'Slayer', icon: Crosshair, path: '/slayer' },
+          { id: 'pvp', title: 'PvP Arena', icon: SwordIcon, path: '/pvp' },
+          { id: 'bosses', title: 'Boss Battles', icon: Target, path: '/bosses' },
+          { id: 'raids', title: 'Raids', icon: ShieldCheck, path: '/raids' }
         ]
       }
     ]
@@ -77,17 +106,50 @@ const menuCategories: { items: MenuItem[] }[] = [
   {
     items: [
       {
-        id: 'skills',
-        title: 'Skills',
-        icon: Activity,
+        id: 'gathering',
+        title: 'Gathering',
+        icon: Compass,
         hasSubmenu: true,
         submenu: [
           { id: 'woodcutting', title: 'Woodcutting', icon: TreePine, path: '/woodcutting' },
-          { id: 'fishing', title: 'Fishing', icon: Star, path: '/fishing' },
-          { id: 'firemaking', title: 'Firemaking', icon: Flame, path: '/firemaking' },
-          { id: 'cooking', title: 'Cooking', icon: Flame, path: '/cooking' },
+          { id: 'fishing', title: 'Fishing', icon: Fish, path: '/fishing' },
           { id: 'mining', title: 'Mining', icon: Pickaxe, path: '/mining' },
-          { id: 'smithing', title: 'Smithing', icon: Hammer, path: '/smithing' }
+          { id: 'hunting', title: 'Hunting', icon: Crosshair, path: '/hunting' },
+          { id: 'foraging', title: 'Foraging', icon: Leaf, path: '/foraging' }
+        ]
+      }
+    ]
+  },
+  {
+    items: [
+      {
+        id: 'crafting',
+        title: 'Crafting',
+        icon: Hammer,
+        hasSubmenu: true,
+        submenu: [
+          { id: 'smithing', title: 'Smithing', icon: Anvil, path: '/smithing' },
+          { id: 'cooking', title: 'Cooking', icon: ChefHat, path: '/cooking' },
+          { id: 'firemaking', title: 'Firemaking', icon: Flame, path: '/firemaking' },
+          { id: 'fletching', title: 'Fletching', icon: ArrowRight, path: '/fletching' },
+          { id: 'herblore', title: 'Herblore', icon: ScrollText, path: '/herblore' },
+          { id: 'runecrafting', title: 'Runecrafting', icon: Wand2, path: '/runecrafting' }
+        ]
+      }
+    ]
+  },
+  {
+    items: [
+      {
+        id: 'magic',
+        title: 'Magic',
+        icon: Wand2,
+        hasSubmenu: true,
+        submenu: [
+          { id: 'spells', title: 'Spells', icon: Sparkles, path: '/spells' },
+          { id: 'enchanting', title: 'Enchanting', icon: Gem, path: '/enchanting' },
+          { id: 'alchemy', title: 'Alchemy', icon: Scroll, path: '/alchemy' },
+          { id: 'divination', title: 'Divination', icon: Eye, path: '/divination' }
         ]
       }
     ]
@@ -96,15 +158,16 @@ const menuCategories: { items: MenuItem[] }[] = [
     items: [
       {
         id: 'pets',
-        title: 'Pets',
+        title: 'Pets & Companions',
         icon: Heart,
         hasSubmenu: true,
         submenu: [
-          { id: 'my-pets', title: 'My Pets', icon: Heart, path: '/pets' },
-          { id: 'pet-training', title: 'Training', icon: Activity, path: '/pets/training' },
+          { id: 'my-pets', title: 'My Pets', icon: Heart, path: '/my-pets' },
+          { id: 'pet-training', title: 'Training', icon: Footprints, path: '/pets/training' },
           { id: 'pet-battles', title: 'Battles', icon: Sword, path: '/pets/battles' },
-          { id: 'pet-evolution', title: 'Evolution', icon: Star, path: '/pets/evolution' },
-          { id: 'pet-trading', title: 'Trading', icon: Handshake, path: '/pets/trade' }
+          { id: 'pet-evolution', title: 'Evolution', icon: Sparkles, path: '/pets/evolution' },
+          { id: 'pet-trading', title: 'Trading', icon: Handshake, path: '/pets/trade' },
+          { id: 'mounts', title: 'Mounts', icon: Crown, path: '/mounts' }
         ]
       }
     ]
@@ -112,16 +175,34 @@ const menuCategories: { items: MenuItem[] }[] = [
   {
     items: [
       {
-        id: 'bank',
-        title: 'Bank',
-        icon: ShoppingBag,
-        path: '/bank'
-      },
-      {
-        id: 'shop',
-        title: 'Shop',
+        id: 'economy',
+        title: 'Economy',
         icon: Coins,
-        path: '/shop'
+        hasSubmenu: true,
+        submenu: [
+          { id: 'bank', title: 'Bank', icon: ShoppingBag, path: '/bank' },
+          { id: 'shop', title: 'Shop', icon: Coins, path: '/shop' },
+          { id: 'auction', title: 'Auction House', icon: Gem, path: '/auction' },
+          { id: 'trading', title: 'Trading Post', icon: Handshake, path: '/trading' },
+          { id: 'guild', title: 'Guild Bank', icon: Shield, path: '/guild-bank' }
+        ]
+      }
+    ]
+  },
+  {
+    items: [
+      {
+        id: 'world',
+        title: 'World',
+        icon: MapPin,
+        hasSubmenu: true,
+        submenu: [
+          { id: 'map', title: 'World Map', icon: MapPin, path: '/map' },
+          { id: 'quests', title: 'Quests', icon: Scroll, path: '/quests' },
+          { id: 'events', title: 'Events', icon: Star, path: '/events' },
+          { id: 'guilds', title: 'Guilds', icon: Shield, path: '/guilds' },
+          { id: 'achievements', title: 'Achievements', icon: Trophy, path: '/achievements' }
+        ]
       }
     ]
   },
@@ -130,14 +211,46 @@ const menuCategories: { items: MenuItem[] }[] = [
       {
         id: 'statistics',
         title: 'Statistics',
-        icon: Trophy,
+        icon: BookOpen,
         path: '/statistics'
+      },
+      {
+        id: 'news',
+        title: 'News',
+        icon: Newspaper,
+        path: '/news'
       },
       {
         id: 'settings',
         title: 'Settings',
         icon: Settings,
         path: '/settings'
+      }
+    ]
+  },
+  {
+    items: [
+      {
+        id: 'switch-character',
+        title: 'Switch Character',
+        icon: RefreshCw,
+        path: '/switch-character'
+      }
+    ]
+  },
+  {
+    items: [
+      {
+        id: 'community',
+        title: 'Community',
+        icon: Users,
+        hasSubmenu: true,
+        submenu: [
+          { id: 'discord', title: 'Discord', icon: MessageSquare, path: '/discord' },
+          { id: 'reddit', title: 'Reddit', icon: MessageCircle, path: '/reddit' },
+          { id: 'wiki', title: 'Wiki', icon: Wiki, path: '/wiki' },
+          { id: 'game-rules', title: 'Game Rules', icon: FileText, path: '/game-rules' }
+        ]
       }
     ]
   }
@@ -208,7 +321,7 @@ const handleSubmenuClick = (subItem: SubMenuItem) => {
                         </div>
 
                         {item.hasSubmenu && (
-                          <ChevronRight
+                          <ChevronDown
                             className={`${styles.chevronIcon} ${isExpanded ? styles.expanded : ''}`}
                           />
                         )}
