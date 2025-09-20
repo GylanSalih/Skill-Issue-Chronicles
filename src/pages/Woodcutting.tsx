@@ -1,6 +1,7 @@
 import React from 'react';
 import { useGameState } from '../hooks/useGameState';
 import { TreePine, Axe, Zap } from 'lucide-react';
+import styles from './Woodcutting.module.scss';
 
 export default function WoodcuttingPage() {
   const { gameState, toggleSkill } = useGameState();
@@ -34,81 +35,77 @@ export default function WoodcuttingPage() {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className={styles.container}>
       {/* Header */}
-      <div className="flex items-center space-x-4">
-        <TreePine className="text-green-500" size={32} />
-        <div>
-          <h1 className="text-3xl font-bold text-white">Woodcutting</h1>
-          <p className="text-gray-400">Chop wood to gather resources and gain experience</p>
+      <div className={styles.header}>
+        <TreePine className={styles.headerIcon} size={32} />
+        <div className={styles.headerContent}>
+          <h1>Woodcutting</h1>
+          <p>Chop wood to gather resources and gain experience</p>
         </div>
       </div>
 
       {/* Skill Status */}
-      <div className="bg-gray-800 p-6 rounded-lg">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <h2 className="text-xl font-semibold text-white">Woodcutting Skill</h2>
-            <p className="text-gray-400">Level {woodcuttingSkill.level} • {woodcuttingSkill.experience} XP</p>
+      <div className={styles.skillCard}>
+        <div className={styles.skillHeader}>
+          <div className={styles.skillInfo}>
+            <h2>Woodcutting Skill</h2>
+            <p>Level {woodcuttingSkill.level} • {woodcuttingSkill.experience} XP</p>
           </div>
           <button
             onClick={() => toggleSkill('woodcutting')}
-            className={`px-6 py-3 rounded-lg font-semibold transition-colors ${
-              woodcuttingSkill.isActive
-                ? 'bg-red-600 hover:bg-red-700 text-white'
-                : 'bg-green-600 hover:bg-green-700 text-white'
-            }`}
+            className={`${styles.toggleButton} ${woodcuttingSkill.isActive ? styles.active : styles.inactive}`}
           >
             {woodcuttingSkill.isActive ? 'Stop Chopping' : 'Start Chopping'}
           </button>
         </div>
 
         {/* Progress Bar */}
-        <div className="mb-4">
-          <div className="flex justify-between text-sm text-gray-300 mb-2">
+        <div className={styles.progressSection}>
+          <div className={styles.progressHeader}>
             <span>Progress</span>
             <span>{Math.round(woodcuttingSkill.progress)}%</span>
           </div>
-          <div className="w-full bg-gray-700 rounded-full h-3">
+          <div className={styles.progressBar}>
             <div 
-              className="bg-green-500 h-3 rounded-full transition-all duration-1000"
+              className={styles.progressFill}
               style={{ width: `${woodcuttingSkill.progress}%` }}
             />
           </div>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-4 text-center">
-          <div>
-            <p className="text-gray-400 text-sm">Wood per Cycle</p>
-            <p className="text-xl font-bold text-green-400">{woodcuttingSkill.level}</p>
+        <div className={styles.statsGrid}>
+          <div className={styles.statItem}>
+            <p>Wood per Cycle</p>
+            <p className={styles.woodStat}>{woodcuttingSkill.level}</p>
           </div>
-          <div>
-            <p className="text-gray-400 text-sm">Cycle Time</p>
-            <p className="text-xl font-bold text-blue-400">{woodcuttingSkill.baseTime}s</p>
+          <div className={styles.statItem}>
+            <p>Cycle Time</p>
+            <p className={styles.timeStat}>{woodcuttingSkill.baseTime}s</p>
           </div>
-          <div>
-            <p className="text-gray-400 text-sm">Total Wood</p>
-            <p className="text-xl font-bold text-yellow-400">{gameState.resources.secondary.wood}</p>
+          <div className={styles.statItem}>
+            <p>Total Wood</p>
+            <p className={styles.totalStat}>{gameState.resources.secondary.wood}</p>
           </div>
         </div>
       </div>
 
       {/* Upgrades */}
-      <div>
-        <h2 className="text-2xl font-semibold text-white mb-4">Upgrades</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className={styles.upgradesSection}>
+        <h2>Upgrades</h2>
+        <div className={styles.upgradesGrid}>
           {upgrades.map(upgrade => (
-            <div key={upgrade.id} className="bg-gray-800 p-4 rounded-lg border border-gray-700">
-              <div className="flex items-center space-x-2 mb-2">
-                <Axe className="text-orange-500" size={20} />
-                <h3 className="text-lg font-semibold text-white">{upgrade.name}</h3>
+            <div key={upgrade.id} className={styles.upgradeCard}>
+              <div className={styles.upgradeHeader}>
+                <Axe className={styles.upgradeIcon} size={20} />
+                <h3 className={styles.upgradeTitle}>{upgrade.name}</h3>
               </div>
-              <p className="text-gray-400 text-sm mb-3">{upgrade.description}</p>
-              <div className="flex items-center justify-between">
-                <span className="text-yellow-400 font-semibold">{upgrade.cost} Gold</span>
+              <p className={styles.upgradeDescription}>{upgrade.description}</p>
+              <div className={styles.upgradeFooter}>
+                <span className={styles.upgradeCost}>{upgrade.cost} Gold</span>
                 <button 
-                  className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+                  className={styles.buyButton}
                   disabled={gameState.resources.primary < upgrade.cost}
                 >
                   Buy
@@ -120,12 +117,12 @@ export default function WoodcuttingPage() {
       </div>
 
       {/* Tips */}
-      <div className="bg-blue-900/20 border border-blue-500/30 p-4 rounded-lg">
-        <div className="flex items-start space-x-3">
-          <Zap className="text-blue-400 mt-1" size={20} />
-          <div>
-            <h3 className="text-lg font-semibold text-blue-400 mb-2">Pro Tips</h3>
-            <ul className="text-gray-300 space-y-1 text-sm">
+      <div className={styles.tipsCard}>
+        <div className={styles.tipsContent}>
+          <Zap className={styles.tipsIcon} size={20} />
+          <div className={styles.tipsText}>
+            <h3>Pro Tips</h3>
+            <ul>
               <li>• Higher level = more wood per cycle</li>
               <li>• Upgrade your tools to chop faster</li>
               <li>• Wood is used for crafting and building</li>

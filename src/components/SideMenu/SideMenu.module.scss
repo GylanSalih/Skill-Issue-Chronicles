@@ -2,51 +2,20 @@
 
 /* SideMenu.module.css - Pixel Idle Game Theme */
 
-.toggleButton {
-  position: fixed;
-  top: 5px;
-  left: 5px;
-  z-index: 50;
-  padding: 2px;
-  background: #1a1a1a;
-  color: #e0e0e0;
-  border: 1px solid #333;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.15s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Inter', sans-serif;
-}
-
-.toggleButton:hover {
-  background: #2a2a2a;
-}
-
-.toggleButton:focus {
-  outline: none;
-  background: #2a2a2a;
-}
+/* Toggle button removed - menu is now always visible */
 
 
 .sideMenu {
   position: fixed;
   left: 0;
   top: 0;
-  height: 100vh;
   width: 225px;
+  height: 100vh;
   background: #141414;
   border-right: 1px solid #2a2a2a;
-  z-index: 40;
-  transition: transform 0.25s ease;
-  transform: translateX(-100%);
+  z-index: 50;
   overflow: hidden;
   font-family: 'Inter', sans-serif;
-}
-
-.sideMenu.open {
-  transform: translateX(0);
 }
 
 .header {
@@ -293,10 +262,5 @@
   .sideMenu {
     width: 100%;
     max-width: 240px;
-  }
-  
-  .toggleButton {
-    top: 16px;
-    left: 16px;
   }
 }

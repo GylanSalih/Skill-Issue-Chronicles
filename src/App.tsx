@@ -15,15 +15,16 @@ import Statistics from './pages/Statistics'
 import Settings from './pages/Settings'
 import MyPets from './pages/MyPets'
 import Dungeon from './pages/Dungeon'
+import styles from './App.module.scss'
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      <GameHeader />
-      <div className="flex">
-        <SideMenu />
-        <main className="flex-1 flex">
-          <div className="flex-1 p-6">
+    <div className={styles.app}>
+      <SideMenu />
+      <div className={styles.mainContent}>
+        <GameHeader />
+        <main className={styles.content}>
+          <div className={styles.pageContent}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/character" element={<Character />} />
@@ -40,7 +41,7 @@ function App() {
               <Route path="/dungeon" element={<Dungeon />} />
             </Routes>
           </div>
-          <div className="w-80 border-l border-gray-700">
+          <div className={styles.sidebar}>
             <ResourcePanel />
           </div>
         </main>

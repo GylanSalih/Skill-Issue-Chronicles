@@ -1,7 +1,23 @@
 // SideMenu.tsx
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styles from './SideMenu.module.css';
+import styles from './SideMenu.module.scss';
+
+interface MenuItem {
+  id: string;
+  title: string;
+  icon: React.ComponentType<any>;
+  path?: string;
+  hasSubmenu?: boolean;
+  submenu?: SubMenuItem[];
+}
+
+interface SubMenuItem {
+  id: string;
+  title: string;
+  icon: React.ComponentType<any>;
+  path: string;
+}
 import { 
   Home, 
   Sword, 
@@ -11,29 +27,22 @@ import {
   TreePine, 
   Hammer, 
   Flame, 
-  Scroll, 
-  Users, 
   Trophy, 
   Settings, 
   ChevronRight,
-  Menu,
-  X,
   Coins,
   Star,
-  Zap,
-  Crown,
   Activity,
   Heart,
   Handshake
 } from 'lucide-react';
 
 const SideMenu = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [activeItem, setActiveItem] = useState('dashboard');
-  const [expandedCategories, setExpandedCategories] = useState({});
+  const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
   const navigate = useNavigate();
 
-const menuCategories = [
+const menuCategories: { items: MenuItem[] }[] = [
   {
     items: [
       {
@@ -135,18 +144,16 @@ const menuCategories = [
 ];
 
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
+  // Menu is now always visible, no toggle needed
 
-  const toggleCategory = (categoryId) => {
+  const toggleCategory = (categoryId: string) => {
     setExpandedCategories(prev => ({
       ...prev,
       [categoryId]: !prev[categoryId]
     }));
   };
 
-const handleItemClick = (item) => {
+const handleItemClick = (item: MenuItem) => {
   if (item.hasSubmenu) {
     toggleCategory(item.id);
   } else {
@@ -157,7 +164,7 @@ const handleItemClick = (item) => {
   }
 };
 
-const handleSubmenuClick = (subItem) => {
+const handleSubmenuClick = (subItem: SubMenuItem) => {
   setActiveItem(subItem.id);
   navigate(`/${subItem.id}`);
 };
@@ -165,17 +172,8 @@ const handleSubmenuClick = (subItem) => {
 
   return (
     <>
-      {/* Toggle Button */}
-      <button 
-        onClick={toggleMenu}
-        className={styles.toggleButton}
-        aria-label="Menu öffnen/schließen"
-      >
-        {isOpen ? <X size={24} /> : <Menu size={24} />}
-      </button>
-
-      {/* Side Menu */}
-      <div className={`${styles.sideMenu} ${isOpen ? styles.open : ''}`}>
+      {/* Side Menu - Always Visible */}
+      <div className={styles.sideMenu}>
         
         {/* Header with Logo */}
         <div className={styles.header}>

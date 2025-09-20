@@ -14,7 +14,7 @@ import {
   ChevronUp,
   Info
 } from 'lucide-react';
-import styles from './Pets.module.css';
+import styles from './Pets.module.scss';
 
 const Pets = () => {
   const [selectedPet, setSelectedPet] = useState(null);

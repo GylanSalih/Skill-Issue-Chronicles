@@ -1,0 +1,28 @@
+.app {
+  min-height: 100vh;
+  background-color: #111827; // gray-900
+  color: white;
+}
+
+.mainContent {
+  margin-left: 225px;
+  width: calc(100% - 225px);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+}
+
+.pageContent {
+  flex: 1;
+  padding: 1.5rem; // p-6
+}
+
+.sidebar {
+  width: 20rem; // w-80
+  border-left: 1px solid #374151; // border-gray-700
+}

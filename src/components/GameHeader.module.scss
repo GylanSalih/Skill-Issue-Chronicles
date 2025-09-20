@@ -1,0 +1,131 @@
+.header {
+  background-color: #111827; // bg-gray-900
+  color: white;
+  padding: 1rem; // p-4
+  border-bottom: 1px solid #374151; // border-gray-700
+  position: relative;
+  z-index: 10;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; // space-x-6
+}
+
+.title {
+  font-size: 1.5rem; // text-2xl
+  font-weight: bold;
+}
+
+.activeCharacters {
+  font-size: 0.875rem; // text-sm
+  color: #d1d5db; // text-gray-300
+}
+
+.centerSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem; // space-x-4
+}
+
+.resourceItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; // space-x-2
+}
+
+.goldText {
+  color: #fbbf24; // text-yellow-400
+  font-weight: 600; // font-semibold
+}
+
+.progressContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; // space-x-2
+}
+
+.progressBar {
+  width: 8rem; // w-32
+  background-color: #374151; // bg-gray-700
+  border-radius: 9999px; // rounded-full
+  height: 0.5rem; // h-2
+}
+
+.progressFill {
+  background-color: #3b82f6; // bg-blue-500
+  height: 0.5rem; // h-2
+  border-radius: 9999px; // rounded-full
+  transition: all 1s; // transition-all duration-1000
+}
+
+.progressText {
+  font-size: 0.75rem; // text-xs
+  color: #d1d5db; // text-gray-300
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem; // space-x-4
+}
+
+.playerInfo {
+  text-align: right;
+}
+
+.playerName {
+  font-weight: 600; // font-semibold
+}
+
+.playerLevel {
+  font-size: 0.875rem; // text-sm
+  color: #d1d5db; // text-gray-300
+}
+
+.controlButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; // space-x-2
+  padding: 0.5rem 1rem; // px-4 py-2
+  border-radius: 0.5rem; // rounded-lg
+  transition: background-color 0.2s; // transition-colors
+  border: none;
+  cursor: pointer;
+  
+  &.running {
+    background-color: #dc2626; // bg-red-600
+    
+    &:hover {
+      background-color: #b91c1c; // hover:bg-red-700
+    }
+  }
+  
+  &.stopped {
+    background-color: #16a34a; // bg-green-600
+    
+    &:hover {
+      background-color: #15803d; // hover:bg-green-700
+    }
+  }
+}
+
+.settingsButton {
+  padding: 0.5rem; // p-2
+  border-radius: 0.5rem; // rounded-lg
+  transition: background-color 0.2s; // transition-colors
+  background: none;
+  border: none;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: #374151; // hover:bg-gray-700
+  }
+}

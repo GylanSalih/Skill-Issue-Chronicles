@@ -13,7 +13,7 @@ import {
   Plus,
   Gem
 } from 'lucide-react';
-import styles from './EquipmentInterface.module.css';
+import styles from './EquipmentInterface.module.scss';
 
 const EquipmentInterface = () => {
   const [selectedSlot, setSelectedSlot] = useState(null);

@@ -27,7 +27,7 @@ import {
   Lock,
   BarChart3
 } from 'lucide-react';
-import styles from './Statistics.module.css';
+import styles from './Statistics.module.scss';
 
 const Statistics = () => {
   const [gameStats] = useState({

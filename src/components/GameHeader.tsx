@@ -1,40 +1,41 @@
 import React from 'react';
 import { useGameState } from '../hooks/useGameState';
 import { Play, Pause, Settings } from 'lucide-react';
+import styles from './GameHeader.module.scss';
 
 const GameHeader: React.FC = () => {
   const { gameState, isRunning, startGame, stopGame } = useGameState();
 
   return (
-    <header className="bg-gray-900 text-white p-4 border-b border-gray-700">
-      <div className="flex justify-between items-center">
+    <header className={styles.header}>
+      <div className={styles.container}>
         {/* Left: Game Title & Stats */}
-        <div className="flex items-center space-x-6">
-          <h1 className="text-2xl font-bold">Skill Issue Chronicles</h1>
-          <div className="text-sm text-gray-300">
+        <div className={styles.leftSection}>
+          <h1 className={styles.title}>Skill Issue Chronicles</h1>
+          <div className={styles.activeCharacters}>
             Active Characters: 1
           </div>
         </div>
 
         {/* Center: Resources & Progress */}
-        <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-2">
-            <span className="text-yellow-400">💰</span>
-            <span className="font-semibold">Gold ({gameState.resources.primary})</span>
+        <div className={styles.centerSection}>
+          <div className={styles.resourceItem}>
+            <span className={styles.goldText}>💰</span>
+            <span className={styles.goldText}>Gold ({gameState.resources.primary})</span>
           </div>
           
           {/* Active Skill Progress */}
           {Object.values(gameState.skills).find(skill => skill.isActive) && (
-            <div className="flex items-center space-x-2">
-              <div className="w-32 bg-gray-700 rounded-full h-2">
+            <div className={styles.progressContainer}>
+              <div className={styles.progressBar}>
                 <div 
-                  className="bg-blue-500 h-2 rounded-full transition-all duration-1000"
+                  className={styles.progressFill}
                   style={{ 
                     width: `${Object.values(gameState.skills).find(skill => skill.isActive)?.progress || 0}%` 
                   }}
                 />
               </div>
-              <span className="text-xs text-gray-300">
+              <span className={styles.progressText}>
                 {Math.ceil((Object.values(gameState.skills).find(skill => skill.isActive)?.baseTime || 0) * 
                   (1 - (Object.values(gameState.skills).find(skill => skill.isActive)?.progress || 0) / 100))}s
               </span>
@@ -43,25 +44,21 @@ const GameHeader: React.FC = () => {
         </div>
 
         {/* Right: Player Info & Controls */}
-        <div className="flex items-center space-x-4">
-          <div className="text-right">
-            <div className="font-semibold">Player</div>
-            <div className="text-sm text-gray-300">Total Level: {gameState.character.totalLevel}</div>
+        <div className={styles.rightSection}>
+          <div className={styles.playerInfo}>
+            <div className={styles.playerName}>Player</div>
+            <div className={styles.playerLevel}>Total Level: {gameState.character.totalLevel}</div>
           </div>
           
           <button
             onClick={isRunning ? stopGame : startGame}
-            className={`flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors ${
-              isRunning 
-                ? 'bg-red-600 hover:bg-red-700' 
-                : 'bg-green-600 hover:bg-green-700'
-            }`}
+            className={`${styles.controlButton} ${isRunning ? styles.running : styles.stopped}`}
           >
             {isRunning ? <Pause size={16} /> : <Play size={16} />}
             <span>{isRunning ? 'Stop' : 'Start'}</span>
           </button>
           
-          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+          <button className={styles.settingsButton}>
             <Settings size={20} />
           </button>
         </div>

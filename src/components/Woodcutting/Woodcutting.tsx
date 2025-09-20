@@ -15,7 +15,7 @@ import {
   Lock,
   CheckCircle
 } from 'lucide-react';
-import styles from './Woodcutting.module.css';
+import styles from './Woodcutting.module.scss';
 
 const Woodcutting = () => {
   const [playerLevel, setPlayerLevel] = useState(100);

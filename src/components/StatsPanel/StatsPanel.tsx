@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react';
-import styles from './StatsPanel.module.css';
+import styles from './StatsPanel.module.scss';
 import { 
   Sword, 
   Shield, 
