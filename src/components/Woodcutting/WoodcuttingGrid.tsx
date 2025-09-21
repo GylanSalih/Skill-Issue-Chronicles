@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { TreePine, Lock, Clock, X, Target, Trophy, Zap } from 'lucide-react';
+import { TreePine, Lock, Clock, X } from 'lucide-react';
 import { useWoodcutting } from '../../hooks/useWoodcutting';
+import { useGameState } from '../../hooks/useGameState';
+// import { useActivityManager } from '../../contexts/ActivityManager';
 import Tooltip from '../ui/tooltip';
 import WoodTooltip from './WoodTooltip';
 import styles from './WoodcuttingGrid.module.scss';
@@ -14,8 +16,40 @@ const WoodcuttingGrid: React.FC = () => {
     activeSession
   } = useWoodcutting();
 
+  const { gameState } = useGameState();
+  // const { getSkill, getSkillLevel, getSkillExperience } = useActivityManager();
+  const woodcuttingSkill = gameState.skills.woodcutting;
+
   const [timeElapsed, setTimeElapsed] = useState(0);
   const [efficiency, setEfficiency] = useState(0);
+
+  // Skill calculations
+  const getSkillLevel = () => woodcuttingSkill.level;
+  const getSkillExperience = () => woodcuttingSkill.experience;
+  const getRequiredExperience = () => woodcuttingSkill.level * 100;
+  const getExperienceProgress = () => {
+    const current = getSkillExperience();
+    const required = getRequiredExperience();
+    return Math.min((current / required) * 100, 100);
+  };
+
+  // Calculate efficiency based on skill level
+  const calculateEfficiency = () => {
+    const baseEfficiency = 25;
+    const levelBonus = (getSkillLevel() - 1) * 5; // 5% per level
+    const timeBonus = timeElapsed * 0.1; // Small bonus over time
+    return Math.min(Math.round((baseEfficiency + levelBonus + timeBonus) * 10) / 10, 100);
+  };
+
+  // Calculate wood bonus based on skill level
+  const getWoodBonus = () => {
+    return Math.floor(getSkillLevel() / 5); // +1 wood every 5 levels
+  };
+
+  // Calculate time reduction based on skill level (currently unused but kept for future use)
+  // const getTimeReduction = () => {
+  //   return Math.floor(skillLevel / 3) * 0.1; // 10% time reduction every 3 levels
+  // };
 
   // Timer für aktive Session
   useEffect(() => {
@@ -30,15 +64,14 @@ const WoodcuttingGrid: React.FC = () => {
     return () => clearInterval(interval);
   }, [activeSession]);
 
-  // Simuliere Effizienz basierend auf Level und Zeit
+  // Update efficiency based on skill level and time
   useEffect(() => {
     if (activeSession) {
-      const baseEfficiency = 25 + (timeElapsed * 0.1);
-      setEfficiency(Math.min(Math.round(baseEfficiency * 10) / 10, 100));
+      setEfficiency(calculateEfficiency());
     } else {
       setEfficiency(0);
     }
-  }, [activeSession, timeElapsed]);
+  }, [activeSession, timeElapsed, getSkillLevel()]);
 
   const formatTime = (seconds: number) => {
     const hours = Math.floor(seconds / 3600);
@@ -126,7 +159,7 @@ const WoodcuttingGrid: React.FC = () => {
                   </div>
                   <div className={styles.actionStats}>
                     <span className={styles.quantity}>
-                      +{Math.floor(activeSession.progress / 10)} ({getWoodAmount(activeSession.woodTypeId)} total)
+                      +{Math.floor(activeSession.progress / 10) + getWoodBonus()} ({getWoodAmount(activeSession.woodTypeId)} total)
                     </span>
                     <span className={styles.resourceTime}>
                       {woodTypes.find(w => w.id === activeSession.woodTypeId)?.baseTime || 3}s
@@ -152,35 +185,42 @@ const WoodcuttingGrid: React.FC = () => {
         {/* Your Progress */}
         <div className={styles.yourProgress}>
           <div className={styles.progressHeader}>
-            <h3>YOUR PROGRESS</h3>
+            <h3>Your Progress</h3>
             <div className={styles.efficiency}>
               {efficiency}% Efficiency
             </div>
           </div>
           
-          <div className={styles.skillProgress}>
-            <div className={styles.skillIcon}>
-              <TreePine size={24} />
-            </div>
-            <div className={styles.skillInfo}>
-              <div className={styles.skillName}>Woodcutting</div>
-              <div className={styles.skillLevel}>Lv. 3</div>
-              <div className={styles.skillProgressBar}>
-                <div className={styles.skillProgressFill} style={{ width: '33%' }} />
+          <div className={styles.activeAction}>
+            <div className={styles.actionItem}>
+              <div className={styles.actionImage}>
+                <TreePine size={32} />
+                <div className={styles.skillLevelBadge}>Lv. {getSkillLevel()}</div>
               </div>
-              <div className={styles.skillStats}>
-                <span>113 EXP Needed</span>
-                <span>33%</span>
+              <div className={styles.actionInfo}>
+                <div className={styles.actionName}>
+                  <span>Woodcutting</span>
+                </div>
+                <div className={styles.progressBar}>
+                  <div 
+                    className={styles.progressFill} 
+                    style={{ width: `${getExperienceProgress()}%` }}
+                  />
+                </div>
+                <div className={styles.actionStats}>
+                  <span className={styles.quantity}>
+                    {getRequiredExperience() - getSkillExperience()} EXP <span className={styles.neededText}>Needed</span>
+                  </span>
+                  <span className={styles.resourceTime}>
+                    {Math.round(getExperienceProgress())}%
+                  </span>
+                </div>
               </div>
             </div>
           </div>
-          
-          <button className={styles.ascensionBtn}>
-            <Trophy size={16} />
-            Ascension Perks
-            <Lock size={14} />
-          </button>
         </div>
+
+
       </div>
 
       <div className={styles.woodGrid}>

@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useGameState } from './useGameState';
+// import { useActivityManager } from '../contexts/ActivityManager';
 import { woodManager, WoodcuttingSession, WoodcuttingResult } from '../lib/woodManager';
 import { WoodTypeConfig, getAllWoodTypes } from '../config/woodConfig';
 
@@ -28,6 +29,7 @@ export interface UseWoodcuttingReturn {
 
 export const useWoodcutting = (): UseWoodcuttingReturn => {
   const { gameState, processWoodcuttingResult } = useGameState();
+  // const { getSkillLevel, addExperience } = useActivityManager();
   const [activeSession, setActiveSession] = useState<WoodcuttingSession | null>(null);
   const [currentWoodAmounts, setCurrentWoodAmounts] = useState<Record<string, number>>({});
 
@@ -58,6 +60,9 @@ export const useWoodcutting = (): UseWoodcuttingReturn => {
         result.essences,
         result.rareItems
       );
+
+      // Add experience to ActivityManager (commented out for now)
+      // addExperience('woodcutting', result.experienceGained);
 
       // Update local state
       setCurrentWoodAmounts(prev => ({

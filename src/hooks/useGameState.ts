@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { GameState, Resources, Character, Skill } from '../types/game';
+import { SaveManager } from '../lib/saveManager';
 
 // Globaler State außerhalb der Komponente
 let globalGameState: GameState = {
@@ -46,7 +47,7 @@ let globalGameState: GameState = {
     woodcutting: {
       id: 'woodcutting',
       name: 'Woodcutting',
-      level: 5,
+      level: 1,
       experience: 0,
       isActive: false,
       progress: 0,
@@ -229,6 +230,15 @@ export const useGameState = () => {
     }
     
     notifyStateUpdate(newState);
+  }, []);
+
+  // Lade Save-Daten beim Mount
+  useEffect(() => {
+    const saveData = SaveManager.loadGame();
+    if (saveData) {
+      globalGameState = saveData.gameState;
+      notifyStateUpdate(globalGameState);
+    }
   }, []);
 
   return {

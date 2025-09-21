@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import { useState } from 'react'
 import { GameProvider } from './contexts/GameContext'
+// import { ActivityManagerProvider } from './contexts/ActivityManager'
 import SideMenu from './components/SideMenu/SideMenu'
 import GameHeader from './components/GameHeader'
 import ResourcePanel from './components/ResourcePanel'
@@ -26,6 +27,7 @@ import GameRules from './pages/GameRules'
 import { CharacterSelection, CharacterCreation } from './pages/CharacterFlow'
 import styles from './App.module.scss'
 import Character from './pages/Character'
+// import ActivityManagerDemo from './components/ActivityManagerDemo'
 
 function App() {
   const [isResourcePanelVisible, setIsResourcePanelVisible] = useState(true);
@@ -74,6 +76,7 @@ function App() {
                     <Route path="/boss-tower" element={<BossTower />} />
                     <Route path="/news" element={<News />} />
                     <Route path="/game-rules" element={<GameRules />} />
+                    {/* <Route path="/activity-demo" element={<ActivityManagerDemo />} /> */}
                   </Routes>
                 </div>
                 {isResourcePanelVisible && <ResourcePanel />}
@@ -82,7 +85,7 @@ function App() {
           </>
         } />
         </Routes>
-      </div>
+        </div>
     </GameProvider>
   )
 }

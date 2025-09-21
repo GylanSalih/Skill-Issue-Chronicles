@@ -1,6 +1,8 @@
 import React from 'react';
 import { Plus, Minus, Crown, Heart, Zap, Activity, Coins, Star, Target, Shield, Sword, TreePine, Pickaxe, Fish, FlaskConical, ChefHat, Hammer, Gem, Wand2, Snowflake, Egg, Skull, Mountain, Baby, Shield as ShieldIcon, Gem as Crystal, Flower } from 'lucide-react';
 import { useCharacter, useCharacterClasses, useStatAllocation } from '../../../contexts/GameContext';
+import { useGameState } from '../../../hooks/useGameState';
+// import { useActivityManager } from '../../../contexts/ActivityManager';
 import { formatDate } from '../../../lib/dateUtils';
 import styles from '../Character.module.scss';
 
@@ -8,6 +10,8 @@ const ProfileTab: React.FC = () => {
   const { currentCharacter } = useCharacter();
   const { getClassById } = useCharacterClasses();
   const { allocateStatPoint, resetStatAllocation, getPendingStatChanges, applyStatChanges } = useStatAllocation();
+  const { gameState } = useGameState();
+  // const { getSkillLevel, getAllSkills } = useActivityManager();
 
   // Use current character or fallback to default
   const character = currentCharacter || {
@@ -34,13 +38,13 @@ const ProfileTab: React.FC = () => {
   // Get class information from context
   const classInfo = getClassById(character.characterClassId);
 
-  // Skills data - Activity Levels
+  // Skills data - Activity Levels (using real data from GameState)
   const skills = [
-    { id: 'woodcutting', name: 'Woodcutting', icon: TreePine, level: 4, color: '#8B4513' },
-    { id: 'mining', name: 'Mining', icon: Pickaxe, level: 1, color: '#CD7F32' },
+    { id: 'woodcutting', name: 'Woodcutting', icon: TreePine, level: gameState.skills.woodcutting?.level || 1, color: '#8B4513' },
+    { id: 'mining', name: 'Mining', icon: Pickaxe, level: gameState.skills.mining?.level || 1, color: '#CD7F32' },
     { id: 'fishing', name: 'Fishing', icon: Fish, level: 1, color: '#4169E1' },
     { id: 'alchemy', name: 'Alchemy', icon: FlaskConical, level: 1, color: '#9370DB' },
-    { id: 'cooking', name: 'Cooking', icon: ChefHat, level: 1, color: '#FF6347' },
+    { id: 'cooking', name: 'Cooking', icon: ChefHat, level: gameState.skills.cooking?.level || 1, color: '#FF6347' },
     { id: 'smithing', name: 'Smithing', icon: Hammer, level: 1, color: '#708090' },
     { id: 'farming', name: 'Farming', icon: Gem, level: 1, color: '#32CD32' },
     { id: 'magic', name: 'Magic', icon: Wand2, level: 1, color: '#FF69B4' },
@@ -120,11 +124,36 @@ const ProfileTab: React.FC = () => {
     { id: 4, type: 'fishing', action: 'Caught Salmon', time: '12 minutes ago', xp: 20 }
   ];
 
+  // Active skills using real data from GameState
   const activeSkills = [
-    { name: 'Woodcutting', level: 15, progress: 75, xp: 1250, nextLevel: 1500 },
-    { name: 'Mining', level: 12, progress: 60, xp: 900, nextLevel: 1200 },
-    { name: 'Combat', level: 18, progress: 45, xp: 1800, nextLevel: 2000 },
-    { name: 'Fishing', level: 8, progress: 90, xp: 450, nextLevel: 500 }
+    { 
+      name: 'Woodcutting', 
+      level: gameState.skills.woodcutting?.level || 1, 
+      progress: gameState.skills.woodcutting?.progress || 0, 
+      xp: gameState.skills.woodcutting?.experience || 0, 
+      nextLevel: (gameState.skills.woodcutting?.level || 1) * 100 
+    },
+    { 
+      name: 'Mining', 
+      level: gameState.skills.mining?.level || 1, 
+      progress: gameState.skills.mining?.progress || 0, 
+      xp: gameState.skills.mining?.experience || 0, 
+      nextLevel: (gameState.skills.mining?.level || 1) * 100 
+    },
+    { 
+      name: 'Cooking', 
+      level: gameState.skills.cooking?.level || 1, 
+      progress: gameState.skills.cooking?.progress || 0, 
+      xp: gameState.skills.cooking?.experience || 0, 
+      nextLevel: (gameState.skills.cooking?.level || 1) * 100 
+    },
+    { 
+      name: 'Fishing', 
+      level: 1, 
+      progress: 0, 
+      xp: 0, 
+      nextLevel: 100 
+    }
   ];
 
   const achievements = [

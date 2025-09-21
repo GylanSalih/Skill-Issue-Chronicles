@@ -77,6 +77,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       if (savedCharacters) {
         const parsedCharacters = JSON.parse(savedCharacters);
         setCharacters(parsedCharacters);
+        console.log('GameContext - Loaded characters:', parsedCharacters);
         
         // Set first character as current if none is set
         if (!currentCharacter && Object.keys(parsedCharacters).length > 0) {
@@ -88,6 +89,21 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       console.error('Error loading characters:', error);
     }
   };
+
+  // Lade Charaktere beim Mount
+  useEffect(() => {
+    loadCharacters();
+  }, []);
+
+  // Höre auf localStorage Änderungen
+  useEffect(() => {
+    const handleStorageChange = () => {
+      loadCharacters();
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+    return () => window.removeEventListener('storage', handleStorageChange);
+  }, []);
 
   // Save characters to localStorage
   const saveCharacters = () => {
