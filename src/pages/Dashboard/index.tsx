@@ -66,7 +66,7 @@ const Dashboard: React.FC = () => {
         <div className={styles.sceneryImage}>
           <img 
             src="/assets/img/scenery/halloffame2.png" 
-            alt="Adventurer's Camp"
+            alt="Dungeon"
             className={styles.sceneryImg}
           />
         </div>

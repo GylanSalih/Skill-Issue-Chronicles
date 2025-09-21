@@ -48,6 +48,7 @@ import {
   Anvil,
   Wand2,
   ScrollText,
+  LogOut,
   Leaf,
   Footprints,
   Sparkles,
@@ -62,6 +63,8 @@ import {
   Users,
   Newspaper,
   RefreshCw,
+  Building2 as Tower,
+  Activity,
 } from 'lucide-react';
 
 const SideMenu = () => {
@@ -102,6 +105,7 @@ const menuCategories: { items: MenuItem[] }[] = [
         hasSubmenu: true,
         submenu: [
           { id: 'dungeon', title: 'Dungeons', icon: Skull, path: '/dungeon' },
+          { id: 'boss-tower', title: 'Boss Tower', icon: Tower, path: '/boss-tower' },
           { id: 'slayer', title: 'Slayer', icon: Crosshair, path: '/slayer' },
           { id: 'pvp', title: 'PvP Arena', icon: SwordIcon, path: '/pvp' },
           { id: 'bosses', title: 'Boss Battles', icon: Target, path: '/bosses' },
@@ -174,7 +178,7 @@ const menuCategories: { items: MenuItem[] }[] = [
         hasSubmenu: true,
         submenu: [
           { id: 'my-pets', title: 'My Pets', icon: Heart, path: '/my-pets' },
-          { id: 'pet-training', title: 'Training', icon: Footprints, path: '/pets/training' },
+          { id: 'pet-training', title: 'Training', icon: Activity, path: '/pet-training' },
           { id: 'pet-battles', title: 'Battles', icon: Sword, path: '/pets/battles' },
           { id: 'pet-evolution', title: 'Evolution', icon: Sparkles, path: '/pets/evolution' },
           { id: 'pet-trading', title: 'Trading', icon: Handshake, path: '/pets/trade' },
@@ -248,14 +252,14 @@ const menuCategories: { items: MenuItem[] }[] = [
       }
     ]
   },
-  // 12. Switch Character – alternative Spielfiguren
+  // 12. Character Selection – alternative Spielfiguren
   {
     items: [
       {
-        id: 'switch-character',
-        title: 'Switch Character',
+        id: 'character-selection',
+        title: 'Character Selection',
         icon: RefreshCw,
-        path: '/switch-character'
+        path: '/character-selection'
       }
     ]
   },
@@ -382,9 +386,26 @@ const handleSubmenuClick = (subItem: SubMenuItem) => {
               <span className={styles.playerCount}>48,500</span>
               <span className={styles.playerLabel}>Active Players</span>
             </div>
-            <div className={styles.onlineStatus}>
-              <p className={styles.footerText}>Online</p>
-              <span className={styles.statusDot}></span>
+            <div className={styles.footerRight}>
+              <div className={styles.onlineStatus}>
+                <p className={styles.footerText}>Online</p>
+                <span className={styles.statusDot}></span>
+              </div>
+              
+              {/* Logout Button */}
+              <button 
+                className={styles.logoutButton}
+                onClick={() => {
+                  // Lösche alle gespeicherten Daten
+                  localStorage.removeItem('idleGameCharacters');
+                  localStorage.removeItem('isLoggedIn');
+                  // Navigiere zur Login-Seite
+                  navigate('/login');
+                }}
+              >
+                <LogOut className={styles.logoutIcon} size={12} />
+                <span>Logout</span>
+              </button>
             </div>
           </div>
         </div>

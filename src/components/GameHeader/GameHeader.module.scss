@@ -75,11 +75,13 @@
   padding: 8px 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   transition: all 0.2s ease;
+  cursor: pointer;
   
   &:hover {
     background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
-    border-color: #555;
+    border-color: #ff6b35;
     transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2);
   }
 }
 

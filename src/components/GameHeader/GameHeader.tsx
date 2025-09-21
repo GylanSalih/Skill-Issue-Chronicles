@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useGameState } from '../../hooks/useGameState';
 import { useWoodcutting } from '../../hooks/useWoodcutting';
 import { Coins, Crown, User, PanelRight, PanelLeft, TreePine, Square } from 'lucide-react';
@@ -11,6 +12,7 @@ interface GameHeaderProps {
 }
 
 const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResourcePanelVisible }) => {
+  const navigate = useNavigate();
   const { gameState } = useGameState();
   const { activeSession, stopChopping, isLooping } = useWoodcutting();
 
@@ -52,6 +54,10 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
     if (activeSession) {
       stopChopping();
     }
+  };
+
+  const handlePlayerProfileClick = () => {
+    navigate('/character');
   };
 
 
@@ -155,7 +161,12 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
               <PanelRight size={20} />
             </div>
           )}
-          <div className={styles.playerProfile}>
+          <div 
+            className={styles.playerProfile}
+            onClick={handlePlayerProfileClick}
+            style={{ cursor: 'pointer' }}
+            title="Character öffnen"
+          >
             <div className={styles.playerInfo}>
               <div className={styles.playerName}>PlayerName</div>
               <div className={styles.playerStats}>

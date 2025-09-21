@@ -58,7 +58,7 @@
 
 .menuContainer {
   padding: 8px 6px;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 200px);
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #444 transparent;
@@ -165,7 +165,7 @@
 }
 
 .submenu.expanded {
-  max-height: 500px;
+  max-height: 300px;
   opacity: 1;
 }
 
@@ -262,6 +262,12 @@
   gap: 12px;
 }
 
+.footerRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .onlineStatus {
   display: flex;
   align-items: center;
@@ -315,6 +321,34 @@
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.5; }
+}
+
+/* Logout Button */
+.logoutButton {
+  background: rgba(255, 255, 255, 0.05);
+  color: #b8b8d1;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 0.4rem 0.6rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  width: fit-content;
+  height: 1.8rem;
+  
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ef4444;
+    border-color: rgba(239, 68, 68, 0.3);
+  }
+}
+
+.logoutIcon {
+  flex-shrink: 0;
 }
 
 /* Category Separators */
