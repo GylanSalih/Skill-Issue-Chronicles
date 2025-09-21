@@ -8,37 +8,37 @@
   <table>
     <tr>
       <td align="center">
-        <img src="docs/showcase/showcase_21_09_25_1.jpeg" width="300" height="300" alt="Game Screenshot 1">
+        <img src="docs/showcase/showcase_21_09_25_1.jpeg" width="300" height="300" min-height="300" alt="Game Screenshot 1">
         <br><sub>Character Selection</sub>
       </td>
       <td align="center">
-        <img src="docs/showcase/showcase_21_09_25_2.jpeg" width="300" height="300" alt="Game Screenshot 2">
+        <img src="docs/showcase/showcase_21_09_25_2.jpeg" width="300" height="300" min-height="300" alt="Game Screenshot 2">
         <br><sub>Game Interface</sub>
       </td>
       <td align="center">
-        <img src="docs/showcase/showcase_21_09_25_3.jpeg" width="300" height="300" alt="Game Screenshot 3">
+        <img src="docs/showcase/showcase_21_09_25_3.jpeg" width="300" height="300" min-height="300" alt="Game Screenshot 3">
         <br><sub>Resource Management</sub>
       </td>
       <td align="center">
-        <img src="docs/showcase/showcase_21_09_25_4.jpeg" width="300" height="300" alt="Game Screenshot 4">
+        <img src="docs/showcase/showcase_21_09_25_4.jpeg" width="300" height="300" min-height="300" alt="Game Screenshot 4">
         <br><sub>Character Stats</sub>
       </td>
     </tr>
     <tr>
       <td align="center">
-        <img src="docs/showcase/showcase_21_09_25_5.jpeg" width="300" height="300" alt="Game Screenshot 5">
+        <img src="docs/showcase/showcase_21_09_25_5.jpeg" width="300" height="300" min-height="300" alt="Game Screenshot 5">
         <br><sub>Equipment System</sub>
       </td>
       <td align="center">
-        <img src="docs/showcase/showcase_21_09_25_6.jpeg" width="300" height="300" alt="Game Screenshot 6">
+        <img src="docs/showcase/showcase_21_09_25_6.jpeg" width="300" height="300" min-height="300" alt="Game Screenshot 6">
         <br><sub>Boss Combat</sub>
       </td>
       <td align="center">
-        <img src="docs/showcase/showcase_21_09_25_7.jpeg" width="300" height="300" alt="Game Screenshot 7">
+        <img src="docs/showcase/showcase_21_09_25_7.jpeg" width="300" height="300" min-height="300" alt="Game Screenshot 7">
         <br><sub>Game Dashboard</sub>
       </td>
       <td align="center">
-        <img src="docs/showcase/showcase_21_09_25_8.jpeg" width="300" height="300" alt="Game Screenshot 8">
+        <img src="docs/showcase/showcase_21_09_25_8.jpeg" width="300" height="300" min-height="300" alt="Game Screenshot 8">
         <br><sub>Activity Manager</sub>
       </td>
     </tr>
