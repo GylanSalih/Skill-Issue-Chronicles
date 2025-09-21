@@ -189,17 +189,17 @@ This project is currently in **Alpha v0.0.1**. Features may be incomplete or sub
       </a>
     </td>
     <td align="center">
-      <img src="https://via.placeholder.com/100x100/cccccc/666666?text=Dev" width="100px;" alt="Developer 2"/>
+      <img src="https://avatar.iran.liara.run/public/60" width="100px;" alt="Developer 2"/>
       <br />
       <b>Developer 2</b>
     </td>
     <td align="center">
-      <img src="https://via.placeholder.com/100x100/cccccc/666666?text=Dev" width="100px;" alt="Developer 3"/>
+      <img src="https://avatar.iran.liara.run/public/90" width="100px;" alt="Developer 3"/>
       <br />
       <b>Developer 3</b>
     </td>
     <td align="center">
-      <img src="https://via.placeholder.com/100x100/cccccc/666666?text=Dev" width="100px;" alt="Developer 4"/>
+      <img src="https://avatar.iran.liara.run/public/42" width="100px;" alt="Developer 4"/>
       <br />
       <b>Developer 4</b>
     </td>
