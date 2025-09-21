@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useGameState } from '../../hooks/useGameState';
 import { useWoodcutting } from '../../hooks/useWoodcutting';
 import { useCharacter, useCharacterClasses } from '../../contexts/GameContext';
-import { Coins, Crown, PanelRight, PanelLeft, TreePine, Square, Bell, MessageCircle, Gem, Sun, Moon } from 'lucide-react';
+import { Coins, Crown, PanelRight, PanelLeft, TreePine, Bell, MessageCircle, Gem, Sun, Moon } from 'lucide-react';
 import { getWoodTypeById } from '../../config/woodConfig';
 import { formatTimeWithSeconds } from '../../lib/dateUtils';
 import styles from './GameHeader.module.scss';
@@ -16,7 +16,7 @@ interface GameHeaderProps {
 const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResourcePanelVisible }) => {
   const navigate = useNavigate();
   const { gameState } = useGameState();
-  const { activeSession, stopChopping, isLooping } = useWoodcutting();
+  const { activeSession, stopChopping } = useWoodcutting();
   const { currentCharacter } = useCharacter();
   const { getClassById } = useCharacterClasses();
 
@@ -72,11 +72,11 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
     return () => clearInterval(timer);
   }, []);
 
-  const handleStopWoodcutting = () => {
-    if (activeSession) {
-      stopChopping();
-    }
-  };
+  // const handleStopWoodcutting = () => {
+  //   if (activeSession) {
+  //     stopChopping();
+  //   }
+  // };
 
   const handlePlayerProfileClick = () => {
     navigate('/character');

@@ -14,4 +14,20 @@ export default defineConfig({
     port: 3000,
     host: true
   },
+  build: {
+    outDir: 'dist',
+    sourcemap: false,
+    minify: 'terser',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          router: ['react-router-dom'],
+          ui: ['lucide-react', '@radix-ui/react-slot', '@radix-ui/react-label'],
+          three: ['three', '@react-three/fiber', '@react-three/drei'],
+          utils: ['lodash', 'uuid', 'clsx']
+        }
+      }
+    }
+  }
 })
