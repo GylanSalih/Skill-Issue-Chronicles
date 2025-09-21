@@ -188,9 +188,24 @@ This project is currently in **Alpha v0.0.1**. Features may be incomplete or sub
         <b>Gylan Salih</b>
       </a>
     </td>
+    <td align="center">
+      <img src="https://via.placeholder.com/100x100/cccccc/666666?text=Dev" width="100px;" alt="Developer 2"/>
+      <br />
+      <b>Developer 2</b>
+    </td>
+    <td align="center">
+      <img src="https://via.placeholder.com/100x100/cccccc/666666?text=Dev" width="100px;" alt="Developer 3"/>
+      <br />
+      <b>Developer 3</b>
+    </td>
+    <td align="center">
+      <img src="https://via.placeholder.com/100x100/cccccc/666666?text=Dev" width="100px;" alt="Developer 4"/>
+      <br />
+      <b>Developer 4</b>
+    </td>
   </tr>
 </table>
 
 ---
 
-**Status**: Alpha Development | **Version**: 0.0.1 | **Developers**: 1
+**Status**: Alpha Development | **Version**: 0.0.1 | **Developers**: 4
