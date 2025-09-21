@@ -172,16 +172,25 @@ export const useBossCombat = (player: Player, boss: Boss) => {
   }, [combatState, player, boss, calculateDamage]);
 
   const resetCombat = useCallback(() => {
-    setCombatState({
-      playerHealth: player.health,
-      bossHealth: boss.health,
-      playerMana: player.mana,
-      isPlayerTurn: true,
-      combatLog: [`${player.name} challenges ${boss.name} to battle!`],
-      isCombatActive: true,
-      isVictory: false,
-      isDefeat: false
-    });
+    try {
+      if (!player || !boss) {
+        console.error('Player or boss is undefined:', { player, boss });
+        return;
+      }
+      
+      setCombatState({
+        playerHealth: player.health,
+        bossHealth: boss.health,
+        playerMana: player.mana,
+        isPlayerTurn: true,
+        combatLog: [`${player.name} challenges ${boss.name} to battle!`],
+        isCombatActive: true,
+        isVictory: false,
+        isDefeat: false
+      });
+    } catch (error) {
+      console.error('Error in resetCombat:', error);
+    }
   }, [player, boss]);
 
   const fleeCombat = useCallback(() => {

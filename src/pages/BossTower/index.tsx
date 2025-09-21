@@ -29,7 +29,7 @@ import { useBossCombat } from '../../hooks/useBossCombat';
 const BossTower: React.FC = () => {
   const [player] = useState({
     id: 'player1',
-    name: 'DragonSlayer99',
+    name: 'Kyrai-Zero',
     level: 42,
     health: 850,
     maxHealth: 1000,
@@ -37,15 +37,15 @@ const BossTower: React.FC = () => {
     maxMana: 400,
     attack: 125,
     defense: 95,
-    avatar: '/assets/img/avatars/avatar_warrior.jpg',
-    class: 'Warrior',
-    rarity: 'epic' as const
+    avatar: '/assets/img/avatars/berserk.png',
+    class: 'Berserker'
   });
 
   const [towerFloors, setTowerFloors] = useState<TowerFloor[]>(bossTowerFloors);
 
   const [selectedBoss, setSelectedBoss] = useState<Boss | null>(null);
   const [isCombatActive, setIsCombatActive] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const {
     combatState,
@@ -58,9 +58,19 @@ const BossTower: React.FC = () => {
   } = useBossCombat(player, selectedBoss || bossTowerFloors[0].boss);
 
   const startCombat = (boss: Boss) => {
-    setSelectedBoss(boss);
-    setIsCombatActive(true);
-    resetCombat();
+    try {
+      console.log('Starting combat with boss:', boss);
+      setError(null);
+      setSelectedBoss(boss);
+      setIsCombatActive(true);
+      // Warte kurz bevor resetCombat aufgerufen wird
+      setTimeout(() => {
+        resetCombat();
+      }, 100);
+    } catch (error) {
+      console.error('Error starting combat:', error);
+      setError('Fehler beim Starten des Kampfes');
+    }
   };
 
   const completeFloor = (floorId: number) => {
@@ -135,12 +145,7 @@ const BossTower: React.FC = () => {
                   alt={player.name}
                   className={styles.avatar}
                 />
-                <div className={styles.rarityBadge} style={{ 
-                  backgroundColor: getRarityColor(player.rarity),
-                  boxShadow: `0 0 20px ${getRarityGlow(player.rarity)}`
-                }}>
-                  {player.rarity.toUpperCase()}
-                </div>
+
               </div>
               <div className={styles.playerInfo}>
                 <h4 className={styles.playerName}>{player.name}</h4>
@@ -178,7 +183,11 @@ const BossTower: React.FC = () => {
                 <div 
                   key={floor.id} 
                   className={`${styles.floorCard} ${floor.isCurrent ? styles.currentFloor : ''} ${!floor.isUnlocked ? styles.lockedFloor : ''}`}
-                  onClick={() => floor.isUnlocked && !floor.isCompleted && startCombat(floor.boss)}
+                  onClick={() => {
+                    if (floor.isUnlocked && !floor.isCompleted) {
+                      startCombat(floor.boss);
+                    }
+                  }}
                 >
                   <div className={styles.floorHeader}>
                     <div className={styles.floorNumber}>

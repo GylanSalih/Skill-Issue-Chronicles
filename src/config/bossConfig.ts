@@ -44,7 +44,7 @@ export const bossTowerFloors: TowerFloor[] = [
       maxHealth: 500,
       attack: 60,
       defense: 30,
-      avatar: '/assets/img/avatars/goblin_king.png',
+      avatar: '/assets/img/avatars/elfe.png',
       type: 'Goblin',
       rarity: 'common',
       rewards: { 
@@ -71,7 +71,7 @@ export const bossTowerFloors: TowerFloor[] = [
       maxHealth: 800,
       attack: 90,
       defense: 50,
-      avatar: '/assets/img/avatars/orc_warlord.png',
+      avatar: '/assets/img/avatars/assassine2.png',
       type: 'Orc',
       rarity: 'uncommon',
       rewards: { 
@@ -98,7 +98,7 @@ export const bossTowerFloors: TowerFloor[] = [
       maxHealth: 600,
       attack: 120,
       defense: 40,
-      avatar: '/assets/img/avatars/dark_mage.png',
+      avatar: '/assets/img/avatars/elementarist.png',
       type: 'Mage',
       rarity: 'rare',
       rewards: { 
@@ -125,7 +125,7 @@ export const bossTowerFloors: TowerFloor[] = [
       maxHealth: 1200,
       attack: 150,
       defense: 80,
-      avatar: '/assets/img/avatars/dragon_knight.png',
+      avatar: '/assets/img/avatars/berserk.png',
       type: 'Dragon',
       rarity: 'epic',
       rewards: { 
@@ -152,7 +152,7 @@ export const bossTowerFloors: TowerFloor[] = [
       maxHealth: 1500,
       attack: 180,
       defense: 100,
-      avatar: '/assets/img/avatars/shadow_lord.png',
+      avatar: '/assets/img/avatars/assassine2.png',
       type: 'Demon',
       rarity: 'legendary',
       rewards: { 
@@ -179,7 +179,7 @@ export const bossTowerFloors: TowerFloor[] = [
       maxHealth: 2000,
       attack: 250,
       defense: 150,
-      avatar: '/assets/img/avatars/ancient_dragon.png',
+      avatar: '/assets/img/avatars/elementarist.png',
       type: 'Dragon',
       rarity: 'legendary',
       rewards: { 
