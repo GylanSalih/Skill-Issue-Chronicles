@@ -179,19 +179,17 @@ This project is currently in **Alpha v0.0.1**. Features may be incomplete or sub
 
 ## 👥 Contributors
 
-<div align="center">
-  <table>
-    <tr>
-      <td align="center">
-        <a href="https://github.com/GylanSalih">
-          <img src="https://github.com/GylanSalih.png" width="100px;" alt="Gylan Salih"/>
-          <br />
-          <sub><b>Gylan Salih</b></sub>
-        </a>
-      </td>
-    </tr>
-  </table>
-</div>
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/GylanSalih">
+        <img src="https://github.com/GylanSalih.png" width="100px;" alt="Gylan Salih"/>
+        <br />
+        <b>Gylan Salih</b>
+      </a>
+    </td>
+  </tr>
+</table>
 
 ---
 
