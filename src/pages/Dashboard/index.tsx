@@ -1,277 +1,324 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Home, 
-  TrendingUp, 
-  Clock, 
-  Star, 
   Zap, 
   Shield, 
   Sword, 
-  Crown,
-  Coins,
-  Heart,
   Activity,
-  Target
+  Target,
+  Star,
+  Crown,
+  Trophy,
+  Flame,
+  Pickaxe,
+  Fish,
+  ChefHat,
+  Anvil,
+  Wand2,
+  Scroll,
+  ChevronRight,
+  Calendar,
+  Users,
+  TrendingUp,
+  AlertCircle,
+  BookOpen,
+  ExternalLink
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import styles from './Dashboard.module.scss';
 
 const Dashboard: React.FC = () => {
-  // Mock data for demonstration
-  const playerStats = {
-    level: 42,
-    experience: 15420,
-    experienceToNext: 580,
-    health: 850,
-    maxHealth: 1000,
-    mana: 320,
-    maxMana: 400,
-    stamina: 180,
-    maxStamina: 200,
-    gold: 12500,
-    gems: 45
+  const navigate = useNavigate();
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Image slider data
+  const sliderImages = [
+    {
+      src: '/assets/img/scenery/halloffame2.png',
+      title: 'Hall of Fame',
+      description: 'See the greatest warriors of our realm'
+    },
+    {
+      src: '/assets/img/scenery/dungeon.png',
+      title: 'Dark Dungeons',
+      description: 'Explore dangerous underground realms'
+    },
+    {
+      src: '/assets/img/scenery/dungeon2.png',
+      title: 'Forest Adventures',
+      description: 'Gather resources in mystical forests'
+    }
+  ];
+
+  // Auto-advance slider
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [sliderImages.length]);
+
+  // News data
+  const newsItems = [
+    {
+      id: 1,
+      title: 'New Dungeon Update Released!',
+      description: 'Explore the mysterious Shadowrealm with new bosses and legendary loot.',
+      date: '2024-01-15',
+      type: 'update',
+      readMore: '/news'
+    },
+    {
+      id: 2,
+      title: 'Winter Event Coming Soon',
+      description: 'Prepare for the annual Winter Festival with exclusive rewards and activities.',
+      date: '2024-01-20',
+      type: 'event',
+      readMore: '/news'
+    },
+    {
+      id: 3,
+      title: 'Balance Changes',
+      description: 'Combat system improvements and skill adjustments based on community feedback.',
+      date: '2024-01-18',
+      type: 'patch',
+      readMore: '/news'
+    }
+  ];
+
+  // Quick access pages
+  const quickPages = [
+    { name: 'Woodcutting', icon: Target, path: '/woodcutting', color: '#10b981' },
+    { name: 'Mining', icon: Pickaxe, path: '/mining', color: '#f59e0b' },
+    { name: 'Combat', icon: Sword, path: '/dungeon', color: '#ef4444' },
+    { name: 'Fishing', icon: Fish, path: '/fishing', color: '#3b82f6' },
+    { name: 'Cooking', icon: ChefHat, path: '/cooking', color: '#f97316' },
+    { name: 'Smithing', icon: Anvil, path: '/smithing', color: '#6b7280' },
+    { name: 'Magic', icon: Wand2, path: '/magic', color: '#8b5cf6' },
+    { name: 'Statistics', icon: TrendingUp, path: '/statistics', color: '#06b6d4' }
+  ];
+
+  const handlePageClick = (path: string) => {
+    navigate(path);
   };
 
-  const recentActivities = [
-    { id: 1, type: 'woodcutting', action: 'Chopped Normal Wood', time: '2 minutes ago', xp: 15 },
-    { id: 2, type: 'mining', action: 'Mined Iron Ore', time: '5 minutes ago', xp: 25 },
-    { id: 3, type: 'combat', action: 'Defeated Goblin', time: '8 minutes ago', xp: 40 },
-    { id: 4, type: 'fishing', action: 'Caught Salmon', time: '12 minutes ago', xp: 20 }
-  ];
-
-  const activeSkills = [
-    { name: 'Woodcutting', level: 15, progress: 75, xp: 1250, nextLevel: 1500 },
-    { name: 'Mining', level: 12, progress: 60, xp: 900, nextLevel: 1200 },
-    { name: 'Combat', level: 18, progress: 45, xp: 1800, nextLevel: 2000 },
-    { name: 'Fishing', level: 8, progress: 90, xp: 450, nextLevel: 500 }
-  ];
-
-  const achievements = [
-    { id: 1, title: 'First Steps', description: 'Reach level 10', icon: Star, completed: true },
-    { id: 2, title: 'Wood Master', description: 'Chop 1000 pieces of wood', icon: Target, completed: true },
-    { id: 3, title: 'Mining Expert', description: 'Mine 500 ores', icon: Shield, completed: false },
-    { id: 4, title: 'Combat Veteran', description: 'Win 100 battles', icon: Sword, completed: false }
-  ];
+  const handleNewsClick = (readMore: string) => {
+    navigate(readMore);
+  };
 
   return (
     <div className={styles.dashboard}>
+      {/* Header */}
       <div className={styles.header}>
-        <Home className={styles.headerIcon} size={32} />
-        <div className={styles.headerContent}>
-          <h1>Dashboard</h1>
-          <p>Welcome back, adventurer! Here's your current progress and activities.</p>
+        <div className={styles.headerLeft}>
+          <Home className={styles.headerIcon} size={24} />
+          <div className={styles.headerContent}>
+            <h1>Adventure Hub</h1>
+            <p>Welcome back, brave adventurer! Choose your next quest.</p>
+          </div>
+        </div>
+        <div className={styles.headerStats}>
+          <div className={styles.statItem}>
+            <Users size={16} />
+            <span>48,500 Online</span>
+          </div>
+          <div className={styles.statItem}>
+            <Calendar size={16} />
+            <span>Server: Online</span>
+          </div>
         </div>
       </div>
 
-      <div className={styles.scenerySection}>
-        <div className={styles.sceneryImage}>
-          <img 
-            src="/assets/img/scenery/halloffame2.png" 
-            alt="Dungeon"
-            className={styles.sceneryImg}
-          />
-        </div>
-        <div className={styles.sceneryDescription}>
-          <h2>Adventurer's Camp</h2>
-          <p>
-            Welcome to your personal camp, where your journey begins and legends are forged. 
-            From this central hub, you can manage your character, track your progress, and plan 
-            your next adventures. Every skill you master, every resource you gather, and every 
-            battle you win brings you closer to becoming a true hero of the realm.
-          </p>
-        </div>
-      </div>
-
-      {/* Player Stats Overview */}
-      <div className={styles.statsGrid}>
-        <div className={styles.statCard}>
-          <div className={styles.statHeader}>
-            <Crown className={styles.statIcon} size={20} />
-            <span className={styles.statTitle}>Level</span>
+      {/* Hero Slider */}
+      <div className={styles.heroSection}>
+        <div className={styles.sliderContainer}>
+          <div className={styles.slider}>
+            {sliderImages.map((image, index) => (
+              <div 
+                key={index}
+                className={`${styles.slide} ${index === currentSlide ? styles.active : ''}`}
+              >
+                <img src={image.src} alt={image.title} />
+                <div className={styles.slideContent}>
+                  <h2>{image.title}</h2>
+                  <p>{image.description}</p>
+                </div>
+              </div>
+            ))}
           </div>
-          <div className={styles.statValue}>{playerStats.level}</div>
-          <div className={styles.statSubtext}>
-            {playerStats.experience} / {playerStats.experience + playerStats.experienceToNext} XP
+          <div className={styles.sliderDots}>
+            {sliderImages.map((_, index) => (
+              <button
+                key={index}
+                className={`${styles.dot} ${index === currentSlide ? styles.active : ''}`}
+                onClick={() => setCurrentSlide(index)}
+              />
+            ))}
           </div>
-          <div className={styles.progressBar}>
-            <div 
-              className={styles.progressFill} 
-              style={{ width: `${(playerStats.experience / (playerStats.experience + playerStats.experienceToNext)) * 100}%` }}
-            />
-          </div>
-        </div>
-
-        <div className={styles.statCard}>
-          <div className={styles.statHeader}>
-            <Heart className={styles.statIcon} size={20} />
-            <span className={styles.statTitle}>Health</span>
-          </div>
-          <div className={styles.statValue}>{playerStats.health}</div>
-          <div className={styles.statSubtext}>/ {playerStats.maxHealth}</div>
-          <div className={styles.progressBar}>
-            <div 
-              className={styles.progressFill} 
-              style={{ width: `${(playerStats.health / playerStats.maxHealth) * 100}%` }}
-            />
-          </div>
-        </div>
-
-        <div className={styles.statCard}>
-          <div className={styles.statHeader}>
-            <Zap className={styles.statIcon} size={20} />
-            <span className={styles.statTitle}>Mana</span>
-          </div>
-          <div className={styles.statValue}>{playerStats.mana}</div>
-          <div className={styles.statSubtext}>/ {playerStats.maxMana}</div>
-          <div className={styles.progressBar}>
-            <div 
-              className={styles.progressFill} 
-              style={{ width: `${(playerStats.mana / playerStats.maxMana) * 100}%` }}
-            />
-          </div>
-        </div>
-
-        <div className={styles.statCard}>
-          <div className={styles.statHeader}>
-            <Activity className={styles.statIcon} size={20} />
-            <span className={styles.statTitle}>Stamina</span>
-          </div>
-          <div className={styles.statValue}>{playerStats.stamina}</div>
-          <div className={styles.statSubtext}>/ {playerStats.maxStamina}</div>
-          <div className={styles.progressBar}>
-            <div 
-              className={styles.progressFill} 
-              style={{ width: `${(playerStats.stamina / playerStats.maxStamina) * 100}%` }}
-            />
-          </div>
-        </div>
-
-        <div className={styles.statCard}>
-          <div className={styles.statHeader}>
-            <Coins className={styles.statIcon} size={20} />
-            <span className={styles.statTitle}>Gold</span>
-          </div>
-          <div className={styles.statValue}>{playerStats.gold.toLocaleString()}</div>
-          <div className={styles.statSubtext}>Coins</div>
-        </div>
-
-        <div className={styles.statCard}>
-          <div className={styles.statHeader}>
-            <Star className={styles.statIcon} size={20} />
-            <span className={styles.statTitle}>Gems</span>
-          </div>
-          <div className={styles.statValue}>{playerStats.gems}</div>
-          <div className={styles.statSubtext}>Premium Currency</div>
         </div>
       </div>
 
       {/* Main Content Grid */}
       <div className={styles.contentGrid}>
-        {/* Recent Activities */}
-        <div className={styles.widget}>
-          <div className={styles.widgetHeader}>
-            <Clock className={styles.widgetIcon} size={20} />
-            <h3>Recent Activities</h3>
-          </div>
-          <div className={styles.widgetContent}>
-            {recentActivities.map((activity) => (
-              <div key={activity.id} className={styles.activityItem}>
-                <div className={styles.activityIcon}>
-                  {activity.type === 'woodcutting' && <Target size={16} />}
-                  {activity.type === 'mining' && <Shield size={16} />}
-                  {activity.type === 'combat' && <Sword size={16} />}
-                  {activity.type === 'fishing' && <Activity size={16} />}
-                </div>
-                <div className={styles.activityInfo}>
-                  <div className={styles.activityAction}>{activity.action}</div>
-                  <div className={styles.activityTime}>{activity.time}</div>
-                </div>
-                <div className={styles.activityXp}>+{activity.xp} XP</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Skill Progress */}
-        <div className={styles.widget}>
-          <div className={styles.widgetHeader}>
-            <TrendingUp className={styles.widgetIcon} size={20} />
-            <h3>Skill Progress</h3>
-          </div>
-          <div className={styles.widgetContent}>
-            {activeSkills.map((skill, index) => (
-              <div key={index} className={styles.skillItem}>
-                <div className={styles.skillInfo}>
-                  <div className={styles.skillName}>{skill.name}</div>
-                  <div className={styles.skillLevel}>Level {skill.level}</div>
-                </div>
-                <div className={styles.skillProgress}>
-                  <div className={styles.progressBar}>
-                    <div 
-                      className={styles.progressFill} 
-                      style={{ width: `${skill.progress}%` }}
-                    />
-                  </div>
-                  <div className={styles.skillXp}>
-                    {skill.xp} / {skill.nextLevel} XP
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Achievements */}
-        <div className={styles.widget}>
-          <div className={styles.widgetHeader}>
-            <Star className={styles.widgetIcon} size={20} />
-            <h3>Achievements</h3>
-          </div>
-          <div className={styles.widgetContent}>
-            {achievements.map((achievement) => (
-              <div 
-                key={achievement.id} 
-                className={`${styles.achievementItem} ${achievement.completed ? styles.completed : ''}`}
-              >
-                <div className={styles.achievementIcon}>
-                  <achievement.icon size={18} />
-                </div>
-                <div className={styles.achievementInfo}>
-                  <div className={styles.achievementTitle}>{achievement.title}</div>
-                  <div className={styles.achievementDescription}>{achievement.description}</div>
-                </div>
-                {achievement.completed && (
-                  <div className={styles.achievementBadge}>✓</div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Quick Actions */}
-        <div className={styles.widget}>
-          <div className={styles.widgetHeader}>
-            <Zap className={styles.widgetIcon} size={20} />
-            <h3>Quick Actions</h3>
-          </div>
-          <div className={styles.widgetContent}>
-            <div className={styles.quickActions}>
-              <button className={styles.quickActionBtn}>
-                <Target size={16} />
-                Start Woodcutting
-              </button>
-              <button className={styles.quickActionBtn}>
-                <Shield size={16} />
-                Go Mining
-              </button>
-              <button className={styles.quickActionBtn}>
-                <Sword size={16} />
-                Enter Dungeon
-              </button>
-              <button className={styles.quickActionBtn}>
-                <Activity size={16} />
-                Go Fishing
-              </button>
+        {/* News Section */}
+        <div className={styles.newsSection}>
+          <div className={styles.sectionHeader}>
+            <div className={styles.sectionTitle}>
+              <Scroll className={styles.sectionIcon} size={20} />
+              <h2>Latest News & Updates</h2>
             </div>
+            <button 
+              className={styles.readMoreBtn}
+              onClick={() => handleNewsClick('/news')}
+            >
+              View All <ChevronRight size={16} />
+            </button>
+          </div>
+          
+          <div className={styles.newsList}>
+            {newsItems.map((item) => (
+              <div key={item.id} className={styles.newsItem}>
+                <div className={styles.newsHeader}>
+                  <div className={`${styles.newsType} ${styles[item.type]}`}>
+                    {item.type === 'update' && <Zap size={14} />}
+                    {item.type === 'event' && <Star size={14} />}
+                    {item.type === 'patch' && <AlertCircle size={14} />}
+                    <span>{item.type.toUpperCase()}</span>
+                  </div>
+                  <span className={styles.newsDate}>{item.date}</span>
+                </div>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+                <button 
+                  className={styles.newsReadMore}
+                  onClick={() => handleNewsClick(item.readMore)}
+                >
+                  Read More <ExternalLink size={14} />
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Quick Access Section */}
+        <div className={styles.quickAccessSection}>
+          <div className={styles.sectionHeader}>
+            <div className={styles.sectionTitle}>
+              <Target className={styles.sectionIcon} size={20} />
+              <h2>Quick Access</h2>
+            </div>
+          </div>
+          
+          <div className={styles.quickPagesGrid}>
+            {quickPages.map((page, index) => {
+              const IconComponent = page.icon;
+              return (
+                <button
+                  key={index}
+                  className={styles.quickPageBtn}
+                  onClick={() => handlePageClick(page.path)}
+                  style={{ '--accent-color': page.color } as React.CSSProperties}
+                >
+                  <div className={styles.quickPageIcon}>
+                    <IconComponent size={20} />
+                  </div>
+                  <span>{page.name}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Game Stats */}
+        <div className={styles.statsSection}>
+          <div className={styles.sectionHeader}>
+            <div className={styles.sectionTitle}>
+              <Trophy className={styles.sectionIcon} size={20} />
+              <h2>Your Progress</h2>
+            </div>
+          </div>
+          
+          <div className={styles.statsGrid}>
+            <div className={styles.statCard}>
+              <div className={styles.statIcon}>
+                <Crown size={20} />
+              </div>
+              <div className={styles.statContent}>
+                <h3>Level 1</h3>
+                <p>Adventurer</p>
+                <div className={styles.progressBar}>
+                  <div className={styles.progressFill} style={{ width: '25%' }} />
+                </div>
+                <span className={styles.progressText}>250 / 1000 XP</span>
+              </div>
+            </div>
+            
+            <div className={styles.statCard}>
+              <div className={styles.statIcon}>
+                <Target size={20} />
+              </div>
+              <div className={styles.statContent}>
+                <h3>Skills</h3>
+                <p>8 Available</p>
+                <div className={styles.skillList}>
+                  <span>Woodcutting</span>
+                  <span>Mining</span>
+                  <span>Fishing</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className={styles.statCard}>
+              <div className={styles.statIcon}>
+                <Trophy size={20} />
+              </div>
+              <div className={styles.statContent}>
+                <h3>Achievements</h3>
+                <p>3 / 50 Unlocked</p>
+                <div className={styles.achievementList}>
+                  <span>First Steps</span>
+                  <span>Resource Gatherer</span>
+                  <span>Explorer</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Community Section */}
+        <div className={styles.communitySection}>
+          <div className={styles.sectionHeader}>
+            <div className={styles.sectionTitle}>
+              <Users className={styles.sectionIcon} size={20} />
+              <h2>Community & Support</h2>
+            </div>
+          </div>
+          
+          <div className={styles.communityButtons}>
+            <button className={styles.communityBtn}>
+              <Users size={16} />
+              Discord
+            </button>
+            <button className={styles.communityBtn}>
+              <BookOpen size={16} />
+              Game Rules
+            </button>
+            <button className={styles.communityBtn}>
+              <Scroll size={16} />
+              News
+            </button>
+            <button className={styles.communityBtn}>
+              <AlertCircle size={16} />
+              Support
+            </button>
+            <button className={styles.communityBtn}>
+              <Trophy size={16} />
+              Leaderboard
+            </button>
+            <button className={styles.communityBtn}>
+              <Star size={16} />
+              Feedback
+            </button>
           </div>
         </div>
       </div>
@@ -279,4 +326,4 @@ const Dashboard: React.FC = () => {
   );
 };
 
-export default Dashboard
+export default Dashboard;

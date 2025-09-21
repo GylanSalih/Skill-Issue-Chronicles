@@ -165,6 +165,297 @@
   }
 }
 
+/* Action Progress Section */
+.actionProgressSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Current Action */
+.currentAction {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border: 1px solid #444;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.actionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  
+  h3 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+  }
+}
+
+.actionControls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.timer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  
+  svg {
+    color: #ffffff;
+  }
+  
+  span {
+    color: #ffffff;
+  }
+}
+
+.closeBtn {
+  background: transparent;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 0.5rem;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: #333;
+    border-color: #555;
+    color: #ffffff;
+  }
+}
+
+.closeBtn:hover {
+  background: #ef4444;
+  border-color: #ef4444;
+  color: #ffffff;
+}
+
+.activeAction {
+  .actionItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .actionImage {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid #444;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  
+  .actionInfo {
+    flex: 1;
+  }
+  
+  .actionName {
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    
+    .activityName {
+      color: #10b981;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .itemName {
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+  }
+  
+  .progressBar {
+    width: 100%;
+    height: 8px;
+    background: #2a2a2a;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.75rem;
+  }
+  
+  .progressFill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff6b35 0%, #ff8c42 100%);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+  
+  .actionStats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    
+    .quantity {
+      color: #ffffff;
+      font-weight: 600;
+    }
+    
+    .resourceTime {
+      color: #ffffff;
+      font-weight: 600;
+    }
+    
+    .expRate {
+      color: #ffffff;
+      font-weight: 600;
+    }
+  }
+}
+
+.noAction {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #9ca3af;
+  
+  p {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+  }
+  
+  span {
+    font-size: 0.9rem;
+  }
+}
+
+/* Your Progress */
+.yourProgress {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border: 1px solid #444;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.progressHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  
+  h3 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .efficiency {
+    color: #10b981;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+}
+
+.skillProgress {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  
+  .skillIcon {
+    width: 50px;
+    height: 50px;
+    background: #ff6b35;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+  }
+  
+  .skillInfo {
+    flex: 1;
+  }
+  
+  .skillName {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  
+  .skillLevel {
+    color: #9ca3af;
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .skillProgressBar {
+    width: 100%;
+    height: 8px;
+    background: #2a2a2a;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+  }
+  
+  .skillProgressFill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+  
+  .skillStats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #6b7280;
+  }
+}
+
+.ascensionBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #2a2a2a 0%, #333 100%);
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  
+  &:hover {
+    background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+    border-color: #ff6b35;
+    transform: translateY(-2px);
+  }
+  
+  svg:last-child {
+    margin-left: auto;
+    color: #6b7280;
+  }
+}
+
 .woodGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -355,6 +646,10 @@
 
 /* Responsive Design */
 @media (max-width: 1200px) {
+  .actionProgressSection {
+    grid-template-columns: 1fr;
+  }
+  
   .woodGrid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -409,6 +704,23 @@
   
   .sceneryDescription p {
     font-size: 0.9rem;
+  }
+  
+  .actionProgressSection {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .actionControls {
+    gap: 0.5rem;
+  }
+  
+  .timer {
+    font-size: 0.8rem;
+  }
+  
+  .closeBtn {
+    padding: 0.4rem;
   }
   
   .woodGrid {

@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGameState } from '../../hooks/useGameState';
 import { useWoodcutting } from '../../hooks/useWoodcutting';
-import { Coins, Crown, User, PanelRight, PanelLeft, TreePine, Square } from 'lucide-react';
+import { useCharacter, useCharacterClasses } from '../../contexts/GameContext';
+import { Coins, Crown, PanelRight, PanelLeft, TreePine, Square } from 'lucide-react';
 import { getWoodTypeById } from '../../config/woodConfig';
 import styles from './GameHeader.module.scss';
 
@@ -15,6 +16,8 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
   const navigate = useNavigate();
   const { gameState } = useGameState();
   const { activeSession, stopChopping, isLooping } = useWoodcutting();
+  const { currentCharacter } = useCharacter();
+  const { getClassById } = useCharacterClasses();
 
   // Einfacher Ladebalken State
   const [simpleProgress, setSimpleProgress] = useState(0);
@@ -60,72 +63,84 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
     navigate('/character');
   };
 
+  // Get character icon
+  const getCharacterIcon = () => {
+    if (!currentCharacter) return '/assets/img/avatars/warrior.png';
+    const classData = getClassById(currentCharacter.characterClassId);
+    return classData?.image || '/assets/img/avatars/warrior.png';
+  };
+
+  // Get activity type and name based on active session
+  const getActivityInfo = () => {
+    if (isWoodcutting && currentWoodTypeConfig) {
+      return {
+        type: 'Woodcutting',
+        name: currentWoodTypeConfig.name,
+        icon: <TreePine size={16} />
+      };
+    }
+    
+    // Hier können später andere Aktivitäten hinzugefügt werden
+    // Beispiel für zukünftige Aktivitäten:
+    // if (isMining && currentOreConfig) {
+    //   return {
+    //     type: 'Mining',
+    //     name: currentOreConfig.name,
+    //     icon: <Pickaxe size={16} />
+    //   };
+    // }
+    // 
+    // if (isFishing && currentFishConfig) {
+    //   return {
+    //     type: 'Fishing',
+    //     name: currentFishConfig.name,
+    //     icon: <Fish size={16} />
+    //   };
+    // }
+    
+    return null;
+  };
+
 
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        {/* Left: Woodcutting Progress */}
+        {/* Left: Activity Progress */}
         <div className={styles.leftSection}>
-
-
-            <div className={styles.woodcuttingContainer}>
-              <div className={styles.woodcuttingHeader}>
-                <div className={styles.woodcuttingIcon}>
-                  <TreePine size={14} />
+          {(() => {
+            const activityInfo = getActivityInfo();
+            return activityInfo ? (
+              <button 
+                className={styles.simpleTimer}
+                onClick={() => navigate('/woodcutting')}
+                title={`Click to go to ${activityInfo.name}`}
+              >
+                <div className={styles.timerIcon}>
+                  <img 
+                    src={currentWoodTypeConfig?.image} 
+                    alt={activityInfo.name}
+                  />
                 </div>
-                <div className={styles.woodcuttingInfo}>
-                  <div className={styles.woodcuttingTitle}>
-                    {isWoodcutting && currentWoodTypeConfig 
-                      ? currentWoodTypeConfig.name
-                      : 'Woodcutting'
-                    }
+                <div className={styles.timerInfo}>
+                  <div className={styles.timerName}>
+                    <span className={styles.activityName}>{activityInfo.type}</span>
+                    <span className={styles.itemName}>{activityInfo.name}</span>
                   </div>
-                  <div className={styles.woodcuttingMeta}>
-                    {isWoodcutting && currentWoodTypeConfig ? (
-                      <div className={styles.metaRow}>
-                        <span className={styles.duration}>{currentWoodTypeConfig.baseTime}s</span>
-                        <span className={styles.separator}>•</span>
-                        <span className={`${styles.rarity} ${styles[currentWoodTypeConfig.rarity]}`}>
-                          {currentWoodTypeConfig.rarity}
-                        </span>
-                        {isLooping && (
-                          <>
-                            <span className={styles.separator}>•</span>
-                            <span className={styles.looping}>Looping</span>
-                          </>
-                        )}
-                      </div>
-                    ) : (
-                      <span className={styles.idleText}>Click wood to start</span>
-                    )}
-                  </div>
-                </div>
-                {isWoodcutting && (
-                  <div className={styles.woodcuttingControls}>
-                    <button 
-                      className={styles.stopButton}
-                      onClick={handleStopWoodcutting}
-                      title="Stop Chopping"
-                    >
-                      <Square size={10} />
-                    </button>
-                  </div>
-                )}
-              </div>
-              {isWoodcutting && (
-                <div className={styles.woodcuttingProgress}>
-                  <div className={styles.progressBar}>
+                  <div className={styles.timerProgress}>
                     <div 
-                      className={styles.progressFill} 
+                      className={styles.timerFill} 
                       style={{ width: `${simpleProgress}%` }}
                     />
-                    <div className={styles.progressValue}>
-                      {Math.round(simpleProgress)}%
-                    </div>
                   </div>
                 </div>
-              )}
-            </div>
+              </button>
+            ) : (
+              <div className={styles.noActivity}>
+                <TreePine size={16} />
+                <span>No active resource gathering</span>
+              </div>
+            );
+          })()}
 
 
 
@@ -168,11 +183,13 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
             title="Character öffnen"
           >
             <div className={styles.playerInfo}>
-              <div className={styles.playerName}>PlayerName</div>
+              <div className={styles.playerName}>
+                {currentCharacter?.name || 'Kein Charakter'}
+              </div>
               <div className={styles.playerStats}>
                 <div className={styles.statItem}>
                   <Crown size={14} />
-                  <span>Level 1</span>
+                  <span>Level {currentCharacter?.level || 1}</span>
                 </div>
                 <div className={styles.statItem}>
                   <Coins size={14} />
@@ -181,7 +198,14 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
               </div>
             </div>
             <div className={styles.profileImage}>
-              <User size={24} />
+              <img 
+                src={getCharacterIcon()} 
+                alt={currentCharacter?.name || 'Character'}
+                className={styles.characterAvatar}
+                onError={(e) => {
+                  e.currentTarget.src = '/assets/img/avatars/warrior.png';
+                }}
+              />
             </div>
           </div>
         </div>

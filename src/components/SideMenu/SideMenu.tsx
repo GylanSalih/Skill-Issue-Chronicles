@@ -1,6 +1,6 @@
 // SideMenu.tsx
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useRoutePersistence } from '../../hooks/useRoutePersistence';
 import styles from './SideMenu.module.scss';
 
 interface MenuItem {
@@ -50,7 +50,6 @@ import {
   ScrollText,
   LogOut,
   Leaf,
-  Footprints,
   Sparkles,
   SwordIcon,
   ShieldCheck,
@@ -68,9 +67,8 @@ import {
 } from 'lucide-react';
 
 const SideMenu = () => {
-  const [activeItem, setActiveItem] = useState('dashboard');
-  const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
   const navigate = useNavigate();
+  const { activeItem, expandedCategories, setActiveItem, toggleCategory } = useRoutePersistence();
 
 const menuCategories: { items: MenuItem[] }[] = [
   // 1. Dashboard – Startpunkt
@@ -91,7 +89,7 @@ const menuCategories: { items: MenuItem[] }[] = [
         id: 'character',
         title: 'Character',
         icon: Crown,
-        path: '/character'
+        path: '/character/profile'
       }
     ]
   },
@@ -278,13 +276,6 @@ const menuCategories: { items: MenuItem[] }[] = [
 
 
   // Menu is now always visible, no toggle needed
-
-  const toggleCategory = (categoryId: string) => {
-    setExpandedCategories(prev => ({
-      ...prev,
-      [categoryId]: !prev[categoryId]
-    }));
-  };
 
 const handleItemClick = (item: MenuItem) => {
   if (item.hasSubmenu) {

@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import { useState } from 'react'
+import { GameProvider } from './contexts/GameContext'
 import SideMenu from './components/SideMenu/SideMenu'
 import GameHeader from './components/GameHeader'
 import ResourcePanel from './components/ResourcePanel'
@@ -34,8 +35,9 @@ function App() {
   };
 
   return (
-    <div className={styles.app}>
-      <Routes>
+    <GameProvider>
+      <div className={styles.app}>
+        <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/character-selection" element={<CharacterSelection />} />
         <Route path="/character-creation" element={<CharacterCreation />} />
@@ -54,6 +56,9 @@ function App() {
                     <Route path="/" element={<Dashboard />} />
                     <Route path="/home" element={<Home />} />
                     <Route path="/character" element={<Character />} />
+                    <Route path="/character/profile" element={<Character />} />
+                    <Route path="/character/skins" element={<Character />} />
+                    <Route path="/character/badges" element={<Character />} />
                     <Route path="/character-selection" element={<CharacterSelection />} />
                     <Route path="/woodcutting" element={<Woodcutting />} />
                     <Route path="/fishing" element={<Fishing />} />
@@ -76,8 +81,9 @@ function App() {
             </div>
           </>
         } />
-      </Routes>
-    </div>
+        </Routes>
+      </div>
+    </GameProvider>
   )
 }
 

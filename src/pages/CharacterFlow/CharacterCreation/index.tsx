@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import { useCharacterStats, useCharacter, Character } from '../../../contexts/GameContext';
 import CharacterCreator from '../components/CharacterCreator';
 import CharacterSlot from '../CharacterSelection/CharacterSlot';
 import styles from './CharacterCreation.module.scss';
@@ -8,8 +9,10 @@ import styles from './CharacterCreation.module.scss';
 const CharacterCreation = () => {
   const navigate = useNavigate();
   const { slotId } = useParams<{ slotId: string }>();
-  const [characters, setCharacters] = useState<Record<number, any>>({});
+  const [characters, setCharacters] = useState<Record<number, Character>>({});
   const [currentView, setCurrentView] = useState('create'); // 'overview', 'create'
+  const { getClassBaseStats } = useCharacterStats();
+  const { setCurrentCharacter } = useCharacter();
 
   // Automatisch zum Character Creator springen wenn Slot-Parameter vorhanden ist
   useEffect(() => {
@@ -33,59 +36,33 @@ const CharacterCreation = () => {
     localStorage.setItem('idleGameCharacters', JSON.stringify(characters));
   }, [characters]);
 
-  const getClassBaseStats = (characterClass: string) => {
-    const baseStats = {
-      strength: 10,
-      agility: 10,
-      intelligence: 10,
-      vitality: 10,
-      luck: 10
-    };
-
-    // Klassen-spezifische Boni
-    switch (characterClass) {
-      case 'warrior':
-        return { ...baseStats, strength: 15, vitality: 13 };
-      case 'mage':
-        return { ...baseStats, intelligence: 15, vitality: 8 };
-      case 'rogue':
-        return { ...baseStats, agility: 15, luck: 12 };
-      case 'archer':
-        return { ...baseStats, agility: 13, luck: 12 };
-      case 'healer':
-        return { ...baseStats, intelligence: 12, vitality: 13 };
-      case 'berserker':
-        return { ...baseStats, strength: 17, vitality: 8 };
-      case 'paladin':
-        return { ...baseStats, strength: 12, intelligence: 11, vitality: 12 };
-      case 'assassin':
-        return { ...baseStats, agility: 16, luck: 11 };
-      case 'tinkerer':
-        return { ...baseStats, intelligence: 13, agility: 11 };
-      case 'elementalist':
-        return { ...baseStats, intelligence: 16, vitality: 9 };
-      default:
-        return baseStats;
-    }
-  };
 
   const createCharacter = (slotId: number, characterData: any) => {
-    const newCharacter = {
-      ...characterData,
+    const baseStats = getClassBaseStats(characterData.characterClass);
+    
+    const newCharacter: Character = {
       id: `char_${slotId}_${Date.now()}`,
+      name: characterData.playerName,
+      gender: characterData.gender || 'Unbekannt',
+      characterClass: characterData.characterClass,
+      characterClassId: characterData.characterClass,
       slotId: slotId,
       level: 1,
       experience: 0,
+      maxExperience: 100,
+      stats: baseStats,
+      availableStatPoints: 5,
       createdAt: new Date().toISOString(),
-      lastLogin: new Date().toISOString(),
-      stats: getClassBaseStats(characterData.characterClass),
-      availableStatPoints: 5
+      lastLogin: new Date().toISOString()
     };
 
     setCharacters(prev => ({
       ...prev,
       [slotId]: newCharacter
     }));
+
+    // Set as current character
+    setCurrentCharacter(newCharacter);
 
     // Charakter wurde erstellt - bleibt im Preview
     console.log('Character created:', newCharacter);

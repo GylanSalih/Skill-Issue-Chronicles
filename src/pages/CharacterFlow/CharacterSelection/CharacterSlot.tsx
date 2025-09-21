@@ -1,13 +1,7 @@
 import React from 'react';
+import { Character } from '../../../contexts/GameContext';
+import { formatDate } from '../../../lib/dateUtils';
 import styles from './CharacterSlot.module.scss';
-
-interface Character {
-  playerName: string;
-  characterClass: string;
-  gender: string;
-  level: number;
-  createdAt: string;
-}
 
 interface CharacterSlotProps {
   slotId: number;
@@ -17,7 +11,7 @@ interface CharacterSlotProps {
 
 const CharacterSlot: React.FC<CharacterSlotProps> = ({ slotId, character, onClick }) => {
   const getClassIcon = (characterClass: string) => {
-    const iconMap = {
+    const iconMap: Record<string, string> = {
       'warrior': '/assets/img/avatars/warrior.png',
       'mage': '/assets/img/avatars/magier.png',
       'rogue': '/assets/img/avatars/schurke2.png',
@@ -33,7 +27,7 @@ const CharacterSlot: React.FC<CharacterSlotProps> = ({ slotId, character, onClic
   };
 
   const getClassDisplayName = (characterClass: string) => {
-    const names = {
+    const names: Record<string, string> = {
       warrior: 'Krieger',
       mage: 'Magier',
       rogue: 'Schurke',
@@ -62,8 +56,8 @@ const CharacterSlot: React.FC<CharacterSlotProps> = ({ slotId, character, onClic
           <>
             <div className={styles.characterAvatar}>
               <img 
-                src={getClassIcon(character.characterClass)} 
-                alt={character.playerName}
+                src={getClassIcon(character.characterClassId)} 
+                alt={character.name}
                 className={styles.characterImage}
                 onError={(e) => {
                   e.currentTarget.src = '/assets/img/avatars/warrior.png';
@@ -72,17 +66,17 @@ const CharacterSlot: React.FC<CharacterSlotProps> = ({ slotId, character, onClic
             </div>
             
             <div className={styles.characterInfo}>
-              <h3 className={styles.characterName}>{character.playerName}</h3>
+              <h3 className={styles.characterName}>{character.name}</h3>
               <p className={styles.characterClass}>
-                {getClassDisplayName(character.characterClass)}
+                {getClassDisplayName(character.characterClassId)}
               </p>
               <div className={styles.characterStats}>
                 <span className={styles.level}>Level {character.level}</span>
                 <span className={styles.gender}>
-                  {character.gender === 'male' ? 'Männlich' : 'Weiblich'}
+                  {character.gender === 'male' ? 'Männlich' : character.gender === 'female' ? 'Weiblich' : character.gender}
                 </span>
                 <span className={styles.createdAt}>
-                  {new Date(character.createdAt).toLocaleDateString('de-DE')}
+                  {formatDate(character.createdAt)}
                 </span>
               </div>
             </div>

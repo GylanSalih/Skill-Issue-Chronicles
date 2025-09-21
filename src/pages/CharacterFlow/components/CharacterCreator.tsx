@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowLeft } from 'lucide-react';
+import { useCharacterClasses, useCharacterStats } from '../../../contexts/GameContext';
 import styles from './CharacterCreator.module.scss';
 
 interface CharacterCreatorProps {
@@ -29,18 +30,10 @@ const CharacterCreator: React.FC<CharacterCreatorProps> = ({ slotId, onCreateCha
   const [errors, setErrors] = useState<Errors>({});
   const [characterCreated, setCharacterCreated] = useState(false);
 
-  const characterClasses = [
-    { id: 'warrior', name: 'Krieger', image: '/assets/img/avatars/warrior.png', description: 'Starker Nahkämpfer mit hoher Verteidigung' },
-    { id: 'mage', name: 'Magier', image: '/assets/img/avatars/magier.png', description: 'Mächtiger Zauberer mit Fernkampf-Magie' },
-    { id: 'rogue', name: 'Schurke', image: '/assets/img/avatars/schurke2.png', description: 'Schneller Kämpfer mit kritischen Treffern' },
-    { id: 'archer', name: 'Bogenschütze', image: '/assets/img/avatars/elfe.png', description: 'Präziser Fernkämpfer mit hoher Trefferquote' },
-    { id: 'healer', name: 'Heiler', image: '/assets/img/avatars/heilerin.png', description: 'Unterstützer mit Heilfähigkeiten' },
-    { id: 'berserker', name: 'Berserker', image: '/assets/img/avatars/berserk.png', description: 'Brutaler Kämpfer mit enormem Schaden' },
-    { id: 'paladin', name: 'Paladin', image: '/assets/img/avatars/paladin.png', description: 'Ausgewogener Kämpfer mit Heilung' },
-    { id: 'assassin', name: 'Assassine', image: '/assets/img/avatars/assassine2.png', description: 'Heimlicher Kämpfer mit Stealth-Fähigkeiten' },
-    { id: 'tinkerer', name: 'Tüftler', image: '/assets/img/avatars/tuefftler.png', description: 'Handwerker mit technischen Fähigkeiten' },
-    { id: 'elementalist', name: 'Elementarist', image: '/assets/img/avatars/elementarist.png', description: 'Meister der Elementar-Magie' }
-  ];
+  // Use global context for character classes and stats
+  const { getAllClasses } = useCharacterClasses();
+  const { getClassStats } = useCharacterStats();
+  const characterClasses = getAllClasses();
 
   const handleInputChange = (field: keyof FormData, value: string) => {
     setFormData(prev => ({
@@ -137,61 +130,71 @@ const CharacterCreator: React.FC<CharacterCreatorProps> = ({ slotId, onCreateCha
             {formData.characterClass ? (
               <>
                 <div className={styles.characterPreview}>
-                  <div className={styles.attributesLeft}>
-                    <div className={styles.attributeItem}>
-                      <div className={styles.attributeLabel}>Attack</div>
-                      <div className={styles.attributeBar}>
-                        <div className={styles.attributeFill} style={{width: '85%'}}></div>
-                      </div>
-                      <div className={styles.attributeValue}>85</div>
-                    </div>
-                    <div className={styles.attributeItem}>
-                      <div className={styles.attributeLabel}>Defense</div>
-                      <div className={styles.attributeBar}>
-                        <div className={styles.attributeFill} style={{width: '60%'}}></div>
-                      </div>
-                      <div className={styles.attributeValue}>60</div>
-                    </div>
-                    <div className={styles.attributeItem}>
-                      <div className={styles.attributeLabel}>Magic</div>
-                      <div className={styles.attributeBar}>
-                        <div className={styles.attributeFill} style={{width: '95%'}}></div>
-                      </div>
-                      <div className={styles.attributeValue}>95</div>
-                    </div>
-                  </div>
-                  
-                  <div className={styles.characterImage}>
-                    <img 
-                      src={characterClasses.find(c => c.id === formData.characterClass)?.image || ''} 
-                      alt="Selected Character"
-                      className={styles.previewImage}
-                    />
-                  </div>
-                  
-                  <div className={styles.attributesRight}>
-                    <div className={styles.attributeItem}>
-                      <div className={styles.attributeLabel}>Speed</div>
-                      <div className={styles.attributeBar}>
-                        <div className={styles.attributeFill} style={{width: '70%'}}></div>
-                      </div>
-                      <div className={styles.attributeValue}>70</div>
-                    </div>
-                    <div className={styles.attributeItem}>
-                      <div className={styles.attributeLabel}>Health</div>
-                      <div className={styles.attributeBar}>
-                        <div className={styles.attributeFill} style={{width: '75%'}}></div>
-                      </div>
-                      <div className={styles.attributeValue}>75</div>
-                    </div>
-                    <div className={styles.attributeItem}>
-                      <div className={styles.attributeLabel}>Mana</div>
-                      <div className={styles.attributeBar}>
-                        <div className={styles.attributeFill} style={{width: '90%'}}></div>
-                      </div>
-                      <div className={styles.attributeValue}>90</div>
-                    </div>
-                  </div>
+                  {(() => {
+                    const selectedClass = characterClasses.find(c => c.id === formData.characterClass);
+                    const stats = getClassStats(formData.characterClass);
+                    if (!selectedClass) return null;
+                    
+                    return (
+                      <>
+                        <div className={styles.attributesLeft}>
+                          <div className={styles.attributeItem}>
+                            <div className={styles.attributeLabel}>Attack</div>
+                            <div className={styles.attributeBar}>
+                              <div className={styles.attributeFill} style={{width: `${stats.attack}%`}}></div>
+                            </div>
+                            <div className={styles.attributeValue}>{stats.attack}</div>
+                          </div>
+                          <div className={styles.attributeItem}>
+                            <div className={styles.attributeLabel}>Defense</div>
+                            <div className={styles.attributeBar}>
+                              <div className={styles.attributeFill} style={{width: `${stats.defense}%`}}></div>
+                            </div>
+                            <div className={styles.attributeValue}>{stats.defense}</div>
+                          </div>
+                          <div className={styles.attributeItem}>
+                            <div className={styles.attributeLabel}>Magic</div>
+                            <div className={styles.attributeBar}>
+                              <div className={styles.attributeFill} style={{width: `${stats.magic}%`}}></div>
+                            </div>
+                            <div className={styles.attributeValue}>{stats.magic}</div>
+                          </div>
+                        </div>
+                        
+                        <div className={styles.characterImage}>
+                          <img 
+                            src={selectedClass.image} 
+                            alt="Selected Character"
+                            className={styles.previewImage}
+                          />
+                        </div>
+                        
+                        <div className={styles.attributesRight}>
+                          <div className={styles.attributeItem}>
+                            <div className={styles.attributeLabel}>Speed</div>
+                            <div className={styles.attributeBar}>
+                              <div className={styles.attributeFill} style={{width: `${stats.speed}%`}}></div>
+                            </div>
+                            <div className={styles.attributeValue}>{stats.speed}</div>
+                          </div>
+                          <div className={styles.attributeItem}>
+                            <div className={styles.attributeLabel}>Health</div>
+                            <div className={styles.attributeBar}>
+                              <div className={styles.attributeFill} style={{width: `${stats.health}%`}}></div>
+                            </div>
+                            <div className={styles.attributeValue}>{stats.health}</div>
+                          </div>
+                          <div className={styles.attributeItem}>
+                            <div className={styles.attributeLabel}>Mana</div>
+                            <div className={styles.attributeBar}>
+                              <div className={styles.attributeFill} style={{width: `${stats.mana}%`}}></div>
+                            </div>
+                            <div className={styles.attributeValue}>{stats.mana}</div>
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })()}
                 </div>
                 
                 <div className={styles.characterInfo}>

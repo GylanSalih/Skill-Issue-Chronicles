@@ -1,5 +1,5 @@
-import React from 'react';
-import { TreePine, Lock } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { TreePine, Lock, Clock, X, Target, Trophy, Zap } from 'lucide-react';
 import { useWoodcutting } from '../../hooks/useWoodcutting';
 import Tooltip from '../ui/tooltip';
 import WoodTooltip from './WoodTooltip';
@@ -14,11 +14,49 @@ const WoodcuttingGrid: React.FC = () => {
     activeSession
   } = useWoodcutting();
 
+  const [timeElapsed, setTimeElapsed] = useState(0);
+  const [efficiency, setEfficiency] = useState(0);
+
+  // Timer für aktive Session
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (activeSession) {
+      interval = setInterval(() => {
+        setTimeElapsed(prev => prev + 1);
+      }, 1000);
+    } else {
+      setTimeElapsed(0);
+    }
+    return () => clearInterval(interval);
+  }, [activeSession]);
+
+  // Simuliere Effizienz basierend auf Level und Zeit
+  useEffect(() => {
+    if (activeSession) {
+      const baseEfficiency = 25 + (timeElapsed * 0.1);
+      setEfficiency(Math.min(Math.round(baseEfficiency * 10) / 10, 100));
+    } else {
+      setEfficiency(0);
+    }
+  }, [activeSession, timeElapsed]);
+
+  const formatTime = (seconds: number) => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  };
+
   const handleWoodChop = (woodTypeId: string) => {
     if (canChopWood(woodTypeId)) {
       console.log(`Starting to chop ${woodTypeId} in loop mode`);
       startChopping(woodTypeId, true); // Starte standardmäßig im Loop-Modus
     }
+  };
+
+  const stopChopping = () => {
+    // Hier würde die Stop-Funktion implementiert werden
+    console.log('Stopping woodcutting');
   };
 
   return (
@@ -47,6 +85,101 @@ const WoodcuttingGrid: React.FC = () => {
             Each tree holds unique properties - from the common oak to the legendary Ying and Yang woods that pulse 
             with elemental energy. Master woodcutters must prove their worth to harvest these precious resources.
           </p>
+        </div>
+      </div>
+
+      {/* Current Action & Progress Section */}
+      <div className={styles.actionProgressSection}>
+        {/* Current Action */}
+        <div className={styles.currentAction}>
+          <div className={styles.actionHeader}>
+            <h3>Current Action</h3>
+            <div className={styles.actionControls}>
+              <div className={styles.timer}>
+                <Clock size={16} />
+                <span>{formatTime(timeElapsed)}</span>
+              </div>
+              <button className={styles.closeBtn} onClick={stopChopping}>
+                <X size={16} />
+              </button>
+            </div>
+          </div>
+          
+          {activeSession ? (
+            <div className={styles.activeAction}>
+              <div className={styles.actionItem}>
+                <div className={styles.actionImage}>
+                  <img 
+                    src={woodTypes.find(w => w.id === activeSession.woodTypeId)?.image || '/assets/img/Resources/Wood/wood1.png'} 
+                    alt={woodTypes.find(w => w.id === activeSession.woodTypeId)?.name || 'Unknown Wood'}
+                  />
+                </div>
+                <div className={styles.actionInfo}>
+                  <div className={styles.actionName}>
+                    <span>{woodTypes.find(w => w.id === activeSession.woodTypeId)?.name || 'Unknown Wood'}</span>
+                  </div>
+                  <div className={styles.progressBar}>
+                    <div 
+                      className={styles.progressFill} 
+                      style={{ width: `${activeSession.progress}%` }}
+                    />
+                  </div>
+                  <div className={styles.actionStats}>
+                    <span className={styles.quantity}>
+                      +{Math.floor(activeSession.progress / 10)} ({getWoodAmount(activeSession.woodTypeId)} total)
+                    </span>
+                    <span className={styles.resourceTime}>
+                      {woodTypes.find(w => w.id === activeSession.woodTypeId)?.baseTime || 3}s
+                    </span>
+                    <span className={styles.expRate}>
+                      {woodTypes.find(w => w.id === activeSession.woodTypeId)?.baseTime ? 
+                        (0.25 * (woodTypes.find(w => w.id === activeSession.woodTypeId)?.baseTime || 1) / 10).toFixed(2) : 
+                        '0.25'
+                      } EXP/s
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className={styles.noAction}>
+              <p>No active woodcutting session</p>
+              <span>Click on a wood type below to start chopping</span>
+            </div>
+          )}
+        </div>
+
+        {/* Your Progress */}
+        <div className={styles.yourProgress}>
+          <div className={styles.progressHeader}>
+            <h3>YOUR PROGRESS</h3>
+            <div className={styles.efficiency}>
+              {efficiency}% Efficiency
+            </div>
+          </div>
+          
+          <div className={styles.skillProgress}>
+            <div className={styles.skillIcon}>
+              <TreePine size={24} />
+            </div>
+            <div className={styles.skillInfo}>
+              <div className={styles.skillName}>Woodcutting</div>
+              <div className={styles.skillLevel}>Lv. 3</div>
+              <div className={styles.skillProgressBar}>
+                <div className={styles.skillProgressFill} style={{ width: '33%' }} />
+              </div>
+              <div className={styles.skillStats}>
+                <span>113 EXP Needed</span>
+                <span>33%</span>
+              </div>
+            </div>
+          </div>
+          
+          <button className={styles.ascensionBtn}>
+            <Trophy size={16} />
+            Ascension Perks
+            <Lock size={14} />
+          </button>
         </div>
       </div>
 
