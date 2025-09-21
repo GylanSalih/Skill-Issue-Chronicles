@@ -177,6 +177,22 @@ This project is currently in **Alpha v0.0.1**. Features may be incomplete or sub
 - **Time-based** - Automated gathering with progress bars
 - **Experience Gain** - Skill progression through activities
 
+## 👥 Contributors
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <a href="https://github.com/gylansalih">
+          <img src="https://avatars.githubusercontent.com/u/gylansalih?v=4" width="100" height="100" style="border-radius: 50%;" alt="Gylan Salih">
+          <br><sub><b>Gylan Salih</b></sub>
+          <br><sub>Developer</sub>
+        </a>
+      </td>
+    </tr>
+  </table>
+</div>
+
 ---
 
-**Status**: Alpha Development | **Version**: 0.0.1 | **Last Updated**: September 2025
+**Status**: Alpha Development | **Version**: 0.0.1 | **Developers**: 1
