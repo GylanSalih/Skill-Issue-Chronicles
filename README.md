@@ -1,84 +1,182 @@
 # Skill Issue Chronicles
 
-A fantasy RPG game built with React, TypeScript, and Vite.
+**Alpha v0.0.1** - Skill Issue Chronicles
 
-## Features
+## 📸 Screenshots
 
-- Character management system
-- Multiple skill trees (Woodcutting, Fishing, Cooking, Mining, Smithing)
-- Pet system
-- Bank and shop functionality
-- Statistics tracking
-- Modern UI with Tailwind CSS
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="docs/showcase/showcase_21_09_25_1.jpeg" width="300" height="300" alt="Game Screenshot 1">
+        <br><sub>Character Selection</sub>
+      </td>
+      <td align="center">
+        <img src="docs/showcase/showcase_21_09_25_2.jpeg" width="300" height="300" alt="Game Screenshot 2">
+        <br><sub>Game Interface</sub>
+      </td>
+      <td align="center">
+        <img src="docs/showcase/showcase_21_09_25_3.jpeg" width="300" height="300" alt="Game Screenshot 3">
+        <br><sub>Resource Management</sub>
+      </td>
+      <td align="center">
+        <img src="docs/showcase/showcase_21_09_25_4.jpeg" width="300" height="300" alt="Game Screenshot 4">
+        <br><sub>Character Stats</sub>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <img src="docs/showcase/showcase_21_09_25_5.jpeg" width="300" height="300" alt="Game Screenshot 5">
+        <br><sub>Equipment System</sub>
+      </td>
+      <td align="center">
+        <img src="docs/showcase/showcase_21_09_25_6.jpeg" width="300" height="300" alt="Game Screenshot 6">
+        <br><sub>Boss Combat</sub>
+      </td>
+      <td align="center">
+        <img src="docs/showcase/showcase_21_09_25_7.jpeg" width="300" height="300" alt="Game Screenshot 7">
+        <br><sub>Game Dashboard</sub>
+      </td>
+      <td align="center">
+        <img src="docs/showcase/showcase_21_09_25_8.jpeg" width="300" height="300" alt="Game Screenshot 8">
+        <br><sub>Activity Manager</sub>
+      </td>
+    </tr>
+  </table>
+</div>
 
-## Getting Started
+## 🎮 Key Features
 
-### Prerequisites
+### Character Management
+- **Character Creation** - 10 unique classes (Warrior, Mage, Rogue, etc.)
+- **Character Selection** - Multiple character slots with detailed stats
+- **Stat Allocation** - Customize character attributes
+- **Character Progression** - Level up system with experience points
 
-- Node.js (version 16 or higher)
-- npm or yarn
+### Resource Management
+- **Woodcutting System** - Gather different wood types with varying rarities
+- **Resource Panel** - Real-time resource tracking and management
+- **Save/Load System** - Persistent character and progress data
+- **Inventory Management** - Equipment and item storage
 
-### Installation
+### Game Systems
+- **Activity Manager** - Automated resource gathering with timers
+- **Boss Combat** - Turn-based combat system with different boss tiers
+- **Pet System** - Collect and train pets with unique abilities
+- **Statistics Tracking** - Detailed progress monitoring and analytics
 
-1. Install dependencies:
+## 🛠️ Core Managers & Systems
+
+### Game State Management
+**Path**: `src/hooks/useGameState.ts`
+- **Global State** - Centralized game state management
+- **Resource Tracking** - Primary/secondary resources with 15+ wood types
+- **Character Stats** - Attack, defense, intelligence, stamina, melee, ranged, magic
+- **Skill System** - Woodcutting, cooking, mining with experience tracking
+- **Auto-save** - Persistent data storage with localStorage
+
+### Save Manager
+**Path**: `src/lib/saveManager.ts`
+- **SaveData Interface** - Structured save file format
+- **Load/Save Functions** - `loadGame()`, `saveGame()`, `createNewSave()`
+- **Character Persistence** - Multiple character slots with metadata
+- **Data Validation** - Error handling and data integrity
+- **Export/Import** - JSON-based save file system
+
+### Activity Manager
+**Path**: `src/contexts/ActivityManager.tsx`
+- **Skill Management** - Start/stop skills with experience tracking
+- **Progress Calculation** - Real-time progress bars and timers
+- **Efficiency System** - Skill-based efficiency calculations
+- **Game Control** - Start/stop/toggle game state
+- **Level Progression** - Experience requirements and level calculations
+
+### Wood Manager
+**Path**: `src/lib/woodManager.ts`
+- **Session Management** - Active woodcutting sessions with timers
+- **Event System** - Real-time session updates and listeners
+- **Progress Tracking** - Time-based progress with stamina consumption
+- **Result Calculation** - Wood type, amount, and experience rewards
+
+### Equipment System
+**Path**: `src/components/EquipmentInterface/EquipmentInterface.tsx`
+- **10 Equipment Slots** - Helmet, amulet, weapon, chest, shield, legs, gloves, boots, ring, cape
+- **Rarity System** - Common, uncommon, rare, epic, legendary with color coding
+- **Stat Bonuses** - Defense, attack, magic, agility, health, mana, luck
+- **Item Management** - Equip/unequip with stat calculations
+- **Visual Interface** - Character silhouette with equipment slots
+
+### Character Classes
+**Path**: `src/config/characterClasses.ts`
+- **10 Unique Classes** - Warrior, Mage, Rogue, Archer, Healer, Berserker, Paladin, Assassin, Tinkerer, Elementalist
+- **Base Stats** - Starting attributes for each class
+- **Class Stats** - Attack, defense, magic, speed, health, mana ratings
+- **Helper Functions** - `getClassStats()`, `getClassBaseStats()`, `getAllCharacterClasses()`
+
+### Boss Combat System
+**Path**: `src/config/bossConfig.ts`, `src/hooks/useBossCombat.ts`
+- **Boss Tower** - Multiple floors with increasing difficulty
+- **Turn-based Combat** - Attack, defend, magic, special abilities
+- **Rarity System** - Boss rarity affects rewards and difficulty
+- **Reward System** - Experience, gold, and item drops
+- **Combat State** - Real-time combat tracking and management
+
+## 🚀 Installation
+
 ```bash
+# Clone repository
+git clone https://github.com/GylanSalih/Skill-Issue-Chronicles
+
+# Install dependencies
 npm install
-```
 
-2. Start the development server:
-```bash
+# Start development server
 npm run dev
+
+# Build for production
+npm run build
 ```
 
-3. Open your browser and navigate to `http://localhost:3000`
+## 🛠️ Tech Stack
 
-### Available Scripts
+- **React 18** - Frontend framework
+- **TypeScript** - Type safety
+- **Vite** - Build tool and dev server
+- **SCSS** - Styling
+- **React Router** - Navigation
+- **Lucide React** - Icons
+
+## 📱 Available Scripts
 
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
 - `npm run lint` - Run ESLint
 
-## Project Structure
+## ⚠️ Alpha Status
 
-```
-src/
-├── components/          # Reusable UI components
-│   ├── CharacterManager/
-│   ├── SideMenu/
-│   ├── Woodcutting/
-│   └── ui/             # Basic UI components
-├── pages/              # Page components
-├── styles/             # Global styles
-└── lib/                # Utility functions
-```
+This project is currently in **Alpha v0.0.1**. Features may be incomplete or subject to change.
 
-## Technology Stack
+## 🎯 Core Mechanics
 
-- **React 18** - UI library
-- **TypeScript** - Type safety
-- **Vite** - Build tool and dev server
-- **React Router** - Client-side routing
-- **Tailwind CSS** - Styling
-- **Lucide React** - Icons
-- **Radix UI** - Accessible UI primitives
+### Character Classes
+- **Warrior** - High defense and health
+- **Mage** - High magic and mana
+- **Rogue** - High speed and critical hits
+- **Archer** - Ranged combat specialist
+- **Healer** - Support and healing abilities
+- **Berserker** - High damage, low defense
+- **Paladin** - Balanced fighter with healing
+- **Assassin** - Stealth and high damage
+- **Tinkerer** - Technical abilities and traps
+- **Elementalist** - Master of elemental magic
 
-## Development
+### Resource Gathering
+- **Woodcutting** - Primary resource gathering activity
+- **Rarity System** - Common to Legendary wood types
+- **Time-based** - Automated gathering with progress bars
+- **Experience Gain** - Skill progression through activities
 
-The project uses Vite for fast development with hot module replacement. All components are written in TypeScript for better type safety and developer experience.
+---
 
-## Building for Production
-
-```bash
-npm run build
-```
-
-The built files will be in the `dist` directory.
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests and linting
-5. Submit a pull request
+**Status**: Alpha Development | **Version**: 0.0.1 | **Last Updated**: September 2025
