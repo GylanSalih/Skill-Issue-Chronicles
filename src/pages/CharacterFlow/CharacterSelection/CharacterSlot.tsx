@@ -6,10 +6,12 @@ import styles from './CharacterSlot.module.scss';
 interface CharacterSlotProps {
   slotId: number;
   character: Character | null;
+  isActive?: boolean;
   onClick: () => void;
+  onPlay?: () => void;
 }
 
-const CharacterSlot: React.FC<CharacterSlotProps> = ({ slotId, character, onClick }) => {
+const CharacterSlot: React.FC<CharacterSlotProps> = ({ slotId, character, isActive = false, onClick, onPlay }) => {
   const getClassIcon = (characterClass: string) => {
     const iconMap: Record<string, string> = {
       'warrior': '/assets/img/avatars/warrior.png',
@@ -44,7 +46,7 @@ const CharacterSlot: React.FC<CharacterSlotProps> = ({ slotId, character, onClic
 
   return (
     <div 
-      className={`${styles.characterSlot} ${character ? styles.occupied : styles.empty}`}
+      className={`${styles.characterSlot} ${character ? styles.occupied : styles.empty} ${isActive ? styles.active : ''}`}
       onClick={onClick}
     >
       <div className={styles.slotHeader}>
@@ -91,7 +93,9 @@ const CharacterSlot: React.FC<CharacterSlotProps> = ({ slotId, character, onClic
 
       <div className={styles.slotFooter}>
         {character ? (
-          <button className={styles.playButton}>Spielen</button>
+          isActive ? (
+            <button className={styles.playButton} onClick={onPlay}>Spielen</button>
+          ) : null
         ) : (
           <button className={styles.createButton}>Erstellen</button>
         )}

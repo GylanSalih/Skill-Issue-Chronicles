@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useGameState } from '../../hooks/useGameState';
 import { useWoodcutting } from '../../hooks/useWoodcutting';
 import { useCharacter, useCharacterClasses } from '../../contexts/GameContext';
-import { Coins, Crown, PanelRight, PanelLeft, TreePine, Square } from 'lucide-react';
+import { Coins, Crown, PanelRight, PanelLeft, TreePine, Square, Bell, MessageCircle } from 'lucide-react';
 import { getWoodTypeById } from '../../config/woodConfig';
 import styles from './GameHeader.module.scss';
 
@@ -159,6 +159,34 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
 
         {/* Right: Player Profile */}
         <div className={styles.rightSection}>
+          {/* Notifications Bell */}
+          <div 
+            className={styles.notificationIcon}
+            onClick={() => {
+              // TODO: Implement notification panel
+              console.log('Notifications clicked');
+            }}
+            title="Wichtige Nachrichten"
+          >
+            <Bell size={20} />
+            {/* Notification Badge */}
+            <div className={styles.notificationBadge}>3</div>
+          </div>
+          
+          {/* Chat/Message Icon */}
+          <div 
+            className={styles.messageIcon}
+            onClick={() => {
+              // TODO: Implement chat panel
+              console.log('Chat clicked');
+            }}
+            title="Chat & Nachrichten"
+          >
+            <MessageCircle size={20} />
+            {/* Message Badge */}
+            <div className={styles.messageBadge}>5</div>
+          </div>
+          
           {isResourcePanelVisible ? (
             <div 
               className={styles.toggleIcon} 

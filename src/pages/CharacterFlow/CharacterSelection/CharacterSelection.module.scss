@@ -240,6 +240,7 @@
     backdrop-filter: blur(10px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
     transition: margin-left 0.3s ease;
+    overflow: visible;
   }
 
   // Wenn Character ausgewählt ist, verschiebe Character Grid nach rechts
@@ -250,7 +251,7 @@
   .header {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    justify-content: start;
     margin-bottom: 1rem;
     padding: 0.75rem;
     background: rgba(255, 255, 255, 0.05);
@@ -258,40 +259,8 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
 
-    .headerIcon {
-      color: #ffd700;
-      filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
-      flex-shrink: 0;
-    }
-
-    .characterInfoButton {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 8px;
-      padding: 0.5rem;
-      color: #fff;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      &:hover {
-        background: rgba(255, 255, 255, 0.2);
-        border-color: rgba(255, 255, 255, 0.3);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      }
-
-      &:active {
-        transform: translateY(0);
-      }
-    }
-
     .headerContent {
-      flex: 1;
-      min-width: 0;
+      text-align: right;
 
       h1 {
         color: #ffffff;
@@ -300,6 +269,7 @@
         margin: 0 0 0.2rem 0;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         line-height: 1.1;
+        text-align: left;
       }
 
       p {
@@ -318,7 +288,7 @@
     gap: 0.6rem;
     flex: 1;
     padding-bottom: 1rem;
-    overflow: hidden;
+    overflow: visible;
   }
 
   .actions {
@@ -338,44 +308,40 @@
   .createNewButton {
     flex: 1;
     padding: 0.75rem 1rem;
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    font-weight: 500;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+    backdrop-filter: blur(10px);
 
     &:hover {
-      background: linear-gradient(135deg, #059669 0%, #047857 100%);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
     }
   }
 
   .startGameButton {
     width: 100%;
     padding: 0.75rem 1rem;
-    background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
-    color: white;
-    border: none;
-    border-radius: 8px;
+    background: rgba(74, 222, 128, 0.2);
+    color: #fff;
+    border: 1px solid rgba(74, 222, 128, 0.4);
+    border-radius: 6px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.2);
 
     &:hover {
-      background: linear-gradient(135deg, #ff8c42 0%, #ff9f5a 100%);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+      background: rgba(74, 222, 128, 0.3);
+      border-color: rgba(74, 222, 128, 0.6);
+      box-shadow: 0 0 25px rgba(74, 222, 128, 0.3);
     }
   }
 

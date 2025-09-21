@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Crown } from 'lucide-react';
 import CharacterSlot from './CharacterSlot';
 import SaveLoadManager from '../../../components/SaveLoadManager/SaveLoadManager';
 import { SaveManager } from '../../../lib/saveManager';
@@ -12,6 +11,22 @@ const CharacterSelection = () => {
   const [characters, setCharacters] = useState<Record<number, any>>({});
   const [activeCharacter, setActiveCharacter] = useState<any>(null);
   const { setCurrentCharacter } = useCharacter();
+
+  const getClassIcon = (characterClass: string) => {
+    const iconMap: Record<string, string> = {
+      'warrior': '/assets/img/avatars/warrior.png',
+      'mage': '/assets/img/avatars/magier.png',
+      'rogue': '/assets/img/avatars/schurke2.png',
+      'archer': '/assets/img/avatars/elfe.png',
+      'healer': '/assets/img/avatars/heilerin.png',
+      'berserker': '/assets/img/avatars/berserk.png',
+      'paladin': '/assets/img/avatars/paladin.png',
+      'assassin': '/assets/img/avatars/assassine2.png',
+      'tinkerer': '/assets/img/avatars/tuefftler.png',
+      'elementalist': '/assets/img/avatars/elementarist.png'
+    };
+    return iconMap[characterClass] || '/assets/img/avatars/warrior.png';
+  };
 
   // Lade Charaktere beim Mount
   useEffect(() => {
@@ -116,7 +131,7 @@ const CharacterSelection = () => {
           <div className={styles.activeCharacterContent}>
             <div className={styles.activeCharacterBasicInfo}>
               <img 
-                src={`/assets/img/avatars/${activeCharacter.characterClassId}.png`}
+                src={getClassIcon(activeCharacter.characterClassId)}
                 alt={activeCharacter.name}
                 className={styles.activeCharacterImage}
                 onError={(e) => {
@@ -199,7 +214,6 @@ const CharacterSelection = () => {
 
       <div className={styles.characterGrid}>
         <div className={styles.header}>
-          <Crown className={styles.headerIcon} size={32} />
           <div className={styles.headerContent}>
             <h1>Character Selection</h1>
             <p>Choose your character or create a new one to start your adventure</p>
@@ -212,7 +226,9 @@ const CharacterSelection = () => {
               key={index + 1}
               slotId={index + 1}
               character={characters[index + 1]}
+              isActive={activeCharacter && activeCharacter.slotId === index + 1}
               onClick={() => handleSlotClick(index + 1)}
+              onPlay={handleStartGame}
             />
           ))}
         </div>
