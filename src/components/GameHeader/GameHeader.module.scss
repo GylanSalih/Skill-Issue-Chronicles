@@ -302,6 +302,86 @@
   }
 }
 
+.gemSlot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 6px 10px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  cursor: pointer;
+  min-width: 60px;
+  
+  &:hover {
+    background: linear-gradient(135deg, #2a2a2a 0%, #333 100%);
+    border-color: #555;
+    transform: translateY(-1px);
+  }
+}
+
+.gemIcon {
+  color: #a855f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  filter: drop-shadow(0 1px 2px rgba(168, 85, 247, 0.3));
+}
+
+.gemAmount {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.5px;
+}
+
+.dayNightContainer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 6px 10px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  cursor: pointer;
+  min-width: 60px;
+  
+  &:hover {
+    background: linear-gradient(135deg, #2a2a2a 0%, #333 100%);
+    border-color: #555;
+    transform: translateY(-1px);
+  }
+}
+
+.dayNightIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  
+  svg {
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+  }
+}
+
+.dayNightText {
+  color: #ffffff;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
 .toggleIcon {
   color: #a7a7a7;
   cursor: pointer;

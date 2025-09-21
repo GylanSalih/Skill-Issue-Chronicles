@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useGameState } from '../../hooks/useGameState';
 import { useWoodcutting } from '../../hooks/useWoodcutting';
 import { useCharacter, useCharacterClasses } from '../../contexts/GameContext';
-import { Coins, Crown, PanelRight, PanelLeft, TreePine, Square, Bell, MessageCircle } from 'lucide-react';
+import { Coins, Crown, PanelRight, PanelLeft, TreePine, Square, Bell, MessageCircle, Gem, Sun, Moon } from 'lucide-react';
 import { getWoodTypeById } from '../../config/woodConfig';
+import { formatTimeWithSeconds } from '../../lib/dateUtils';
 import styles from './GameHeader.module.scss';
 
 interface GameHeaderProps {
@@ -21,6 +22,15 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
 
   // Einfacher Ladebalken State
   const [simpleProgress, setSimpleProgress] = useState(0);
+  
+  // Current time state
+  const [currentTime, setCurrentTime] = useState(new Date());
+  
+  // Determine if it's day or night
+  const isDayTime = () => {
+    const hour = currentTime.getHours();
+    return hour >= 6 && hour < 18; // 6 AM to 6 PM is day time
+  };
 
   // Handle Woodcutting Progress
   const currentWoodTypeConfig = activeSession ? getWoodTypeById(activeSession.woodTypeId) : null;
@@ -52,6 +62,15 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
       if (interval) clearInterval(interval);
     };
   }, [isWoodcutting, currentWoodTypeConfig]);
+
+  // Update current time every second
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const handleStopWoodcutting = () => {
     if (activeSession) {
@@ -159,6 +178,42 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
 
         {/* Right: Player Profile */}
         <div className={styles.rightSection}>
+          {/* Gem Currency Slot */}
+          <div 
+            className={styles.gemSlot}
+            onClick={() => {
+              // TODO: Implement gem/inventory panel
+              console.log('Gem clicked');
+            }}
+            title="Edelsteine & Seltene Items"
+          >
+            <div className={styles.gemIcon}>
+              <Gem size={16} />
+            </div>
+            <div className={styles.gemAmount}>1,247</div>
+          </div>
+          
+          {/* Day/Night Icon */}
+          <div 
+            className={styles.dayNightContainer}
+            onClick={() => {
+              // TODO: Implement day/night cycle info
+              console.log('Day/Night clicked');
+            }}
+            title={`Aktuelle Zeit - ${isDayTime() ? 'Tageszeit' : 'Nachtzeit'}`}
+          >
+            <div className={styles.dayNightIcon}>
+              {isDayTime() ? (
+                <Sun size={16} style={{ color: '#f59e0b' }} />
+              ) : (
+                <Moon size={16} style={{ color: '#3b82f6' }} />
+              )}
+            </div>
+            <div className={styles.dayNightText}>
+              {formatTimeWithSeconds(currentTime.toISOString())}
+            </div>
+          </div>
+          
           {/* Notifications Bell */}
           <div 
             className={styles.notificationIcon}

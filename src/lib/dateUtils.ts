@@ -58,6 +58,25 @@ export const formatTimeOnly = (dateString: string): string => {
 };
 
 /**
+ * Formats a date string to European time with seconds (HH:MM:SS)
+ * @param dateString - ISO date string
+ * @returns Formatted time string in European format with seconds
+ */
+export const formatTimeWithSeconds = (dateString: string): string => {
+  try {
+    return new Date(dateString).toLocaleTimeString('de-DE', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    });
+  } catch (error) {
+    console.error('Error formatting time with seconds:', error);
+    return dateString; // Return original string if formatting fails
+  }
+};
+
+/**
  * Gets relative time (e.g., "vor 2 Stunden", "vor 3 Tagen")
  * @param dateString - ISO date string
  * @returns Relative time string in German
