@@ -183,10 +183,10 @@ This project is currently in **Alpha v0.0.1**. Features may be incomplete or sub
   <table>
     <tr>
       <td align="center">
-        <a href="https://github.com/gylansalih">
-          <img src="https://avatars.githubusercontent.com/u/gylansalih" width="100" height="100" style="border-radius: 50%;" alt="Gylan Salih">
-          <br><sub><b>Gylan Salih</b></sub>
-          <br><sub>Developer</sub>
+        <a href="https://github.com/GylanSalih">
+          <img src="https://github.com/GylanSalih.png" width="100px;" alt="Gylan Salih"/>
+          <br />
+          <sub><b>Gylan Salih</b></sub>
         </a>
       </td>
     </tr>
