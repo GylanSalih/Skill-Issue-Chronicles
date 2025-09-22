@@ -2,7 +2,7 @@
 
 **Alpha v0.0.1**
 
-<div align="center">
+<div align="left">
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
@@ -276,6 +276,7 @@ This project is currently in **Alpha v0.0.1**. Features may be incomplete or sub
 [stars-shield]: https://custom-icon-badges.demolab.com/github/stars/GylanSalih/Skill-Issue-Chronicles?color=FF0000&label=Stars&style=for-the-badge&logo=star&logoColor=white&labelColor=000000
 [issues-shield]: https://custom-icon-badges.demolab.com/github/issues/GylanSalih/Skill-Issue-Chronicles?color=FF0000&logo=issue-opened&label=Issues&logoColor=white&labelColor=000000&style=for-the-badge
 [license-shield]: https://custom-icon-badges.demolab.com/github/license/GylanSalih/Skill-Issue-Chronicles?color=FF0000&logo=law&label=License&logoColor=white&style=for-the-badge&labelColor=000000
+[discord-shield]: https://img.shields.io/badge/Discord-Join%20Server-FF0000?style=for-the-badge&logo=discord&logoColor=white&labelColor=000000
 [version-shield]: https://img.shields.io/badge/Version-0.0.1-FF0000?style=for-the-badge&logoColor=white&labelColor=000000
 [status-shield]: https://img.shields.io/badge/Status-Alpha%20Development-FF0000?style=for-the-badge&logoColor=white&labelColor=000000
 
