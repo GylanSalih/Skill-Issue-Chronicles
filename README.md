@@ -259,4 +259,4 @@ This project is currently in **Alpha v0.0.1**. Features may be incomplete or sub
 
 ---
 
-**Status**: Alpha Development | **Version**: 0.0.1 | **Developers**: 4
+**Status**: Alpha Development | **Version**: 0.0.1 | **Team Member**: 1
