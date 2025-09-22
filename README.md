@@ -10,8 +10,6 @@
 
 #### ⚠️ Attention Developer
 ### ⚠️ Attention Developer
-## ⚠️ Attention Developer
-# ⚠️ Attention Developer
 
 ### Project Note
 
