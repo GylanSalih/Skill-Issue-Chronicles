@@ -2,7 +2,6 @@
 
 **Alpha v0.0.1** - Skill Issue Chronicles
 
----
 ### ⚠️  Installation
 
 - **Install dependencies**: `npm install`  
@@ -22,7 +21,7 @@
 - **[📋 Changelog](docs/showcase/CHANGELOG.md)** – Version history and updates  
 - **[🗺️ Roadmap](docs/showcase/ROADMAP.md)** – Future features and development goals  
 
----
+#
 
 ## 📸 Screenshots
 
