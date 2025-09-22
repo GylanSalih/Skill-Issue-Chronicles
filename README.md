@@ -3,21 +3,20 @@
 **Alpha v0.0.1** - Skill Issue Chronicles
 
 ---
-## 🚀 Installation
+## ⚠️  Installation
 
 - **Install dependencies**: `npm install`  
 - **Start development server**: `npm run dev`  
 
-#### ⚠️ Attention Developer
 ### ⚠️ Attention Developer
 
-### Project Note
+### ⚠️ Project Note
 
 - **Interested in this project?** Explore the codebase and docs.  
 - **Questions?** Reach out privately.  
 - **Support Needed!** Contributions for this Idle RPG 🎮✨  
 
-## 📚 Developer Documentation
+## ⚠️  Developer Documentation
 
 - **[📖 Development Guide](docs/showcase/DEVELOPMENT_GUIDE.md)** – Complete setup and development workflow  
 - **[📋 Changelog](docs/showcase/CHANGELOG.md)** – Version history and updates  
