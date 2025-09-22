@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,7 +12,7 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    host: true
+    host: true,
   },
   build: {
     outDir: 'dist',
@@ -25,9 +25,9 @@ export default defineConfig({
           router: ['react-router-dom'],
           ui: ['lucide-react', '@radix-ui/react-slot', '@radix-ui/react-label'],
           three: ['three', '@react-three/fiber', '@react-three/drei'],
-          utils: ['lodash', 'uuid', 'clsx']
-        }
-      }
-    }
-  }
-})
+          utils: ['lodash', 'uuid', 'clsx'],
+        },
+      },
+    },
+  },
+});

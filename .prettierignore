@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+.next/
+
+# Environment files
+.env*
+
+# Logs
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Package files
+package-lock.json
+yarn.lock
+
+# Generated files
+tsconfig.tsbuildinfo
+
+# Public assets (don't format images, etc.)
+public/

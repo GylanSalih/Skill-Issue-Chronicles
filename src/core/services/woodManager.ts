@@ -37,7 +37,11 @@ class WoodManager {
   }
 
   // Starte eine neue Woodcutting-Session
-  startWoodcutting(woodTypeId: string, playerLevel: number, loop: boolean = false): boolean {
+  startWoodcutting(
+    woodTypeId: string,
+    playerLevel: number,
+    loop: boolean = false
+  ): boolean {
     const woodType = getWoodTypeById(woodTypeId);
     if (!woodType) {
       console.error(`Wood type ${woodTypeId} not found`);
@@ -46,7 +50,9 @@ class WoodManager {
 
     // Prüfe ob Level ausreicht
     if (playerLevel < woodType.requiredLevel) {
-      console.error(`Player level ${playerLevel} too low for ${woodType.name} (required: ${woodType.requiredLevel})`);
+      console.error(
+        `Player level ${playerLevel} too low for ${woodType.name} (required: ${woodType.requiredLevel})`
+      );
       return false;
     }
 
@@ -60,7 +66,7 @@ class WoodManager {
       duration: woodType.baseTime * 1000, // Konvertiere zu ms
       progress: 0,
       isActive: true,
-      isLooping: loop
+      isLooping: loop,
     };
 
     this.startProgressTimer();
@@ -88,7 +94,10 @@ class WoodManager {
 
       const now = Date.now();
       const elapsed = now - this.activeSession.startTime;
-      const progress = Math.min(100, (elapsed / this.activeSession.duration) * 100);
+      const progress = Math.min(
+        100,
+        (elapsed / this.activeSession.duration) * 100
+      );
 
       this.activeSession.progress = progress;
 
@@ -112,7 +121,7 @@ class WoodManager {
       woodTypeId: this.activeSession.woodTypeId,
       woodAmount: this.calculateWoodAmount(woodType),
       experienceGained: woodType.stats.experienceGain,
-      staminaUsed: woodType.stats.staminaCost
+      staminaUsed: woodType.stats.staminaCost,
     };
 
     // Berechne Essences und Rare Items
@@ -160,7 +169,9 @@ class WoodManager {
   }
 
   removeCompletionListener(callback: (result: WoodcuttingResult) => void) {
-    this.completionListeners = this.completionListeners.filter(listener => listener !== callback);
+    this.completionListeners = this.completionListeners.filter(
+      listener => listener !== callback
+    );
   }
 
   private notifyCompletion(result: WoodcuttingResult) {
@@ -169,9 +180,11 @@ class WoodManager {
 
   // Berechne Wood-Amount basierend auf Level und Stats
   private calculateWoodAmount(woodType: WoodTypeConfig): number {
-    const baseAmount = Math.floor(
-      Math.random() * (woodType.stats.maxReward - woodType.stats.minReward + 1)
-    ) + woodType.stats.minReward;
+    const baseAmount =
+      Math.floor(
+        Math.random() *
+          (woodType.stats.maxReward - woodType.stats.minReward + 1)
+      ) + woodType.stats.minReward;
 
     // Level-Bonus (optional)
     // const levelBonus = Math.floor(baseAmount * 0.1); // 10% Bonus pro Level über Required
@@ -201,14 +214,14 @@ class WoodManager {
       duration: woodType.baseTime,
       essenceChance: woodType.stats.essenceChance,
       rareChance: woodType.stats.rareChance,
-      staminaCost: woodType.stats.staminaCost
+      staminaCost: woodType.stats.staminaCost,
     };
   }
 
   // Toggle Loop-Modus für aktuelle Session
   toggleLooping(): boolean {
     if (!this.activeSession) return false;
-    
+
     this.activeSession.isLooping = !this.activeSession.isLooping;
     this.notifyListeners();
     return this.activeSession.isLooping;
@@ -217,7 +230,7 @@ class WoodManager {
   // Setze Loop-Modus für aktuelle Session
   setLooping(loop: boolean): boolean {
     if (!this.activeSession) return false;
-    
+
     this.activeSession.isLooping = loop;
     this.notifyListeners();
     return this.activeSession.isLooping;

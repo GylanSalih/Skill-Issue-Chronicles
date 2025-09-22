@@ -2,8 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGameState } from '../../../core/hooks/useGameState';
 import { useWoodcutting } from '../../../core/hooks/useWoodcutting';
-import { useCharacter, useCharacterClasses } from '../../../core/contexts/GameContext';
-import { Coins, Crown, PanelRight, PanelLeft, TreePine, Bell, MessageCircle, Gem, Sun, Moon } from 'lucide-react';
+import {
+  useCharacter,
+  useCharacterClasses,
+} from '../../../core/contexts/GameContext';
+import {
+  Coins,
+  Crown,
+  PanelRight,
+  PanelLeft,
+  TreePine,
+  Bell,
+  MessageCircle,
+  Gem,
+  Sun,
+  Moon,
+} from 'lucide-react';
 import { getWoodTypeById } from '../../../core/services/woodConfig';
 import { formatTimeWithSeconds } from '../../../core/services/dateUtils';
 import styles from './GameHeader.module.scss';
@@ -13,7 +27,10 @@ interface GameHeaderProps {
   isResourcePanelVisible: boolean;
 }
 
-const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResourcePanelVisible }) => {
+const GameHeader: React.FC<GameHeaderProps> = ({
+  onToggleResourcePanel,
+  isResourcePanelVisible,
+}) => {
   const navigate = useNavigate();
   const { gameState } = useGameState();
   const { activeSession, stopChopping } = useWoodcutting();
@@ -22,10 +39,10 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
 
   // Einfacher Ladebalken State
   const [simpleProgress, setSimpleProgress] = useState(0);
-  
+
   // Current time state
   const [currentTime, setCurrentTime] = useState(new Date());
-  
+
   // Determine if it's day or night
   const isDayTime = () => {
     const hour = currentTime.getHours();
@@ -33,19 +50,21 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
   };
 
   // Handle Woodcutting Progress
-  const currentWoodTypeConfig = activeSession ? getWoodTypeById(activeSession.woodTypeId) : null;
+  const currentWoodTypeConfig = activeSession
+    ? getWoodTypeById(activeSession.woodTypeId)
+    : null;
   const isWoodcutting = activeSession?.isActive || false;
 
   // Einfacher Timer basierend auf Resource-Zeit
   useEffect(() => {
     let interval: NodeJS.Timeout;
-    
+
     if (isWoodcutting && currentWoodTypeConfig) {
       setSimpleProgress(0);
-      
+
       const duration = currentWoodTypeConfig.baseTime * 1000; // in ms
       const updateInterval = duration / 100; // 100 Updates für smooth progress
-      
+
       interval = setInterval(() => {
         setSimpleProgress(prev => {
           if (prev >= 100) {
@@ -95,10 +114,10 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
       return {
         type: 'Woodcutting',
         name: currentWoodTypeConfig.name,
-        icon: <TreePine size={16} />
+        icon: <TreePine size={16} />,
       };
     }
-    
+
     // Hier können später andere Aktivitäten hinzugefügt werden
     // Beispiel für zukünftige Aktivitäten:
     // if (isMining && currentOreConfig) {
@@ -108,7 +127,7 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
     //     icon: <Pickaxe size={16} />
     //   };
     // }
-    // 
+    //
     // if (isFishing && currentFishConfig) {
     //   return {
     //     type: 'Fishing',
@@ -116,10 +135,9 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
     //     icon: <Fish size={16} />
     //   };
     // }
-    
+
     return null;
   };
-
 
   return (
     <header className={styles.header}>
@@ -129,25 +147,27 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
           {(() => {
             const activityInfo = getActivityInfo();
             return activityInfo ? (
-              <button 
+              <button
                 className={styles.simpleTimer}
                 onClick={() => navigate('/woodcutting')}
                 title={`Click to go to ${activityInfo.name}`}
               >
                 <div className={styles.timerIcon}>
-                  <img 
-                    src={currentWoodTypeConfig?.image} 
+                  <img
+                    src={currentWoodTypeConfig?.image}
                     alt={activityInfo.name}
                   />
                 </div>
                 <div className={styles.timerInfo}>
                   <div className={styles.timerName}>
-                    <span className={styles.activityName}>{activityInfo.type}</span>
+                    <span className={styles.activityName}>
+                      {activityInfo.type}
+                    </span>
                     <span className={styles.itemName}>{activityInfo.name}</span>
                   </div>
                   <div className={styles.timerProgress}>
-                    <div 
-                      className={styles.timerFill} 
+                    <div
+                      className={styles.timerFill}
                       style={{ width: `${simpleProgress}%` }}
                     />
                   </div>
@@ -160,10 +180,6 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
               </div>
             );
           })()}
-
-
-
-
 
           <div className={styles.slot}>Slot 2</div>
           <div className={styles.slot}>Slot 3</div>
@@ -179,22 +195,22 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
         {/* Right: Player Profile */}
         <div className={styles.rightSection}>
           {/* Gem Currency Slot */}
-          <div 
+          <div
             className={styles.gemSlot}
             onClick={() => {
               // TODO: Implement gem/inventory panel
               console.log('Gem clicked');
             }}
-            title="Edelsteine & Seltene Items"
+            title='Edelsteine & Seltene Items'
           >
             <div className={styles.gemIcon}>
               <Gem size={16} />
             </div>
             <div className={styles.gemAmount}>1,247</div>
           </div>
-          
+
           {/* Day/Night Icon */}
-          <div 
+          <div
             className={styles.dayNightContainer}
             onClick={() => {
               // TODO: Implement day/night cycle info
@@ -213,57 +229,57 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
               {formatTimeWithSeconds(currentTime.toISOString())}
             </div>
           </div>
-          
+
           {/* Notifications Bell */}
-          <div 
+          <div
             className={styles.notificationIcon}
             onClick={() => {
               // TODO: Implement notification panel
               console.log('Notifications clicked');
             }}
-            title="Wichtige Nachrichten"
+            title='Wichtige Nachrichten'
           >
             <Bell size={20} />
             {/* Notification Badge */}
             <div className={styles.notificationBadge}>3</div>
           </div>
-          
+
           {/* Chat/Message Icon */}
-          <div 
+          <div
             className={styles.messageIcon}
             onClick={() => {
               // TODO: Implement chat panel
               console.log('Chat clicked');
             }}
-            title="Chat & Nachrichten"
+            title='Chat & Nachrichten'
           >
             <MessageCircle size={20} />
             {/* Message Badge */}
             <div className={styles.messageBadge}>5</div>
           </div>
-          
+
           {isResourcePanelVisible ? (
-            <div 
-              className={styles.toggleIcon} 
+            <div
+              className={styles.toggleIcon}
               onClick={onToggleResourcePanel}
-              title="Resource Panel ausblenden"
+              title='Resource Panel ausblenden'
             >
               <PanelLeft size={20} />
             </div>
           ) : (
-            <div 
-              className={styles.toggleIcon} 
+            <div
+              className={styles.toggleIcon}
               onClick={onToggleResourcePanel}
-              title="Resource Panel anzeigen"
+              title='Resource Panel anzeigen'
             >
               <PanelRight size={20} />
             </div>
           )}
-          <div 
+          <div
             className={styles.playerProfile}
             onClick={handlePlayerProfileClick}
             style={{ cursor: 'pointer' }}
-            title="Character öffnen"
+            title='Character öffnen'
           >
             <div className={styles.playerInfo}>
               <div className={styles.playerName}>
@@ -281,11 +297,11 @@ const GameHeader: React.FC<GameHeaderProps> = ({ onToggleResourcePanel, isResour
               </div>
             </div>
             <div className={styles.profileImage}>
-              <img 
-                src={getCharacterIcon()} 
+              <img
+                src={getCharacterIcon()}
                 alt={currentCharacter?.name || 'Character'}
                 className={styles.characterAvatar}
-                onError={(e) => {
+                onError={e => {
                   e.currentTarget.src = '/img/avatars/warrior.png';
                 }}
               />

@@ -13,7 +13,7 @@ export const formatDate = (dateString: string): string => {
       year: 'numeric',
       hour: '2-digit',
       minute: '2-digit',
-      hour12: false
+      hour12: false,
     });
   } catch (error) {
     console.error('Error formatting date:', error);
@@ -31,7 +31,7 @@ export const formatDateOnly = (dateString: string): string => {
     return new Date(dateString).toLocaleDateString('de-DE', {
       day: '2-digit',
       month: '2-digit',
-      year: 'numeric'
+      year: 'numeric',
     });
   } catch (error) {
     console.error('Error formatting date:', error);
@@ -49,7 +49,7 @@ export const formatTimeOnly = (dateString: string): string => {
     return new Date(dateString).toLocaleTimeString('de-DE', {
       hour: '2-digit',
       minute: '2-digit',
-      hour12: false
+      hour12: false,
     });
   } catch (error) {
     console.error('Error formatting time:', error);
@@ -68,7 +68,7 @@ export const formatTimeWithSeconds = (dateString: string): string => {
       hour: '2-digit',
       minute: '2-digit',
       second: '2-digit',
-      hour12: false
+      hour12: false,
     });
   } catch (error) {
     console.error('Error formatting time with seconds:', error);

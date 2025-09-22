@@ -41,8 +41,8 @@ export const WOOD_TYPES: Record<string, WoodTypeConfig> = {
       essenceChance: 0.01,
       rareChance: 0.001,
       experienceGain: 5,
-      staminaCost: 1
-    }
+      staminaCost: 1,
+    },
   },
   softwood: {
     id: 'softwood',
@@ -59,8 +59,8 @@ export const WOOD_TYPES: Record<string, WoodTypeConfig> = {
       essenceChance: 0.015,
       rareChance: 0.002,
       experienceGain: 8,
-      staminaCost: 1
-    }
+      staminaCost: 1,
+    },
   },
   willowWood: {
     id: 'willowWood',
@@ -77,8 +77,8 @@ export const WOOD_TYPES: Record<string, WoodTypeConfig> = {
       essenceChance: 0.02,
       rareChance: 0.003,
       experienceGain: 12,
-      staminaCost: 2
-    }
+      staminaCost: 2,
+    },
   },
   glowwood: {
     id: 'glowwood',
@@ -95,12 +95,12 @@ export const WOOD_TYPES: Record<string, WoodTypeConfig> = {
       essenceChance: 0.03,
       rareChance: 0.005,
       experienceGain: 18,
-      staminaCost: 3
+      staminaCost: 3,
     },
     specialProperties: {
       glowing: true,
-      magical: true
-    }
+      magical: true,
+    },
   },
   frostbark: {
     id: 'frostbark',
@@ -117,12 +117,12 @@ export const WOOD_TYPES: Record<string, WoodTypeConfig> = {
       essenceChance: 0.04,
       rareChance: 0.008,
       experienceGain: 25,
-      staminaCost: 4
+      staminaCost: 4,
     },
     specialProperties: {
       elemental: 'ice',
-      magical: true
-    }
+      magical: true,
+    },
   },
   ebonyWood: {
     id: 'ebonyWood',
@@ -139,13 +139,13 @@ export const WOOD_TYPES: Record<string, WoodTypeConfig> = {
       essenceChance: 0.05,
       rareChance: 0.01,
       experienceGain: 35,
-      staminaCost: 5
+      staminaCost: 5,
     },
     specialProperties: {
       elemental: 'dark',
       magical: true,
-      durability: 100
-    }
+      durability: 100,
+    },
   },
   voidbark: {
     id: 'voidbark',
@@ -162,13 +162,13 @@ export const WOOD_TYPES: Record<string, WoodTypeConfig> = {
       essenceChance: 0.06,
       rareChance: 0.015,
       experienceGain: 50,
-      staminaCost: 6
+      staminaCost: 6,
     },
     specialProperties: {
       elemental: 'void',
       magical: true,
-      durability: 150
-    }
+      durability: 150,
+    },
   },
   yangWood: {
     id: 'yangWood',
@@ -185,14 +185,14 @@ export const WOOD_TYPES: Record<string, WoodTypeConfig> = {
       essenceChance: 0.08,
       rareChance: 0.02,
       experienceGain: 75,
-      staminaCost: 8
+      staminaCost: 8,
     },
     specialProperties: {
       elemental: 'light',
       magical: true,
       glowing: true,
-      durability: 200
-    }
+      durability: 200,
+    },
   },
   yingWood: {
     id: 'yingWood',
@@ -209,14 +209,14 @@ export const WOOD_TYPES: Record<string, WoodTypeConfig> = {
       essenceChance: 0.08,
       rareChance: 0.02,
       experienceGain: 75,
-      staminaCost: 8
+      staminaCost: 8,
     },
     specialProperties: {
       elemental: 'dark',
       magical: true,
-      durability: 200
-    }
-  }
+      durability: 200,
+    },
+  },
 };
 
 // Hilfsfunktionen für Wood-Types
@@ -232,17 +232,27 @@ export const getWoodTypesByRarity = (rarity: string): WoodTypeConfig[] => {
   return Object.values(WOOD_TYPES).filter(wood => wood.rarity === rarity);
 };
 
-export const getUnlockedWoodTypes = (currentLevel: number): WoodTypeConfig[] => {
-  return Object.values(WOOD_TYPES).filter(wood => wood.requiredLevel <= currentLevel);
+export const getUnlockedWoodTypes = (
+  currentLevel: number
+): WoodTypeConfig[] => {
+  return Object.values(WOOD_TYPES).filter(
+    wood => wood.requiredLevel <= currentLevel
+  );
 };
 
 export const getWoodRarityColor = (rarity: string): string => {
   switch (rarity) {
-    case 'common': return '#9ca3af';
-    case 'uncommon': return '#10b981';
-    case 'rare': return '#3b82f6';
-    case 'epic': return '#8b5cf6';
-    case 'legendary': return '#f59e0b';
-    default: return '#9ca3af';
+    case 'common':
+      return '#9ca3af';
+    case 'uncommon':
+      return '#10b981';
+    case 'rare':
+      return '#3b82f6';
+    case 'epic':
+      return '#8b5cf6';
+    case 'legendary':
+      return '#f59e0b';
+    default:
+      return '#9ca3af';
   }
 };

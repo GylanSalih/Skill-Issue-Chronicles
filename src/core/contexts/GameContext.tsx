@@ -1,11 +1,17 @@
-import React, { createContext, useContext, ReactNode, useState, useEffect } from 'react';
-import { 
-  CHARACTER_CLASSES, 
-  CharacterClass, 
+import React, {
+  createContext,
+  useContext,
+  ReactNode,
+  useState,
+  useEffect,
+} from 'react';
+import {
+  CHARACTER_CLASSES,
+  CharacterClass,
   CharacterClassStats,
   getClassStats,
   getClassBaseStats,
-  getAllCharacterClasses
+  getAllCharacterClasses,
 } from '../services/characterClasses';
 
 // Character interface
@@ -38,7 +44,7 @@ interface GameContextType {
   getClassById: (id: string) => CharacterClass | undefined;
   getClassStats: (characterClass: string) => CharacterClassStats;
   getClassBaseStats: (characterClass: string) => any;
-  
+
   // Character Management
   currentCharacter: Character | null;
   characters: Record<number, Character>;
@@ -46,13 +52,16 @@ interface GameContextType {
   loadCharacters: () => void;
   saveCharacters: () => void;
   getCharacterBySlot: (slotId: number) => Character | null;
-  
+
   // Stat Allocation
-  allocateStatPoint: (statName: keyof Character['stats'], amount: number) => boolean;
+  allocateStatPoint: (
+    statName: keyof Character['stats'],
+    amount: number
+  ) => boolean;
   resetStatAllocation: () => void;
   getPendingStatChanges: () => Record<string, number>;
   applyStatChanges: () => boolean;
-  
+
   // Future: Add more game-related context here
   // - Game state
   // - Resources
@@ -66,9 +75,13 @@ interface GameProviderProps {
 }
 
 export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
-  const [currentCharacter, setCurrentCharacter] = useState<Character | null>(null);
+  const [currentCharacter, setCurrentCharacter] = useState<Character | null>(
+    null
+  );
   const [characters, setCharacters] = useState<Record<number, Character>>({});
-  const [pendingStatChanges, setPendingStatChanges] = useState<Record<string, number>>({});
+  const [pendingStatChanges, setPendingStatChanges] = useState<
+    Record<string, number>
+  >({});
 
   // Load characters from localStorage
   const loadCharacters = () => {
@@ -78,10 +91,12 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
         const parsedCharacters = JSON.parse(savedCharacters);
         setCharacters(parsedCharacters);
         console.log('GameContext - Loaded characters:', parsedCharacters);
-        
+
         // Set first character as current if none is set
         if (!currentCharacter && Object.keys(parsedCharacters).length > 0) {
-          const firstCharacter = Object.values(parsedCharacters)[0] as Character;
+          const firstCharacter = Object.values(
+            parsedCharacters
+          )[0] as Character;
           setCurrentCharacter(firstCharacter);
         }
       }
@@ -110,7 +125,10 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   };
 
   // Stat Allocation Functions
-  const allocateStatPoint = (statName: keyof Character['stats'], amount: number): boolean => {
+  const allocateStatPoint = (
+    statName: keyof Character['stats'],
+    amount: number
+  ): boolean => {
     if (!currentCharacter) return false;
 
     const currentChanges = pendingStatChanges[statName] || 0;
@@ -119,9 +137,12 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     const newTotalValue = currentStatValue + newAmount;
 
     // Check if we have enough available points
-    const totalUsedPoints = Object.values(pendingStatChanges).reduce((sum, change) => sum + change, 0);
+    const totalUsedPoints = Object.values(pendingStatChanges).reduce(
+      (sum, change) => sum + change,
+      0
+    );
     const availablePoints = currentCharacter.availableStatPoints;
-    
+
     if (amount > 0 && totalUsedPoints + amount > availablePoints) {
       return false; // Not enough points
     }
@@ -137,7 +158,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     // Update pending changes
     setPendingStatChanges(prev => ({
       ...prev,
-      [statName]: newAmount
+      [statName]: newAmount,
     }));
 
     return true;
@@ -155,8 +176,11 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const applyStatChanges = () => {
     if (!currentCharacter) return false;
 
-    const totalChanges = Object.values(pendingStatChanges).reduce((sum, change) => sum + change, 0);
-    
+    const totalChanges = Object.values(pendingStatChanges).reduce(
+      (sum, change) => sum + change,
+      0
+    );
+
     if (totalChanges > currentCharacter.availableStatPoints) {
       return false; // Not enough points
     }
@@ -166,19 +190,24 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       ...currentCharacter,
       stats: {
         ...currentCharacter.stats,
-        strength: currentCharacter.stats.strength + (pendingStatChanges.strength || 0),
-        agility: currentCharacter.stats.agility + (pendingStatChanges.agility || 0),
-        intelligence: currentCharacter.stats.intelligence + (pendingStatChanges.intelligence || 0),
-        vitality: currentCharacter.stats.vitality + (pendingStatChanges.vitality || 0),
-        luck: currentCharacter.stats.luck + (pendingStatChanges.luck || 0)
+        strength:
+          currentCharacter.stats.strength + (pendingStatChanges.strength || 0),
+        agility:
+          currentCharacter.stats.agility + (pendingStatChanges.agility || 0),
+        intelligence:
+          currentCharacter.stats.intelligence +
+          (pendingStatChanges.intelligence || 0),
+        vitality:
+          currentCharacter.stats.vitality + (pendingStatChanges.vitality || 0),
+        luck: currentCharacter.stats.luck + (pendingStatChanges.luck || 0),
       },
-      availableStatPoints: currentCharacter.availableStatPoints - totalChanges
+      availableStatPoints: currentCharacter.availableStatPoints - totalChanges,
     };
 
     // Update characters and current character
     setCharacters(prev => ({
       ...prev,
-      [currentCharacter.slotId]: updatedCharacter
+      [currentCharacter.slotId]: updatedCharacter,
     }));
     setCurrentCharacter(updatedCharacter);
     setPendingStatChanges({});
@@ -199,7 +228,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     getClassById: (id: string) => CHARACTER_CLASSES[id],
     getClassStats,
     getClassBaseStats,
-    
+
     // Character Management
     currentCharacter,
     characters,
@@ -207,18 +236,16 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
     loadCharacters,
     saveCharacters,
     getCharacterBySlot,
-    
+
     // Stat Allocation
     allocateStatPoint,
     resetStatAllocation,
     getPendingStatChanges,
-    applyStatChanges
+    applyStatChanges,
   };
 
   return (
-    <GameContext.Provider value={contextValue}>
-      {children}
-    </GameContext.Provider>
+    <GameContext.Provider value={contextValue}>{children}</GameContext.Provider>
   );
 };
 
@@ -243,37 +270,37 @@ export const useCharacterStats = () => {
 };
 
 export const useCharacter = () => {
-  const { 
-    currentCharacter, 
-    characters, 
-    setCurrentCharacter, 
-    loadCharacters, 
-    saveCharacters, 
-    getCharacterBySlot 
+  const {
+    currentCharacter,
+    characters,
+    setCurrentCharacter,
+    loadCharacters,
+    saveCharacters,
+    getCharacterBySlot,
   } = useGame();
-  return { 
-    currentCharacter, 
-    characters, 
-    setCurrentCharacter, 
-    loadCharacters, 
-    saveCharacters, 
-    getCharacterBySlot 
+  return {
+    currentCharacter,
+    characters,
+    setCurrentCharacter,
+    loadCharacters,
+    saveCharacters,
+    getCharacterBySlot,
   };
 };
 
 export const useStatAllocation = () => {
-  const { 
+  const {
     currentCharacter,
-    allocateStatPoint, 
-    resetStatAllocation, 
+    allocateStatPoint,
+    resetStatAllocation,
     getPendingStatChanges,
-    applyStatChanges
+    applyStatChanges,
   } = useGame();
-  return { 
+  return {
     currentCharacter,
-    allocateStatPoint, 
-    resetStatAllocation, 
+    allocateStatPoint,
+    resetStatAllocation,
     getPendingStatChanges,
-    applyStatChanges
+    applyStatChanges,
   };
 };

@@ -1,5 +1,13 @@
 import React, { useState, useRef } from 'react';
-import { Download, Upload, Save, RotateCcw, Trash2, FileText, Clock } from 'lucide-react';
+import {
+  Download,
+  Upload,
+  Save,
+  RotateCcw,
+  Trash2,
+  FileText,
+  Clock,
+} from 'lucide-react';
 import { SaveManager, SaveData } from '../../../core/services/saveManager';
 import { useGameState } from '../../../core/hooks/useGameState';
 // useCharacter wird nicht mehr benötigt
@@ -35,7 +43,7 @@ const SaveLoadManager: React.FC<SaveLoadManagerProps> = ({ onSaveLoaded }) => {
     // Lade Charaktere aus localStorage für den Export
     const savedCharacters = localStorage.getItem('idleGameCharacters');
     let charactersToExport: Record<number, any> = {};
-    
+
     if (savedCharacters) {
       try {
         charactersToExport = JSON.parse(savedCharacters);
@@ -43,7 +51,7 @@ const SaveLoadManager: React.FC<SaveLoadManagerProps> = ({ onSaveLoaded }) => {
         console.error('Error parsing characters for export:', error);
       }
     }
-    
+
     console.log('Exporting with characters:', charactersToExport);
     SaveManager.exportToFile(gameState, charactersToExport);
   };
@@ -53,7 +61,9 @@ const SaveLoadManager: React.FC<SaveLoadManagerProps> = ({ onSaveLoaded }) => {
     fileInputRef.current?.click();
   };
 
-  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const file = event.target.files?.[0];
     if (file) {
       try {
@@ -80,7 +90,11 @@ const SaveLoadManager: React.FC<SaveLoadManagerProps> = ({ onSaveLoaded }) => {
 
   // Lade Backup
   const handleLoadBackup = (backup: SaveData) => {
-    if (window.confirm(`Backup vom ${new Date(backup.timestamp).toLocaleString()} laden?`)) {
+    if (
+      window.confirm(
+        `Backup vom ${new Date(backup.timestamp).toLocaleString()} laden?`
+      )
+    ) {
       localStorage.setItem('idleGameSaveData', JSON.stringify(backup));
       onSaveLoaded?.();
       alert('Backup geladen!');
@@ -112,10 +126,10 @@ const SaveLoadManager: React.FC<SaveLoadManagerProps> = ({ onSaveLoaded }) => {
 
   if (!isOpen) {
     return (
-      <button 
+      <button
         className={styles.openButton}
         onClick={handleOpen}
-        title="Save/Load Manager"
+        title='Save/Load Manager'
       >
         <FileText size={20} />
       </button>
@@ -141,17 +155,20 @@ const SaveLoadManager: React.FC<SaveLoadManagerProps> = ({ onSaveLoaded }) => {
                 <Download size={16} />
                 Export Save
               </button>
-              
+
               <button className={styles.importButton} onClick={handleImport}>
                 <Upload size={16} />
                 Import Save
               </button>
-              
-              <button className={styles.backupButton} onClick={handleCreateBackup}>
+
+              <button
+                className={styles.backupButton}
+                onClick={handleCreateBackup}
+              >
                 <Save size={16} />
                 Backup erstellen
               </button>
-              
+
               <button className={styles.newGameButton} onClick={handleNewGame}>
                 <RotateCcw size={16} />
                 Neues Spiel
@@ -181,13 +198,13 @@ const SaveLoadManager: React.FC<SaveLoadManagerProps> = ({ onSaveLoaded }) => {
                       </div>
                     </div>
                     <div className={styles.backupActions}>
-                      <button 
+                      <button
                         className={styles.loadButton}
                         onClick={() => handleLoadBackup(backup)}
                       >
                         Laden
                       </button>
-                      <button 
+                      <button
                         className={styles.deleteButton}
                         onClick={() => handleDeleteBackup(backup)}
                       >
@@ -204,8 +221,8 @@ const SaveLoadManager: React.FC<SaveLoadManagerProps> = ({ onSaveLoaded }) => {
         {/* Versteckter File Input */}
         <input
           ref={fileInputRef}
-          type="file"
-          accept=".json"
+          type='file'
+          accept='.json'
           onChange={handleFileChange}
           style={{ display: 'none' }}
         />

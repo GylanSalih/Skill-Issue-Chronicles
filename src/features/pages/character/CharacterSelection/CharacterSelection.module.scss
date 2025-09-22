@@ -1,0 +1,444 @@
+.characterSelectionPage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('/img/scenery/dungeon2.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  z-index: 99999;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 2rem;
+
+  // Active Character Panel - Links
+  .activeCharacterPanel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 30%;
+    max-width: 400px;
+    min-width: 350px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    z-index: 100001;
+    overflow: hidden;
+    padding: 1rem;
+    box-sizing: border-box;
+    border-radius: 0;
+  }
+
+  .activeCharacterHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+
+    .headerContent {
+      flex: 1;
+      min-width: 0;
+
+      h3 {
+        color: #ffffff;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin: 0 0 0.2rem 0;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        line-height: 1.1;
+      }
+
+      p {
+        color: #b8b8d1;
+        font-size: 0.8rem;
+        margin: 0;
+        line-height: 1.2;
+        opacity: 0.9;
+      }
+    }
+  }
+
+  .activeCharacterContent {
+    flex: 1;
+    padding: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .activeCharacterBasicInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+
+    .activeCharacterImage {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .activeCharacterInfo {
+      text-align: center;
+
+      h4 {
+        color: #fff;
+        margin: 0 0 0.5rem 0;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      p {
+        margin: 0.25rem 0;
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.9rem;
+      }
+
+      .activeCharacterClass {
+        color: #4a90e2;
+        font-weight: 500;
+      }
+
+      .activeCharacterLevel {
+        color: #ffd700;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .activeCharacterStats {
+    h5 {
+      color: #fff;
+      margin: 0 0 1rem 0;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .activeStatsGrid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .activeStatItem {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+
+      span:first-child {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.9rem;
+      }
+
+      span:last-child {
+        color: #fff;
+        font-weight: 600;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .activeCharacterExperience {
+    h5 {
+      color: #fff;
+      margin: 0 0 1rem 0;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .activeExperienceBar {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .activeExperienceProgress {
+      width: 100%;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .activeExperienceFill {
+      height: 100%;
+      background: linear-gradient(90deg, #4a90e2, #5ba0f2);
+      border-radius: 10px;
+      transition: width 0.3s ease;
+    }
+
+    .activeExperienceText {
+      color: #fff;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+  }
+
+  .activeCharacterMeta {
+    .activeMetaItem {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      span:first-child {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 0.9rem;
+      }
+
+      span:last-child {
+        color: #fff;
+        font-weight: 500;
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  .characterGrid {
+    width: 35%;
+    max-width: 500px;
+    min-width: 400px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    box-sizing: border-box;
+    border-radius: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    transition: margin-left 0.3s ease;
+    overflow: visible;
+  }
+
+  // Wenn Character ausgewählt ist, verschiebe Character Grid nach rechts
+  &:has(.activeCharacterPanel) .characterGrid {
+    margin-left: 30%;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+
+    .headerContent {
+      text-align: right;
+
+      h1 {
+        color: #ffffff;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin: 0 0 0.2rem 0;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        line-height: 1.1;
+        text-align: left;
+      }
+
+      p {
+        color: #b8b8d1;
+        font-size: 0.8rem;
+        margin: 0;
+        line-height: 1.2;
+        opacity: 0.9;
+      }
+    }
+  }
+
+  .characterSlotsGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+    padding-bottom: 1rem;
+    overflow: visible;
+  }
+
+  .actions {
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .topActions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .createNewButton {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  .startGameButton {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: rgba(74, 222, 128, 0.2);
+    color: #fff;
+    border: 1px solid rgba(74, 222, 128, 0.4);
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 20px rgba(74, 222, 128, 0.2);
+
+    &:hover {
+      background: rgba(74, 222, 128, 0.3);
+      border-color: rgba(74, 222, 128, 0.6);
+      box-shadow: 0 0 25px rgba(74, 222, 128, 0.3);
+    }
+  }
+
+  // Responsive Design
+  @media (max-width: 1200px) {
+    .characterGrid {
+      width: 45%;
+      min-width: 400px;
+      height: 100vh;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+    gap: 1rem;
+
+    .activeCharacterPanel {
+      width: 100%;
+      max-width: none;
+      min-width: auto;
+      height: 40vh;
+      order: 2;
+    }
+
+    .characterGrid {
+      width: 100%;
+      min-width: 350px;
+      height: 60vh;
+      padding: 0.75rem;
+      order: 1;
+    }
+
+    .header {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.4rem;
+      padding: 0.6rem;
+      margin-bottom: 0.8rem;
+
+      .headerContent h1 {
+        font-size: 1.2rem;
+      }
+
+      .headerContent p {
+        font-size: 0.75rem;
+      }
+    }
+
+    .characterSlotsGrid {
+      gap: 0.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .characterGrid {
+      width: 95%;
+      min-width: 300px;
+      height: 100vh;
+      padding: 0.5rem;
+    }
+
+    .header {
+      padding: 0.5rem;
+      margin-bottom: 0.6rem;
+
+      .headerContent h1 {
+        font-size: 1.1rem;
+      }
+
+      .headerContent p {
+        font-size: 0.7rem;
+      }
+    }
+
+    .characterSlotsGrid {
+      gap: 0.4rem;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

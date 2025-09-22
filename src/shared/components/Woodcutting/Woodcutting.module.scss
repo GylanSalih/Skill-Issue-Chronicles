@@ -7,8 +7,8 @@
 .wrapper {
   max-width: 1400px;
   margin: 0 auto;
-padding-left: 50px;
-padding-right: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .header {
@@ -68,7 +68,12 @@ padding-right: 50px;
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
 }
 
 .statHeader {
@@ -226,15 +231,15 @@ padding-right: 50px;
 }
 
 .woodCard.locked {
-    background: rgba(255, 255, 255, 0.02);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 16px;
-    overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    cursor: pointer;
+  background: rgba(255, 255, 255, 0.02);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  cursor: pointer;
 }
 
 .woodCard.active {
@@ -242,15 +247,13 @@ padding-right: 50px;
   box-shadow: 0 0 24px rgba(16, 185, 129, 0.2);
 }
 
-
-
 /* iimage parent */
 .woodImage {
   display: flex;
   justify-content: center;
 }
 /* image inside parent */
-.woodImage img, 
+.woodImage img,
 .woodImage video {
   max-width: 100%;
   height: auto;
@@ -368,8 +371,12 @@ padding-right: 50px;
 }
 
 @keyframes spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .inventorySection {
@@ -496,20 +503,20 @@ padding-right: 50px;
   .wrapper {
     padding: 1rem;
   }
-  
+
   .playerStats {
     grid-template-columns: 1fr;
   }
-  
+
   .woodGrid {
     grid-template-columns: 1fr;
   }
-  
+
   .activeCuttingContent {
     flex-direction: column;
     gap: 1rem;
   }
-  
+
   .progressSection {
     width: 100%;
     max-width: none;

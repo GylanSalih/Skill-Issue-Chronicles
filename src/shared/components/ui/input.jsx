@@ -1,5 +1,5 @@
-import * as React from "react"
-import styles from './input.module.scss'
+import * as React from 'react';
+import styles from './input.module.scss';
 
 const Input = React.forwardRef(({ className, type, ...props }, ref) => {
   return (
@@ -9,9 +9,9 @@ const Input = React.forwardRef(({ className, type, ...props }, ref) => {
       ref={ref}
       {...props}
     />
-  )
-})
-Input.displayName = "Input"
+  );
+});
+Input.displayName = 'Input';
 
-export { Input }
-export default Input
+export { Input };
+export default Input;

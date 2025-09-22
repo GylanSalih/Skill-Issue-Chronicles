@@ -1,4 +1,12 @@
-import React, { createContext, useContext, ReactNode, useState, useEffect, useCallback, useMemo } from 'react';
+import React, {
+  createContext,
+  useContext,
+  ReactNode,
+  useState,
+  useEffect,
+  useCallback,
+  useMemo,
+} from 'react';
 import { useGameState } from '../hooks/useGameState';
 
 // Activity Skill Types
@@ -26,14 +34,14 @@ export interface ActivityManagerState {
 interface ActivityManagerContextType {
   // State
   state: ActivityManagerState;
-  
+
   // Skill Management
   getSkill: (skillId: string) => ActivitySkill | null;
   getAllSkills: () => ActivitySkill[];
   getSkillLevel: (skillId: string) => number;
   getSkillExperience: (skillId: string) => number;
   getSkillProgress: (skillId: string) => number;
-  
+
   // Actions
   startSkill: (skillId: string) => boolean;
   stopSkill: (skillId: string) => void;
@@ -41,22 +49,27 @@ interface ActivityManagerContextType {
   addExperience: (skillId: string, amount: number) => void;
   setSkillLevel: (skillId: string, level: number) => void;
   setSkillExperience: (skillId: string, experience: number) => void;
-  
+
   // Game Control
   startGame: () => void;
   stopGame: () => void;
   toggleGame: () => void;
-  
+
   // Calculations
   calculateRequiredExperience: (level: number) => number;
   calculateEfficiency: (skillId: string) => number;
   getTotalLevel: () => number;
 }
 
-const ActivityManagerContext = createContext<ActivityManagerContextType | undefined>(undefined);
+const ActivityManagerContext = createContext<
+  ActivityManagerContextType | undefined
+>(undefined);
 
 // Default Skills Configuration
-const DEFAULT_SKILLS: Record<string, Omit<ActivitySkill, 'experience' | 'maxExperience' | 'efficiency'>> = {
+const DEFAULT_SKILLS: Record<
+  string,
+  Omit<ActivitySkill, 'experience' | 'maxExperience' | 'efficiency'>
+> = {
   woodcutting: {
     id: 'woodcutting',
     name: 'Woodcutting',
@@ -65,7 +78,7 @@ const DEFAULT_SKILLS: Record<string, Omit<ActivitySkill, 'experience' | 'maxExpe
     progress: 0,
     baseTime: 5,
     color: '#8B4513',
-    icon: 'TreePine'
+    icon: 'TreePine',
   },
   mining: {
     id: 'mining',
@@ -75,7 +88,7 @@ const DEFAULT_SKILLS: Record<string, Omit<ActivitySkill, 'experience' | 'maxExpe
     progress: 0,
     baseTime: 10,
     color: '#CD7F32',
-    icon: 'Pickaxe'
+    icon: 'Pickaxe',
   },
   fishing: {
     id: 'fishing',
@@ -85,7 +98,7 @@ const DEFAULT_SKILLS: Record<string, Omit<ActivitySkill, 'experience' | 'maxExpe
     progress: 0,
     baseTime: 8,
     color: '#4169E1',
-    icon: 'Fish'
+    icon: 'Fish',
   },
   alchemy: {
     id: 'alchemy',
@@ -95,7 +108,7 @@ const DEFAULT_SKILLS: Record<string, Omit<ActivitySkill, 'experience' | 'maxExpe
     progress: 0,
     baseTime: 12,
     color: '#9370DB',
-    icon: 'FlaskConical'
+    icon: 'FlaskConical',
   },
   cooking: {
     id: 'cooking',
@@ -105,7 +118,7 @@ const DEFAULT_SKILLS: Record<string, Omit<ActivitySkill, 'experience' | 'maxExpe
     progress: 0,
     baseTime: 6,
     color: '#FF6347',
-    icon: 'ChefHat'
+    icon: 'ChefHat',
   },
   smithing: {
     id: 'smithing',
@@ -115,7 +128,7 @@ const DEFAULT_SKILLS: Record<string, Omit<ActivitySkill, 'experience' | 'maxExpe
     progress: 0,
     baseTime: 15,
     color: '#708090',
-    icon: 'Hammer'
+    icon: 'Hammer',
   },
   farming: {
     id: 'farming',
@@ -125,7 +138,7 @@ const DEFAULT_SKILLS: Record<string, Omit<ActivitySkill, 'experience' | 'maxExpe
     progress: 0,
     baseTime: 20,
     color: '#32CD32',
-    icon: 'Gem'
+    icon: 'Gem',
   },
   magic: {
     id: 'magic',
@@ -135,7 +148,7 @@ const DEFAULT_SKILLS: Record<string, Omit<ActivitySkill, 'experience' | 'maxExpe
     progress: 0,
     baseTime: 8,
     color: '#FF69B4',
-    icon: 'Wand2'
+    icon: 'Wand2',
   },
   enchanting: {
     id: 'enchanting',
@@ -145,7 +158,7 @@ const DEFAULT_SKILLS: Record<string, Omit<ActivitySkill, 'experience' | 'maxExpe
     progress: 0,
     baseTime: 10,
     color: '#87CEEB',
-    icon: 'Snowflake'
+    icon: 'Snowflake',
   },
   breeding: {
     id: 'breeding',
@@ -155,7 +168,7 @@ const DEFAULT_SKILLS: Record<string, Omit<ActivitySkill, 'experience' | 'maxExpe
     progress: 0,
     baseTime: 30,
     color: '#FFD700',
-    icon: 'Egg'
+    icon: 'Egg',
   },
   combat: {
     id: 'combat',
@@ -165,7 +178,7 @@ const DEFAULT_SKILLS: Record<string, Omit<ActivitySkill, 'experience' | 'maxExpe
     progress: 0,
     baseTime: 5,
     color: '#DC143C',
-    icon: 'Sword'
+    icon: 'Sword',
   },
   exploration: {
     id: 'exploration',
@@ -175,7 +188,7 @@ const DEFAULT_SKILLS: Record<string, Omit<ActivitySkill, 'experience' | 'maxExpe
     progress: 0,
     baseTime: 25,
     color: '#8B0000',
-    icon: 'Mountain'
+    icon: 'Mountain',
   },
   taming: {
     id: 'taming',
@@ -185,7 +198,7 @@ const DEFAULT_SKILLS: Record<string, Omit<ActivitySkill, 'experience' | 'maxExpe
     progress: 0,
     baseTime: 18,
     color: '#20B2AA',
-    icon: 'Baby'
+    icon: 'Baby',
   },
   defense: {
     id: 'defense',
@@ -195,7 +208,7 @@ const DEFAULT_SKILLS: Record<string, Omit<ActivitySkill, 'experience' | 'maxExpe
     progress: 0,
     baseTime: 7,
     color: '#4682B4',
-    icon: 'Shield'
+    icon: 'Shield',
   },
   jewelry: {
     id: 'jewelry',
@@ -205,7 +218,7 @@ const DEFAULT_SKILLS: Record<string, Omit<ActivitySkill, 'experience' | 'maxExpe
     progress: 0,
     baseTime: 12,
     color: '#DDA0DD',
-    icon: 'Gem'
+    icon: 'Gem',
   },
   herbalism: {
     id: 'herbalism',
@@ -215,7 +228,7 @@ const DEFAULT_SKILLS: Record<string, Omit<ActivitySkill, 'experience' | 'maxExpe
     progress: 0,
     baseTime: 9,
     color: '#90EE90',
-    icon: 'Flower'
+    icon: 'Flower',
   },
   archery: {
     id: 'archery',
@@ -225,7 +238,7 @@ const DEFAULT_SKILLS: Record<string, Omit<ActivitySkill, 'experience' | 'maxExpe
     progress: 0,
     baseTime: 6,
     color: '#DEB887',
-    icon: 'Target'
+    icon: 'Target',
   },
   stealth: {
     id: 'stealth',
@@ -235,17 +248,23 @@ const DEFAULT_SKILLS: Record<string, Omit<ActivitySkill, 'experience' | 'maxExpe
     progress: 0,
     baseTime: 8,
     color: '#2F4F4F',
-    icon: 'Skull'
-  }
+    icon: 'Skull',
+  },
 };
 
 interface ActivityManagerProviderProps {
   children: ReactNode;
 }
 
-export const ActivityManagerProvider: React.FC<ActivityManagerProviderProps> = ({ children }) => {
-  const { gameState, startGame: startGameState, stopGame: stopGameState } = useGameState();
-  
+export const ActivityManagerProvider: React.FC<
+  ActivityManagerProviderProps
+> = ({ children }) => {
+  const {
+    gameState,
+    startGame: startGameState,
+    stopGame: stopGameState,
+  } = useGameState();
+
   // Calculate required experience for a level
   const calculateRequiredExperience = useCallback((level: number): number => {
     return Math.floor(level * 100 * Math.pow(1.1, level - 1));
@@ -253,41 +272,49 @@ export const ActivityManagerProvider: React.FC<ActivityManagerProviderProps> = (
 
   // Calculate efficiency based on level
   const calculateEfficiencyForLevel = useCallback((level: number): number => {
-    return Math.min(100, Math.floor(50 + (level * 2.5)));
+    return Math.min(100, Math.floor(50 + level * 2.5));
   }, []);
-  
+
   // Initialize skills from default config
   const initializeSkills = useCallback((): Record<string, ActivitySkill> => {
     const skills: Record<string, ActivitySkill> = {};
-    
+
     Object.entries(DEFAULT_SKILLS).forEach(([skillId, skillConfig]) => {
       // Get current level from gameState if available, otherwise use default
-      const currentLevel = gameState.skills[skillId]?.level || skillConfig.level;
+      const currentLevel =
+        gameState.skills[skillId]?.level || skillConfig.level;
       const currentExp = gameState.skills[skillId]?.experience || 0;
-      
+
       skills[skillId] = {
         ...skillConfig,
         level: currentLevel,
         experience: currentExp,
         maxExperience: calculateRequiredExperience(currentLevel),
-        efficiency: calculateEfficiencyForLevel(currentLevel)
+        efficiency: calculateEfficiencyForLevel(currentLevel),
       };
     });
-    
+
     return skills;
-  }, [gameState.skills, calculateRequiredExperience, calculateEfficiencyForLevel]);
+  }, [
+    gameState.skills,
+    calculateRequiredExperience,
+    calculateEfficiencyForLevel,
+  ]);
 
   const initialSkills = useMemo(() => initializeSkills(), [initializeSkills]);
-  
+
   const [state, setState] = useState<ActivityManagerState>({
     skills: initialSkills,
     totalLevel: 0,
-    isRunning: false
+    isRunning: false,
   });
 
   // Update total level when skills change
   useEffect(() => {
-    const totalLevel = Object.values(state.skills).reduce((sum, skill) => sum + skill.level, 0);
+    const totalLevel = Object.values(state.skills).reduce(
+      (sum, skill) => sum + skill.level,
+      0
+    );
     setState(prev => ({ ...prev, totalLevel }));
   }, [state.skills]);
 
@@ -295,7 +322,7 @@ export const ActivityManagerProvider: React.FC<ActivityManagerProviderProps> = (
   useEffect(() => {
     setState(prev => {
       const updatedSkills = { ...prev.skills };
-      
+
       Object.entries(gameState.skills).forEach(([skillId, gameSkill]) => {
         if (updatedSkills[skillId]) {
           updatedSkills[skillId] = {
@@ -304,11 +331,11 @@ export const ActivityManagerProvider: React.FC<ActivityManagerProviderProps> = (
             experience: gameSkill.experience,
             isActive: gameSkill.isActive,
             progress: gameSkill.progress,
-            maxExperience: calculateRequiredExperience(gameSkill.level)
+            maxExperience: calculateRequiredExperience(gameSkill.level),
           };
         }
       });
-      
+
       return { ...prev, skills: updatedSkills };
     });
   }, [gameState.skills, calculateRequiredExperience]);
@@ -326,19 +353,22 @@ export const ActivityManagerProvider: React.FC<ActivityManagerProviderProps> = (
           if (skill.isActive) {
             // Increase progress
             const progressIncrement = 100 / skill.baseTime;
-            const newProgress = Math.min(100, skill.progress + progressIncrement);
-            
+            const newProgress = Math.min(
+              100,
+              skill.progress + progressIncrement
+            );
+
             if (newProgress !== skill.progress) {
               skill.progress = newProgress;
               hasChanges = true;
             }
-            
+
             // Complete cycle
             if (skill.progress >= 100) {
               skill.progress = 0;
               skill.experience += 10;
               hasChanges = true;
-              
+
               // Check for level up
               const requiredExp = calculateRequiredExperience(skill.level);
               if (skill.experience >= requiredExp) {
@@ -357,12 +387,19 @@ export const ActivityManagerProvider: React.FC<ActivityManagerProviderProps> = (
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [state.isRunning, calculateRequiredExperience, calculateEfficiencyForLevel]);
+  }, [
+    state.isRunning,
+    calculateRequiredExperience,
+    calculateEfficiencyForLevel,
+  ]);
 
   // Get skill by ID
-  const getSkill = useCallback((skillId: string): ActivitySkill | null => {
-    return state.skills[skillId] || null;
-  }, [state.skills]);
+  const getSkill = useCallback(
+    (skillId: string): ActivitySkill | null => {
+      return state.skills[skillId] || null;
+    },
+    [state.skills]
+  );
 
   // Get all skills
   const getAllSkills = useCallback((): ActivitySkill[] => {
@@ -370,54 +407,69 @@ export const ActivityManagerProvider: React.FC<ActivityManagerProviderProps> = (
   }, [state.skills]);
 
   // Get skill level
-  const getSkillLevel = useCallback((skillId: string): number => {
-    return state.skills[skillId]?.level || 1;
-  }, [state.skills]);
+  const getSkillLevel = useCallback(
+    (skillId: string): number => {
+      return state.skills[skillId]?.level || 1;
+    },
+    [state.skills]
+  );
 
   // Get skill experience
-  const getSkillExperience = useCallback((skillId: string): number => {
-    return state.skills[skillId]?.experience || 0;
-  }, [state.skills]);
+  const getSkillExperience = useCallback(
+    (skillId: string): number => {
+      return state.skills[skillId]?.experience || 0;
+    },
+    [state.skills]
+  );
 
   // Get skill progress
-  const getSkillProgress = useCallback((skillId: string): number => {
-    return state.skills[skillId]?.progress || 0;
-  }, [state.skills]);
+  const getSkillProgress = useCallback(
+    (skillId: string): number => {
+      return state.skills[skillId]?.progress || 0;
+    },
+    [state.skills]
+  );
 
   // Start skill
-  const startSkill = useCallback((skillId: string): boolean => {
-    if (!state.skills[skillId]) return false;
-    
-    setState(prev => ({
-      ...prev,
-      skills: {
-        ...prev.skills,
-        [skillId]: {
-          ...prev.skills[skillId],
-          isActive: true
-        }
-      }
-    }));
-    
-    return true;
-  }, [state.skills]);
+  const startSkill = useCallback(
+    (skillId: string): boolean => {
+      if (!state.skills[skillId]) return false;
+
+      setState(prev => ({
+        ...prev,
+        skills: {
+          ...prev.skills,
+          [skillId]: {
+            ...prev.skills[skillId],
+            isActive: true,
+          },
+        },
+      }));
+
+      return true;
+    },
+    [state.skills]
+  );
 
   // Stop skill
-  const stopSkill = useCallback((skillId: string): void => {
-    if (!state.skills[skillId]) return;
-    
-    setState(prev => ({
-      ...prev,
-      skills: {
-        ...prev.skills,
-        [skillId]: {
-          ...prev.skills[skillId],
-          isActive: false,
-          progress: 0
-        }
-      }
-    }));
-  }, [state.skills]);
+  const stopSkill = useCallback(
+    (skillId: string): void => {
+      if (!state.skills[skillId]) return;
+
+      setState(prev => ({
+        ...prev,
+        skills: {
+          ...prev.skills,
+          [skillId]: {
+            ...prev.skills[skillId],
+            isActive: false,
+            progress: 0,
+          },
+        },
+      }));
+    },
+    [state.skills]
+  );
 
   // Stop all skills
   const stopAllSkills = useCallback((): void => {
@@ -427,7 +479,7 @@ export const ActivityManagerProvider: React.FC<ActivityManagerProviderProps> = (
         updatedSkills[skillId] = {
           ...updatedSkills[skillId],
           isActive: false,
-          progress: 0
+          progress: 0,
         };
       });
       return { ...prev, skills: updatedSkills };
@@ -435,79 +487,94 @@ export const ActivityManagerProvider: React.FC<ActivityManagerProviderProps> = (
   }, []);
 
   // Add experience to skill
-  const addExperience = useCallback((skillId: string, amount: number): void => {
-    if (!state.skills[skillId]) return;
-    
-    setState(prev => {
-      const skill = prev.skills[skillId];
-      const newExperience = skill.experience + amount;
-      const requiredExp = calculateRequiredExperience(skill.level);
-      
-      let newLevel = skill.level;
-      let remainingExp = newExperience;
-      
-      // Check for level ups
-      while (remainingExp >= requiredExp) {
-        newLevel += 1;
-        remainingExp -= requiredExp;
-      }
-      
-      return {
+  const addExperience = useCallback(
+    (skillId: string, amount: number): void => {
+      if (!state.skills[skillId]) return;
+
+      setState(prev => {
+        const skill = prev.skills[skillId];
+        const newExperience = skill.experience + amount;
+        const requiredExp = calculateRequiredExperience(skill.level);
+
+        let newLevel = skill.level;
+        let remainingExp = newExperience;
+
+        // Check for level ups
+        while (remainingExp >= requiredExp) {
+          newLevel += 1;
+          remainingExp -= requiredExp;
+        }
+
+        return {
+          ...prev,
+          skills: {
+            ...prev.skills,
+            [skillId]: {
+              ...skill,
+              level: newLevel,
+              experience: remainingExp,
+              maxExperience: calculateRequiredExperience(newLevel),
+              efficiency: calculateEfficiencyForLevel(newLevel),
+            },
+          },
+        };
+      });
+    },
+    [state.skills, calculateRequiredExperience, calculateEfficiencyForLevel]
+  );
+
+  // Set skill level
+  const setSkillLevel = useCallback(
+    (skillId: string, level: number): void => {
+      if (!state.skills[skillId] || level < 1) return;
+
+      setState(prev => ({
         ...prev,
         skills: {
           ...prev.skills,
           [skillId]: {
-            ...skill,
-            level: newLevel,
-            experience: remainingExp,
-            maxExperience: calculateRequiredExperience(newLevel),
-            efficiency: calculateEfficiencyForLevel(newLevel)
-          }
-        }
-      };
-    });
-  }, [state.skills, calculateRequiredExperience, calculateEfficiencyForLevel]);
-
-  // Set skill level
-  const setSkillLevel = useCallback((skillId: string, level: number): void => {
-    if (!state.skills[skillId] || level < 1) return;
-    
-    setState(prev => ({
-      ...prev,
-      skills: {
-        ...prev.skills,
-        [skillId]: {
-          ...prev.skills[skillId],
-          level,
-          maxExperience: calculateRequiredExperience(level),
-          efficiency: calculateEfficiencyForLevel(level)
-        }
-      }
-    }));
-  }, [state.skills, calculateRequiredExperience, calculateEfficiencyForLevel]);
+            ...prev.skills[skillId],
+            level,
+            maxExperience: calculateRequiredExperience(level),
+            efficiency: calculateEfficiencyForLevel(level),
+          },
+        },
+      }));
+    },
+    [state.skills, calculateRequiredExperience, calculateEfficiencyForLevel]
+  );
 
   // Set skill experience
-  const setSkillExperience = useCallback((skillId: string, experience: number): void => {
-    if (!state.skills[skillId] || experience < 0) return;
-    
-    setState(prev => ({
-      ...prev,
-      skills: {
-        ...prev.skills,
-        [skillId]: {
-          ...prev.skills[skillId],
-          experience: Math.min(experience, prev.skills[skillId].maxExperience)
-        }
-      }
-    }));
-  }, [state.skills]);
+  const setSkillExperience = useCallback(
+    (skillId: string, experience: number): void => {
+      if (!state.skills[skillId] || experience < 0) return;
+
+      setState(prev => ({
+        ...prev,
+        skills: {
+          ...prev.skills,
+          [skillId]: {
+            ...prev.skills[skillId],
+            experience: Math.min(
+              experience,
+              prev.skills[skillId].maxExperience
+            ),
+          },
+        },
+      }));
+    },
+    [state.skills]
+  );
 
   // Calculate efficiency
-  const calculateEfficiency = useCallback((skillId: string): number => {
-    const skill = state.skills[skillId];
-    if (!skill) return 0;
-    return calculateEfficiencyForLevel(skill.level);
-  }, [state.skills, calculateEfficiencyForLevel]);
+  const calculateEfficiency = useCallback(
+    (skillId: string): number => {
+      const skill = state.skills[skillId];
+      if (!skill) return 0;
+      return calculateEfficiencyForLevel(skill.level);
+    },
+    [state.skills, calculateEfficiencyForLevel]
+  );
 
   // Get total level
   const getTotalLevel = useCallback((): number => {
@@ -554,7 +621,7 @@ export const ActivityManagerProvider: React.FC<ActivityManagerProviderProps> = (
     getTotalLevel,
     startGame,
     stopGame,
-    toggleGame
+    toggleGame,
   };
 
   return (
@@ -568,18 +635,48 @@ export const ActivityManagerProvider: React.FC<ActivityManagerProviderProps> = (
 export const useActivityManager = (): ActivityManagerContextType => {
   const context = useContext(ActivityManagerContext);
   if (context === undefined) {
-    throw new Error('useActivityManager must be used within an ActivityManagerProvider');
+    throw new Error(
+      'useActivityManager must be used within an ActivityManagerProvider'
+    );
   }
   return context;
 };
 
 // Export individual hooks for specific functionality
 export const useActivitySkills = () => {
-  const { getSkill, getAllSkills, getSkillLevel, getSkillExperience, getSkillProgress } = useActivityManager();
-  return { getSkill, getAllSkills, getSkillLevel, getSkillExperience, getSkillProgress };
+  const {
+    getSkill,
+    getAllSkills,
+    getSkillLevel,
+    getSkillExperience,
+    getSkillProgress,
+  } = useActivityManager();
+  return {
+    getSkill,
+    getAllSkills,
+    getSkillLevel,
+    getSkillExperience,
+    getSkillProgress,
+  };
 };
 
 export const useActivityControl = () => {
-  const { startSkill, stopSkill, stopAllSkills, addExperience, startGame, stopGame, toggleGame } = useActivityManager();
-  return { startSkill, stopSkill, stopAllSkills, addExperience, startGame, stopGame, toggleGame };
+  const {
+    startSkill,
+    stopSkill,
+    stopAllSkills,
+    addExperience,
+    startGame,
+    stopGame,
+    toggleGame,
+  } = useActivityManager();
+  return {
+    startSkill,
+    stopSkill,
+    stopAllSkills,
+    addExperience,
+    startGame,
+    stopGame,
+    toggleGame,
+  };
 };

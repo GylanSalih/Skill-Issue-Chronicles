@@ -3,11 +3,13 @@
 ## 📸 Image Naming Convention
 
 All showcase images follow the naming pattern:
+
 ```
 showcase_21_09_25_X.jpeg
 ```
 
 Where:
+
 - `showcase` - Prefix for all showcase images
 - `21_09_25` - Date (21st September 2025)
 - `X` - Sequential number (1, 2, 3, etc.)
@@ -26,6 +28,7 @@ Where:
 ## 🎯 Usage
 
 These images can be used for:
+
 - Documentation
 - README files
 - Project showcases

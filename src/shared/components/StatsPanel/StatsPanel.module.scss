@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-
-
 .container {
   max-width: 1400px;
   margin: 0 auto;
@@ -59,7 +57,12 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
 }
 
 .statCard:hover {
@@ -207,7 +210,12 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
 }
 
 .summaryCard:hover {
@@ -241,24 +249,24 @@
   .container {
     padding: 1rem;
   }
-  
+
   .title {
     font-size: 2rem;
   }
-  
+
   .statsGrid {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  
+
   .summary {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .cardHeader {
     padding: 1rem;
   }
-  
+
   .cardContent {
     padding: 1rem;
   }
@@ -268,15 +276,15 @@
   .title {
     font-size: 1.75rem;
   }
-  
+
   .subtitle {
     font-size: 1rem;
   }
-  
+
   .summary {
     grid-template-columns: 1fr;
   }
-  
+
   .summaryValue {
     font-size: 1.5rem;
   }

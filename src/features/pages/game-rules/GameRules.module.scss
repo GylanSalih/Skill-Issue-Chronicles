@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* GameRules.module.scss - Matching Woodcutting Design */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 100%);
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.headerIcon {
+  color: #ff6b35;
+  filter: drop-shadow(0 2px 4px rgba(255, 107, 53, 0.3));
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(255, 107, 53, 0.5));
+  }
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  p {
+    color: #9ca3af;
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.4;
+    font-weight: 400;
+  }
+}
+
+.rulesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.ruleCard {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border: 1px solid #444;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    border-color: #555;
+  }
+}
+
+.ruleHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.ruleIcon {
+  color: #ff6b35;
+  filter: drop-shadow(0 2px 4px rgba(255, 107, 53, 0.3));
+  transition: all 0.3s ease;
+
+  .ruleCard:hover & {
+    transform: scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(255, 107, 53, 0.5));
+  }
+}
+
+.ruleHeader h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.ruleList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ruleItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: #d1d5db;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.checkIcon {
+  color: #10b981;
+  margin-top: 0.125rem;
+  flex-shrink: 0;
+  filter: drop-shadow(0 1px 2px rgba(16, 185, 129, 0.3));
+}
+
+.contactCard {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 107, 53, 0.1) 0%,
+    rgba(255, 140, 66, 0.05) 100%
+  );
+  border: 1px solid rgba(255, 107, 53, 0.3);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.contactContent {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.contactIcon {
+  color: #ff6b35;
+  margin-top: 0.25rem;
+  filter: drop-shadow(0 2px 4px rgba(255, 107, 53, 0.3));
+  transition: all 0.3s ease;
+
+  .contactCard:hover & {
+    transform: scale(1.1);
+    filter: drop-shadow(0 4px 8px rgba(255, 107, 53, 0.5));
+  }
+}
+
+.contactText {
+  h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #ff6b35;
+    margin: 0 0 0.75rem 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
+
+  p {
+    color: #d1d5db;
+    font-size: 0.875rem;
+    margin: 0;
+    line-height: 1.5;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+
+  .headerContent h1 {
+    font-size: 2rem;
+  }
+
+  .rulesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .consequencesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .contactContent {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .header {
+    padding: 1rem;
+  }
+
+  .headerContent h1 {
+    font-size: 1.5rem;
+  }
+
+  .ruleCard,
+  .consequenceCard,
+  .contactCard {
+    padding: 1rem;
+  }
+}

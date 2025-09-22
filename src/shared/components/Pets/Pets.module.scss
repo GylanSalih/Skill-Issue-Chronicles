@@ -137,7 +137,12 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
 }
 
 .petImage {
@@ -199,8 +204,6 @@
   position: static;
   top: auto;
 }
-
-
 
 .detailsHeader {
   padding: 1.5rem;
@@ -401,10 +404,9 @@
   .mainContent {
     grid-template-columns: 1fr;
   }
-  
+
   .detailsPanel {
     position: static;
     max-height: none;
   }
 }
-

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGameState } from '../../../core/hooks/useGameState';
-import { 
-  Coins, 
-  TreePine, 
-  Mountain, 
-  Hammer, 
-  Apple, 
-  Gem, 
+import {
+  Coins,
+  TreePine,
+  Mountain,
+  Hammer,
+  Apple,
+  Gem,
   Scroll,
   Heart,
   Star,
@@ -15,10 +15,9 @@ import {
   Shield,
   Sword,
   Package,
-  ShieldCheck
+  ShieldCheck,
 } from 'lucide-react';
 import styles from './ResourcePanel.module.scss';
-
 
 interface ResourceTab {
   id: string;
@@ -35,7 +34,10 @@ const ResourcePanel: React.FC = () => {
 
   // Force re-render when gameState changes
   useEffect(() => {
-    console.log('ResourcePanel: gameState.resources.secondary changed:', gameState.resources.secondary);
+    console.log(
+      'ResourcePanel: gameState.resources.secondary changed:',
+      gameState.resources.secondary
+    );
     setForceUpdate(prev => prev + 1);
   }, [gameState.resources.secondary]);
 
@@ -61,7 +63,7 @@ const ResourcePanel: React.FC = () => {
     ebonyWood: TreePine,
     voidbark: TreePine,
     yangWood: TreePine,
-    yingWood: TreePine
+    yingWood: TreePine,
   };
 
   const tabs: ResourceTab[] = [
@@ -69,26 +71,36 @@ const ResourcePanel: React.FC = () => {
       id: 'inventory',
       name: 'Inventory',
       icon: Package,
-      resources: ['primary', 'wood', 'stone', 'metal', 'food']
+      resources: ['primary', 'wood', 'stone', 'metal', 'food'],
     },
     {
       id: 'wood',
       name: 'Wood Types',
       icon: TreePine,
-      resources: ['normalWood', 'softwood', 'willowWood', 'glowwood', 'frostbark', 'ebonyWood', 'voidbark', 'yangWood', 'yingWood']
+      resources: [
+        'normalWood',
+        'softwood',
+        'willowWood',
+        'glowwood',
+        'frostbark',
+        'ebonyWood',
+        'voidbark',
+        'yangWood',
+        'yingWood',
+      ],
     },
     {
       id: 'equipment',
       name: 'Equipment',
       icon: ShieldCheck,
-      resources: ['gems', 'scrolls', 'energy']
+      resources: ['gems', 'scrolls', 'energy'],
     },
     {
       id: 'character',
       name: 'Character',
       icon: Heart,
-      resources: ['health', 'experience', 'defense', 'attack']
-    }
+      resources: ['health', 'experience', 'defense', 'attack'],
+    },
   ];
 
   const getResourceValue = (resourceKey: string): number => {
@@ -126,7 +138,7 @@ const ResourcePanel: React.FC = () => {
       ebonyWood: 'Ebony Wood',
       voidbark: 'Voidbark',
       yangWood: 'Yang Wood',
-      yingWood: 'Ying Wood'
+      yingWood: 'Ying Wood',
     };
     return names[resourceKey] || resourceKey;
   };
@@ -147,9 +159,9 @@ const ResourcePanel: React.FC = () => {
       ebonyWood: '/woodcutting',
       voidbark: '/woodcutting',
       yangWood: '/woodcutting',
-      yingWood: '/woodcutting'
+      yingWood: '/woodcutting',
     };
-    
+
     const page = resourceToPageMap[resourceKey];
     if (page) {
       navigate(page);
@@ -164,7 +176,7 @@ const ResourcePanel: React.FC = () => {
         <div className={styles.header}>
           <h3 className={styles.title}>{activeTabData?.name || 'Resources'}</h3>
           <div className={styles.tabContainer}>
-            {tabs.map((tab) => {
+            {tabs.map(tab => {
               const IconComponent = tab.icon;
               return (
                 <button
@@ -179,17 +191,17 @@ const ResourcePanel: React.FC = () => {
             })}
           </div>
         </div>
-        
+
         <div className={styles.content}>
           <div className={styles.resourceGrid}>
-            {activeTabData?.resources.map((resourceKey) => {
+            {activeTabData?.resources.map(resourceKey => {
               const IconComponent = resourceIcons[resourceKey];
               const value = getResourceValue(resourceKey);
               const name = getResourceName(resourceKey);
-              
+
               return (
-                <div 
-                  key={resourceKey} 
+                <div
+                  key={resourceKey}
                   className={styles.resourceItem}
                   onClick={() => handleResourceClick(resourceKey)}
                   style={{ cursor: 'pointer' }}

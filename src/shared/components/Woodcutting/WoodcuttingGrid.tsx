@@ -13,7 +13,7 @@ const WoodcuttingGrid: React.FC = () => {
     startChopping,
     canChopWood,
     getWoodAmount,
-    activeSession
+    activeSession,
   } = useWoodcutting();
 
   const { gameState } = useGameState();
@@ -38,7 +38,10 @@ const WoodcuttingGrid: React.FC = () => {
     const baseEfficiency = 25;
     const levelBonus = (getSkillLevel() - 1) * 5; // 5% per level
     const timeBonus = timeElapsed * 0.1; // Small bonus over time
-    return Math.min(Math.round((baseEfficiency + levelBonus + timeBonus) * 10) / 10, 100);
+    return Math.min(
+      Math.round((baseEfficiency + levelBonus + timeBonus) * 10) / 10,
+      100
+    );
   };
 
   // Calculate wood bonus based on skill level
@@ -104,19 +107,22 @@ const WoodcuttingGrid: React.FC = () => {
 
       <div className={styles.scenerySection}>
         <div className={styles.sceneryImage}>
-          <img 
-            src="/assets/img/scenery/wood_scenery.png" 
-            alt="Mystical Forest with Elves"
+          <img
+            src='/assets/img/scenery/wood_scenery.png'
+            alt='Mystical Forest with Elves'
             className={styles.sceneryImg}
           />
         </div>
         <div className={styles.sceneryDescription}>
           <h2>Mystical Forest of Eldoria</h2>
           <p>
-            Deep within the enchanted woods of Eldoria, ancient trees whisper secrets of the old world. 
-            Elven guardians watch over these sacred groves, where magical wood types grow in harmony with nature. 
-            Each tree holds unique properties - from the common oak to the legendary Ying and Yang woods that pulse 
-            with elemental energy. Master woodcutters must prove their worth to harvest these precious resources.
+            Deep within the enchanted woods of Eldoria, ancient trees whisper
+            secrets of the old world. Elven guardians watch over these sacred
+            groves, where magical wood types grow in harmony with nature. Each
+            tree holds unique properties - from the common oak to the legendary
+            Ying and Yang woods that pulse with elemental energy. Master
+            woodcutters must prove their worth to harvest these precious
+            resources.
           </p>
         </div>
       </div>
@@ -137,38 +143,58 @@ const WoodcuttingGrid: React.FC = () => {
               </button>
             </div>
           </div>
-          
+
           {activeSession ? (
             <div className={styles.activeAction}>
               <div className={styles.actionItem}>
                 <div className={styles.actionImage}>
-                  <img 
-                    src={woodTypes.find(w => w.id === activeSession.woodTypeId)?.image || '/assets/img/Resources/Wood/wood1.png'} 
-                    alt={woodTypes.find(w => w.id === activeSession.woodTypeId)?.name || 'Unknown Wood'}
+                  <img
+                    src={
+                      woodTypes.find(w => w.id === activeSession.woodTypeId)
+                        ?.image || '/assets/img/Resources/Wood/wood1.png'
+                    }
+                    alt={
+                      woodTypes.find(w => w.id === activeSession.woodTypeId)
+                        ?.name || 'Unknown Wood'
+                    }
                   />
                 </div>
                 <div className={styles.actionInfo}>
                   <div className={styles.actionName}>
-                    <span>{woodTypes.find(w => w.id === activeSession.woodTypeId)?.name || 'Unknown Wood'}</span>
+                    <span>
+                      {woodTypes.find(w => w.id === activeSession.woodTypeId)
+                        ?.name || 'Unknown Wood'}
+                    </span>
                   </div>
                   <div className={styles.progressBar}>
-                    <div 
-                      className={styles.progressFill} 
+                    <div
+                      className={styles.progressFill}
                       style={{ width: `${activeSession.progress}%` }}
                     />
                   </div>
                   <div className={styles.actionStats}>
                     <span className={styles.quantity}>
-                      +{Math.floor(activeSession.progress / 10) + getWoodBonus()} ({getWoodAmount(activeSession.woodTypeId)} total)
+                      +
+                      {Math.floor(activeSession.progress / 10) + getWoodBonus()}{' '}
+                      ({getWoodAmount(activeSession.woodTypeId)} total)
                     </span>
                     <span className={styles.resourceTime}>
-                      {woodTypes.find(w => w.id === activeSession.woodTypeId)?.baseTime || 3}s
+                      {woodTypes.find(w => w.id === activeSession.woodTypeId)
+                        ?.baseTime || 3}
+                      s
                     </span>
                     <span className={styles.expRate}>
-                      {woodTypes.find(w => w.id === activeSession.woodTypeId)?.baseTime ? 
-                        (0.25 * (woodTypes.find(w => w.id === activeSession.woodTypeId)?.baseTime || 1) / 10).toFixed(2) : 
-                        '0.25'
-                      } EXP/s
+                      {woodTypes.find(w => w.id === activeSession.woodTypeId)
+                        ?.baseTime
+                        ? (
+                            (0.25 *
+                              (woodTypes.find(
+                                w => w.id === activeSession.woodTypeId
+                              )?.baseTime || 1)) /
+                            10
+                          ).toFixed(2)
+                        : '0.25'}{' '}
+                      EXP/s
                     </span>
                   </div>
                 </div>
@@ -186,30 +212,31 @@ const WoodcuttingGrid: React.FC = () => {
         <div className={styles.yourProgress}>
           <div className={styles.progressHeader}>
             <h3>Your Progress</h3>
-            <div className={styles.efficiency}>
-              {efficiency}% Efficiency
-            </div>
+            <div className={styles.efficiency}>{efficiency}% Efficiency</div>
           </div>
-          
+
           <div className={styles.activeAction}>
             <div className={styles.actionItem}>
               <div className={styles.actionImage}>
                 <TreePine size={32} />
-                <div className={styles.skillLevelBadge}>Lv. {getSkillLevel()}</div>
+                <div className={styles.skillLevelBadge}>
+                  Lv. {getSkillLevel()}
+                </div>
               </div>
               <div className={styles.actionInfo}>
                 <div className={styles.actionName}>
                   <span>Woodcutting</span>
                 </div>
                 <div className={styles.progressBar}>
-                  <div 
-                    className={styles.progressFill} 
+                  <div
+                    className={styles.progressFill}
                     style={{ width: `${getExperienceProgress()}%` }}
                   />
                 </div>
                 <div className={styles.actionStats}>
                   <span className={styles.quantity}>
-                    {getRequiredExperience() - getSkillExperience()} EXP <span className={styles.neededText}>Needed</span>
+                    {getRequiredExperience() - getSkillExperience()} EXP{' '}
+                    <span className={styles.neededText}>Needed</span>
                   </span>
                   <span className={styles.resourceTime}>
                     {Math.round(getExperienceProgress())}%
@@ -219,16 +246,14 @@ const WoodcuttingGrid: React.FC = () => {
             </div>
           </div>
         </div>
-
-
       </div>
 
       <div className={styles.woodGrid}>
-        {woodTypes.map((woodType) => {
+        {woodTypes.map(woodType => {
           const isUnlocked = canChopWood(woodType.id);
           const currentAmount = getWoodAmount(woodType.id);
           const isCurrentlyChopping = activeSession?.woodTypeId === woodType.id;
-          
+
           return (
             <Tooltip
               key={woodType.id}
@@ -241,18 +266,20 @@ const WoodcuttingGrid: React.FC = () => {
                   progress={activeSession?.progress || 0}
                 />
               }
-              position="center"
-              trigger="click"
+              position='center'
+              trigger='click'
             >
               <div
                 className={`${styles.woodCard} ${!isUnlocked ? styles.locked : ''} ${isCurrentlyChopping ? styles.chopping : ''}`}
               >
-                <div className={`${styles.rarityTag} ${styles[woodType.rarity]}`}>
+                <div
+                  className={`${styles.rarityTag} ${styles[woodType.rarity]}`}
+                >
                   {woodType.rarity.toUpperCase()}
                 </div>
                 <div className={styles.woodImageContainer}>
-                  <img 
-                    src={woodType.image} 
+                  <img
+                    src={woodType.image}
                     alt={woodType.name}
                     className={styles.woodImage}
                   />
@@ -263,14 +290,18 @@ const WoodcuttingGrid: React.FC = () => {
                     </div>
                   )}
                 </div>
-                
+
                 <div className={styles.woodInfo}>
                   <h3 className={styles.woodName}>{woodType.name}</h3>
-                  <p className={styles.woodDescription}>{woodType.description}</p>
+                  <p className={styles.woodDescription}>
+                    {woodType.description}
+                  </p>
                   <div className={styles.woodStats}>
                     <div className={styles.stat}>
                       <span>Level Required:</span>
-                      <span className={styles.statValue}>{woodType.requiredLevel}</span>
+                      <span className={styles.statValue}>
+                        {woodType.requiredLevel}
+                      </span>
                     </div>
                     <div className={styles.stat}>
                       <span>Owned:</span>
@@ -278,7 +309,9 @@ const WoodcuttingGrid: React.FC = () => {
                     </div>
                     <div className={styles.stat}>
                       <span>Duration:</span>
-                      <span className={styles.statValue}>{woodType.baseTime}s</span>
+                      <span className={styles.statValue}>
+                        {woodType.baseTime}s
+                      </span>
                     </div>
                   </div>
                 </div>

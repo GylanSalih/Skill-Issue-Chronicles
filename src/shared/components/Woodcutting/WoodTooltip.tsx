@@ -17,7 +17,7 @@ const WoodTooltip: React.FC<WoodTooltipProps> = ({
   isUnlocked,
   onStartChopping,
   isCurrentlyChopping,
-  progress
+  progress,
 }) => {
   const { getEstimatedRewards } = useWoodcutting();
   const estimatedRewards = getEstimatedRewards(woodType.id);
@@ -29,14 +29,12 @@ const WoodTooltip: React.FC<WoodTooltipProps> = ({
   return (
     <>
       <div className={styles.tooltipTitle}>{woodType.name}</div>
-      
+
       <div className={`${styles.tooltipRarity} ${styles[woodType.rarity]}`}>
         {woodType.rarity.toUpperCase()}
       </div>
-      
-      <div className={styles.tooltipDescription}>
-        {woodType.description}
-      </div>
+
+      <div className={styles.tooltipDescription}>{woodType.description}</div>
 
       {/* Spezielle Eigenschaften */}
       {woodType.specialProperties && (
@@ -46,13 +44,17 @@ const WoodTooltip: React.FC<WoodTooltipProps> = ({
             {woodType.specialProperties.glowing && (
               <div className={styles.tooltipStat}>
                 <span className={styles.label}>✨ Glowing</span>
-                <span className={styles.value} style={{ color: '#fbbf24' }}>Yes</span>
+                <span className={styles.value} style={{ color: '#fbbf24' }}>
+                  Yes
+                </span>
               </div>
             )}
             {woodType.specialProperties.magical && (
               <div className={styles.tooltipStat}>
                 <span className={styles.label}>🔮 Magical</span>
-                <span className={styles.value} style={{ color: '#8b5cf6' }}>Yes</span>
+                <span className={styles.value} style={{ color: '#8b5cf6' }}>
+                  Yes
+                </span>
               </div>
             )}
             {woodType.specialProperties.elemental && (
@@ -72,7 +74,10 @@ const WoodTooltip: React.FC<WoodTooltipProps> = ({
         <div className={styles.tooltipStats}>
           <div className={styles.tooltipStat}>
             <span className={styles.label}>Required Level</span>
-            <span className={styles.value} style={{ color: isUnlocked ? '#10b981' : '#dc2626' }}>
+            <span
+              className={styles.value}
+              style={{ color: isUnlocked ? '#10b981' : '#dc2626' }}
+            >
               {woodType.requiredLevel}
             </span>
           </div>
@@ -133,7 +138,7 @@ const WoodTooltip: React.FC<WoodTooltipProps> = ({
           <div className={styles.tooltipSectionTitle}>Progress</div>
           <div className={styles.progressContainer}>
             <div className={styles.progressBar}>
-              <div 
+              <div
                 className={styles.progressFill}
                 style={{ width: `${progress}%` }}
               />
@@ -162,7 +167,7 @@ const WoodTooltip: React.FC<WoodTooltipProps> = ({
           )}
         </button>
       )}
-      
+
       <div className={styles.tooltipHint}>
         Press <kbd>ESC</kbd> to close
       </div>

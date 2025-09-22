@@ -32,38 +32,38 @@ const PATH_TO_MENU_ID: Record<string, string> = {
   '/my-pets': 'my-pets',
   '/pet-training': 'pet-training',
   '/news': 'news',
-  '/game-rules': 'game-rules'
+  '/game-rules': 'game-rules',
 };
 
 // Mapping von Menu-IDs zu übergeordneten Kategorien
 const MENU_ID_TO_CATEGORY: Record<string, string> = {
-  'dashboard': 'dashboard',
-  'character': 'character',
-  'dungeon': 'combat',
+  dashboard: 'dashboard',
+  character: 'character',
+  dungeon: 'combat',
   'boss-tower': 'combat',
-  'slayer': 'combat',
-  'pvp': 'combat',
-  'bosses': 'combat',
-  'raids': 'combat',
-  'woodcutting': 'gathering',
-  'fishing': 'gathering',
-  'mining': 'gathering',
-  'hunting': 'gathering',
-  'foraging': 'gathering',
-  'smithing': 'crafting',
-  'cooking': 'crafting',
-  'firemaking': 'crafting',
-  'fletching': 'crafting',
-  'herblore': 'crafting',
-  'runecrafting': 'crafting',
-  'bank': 'economy',
-  'shop': 'economy',
-  'statistics': 'progress',
-  'settings': 'settings',
+  slayer: 'combat',
+  pvp: 'combat',
+  bosses: 'combat',
+  raids: 'combat',
+  woodcutting: 'gathering',
+  fishing: 'gathering',
+  mining: 'gathering',
+  hunting: 'gathering',
+  foraging: 'gathering',
+  smithing: 'crafting',
+  cooking: 'crafting',
+  firemaking: 'crafting',
+  fletching: 'crafting',
+  herblore: 'crafting',
+  runecrafting: 'crafting',
+  bank: 'economy',
+  shop: 'economy',
+  statistics: 'progress',
+  settings: 'settings',
   'my-pets': 'pets',
   'pet-training': 'pets',
-  'news': 'community',
-  'game-rules': 'community'
+  news: 'community',
+  'game-rules': 'community',
 };
 
 const STORAGE_KEY = 'activeRoute';
@@ -71,7 +71,9 @@ const STORAGE_KEY = 'activeRoute';
 export const useRoutePersistence = () => {
   const location = useLocation();
   const [activeItem, setActiveItem] = useState<string>('dashboard');
-  const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({});
+  const [expandedCategories, setExpandedCategories] = useState<
+    Record<string, boolean>
+  >({});
 
   // Lade gespeicherte Route beim Mount
   useEffect(() => {
@@ -88,15 +90,15 @@ export const useRoutePersistence = () => {
     const currentPath = location.pathname;
     const menuId = PATH_TO_MENU_ID[currentPath] || 'dashboard';
     const categoryId = MENU_ID_TO_CATEGORY[menuId];
-    
+
     // Setze aktiven Menüpunkt
     setActiveItem(menuId);
-    
+
     // Erweitere die entsprechende Kategorie
     if (categoryId && categoryId !== menuId) {
       setExpandedCategories(prev => ({
         ...prev,
-        [categoryId]: true
+        [categoryId]: true,
       }));
     }
 
@@ -105,25 +107,25 @@ export const useRoutePersistence = () => {
       activeItem: menuId,
       expandedCategories: {
         ...expandedCategories,
-        ...(categoryId && categoryId !== menuId ? { [categoryId]: true } : {})
+        ...(categoryId && categoryId !== menuId ? { [categoryId]: true } : {}),
       },
       path: currentPath,
-      timestamp: Date.now()
+      timestamp: Date.now(),
     };
-    
+
     localStorage.setItem(STORAGE_KEY, JSON.stringify(routeData));
   }, [location.pathname, expandedCategories]);
 
   // Manuelle Funktionen für SideMenu
   const setActiveItemManually = (itemId: string) => {
     setActiveItem(itemId);
-    
+
     // Speichere sofort
     const routeData = {
       activeItem: itemId,
       expandedCategories,
       path: location.pathname,
-      timestamp: Date.now()
+      timestamp: Date.now(),
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(routeData));
   };
@@ -132,18 +134,18 @@ export const useRoutePersistence = () => {
     setExpandedCategories(prev => {
       const newExpanded = {
         ...prev,
-        [categoryId]: !prev[categoryId]
+        [categoryId]: !prev[categoryId],
       };
-      
+
       // Speichere sofort
       const routeData = {
         activeItem,
         expandedCategories: newExpanded,
         path: location.pathname,
-        timestamp: Date.now()
+        timestamp: Date.now(),
       };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(routeData));
-      
+
       return newExpanded;
     });
   };
@@ -152,6 +154,6 @@ export const useRoutePersistence = () => {
     activeItem,
     expandedCategories,
     setActiveItem: setActiveItemManually,
-    toggleCategory
+    toggleCategory,
   };
 };

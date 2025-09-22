@@ -5,6 +5,7 @@
 ### 1. **Sofortige Verbesserungen** (1-2 Tage)
 
 **A. Game Loop erweitern:**
+
 ```typescript
 // In useGameState.ts erweitern:
 - Prestige-System hinzufügen
@@ -14,6 +15,7 @@
 ```
 
 **B. UI/UX verbessern:**
+
 - Animations hinzufügen (GSAP nutzen)
 - Sound-Effekte
 - Responsive Design optimieren
@@ -22,6 +24,7 @@
 ### 2. **Kern-Systeme** (1 Woche)
 
 **A. Crafting-System:**
+
 ```typescript
 interface Recipe {
   id: string;
@@ -35,11 +38,13 @@ interface Recipe {
 ```
 
 **B. Shop-System:**
+
 - Items kaufen/verkaufen
 - Preise basierend auf Angebot/Nachfrage
 - Rarity-System
 
 **C. Prestige-System:**
+
 - Prestige Points sammeln
 - Permanent Upgrades
 - Reset mit Belohnungen
@@ -47,16 +52,19 @@ interface Recipe {
 ### 3. **Erweiterte Features** (2-3 Wochen)
 
 **A. Combat-System:**
+
 - Monster bekämpfen
 - Loot-System
 - Boss-Fights
 
 **B. Multiplayer-Elemente:**
+
 - Leaderboards
 - Trading zwischen Spielern
 - Guilds/Clans
 
 **C. Events & Challenges:**
+
 - Tägliche Quests
 - Wöchentliche Events
 - Seasonal Content
@@ -64,6 +72,7 @@ interface Recipe {
 ## 🛠️ Technische Implementierung
 
 ### Game State Management
+
 ```typescript
 // Erweiterte State-Struktur
 interface GameState {
@@ -76,12 +85,14 @@ interface GameState {
 ```
 
 ### Performance Optimierung
+
 - React.memo für Komponenten
 - useMemo für teure Berechnungen
 - Web Workers für Game Loop
 - IndexedDB für große Datenmengen
 
 ### Testing Strategy
+
 ```bash
 # Unit Tests
 npm run test
@@ -96,12 +107,14 @@ npm run test:perf
 ## 📊 Monetarisierung (Optional)
 
 ### Freemium Model
+
 - Premium Currency (Gems)
 - Ad-basierte Belohnungen
 - Battle Pass
 - Cosmetic Items
 
 ### Analytics
+
 - Google Analytics
 - Custom Event Tracking
 - Player Behavior Analysis
@@ -109,12 +122,14 @@ npm run test:perf
 ## 🚀 Deployment
 
 ### Production Build
+
 ```bash
 npm run build
 npm run preview
 ```
 
 ### Hosting Options
+
 - Vercel (empfohlen)
 - Netlify
 - GitHub Pages
@@ -123,12 +138,14 @@ npm run preview
 ## 📈 Erfolgs-Metriken
 
 ### Key Performance Indicators
+
 - Daily Active Users (DAU)
 - Session Duration
 - Retention Rate (Day 1, 7, 30)
 - Revenue per User (ARPU)
 
 ### A/B Testing
+
 - UI/UX Varianten
 - Game Balance
 - Monetization Features
@@ -136,6 +153,7 @@ npm run preview
 ## 🎮 Game Design Prinzipien
 
 ### Idle Game Core Loop
+
 1. **Engagement** → Player aktiviert Skills
 2. **Progression** → Resources sammeln
 3. **Upgrade** → Skills/Items verbessern
@@ -143,6 +161,7 @@ npm run preview
 5. **Repeat** → Mit besseren Multiplikatoren
 
 ### Retention Hooks
+
 - Daily Login Rewards
 - Time-gated Content
 - Social Features
@@ -151,12 +170,14 @@ npm run preview
 ## 🔧 Development Tools
 
 ### Recommended Extensions
+
 - React Developer Tools
 - Redux DevTools
 - Performance Profiler
 - Accessibility Inspector
 
 ### Code Quality
+
 ```bash
 # Linting
 npm run lint
@@ -171,12 +192,14 @@ npm run format
 ## 📝 Dokumentation
 
 ### Code Documentation
+
 - JSDoc für Funktionen
 - README für Komponenten
 - API Documentation
 - Architecture Decision Records
 
 ### Player Documentation
+
 - In-Game Tutorial
 - Help System
 - FAQ

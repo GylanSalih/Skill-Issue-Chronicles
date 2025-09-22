@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-
-
 .container {
   max-width: 1400px;
   margin: 0 auto;
@@ -59,7 +57,12 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
 }
 
 .equipmentCard:hover {
@@ -87,7 +90,12 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
 }
 
 .detailsCard:hover {
@@ -119,7 +127,12 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
 }
 
 /* Card Header */
@@ -143,7 +156,11 @@
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(10px);
-  background: linear-gradient(135deg, rgba(138, 43, 226, 0.3), rgba(75, 0, 130, 0.3));
+  background: linear-gradient(
+    135deg,
+    rgba(138, 43, 226, 0.3),
+    rgba(75, 0, 130, 0.3)
+  );
   border: 1px solid rgba(138, 43, 226, 0.4);
 }
 
@@ -185,7 +202,11 @@
   transform: translateX(-50%);
   width: 12rem;
   height: 20rem;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.1));
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.1)
+  );
   border-radius: 6rem 6rem 1.5rem 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
@@ -497,38 +518,38 @@
   .container {
     padding: 1rem;
   }
-  
+
   .title {
     font-size: 2rem;
   }
-  
+
   .equipmentGrid {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  
+
   .cardHeader {
     padding: 1rem;
   }
-  
+
   .cardContent {
     padding: 1rem;
   }
-  
+
   .characterContainer {
     height: 400px;
   }
-  
+
   .characterSilhouette {
     width: 10rem;
     height: 16rem;
   }
-  
+
   .slotButton {
     width: 3rem;
     height: 3rem;
   }
-  
+
   .statsGrid {
     grid-template-columns: 1fr;
   }
@@ -538,29 +559,29 @@
   .title {
     font-size: 1.75rem;
   }
-  
+
   .subtitle {
     font-size: 1rem;
   }
-  
+
   .characterContainer {
     height: 350px;
   }
-  
+
   .characterSilhouette {
     width: 8rem;
     height: 14rem;
   }
-  
+
   .slotButton {
     width: 2.5rem;
     height: 2.5rem;
   }
-  
+
   .itemEmoji {
     font-size: 1.25rem;
   }
-  
+
   .itemHeader {
     flex-direction: column;
     text-align: center;

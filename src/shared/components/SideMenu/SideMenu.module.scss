@@ -184,7 +184,12 @@
   top: 0;
   bottom: 0;
   width: 1px;
-  background: linear-gradient(180deg, #ff6b35 0%, transparent 50%, #ff6b35 100%);
+  background: linear-gradient(
+    180deg,
+    #ff6b35 0%,
+    transparent 50%,
+    #ff6b35 100%
+  );
   opacity: 0.3;
 }
 
@@ -319,8 +324,13 @@
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
 }
 
 /* Logout Button */
@@ -339,7 +349,7 @@
   font-size: 0.75rem;
   width: fit-content;
   height: 1.8rem;
-  
+
   &:hover {
     background: rgba(255, 255, 255, 0.1);
     color: #ef4444;
@@ -354,7 +364,12 @@
 /* Category Separators */
 .categorySeparator {
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, #444 50%, transparent 100%);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    #444 50%,
+    transparent 100%
+  );
   margin: 8px 0 6px 0;
 }
 

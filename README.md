@@ -48,18 +48,21 @@
 ## 🎮 Key Features
 
 ### Character Management
+
 - **Character Creation** - 10 unique classes (Warrior, Mage, Rogue, etc.)
 - **Character Selection** - Multiple character slots with detailed stats
 - **Stat Allocation** - Customize character attributes
 - **Character Progression** - Level up system with experience points
 
 ### Resource Management
+
 - **Woodcutting System** - Gather different wood types with varying rarities
 - **Resource Panel** - Real-time resource tracking and management
 - **Save/Load System** - Persistent character and progress data
 - **Inventory Management** - Equipment and item storage
 
 ### Game Systems
+
 - **Activity Manager** - Automated resource gathering with timers
 - **Boss Combat** - Turn-based combat system with different boss tiers
 - **Pet System** - Collect and train pets with unique abilities
@@ -68,7 +71,9 @@
 ## 🛠️ Core Managers & Systems
 
 ### Game State Management
+
 **Path**: `src/hooks/useGameState.ts`
+
 - **Global State** - Centralized game state management
 - **Resource Tracking** - Primary/secondary resources with 15+ wood types
 - **Character Stats** - Attack, defense, intelligence, stamina, melee, ranged, magic
@@ -76,7 +81,9 @@
 - **Auto-save** - Persistent data storage with localStorage
 
 ### Save Manager
+
 **Path**: `src/lib/saveManager.ts`
+
 - **SaveData Interface** - Structured save file format
 - **Load/Save Functions** - `loadGame()`, `saveGame()`, `createNewSave()`
 - **Character Persistence** - Multiple character slots with metadata
@@ -84,7 +91,9 @@
 - **Export/Import** - JSON-based save file system
 
 ### Activity Manager
+
 **Path**: `src/contexts/ActivityManager.tsx`
+
 - **Skill Management** - Start/stop skills with experience tracking
 - **Progress Calculation** - Real-time progress bars and timers
 - **Efficiency System** - Skill-based efficiency calculations
@@ -92,14 +101,18 @@
 - **Level Progression** - Experience requirements and level calculations
 
 ### Wood Manager
+
 **Path**: `src/lib/woodManager.ts`
+
 - **Session Management** - Active woodcutting sessions with timers
 - **Event System** - Real-time session updates and listeners
 - **Progress Tracking** - Time-based progress with stamina consumption
 - **Result Calculation** - Wood type, amount, and experience rewards
 
 ### Equipment System
+
 **Path**: `src/components/EquipmentInterface/EquipmentInterface.tsx`
+
 - **10 Equipment Slots** - Helmet, amulet, weapon, chest, shield, legs, gloves, boots, ring, cape
 - **Rarity System** - Common, uncommon, rare, epic, legendary with color coding
 - **Stat Bonuses** - Defense, attack, magic, agility, health, mana, luck
@@ -107,14 +120,18 @@
 - **Visual Interface** - Character silhouette with equipment slots
 
 ### Character Classes
+
 **Path**: `src/config/characterClasses.ts`
+
 - **10 Unique Classes** - Warrior, Mage, Rogue, Archer, Healer, Berserker, Paladin, Assassin, Tinkerer, Elementalist
 - **Base Stats** - Starting attributes for each class
 - **Class Stats** - Attack, defense, magic, speed, health, mana ratings
 - **Helper Functions** - `getClassStats()`, `getClassBaseStats()`, `getAllCharacterClasses()`
 
 ### Boss Combat System
+
 **Path**: `src/config/bossConfig.ts`, `src/hooks/useBossCombat.ts`
+
 - **Boss Tower** - Multiple floors with increasing difficulty
 - **Turn-based Combat** - Attack, defend, magic, special abilities
 - **Rarity System** - Boss rarity affects rewards and difficulty
@@ -139,12 +156,14 @@ npm run build
 
 ## 🛠️ Tech Stack
 
-- **React 18** - Frontend framework
-- **TypeScript** - Type safety
-- **Vite** - Build tool and dev server
-- **SCSS** - Styling
-- **React Router** - Navigation
-- **Lucide React** - Icons
+- **Frontend**: React 18 + TypeScript
+- **Build**: Vite + SCSS Modules
+- **State**: React Context + Custom Hooks
+- **Routing**: React Router v6
+- **Icons**: Lucide React
+- **3D**: Three.js + React Three Fiber
+- **Animations**: GSAP + React Spring
+- **Deployment**: Vercel
 
 ## 📱 Available Scripts
 
@@ -160,6 +179,7 @@ This project is currently in **Alpha v0.0.1**. Features may be incomplete or sub
 ## 🎯 Core Mechanics
 
 ### Character Classes
+
 - **Warrior** - High defense and health
 - **Mage** - High magic and mana
 - **Rogue** - High speed and critical hits
@@ -172,6 +192,7 @@ This project is currently in **Alpha v0.0.1**. Features may be incomplete or sub
 - **Elementalist** - Master of elemental magic
 
 ### Resource Gathering
+
 - **Woodcutting** - Primary resource gathering activity
 - **Rarity System** - Common to Legendary wood types
 - **Time-based** - Automated gathering with progress bars

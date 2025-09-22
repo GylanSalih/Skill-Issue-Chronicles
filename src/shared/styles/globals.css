@@ -1,5 +1,3 @@
-
-
 /* -----------------------------------------------------------
  Global Styles
 ---------------------------------------------------------- */
@@ -9,43 +7,30 @@
  Global Styles
 ---------------------------------------------------------- */
 
-
 * {
-    margin: 0;
-    padding: 0;
-    font-family: 'Outfit', sans-serif;
+  margin: 0;
+  padding: 0;
+  font-family: 'Outfit', sans-serif;
 }
-
-
-
 
 body {
-    font-family: 'Outfit', sans-serif;
-background-color: #000000;
-    background-image: url('/assets/img/cross.svg'); /* Pfad anpassen! */
-    background-repeat: repeat; /* wiederhole das Bild */
-    background-position: 0 0; /* Startpunkt links oben */
-    background-size: 50px 50px; /* Größe des Pokeballs, nach Wunsch anpassen */
-    width: 100%;
+  font-family: 'Outfit', sans-serif;
+  background-color: #000000;
+  background-image: url('/assets/img/cross.svg'); /* Pfad anpassen! */
+  background-repeat: repeat; /* wiederhole das Bild */
+  background-position: 0 0; /* Startpunkt links oben */
+  background-size: 50px 50px; /* Größe des Pokeballs, nach Wunsch anpassen */
+  width: 100%;
 }
-
-
-
 
 /* globals.css */
 h1 {
   color: white;
-  font-size: 4rem;      /* sehr groß */
-  font-weight: 800;     /* extra fett */
-  text-align: center;   /* zentriert */
-  margin: 4rem 0;       /* oben und unten Abstand */
+  font-size: 4rem; /* sehr groß */
+  font-weight: 800; /* extra fett */
+  text-align: center; /* zentriert */
+  margin: 4rem 0; /* oben und unten Abstand */
 }
-
-
-
-
-
-
 
 :root {
   --background: 0 0% 100%;
@@ -101,8 +86,6 @@ h1 {
   --chart-4: 280 65% 60%;
   --chart-5: 340 75% 55%;
 }
-
-
 
 * {
   border-color: hsl(var(--border));

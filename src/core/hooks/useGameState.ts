@@ -23,8 +23,8 @@ let globalGameState: GameState = {
       yingWood: 0,
       // Spezielle Ressourcen
       essences: 0,
-      rareItems: 0
-    }
+      rareItems: 0,
+    },
   },
   character: {
     id: '1',
@@ -39,9 +39,9 @@ let globalGameState: GameState = {
       stamina: 1,
       melee: 1,
       ranged: 1,
-      magic: 1
+      magic: 1,
     },
-    equipment: {}
+    equipment: {},
   },
   skills: {
     woodcutting: {
@@ -51,7 +51,7 @@ let globalGameState: GameState = {
       experience: 0,
       isActive: false,
       progress: 0,
-      baseTime: 5
+      baseTime: 5,
     },
     cooking: {
       id: 'cooking',
@@ -60,7 +60,7 @@ let globalGameState: GameState = {
       experience: 0,
       isActive: false,
       progress: 0,
-      baseTime: 8
+      baseTime: 8,
     },
     mining: {
       id: 'mining',
@@ -69,19 +69,19 @@ let globalGameState: GameState = {
       experience: 0,
       isActive: false,
       progress: 0,
-      baseTime: 10
-    }
+      baseTime: 10,
+    },
   },
   inventory: {
     items: [],
-    maxSlots: 50
+    maxSlots: 50,
   },
   settings: {
     autoSave: true,
     notifications: true,
     soundEnabled: true,
-    theme: 'dark'
-  }
+    theme: 'dark',
+  },
 };
 
 // Globaler State für isRunning
@@ -122,19 +122,19 @@ export const useGameState = () => {
 
     const interval = setInterval(() => {
       const newState = { ...globalGameState };
-      
+
       // Update active skills
       Object.values(newState.skills).forEach(skill => {
         if (skill.isActive) {
           // Increase progress
           const progressIncrement = 100 / skill.baseTime;
           skill.progress = Math.min(100, skill.progress + progressIncrement);
-          
+
           // Complete cycle
           if (skill.progress >= 100) {
             skill.progress = 0;
             skill.experience += 10;
-            
+
             // Add resources based on skill
             switch (skill.id) {
               case 'woodcutting':
@@ -174,63 +174,85 @@ export const useGameState = () => {
         ...globalGameState.skills,
         [skillId]: {
           ...globalGameState.skills[skillId],
-          isActive: !globalGameState.skills[skillId].isActive
-        }
-      }
+          isActive: !globalGameState.skills[skillId].isActive,
+        },
+      },
     };
     notifyStateUpdate(newState);
   }, []);
 
   const addResource = useCallback((type: string, amount: number) => {
-    const currentValue = globalGameState.resources.secondary[type as keyof typeof globalGameState.resources.secondary] || 0;
+    const currentValue =
+      globalGameState.resources.secondary[
+        type as keyof typeof globalGameState.resources.secondary
+      ] || 0;
     const newValue = currentValue + amount;
-    console.log(`Adding ${amount} ${type}, current: ${currentValue}, new: ${newValue}`);
-    console.log('Current secondary resources before:', globalGameState.resources.secondary);
-    
+    console.log(
+      `Adding ${amount} ${type}, current: ${currentValue}, new: ${newValue}`
+    );
+    console.log(
+      'Current secondary resources before:',
+      globalGameState.resources.secondary
+    );
+
     const newState = {
       ...globalGameState,
       resources: {
         ...globalGameState.resources,
         secondary: {
           ...globalGameState.resources.secondary,
-          [type]: newValue
-        }
-      }
+          [type]: newValue,
+        },
+      },
     };
-    
+
     console.log('New secondary resources after:', newState.resources.secondary);
     notifyStateUpdate(newState);
   }, []);
 
-  const processWoodcuttingResult = useCallback((woodTypeId: string, woodAmount: number, experience: number, essences?: number, rareItems?: number) => {
-    const newState = { ...globalGameState };
-    
-    // Füge Wood hinzu
-    const currentWood = newState.resources.secondary[woodTypeId as keyof typeof newState.resources.secondary] || 0;
-    newState.resources.secondary[woodTypeId as keyof typeof newState.resources.secondary] = currentWood + woodAmount;
-    
-    // Füge Essences hinzu falls vorhanden
-    if (essences) {
-      newState.resources.secondary.essences += essences;
-    }
-    
-    // Füge Rare Items hinzu falls vorhanden
-    if (rareItems) {
-      newState.resources.secondary.rareItems += rareItems;
-    }
-    
-    // Füge Experience hinzu
-    newState.skills.woodcutting.experience += experience;
-    
-    // Level-Up Check
-    const requiredExp = newState.skills.woodcutting.level * 100; // Einfache Formel
-    if (newState.skills.woodcutting.experience >= requiredExp) {
-      newState.skills.woodcutting.level += 1;
-      newState.skills.woodcutting.experience -= requiredExp;
-    }
-    
-    notifyStateUpdate(newState);
-  }, []);
+  const processWoodcuttingResult = useCallback(
+    (
+      woodTypeId: string,
+      woodAmount: number,
+      experience: number,
+      essences?: number,
+      rareItems?: number
+    ) => {
+      const newState = { ...globalGameState };
+
+      // Füge Wood hinzu
+      const currentWood =
+        newState.resources.secondary[
+          woodTypeId as keyof typeof newState.resources.secondary
+        ] || 0;
+      newState.resources.secondary[
+        woodTypeId as keyof typeof newState.resources.secondary
+      ] = currentWood + woodAmount;
+
+      // Füge Essences hinzu falls vorhanden
+      if (essences) {
+        newState.resources.secondary.essences += essences;
+      }
+
+      // Füge Rare Items hinzu falls vorhanden
+      if (rareItems) {
+        newState.resources.secondary.rareItems += rareItems;
+      }
+
+      // Füge Experience hinzu
+      newState.skills.woodcutting.experience += experience;
+
+      // Level-Up Check
+      const requiredExp = newState.skills.woodcutting.level * 100; // Einfache Formel
+      if (newState.skills.woodcutting.experience >= requiredExp) {
+        newState.skills.woodcutting.level += 1;
+        newState.skills.woodcutting.experience -= requiredExp;
+      }
+
+      notifyStateUpdate(newState);
+    },
+    []
+  );
 
   // Lade Save-Daten beim Mount
   useEffect(() => {
@@ -248,6 +270,6 @@ export const useGameState = () => {
     stopGame,
     toggleSkill,
     addResource,
-    processWoodcuttingResult
+    processWoodcuttingResult,
   };
 };

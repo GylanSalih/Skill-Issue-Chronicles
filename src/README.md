@@ -128,21 +128,25 @@ src/
 ## 🎯 Prinzipien
 
 ### 1. **Feature-basierte Struktur**
+
 - Jedes Feature hat seinen eigenen Ordner
 - Klare Trennung zwischen Features
 - Einfache Navigation und Wartung
 
 ### 2. **Barrel Exports**
+
 - `index.ts` Dateien für saubere Imports
 - Reduziert Import-Pfade
 - Bessere Code-Organisation
 
 ### 3. **Geteilte Komponenten**
+
 - Wiederverwendbare UI-Komponenten in `shared/`
 - Konsistente Design-Sprache
 - Einfache Wartung
 
 ### 4. **Core-Systeme**
+
 - Geschäftslogik in `core/services/`
 - Hooks in `core/hooks/`
 - Types in `core/types/`
@@ -152,13 +156,13 @@ src/
 
 ```typescript
 // Alte Struktur
-import SideMenu from '../components/SideMenu/SideMenu'
-import GameHeader from '../components/GameHeader'
-import { useGameState } from '../hooks/useGameState'
+import SideMenu from '../components/SideMenu/SideMenu';
+import GameHeader from '../components/GameHeader';
+import { useGameState } from '../hooks/useGameState';
 
 // Neue Struktur
-import { SideMenu, GameHeader } from '../shared/components'
-import { useGameState } from '../core/hooks'
+import { SideMenu, GameHeader } from '../shared/components';
+import { useGameState } from '../core/hooks';
 ```
 
 ## 🚀 Vorteile
@@ -175,8 +179,3 @@ import { useGameState } from '../core/hooks'
 2. Komponenten-Tests anpassen
 3. Storybook-Konfiguration aktualisieren
 4. CI/CD-Pipeline anpassen
-
-
-
-
-

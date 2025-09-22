@@ -47,14 +47,15 @@ export const bossTowerFloors: TowerFloor[] = [
       avatar: '/img/avatars/elfe.png',
       type: 'Goblin',
       rarity: 'common',
-      rewards: { 
-        experience: 100, 
-        gold: 200, 
-        items: ['Goblin Crown', 'Rusty Dagger', 'Goblin Tooth'] 
+      rewards: {
+        experience: 100,
+        gold: 200,
+        items: ['Goblin Crown', 'Rusty Dagger', 'Goblin Tooth'],
       },
-      description: 'The first challenge in your tower ascent. A goblin king with basic combat skills.',
-      specialAbilities: ['Goblin Swarm', 'Dirty Strike', 'King\'s Command']
-    }
+      description:
+        'The first challenge in your tower ascent. A goblin king with basic combat skills.',
+      specialAbilities: ['Goblin Swarm', 'Dirty Strike', "King's Command"],
+    },
   },
   {
     id: 2,
@@ -74,14 +75,15 @@ export const bossTowerFloors: TowerFloor[] = [
       avatar: '/img/avatars/assassine2.png',
       type: 'Orc',
       rarity: 'uncommon',
-      rewards: { 
-        experience: 200, 
-        gold: 400, 
-        items: ['Warlord Axe', 'Orc Armor', 'Berserker Helm'] 
+      rewards: {
+        experience: 200,
+        gold: 400,
+        items: ['Warlord Axe', 'Orc Armor', 'Berserker Helm'],
       },
-      description: 'A fierce orc warrior with enhanced combat abilities and tribal leadership.',
-      specialAbilities: ['Berserker Rage', 'War Cry', 'Tribal Strike']
-    }
+      description:
+        'A fierce orc warrior with enhanced combat abilities and tribal leadership.',
+      specialAbilities: ['Berserker Rage', 'War Cry', 'Tribal Strike'],
+    },
   },
   {
     id: 3,
@@ -101,14 +103,20 @@ export const bossTowerFloors: TowerFloor[] = [
       avatar: '/img/avatars/elementarist.png',
       type: 'Mage',
       rarity: 'rare',
-      rewards: { 
-        experience: 350, 
-        gold: 700, 
-        items: ['Dark Staff', 'Mage Robes', 'Magic Crystal', 'Spell Book'] 
+      rewards: {
+        experience: 350,
+        gold: 700,
+        items: ['Dark Staff', 'Mage Robes', 'Magic Crystal', 'Spell Book'],
       },
-      description: 'A powerful dark mage with devastating magical abilities and arcane knowledge.',
-      specialAbilities: ['Dark Bolt', 'Shadow Shield', 'Mana Drain', 'Arcane Explosion']
-    }
+      description:
+        'A powerful dark mage with devastating magical abilities and arcane knowledge.',
+      specialAbilities: [
+        'Dark Bolt',
+        'Shadow Shield',
+        'Mana Drain',
+        'Arcane Explosion',
+      ],
+    },
   },
   {
     id: 4,
@@ -128,14 +136,20 @@ export const bossTowerFloors: TowerFloor[] = [
       avatar: '/img/avatars/berserk.png',
       type: 'Dragon',
       rarity: 'epic',
-      rewards: { 
-        experience: 500, 
-        gold: 1200, 
-        items: ['Dragon Sword', 'Knight Armor', 'Dragon Scale', 'Dragon Heart'] 
+      rewards: {
+        experience: 500,
+        gold: 1200,
+        items: ['Dragon Sword', 'Knight Armor', 'Dragon Scale', 'Dragon Heart'],
       },
-      description: 'A legendary dragon knight with both physical and magical prowess from ancient times.',
-      specialAbilities: ['Dragon Breath', 'Knight Charge', 'Dragon Roar', 'Scale Armor']
-    }
+      description:
+        'A legendary dragon knight with both physical and magical prowess from ancient times.',
+      specialAbilities: [
+        'Dragon Breath',
+        'Knight Charge',
+        'Dragon Roar',
+        'Scale Armor',
+      ],
+    },
   },
   {
     id: 5,
@@ -155,14 +169,21 @@ export const bossTowerFloors: TowerFloor[] = [
       avatar: '/img/avatars/assassine2.png',
       type: 'Demon',
       rarity: 'legendary',
-      rewards: { 
-        experience: 800, 
-        gold: 2000, 
-        items: ['Shadow Blade', 'Demon Armor', 'Soul Gem', 'Dark Crown'] 
+      rewards: {
+        experience: 800,
+        gold: 2000,
+        items: ['Shadow Blade', 'Demon Armor', 'Soul Gem', 'Dark Crown'],
       },
-      description: 'The ultimate challenge - a demon lord of immense power and dark magic.',
-      specialAbilities: ['Shadow Strike', 'Demon Summon', 'Soul Drain', 'Dark Aura', 'Hellfire']
-    }
+      description:
+        'The ultimate challenge - a demon lord of immense power and dark magic.',
+      specialAbilities: [
+        'Shadow Strike',
+        'Demon Summon',
+        'Soul Drain',
+        'Dark Aura',
+        'Hellfire',
+      ],
+    },
   },
   {
     id: 6,
@@ -182,57 +203,88 @@ export const bossTowerFloors: TowerFloor[] = [
       avatar: '/img/avatars/elementarist.png',
       type: 'Dragon',
       rarity: 'legendary',
-      rewards: { 
-        experience: 1200, 
-        gold: 3000, 
-        items: ['Ancient Scale', 'Dragon Claw', 'Eternal Flame', 'Dragon Soul'] 
+      rewards: {
+        experience: 1200,
+        gold: 3000,
+        items: ['Ancient Scale', 'Dragon Claw', 'Eternal Flame', 'Dragon Soul'],
       },
-      description: 'The final boss - an ancient dragon of unimaginable power and wisdom.',
-      specialAbilities: ['Ancient Roar', 'Dragon Storm', 'Eternal Flame', 'Time Warp', 'Dragon\'s Wrath']
-    }
-  }
+      description:
+        'The final boss - an ancient dragon of unimaginable power and wisdom.',
+      specialAbilities: [
+        'Ancient Roar',
+        'Dragon Storm',
+        'Eternal Flame',
+        'Time Warp',
+        "Dragon's Wrath",
+      ],
+    },
+  },
 ];
 
 export const getBossRarityColor = (rarity: string): string => {
   switch (rarity) {
-    case 'common': return '#9ca3af';
-    case 'uncommon': return '#10b981';
-    case 'rare': return '#3b82f6';
-    case 'epic': return '#8b5cf6';
-    case 'legendary': return '#f59e0b';
-    default: return '#9ca3af';
+    case 'common':
+      return '#9ca3af';
+    case 'uncommon':
+      return '#10b981';
+    case 'rare':
+      return '#3b82f6';
+    case 'epic':
+      return '#8b5cf6';
+    case 'legendary':
+      return '#f59e0b';
+    default:
+      return '#9ca3af';
   }
 };
 
 export const getRarityColor = (rarity: string): string => {
   switch (rarity) {
-    case 'common': return '#9ca3af';
-    case 'uncommon': return '#10b981';
-    case 'rare': return '#3b82f6';
-    case 'epic': return '#8b5cf6';
-    case 'legendary': return '#f59e0b';
-    default: return '#9ca3af';
+    case 'common':
+      return '#9ca3af';
+    case 'uncommon':
+      return '#10b981';
+    case 'rare':
+      return '#3b82f6';
+    case 'epic':
+      return '#8b5cf6';
+    case 'legendary':
+      return '#f59e0b';
+    default:
+      return '#9ca3af';
   }
 };
 
 export const getRarityGlow = (rarity: string): string => {
   switch (rarity) {
-    case 'common': return 'rgba(156, 163, 175, 0.3)';
-    case 'uncommon': return 'rgba(16, 185, 129, 0.3)';
-    case 'rare': return 'rgba(59, 130, 246, 0.3)';
-    case 'epic': return 'rgba(139, 92, 246, 0.3)';
-    case 'legendary': return 'rgba(245, 158, 11, 0.3)';
-    default: return 'rgba(156, 163, 175, 0.3)';
+    case 'common':
+      return 'rgba(156, 163, 175, 0.3)';
+    case 'uncommon':
+      return 'rgba(16, 185, 129, 0.3)';
+    case 'rare':
+      return 'rgba(59, 130, 246, 0.3)';
+    case 'epic':
+      return 'rgba(139, 92, 246, 0.3)';
+    case 'legendary':
+      return 'rgba(245, 158, 11, 0.3)';
+    default:
+      return 'rgba(156, 163, 175, 0.3)';
   }
 };
 
 export const getDifficultyColor = (difficulty: string): string => {
   switch (difficulty) {
-    case 'Easy': return '#10b981';
-    case 'Medium': return '#f59e0b';
-    case 'Hard': return '#ef4444';
-    case 'Extreme': return '#8b5cf6';
-    case 'Nightmare': return '#dc2626';
-    default: return '#9ca3af';
+    case 'Easy':
+      return '#10b981';
+    case 'Medium':
+      return '#f59e0b';
+    case 'Hard':
+      return '#ef4444';
+    case 'Extreme':
+      return '#8b5cf6';
+    case 'Nightmare':
+      return '#dc2626';
+    default:
+      return '#9ca3af';
   }
 };

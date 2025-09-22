@@ -18,7 +18,7 @@ const Tooltip: React.FC<TooltipProps> = ({
   delay = 300,
   className = '',
   disabled = false,
-  trigger = 'hover'
+  trigger = 'hover',
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [tooltipPosition, setTooltipPosition] = useState({ top: 0, left: 0 });
@@ -28,7 +28,7 @@ const Tooltip: React.FC<TooltipProps> = ({
 
   const showTooltip = () => {
     if (disabled) return;
-    
+
     if (trigger === 'click') {
       setIsVisible(true);
     } else {
@@ -109,10 +109,10 @@ const Tooltip: React.FC<TooltipProps> = ({
       updatePosition();
       const handleResize = () => updatePosition();
       const handleScroll = () => updatePosition();
-      
+
       window.addEventListener('resize', handleResize);
       window.addEventListener('scroll', handleScroll);
-      
+
       return () => {
         window.removeEventListener('resize', handleResize);
         window.removeEventListener('scroll', handleScroll);
@@ -124,8 +124,12 @@ const Tooltip: React.FC<TooltipProps> = ({
   useEffect(() => {
     if (trigger === 'click' && isVisible) {
       const handleClickOutside = (event: MouseEvent) => {
-        if (triggerRef.current && !triggerRef.current.contains(event.target as Node) &&
-            tooltipRef.current && !tooltipRef.current.contains(event.target as Node)) {
+        if (
+          triggerRef.current &&
+          !triggerRef.current.contains(event.target as Node) &&
+          tooltipRef.current &&
+          !tooltipRef.current.contains(event.target as Node)
+        ) {
           setIsVisible(false);
         }
       };
@@ -138,7 +142,10 @@ const Tooltip: React.FC<TooltipProps> = ({
 
       const handleButtonClick = (event: MouseEvent) => {
         // Check if the clicked element is a button inside the tooltip
-        if (tooltipRef.current && tooltipRef.current.contains(event.target as Node)) {
+        if (
+          tooltipRef.current &&
+          tooltipRef.current.contains(event.target as Node)
+        ) {
           const target = event.target as HTMLElement;
           if (target.tagName === 'BUTTON' || target.closest('button')) {
             setIsVisible(false);
@@ -149,7 +156,7 @@ const Tooltip: React.FC<TooltipProps> = ({
       document.addEventListener('mousedown', handleClickOutside);
       document.addEventListener('keydown', handleEscapeKey);
       document.addEventListener('click', handleButtonClick);
-      
+
       return () => {
         document.removeEventListener('mousedown', handleClickOutside);
         document.removeEventListener('keydown', handleEscapeKey);
@@ -179,14 +186,11 @@ const Tooltip: React.FC<TooltipProps> = ({
       >
         {children}
       </div>
-      
+
       {isVisible && (
         <>
           {position === 'center' && (
-            <div 
-              className={styles.tooltipOverlay}
-              onClick={hideTooltip}
-            />
+            <div className={styles.tooltipOverlay} onClick={hideTooltip} />
           )}
           <div
             ref={tooltipRef}
@@ -196,9 +200,7 @@ const Tooltip: React.FC<TooltipProps> = ({
               left: tooltipPosition.left,
             }}
           >
-            <div className={styles.tooltipContent}>
-              {content}
-            </div>
+            <div className={styles.tooltipContent}>{content}</div>
             {position !== 'center' && (
               <div className={`${styles.tooltipArrow} ${styles[position]}`} />
             )}

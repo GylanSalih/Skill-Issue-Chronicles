@@ -1,12 +1,12 @@
 /* WoodcuttingCard.module.scss */
-$bg: #111827;          // slate-900
+$bg: #111827; // slate-900
 $bgElev: #0f1623;
-$card: #0f172a;        // slate-900/blue-tinted
-$muted: #94a3b8;       // slate-400
-$text: #e5e7eb;        // gray-200
-$pill: #1f2937;        // gray-800
-$accent: #f59e0b;      // amber-500
-$track: #374151;       // gray-700
+$card: #0f172a; // slate-900/blue-tinted
+$muted: #94a3b8; // slate-400
+$text: #e5e7eb; // gray-200
+$pill: #1f2937; // gray-800
+$accent: #f59e0b; // amber-500
+$track: #374151; // gray-700
 $shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 
 .card {
@@ -40,7 +40,7 @@ $shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 .icon {
   width: 36px;
   height: 36px;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,.4));
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
 }
 
 .levelBadge {
@@ -82,8 +82,13 @@ $shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
   top: 0;
   bottom: 0;
   width: 0%;
-  background: linear-gradient(90deg, lighten($accent, 6%) 0%, $accent 60%, darken($accent, 6%) 100%);
-  border-right: 2px solid rgba(0,0,0,.25);
+  background: linear-gradient(
+    90deg,
+    lighten($accent, 6%) 0%,
+    $accent 60%,
+    darken($accent, 6%) 100%
+  );
+  border-right: 2px solid rgba(0, 0, 0, 0.25);
   transition: width 240ms ease;
 }
 

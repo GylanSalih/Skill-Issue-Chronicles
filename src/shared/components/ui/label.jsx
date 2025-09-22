@@ -1,6 +1,6 @@
-import * as React from "react"
-import * as LabelPrimitive from "@radix-ui/react-label"
-import styles from './label.module.scss'
+import * as React from 'react';
+import * as LabelPrimitive from '@radix-ui/react-label';
+import styles from './label.module.scss';
 
 const Label = React.forwardRef(({ className, ...props }, ref) => (
   <LabelPrimitive.Root
@@ -8,8 +8,8 @@ const Label = React.forwardRef(({ className, ...props }, ref) => (
     className={`${styles.label} ${className || ''}`}
     {...props}
   />
-))
-Label.displayName = LabelPrimitive.Root.displayName
+));
+Label.displayName = LabelPrimitive.Root.displayName;
 
-export { Label }
-export default Label
+export { Label };
+export default Label;
