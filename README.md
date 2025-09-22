@@ -2,9 +2,9 @@
 
 **Alpha v0.0.1** - Skill Issue Chronicles
 
-[![Discord](https://img.shields.io/badge/Discord-Join%20Server-000000?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/qwfa4c3bSH)
-[![Version](https://img.shields.io/badge/Version-0.0.1-FF0000?style=for-the-badge&logoColor=white)](https://github.com/GylanSalih/Skill-Issue-Chronicles)
-[![Status](https://img.shields.io/badge/Status-Alpha%20Development-00FF00?style=for-the-badge&logoColor=white)](https://github.com/GylanSalih/Skill-Issue-Chronicles)
+[![Discord](https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/qwfa4c3bSH)
+[![Version](https://img.shields.io/badge/Version-0.0.1-blue?style=for-the-badge)](https://github.com/GylanSalih/Skill-Issue-Chronicles)
+[![Status](https://img.shields.io/badge/Status-Alpha%20Development-orange?style=for-the-badge)](https://github.com/GylanSalih/Skill-Issue-Chronicles)
 
 #
 
