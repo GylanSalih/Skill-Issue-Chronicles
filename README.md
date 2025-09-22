@@ -1,7 +1,5 @@
 # Skill Issue Chronicles
 
-**Alpha v0.0.1**
-
 <div align="center">
 
 [![Contributors][contributors-shield]][contributors-url]
@@ -277,7 +275,7 @@ This project is currently in **Alpha v0.0.1**. Features may be incomplete or sub
 [issues-shield]: https://custom-icon-badges.demolab.com/github/issues/GylanSalih/Skill-Issue-Chronicles?color=FF0000&logo=issue-opened&label=Issues&logoColor=white&labelColor=000000&style=for-the-badge
 [license-shield]: https://custom-icon-badges.demolab.com/github/license/GylanSalih/Skill-Issue-Chronicles?color=FF0000&logo=law&label=License&logoColor=white&style=for-the-badge&labelColor=000000
 [discord-shield]: https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=for-the-badge&logo=discord&logoColor=white&labelColor=000000
-[version-shield]: https://img.shields.io/badge/Version-0.0.1-FF0000?style=for-the-badge&logoColor=white&labelColor=000000
+[version-shield]: https://img.shields.io/badge/Version-Alpha-0.0.1-FF0000?style=for-the-badge&logoColor=white&labelColor=000000
 [status-shield]: https://img.shields.io/badge/Status-Alpha%20Development-FF0000?style=for-the-badge&logoColor=white&labelColor=000000
 
 <!-- Badges Links -->
