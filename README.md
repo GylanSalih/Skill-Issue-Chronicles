@@ -2,6 +2,26 @@
 
 **Alpha v0.0.1** - Skill Issue Chronicles
 
+## 🚀 Installation
+
+> **⚠️ ATTENTION DEVELOPER!** 
+> 
+> **Hey Developer! Interested in this project?** 
+> 
+> Check everything out - if you have questions, write me privately! 
+> 
+> **Need support for this cool Idle RPG!** 🎮✨
+
+```bash
+
+## 📚 Developer Documentation
+
+- **[📖 Development Guide](docs/showcase/DEVELOPMENT_GUIDE.md)** - Complete setup and development workflow
+- **[📋 Changelog](docs/showcase/CHANGELOG.md)** - Version history and updates
+- **[🗺️ Roadmap](docs/showcase/ROADMAP.md)** - Future features and development goals
+
+```
+
 ## 📸 Screenshots
 
 <div align="center">
