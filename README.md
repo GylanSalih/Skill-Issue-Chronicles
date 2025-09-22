@@ -2,9 +2,25 @@
 
 **Alpha v0.0.1** - Skill Issue Chronicles
 
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+
+<div align="center">
+
+<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/People/Developer.png" alt="Developer" width="25" height="25" />
+<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Video%20Game.png" alt="Video Game" width="25" height="25" />
+<img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Smilies/Star-Struck.png" alt="Star-Struck" width="25" height="25" />
+
+</div>
+
+<div align="center">
+
 <a href="https://discord.gg/qwfa4c3bSH" target="_blank">[![Discord](https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/qwfa4c3bSH)</a>
 [![Version](https://img.shields.io/badge/Version-0.0.1-blue?style=for-the-badge)](https://github.com/GylanSalih/Skill-Issue-Chronicles)
 [![Status](https://img.shields.io/badge/Status-Alpha%20Development-orange?style=for-the-badge)](https://github.com/GylanSalih/Skill-Issue-Chronicles)
+
+</div>
 
 #
 
@@ -260,3 +276,13 @@ This project is currently in **Alpha v0.0.1**. Features may be incomplete or sub
 ---
 
 **Status**: Alpha Development | **Version**: 0.0.1 | **Team Member**: 1
+
+<!-- Badges Shields -->
+[contributors-shield]: https://custom-icon-badges.demolab.com/github/contributors/GylanSalih/Skill-Issue-Chronicles?color=FF0000&logo=group&label=Contributors&logoColor=white&style=for-the-badge&labelColor=000000
+[forks-shield]: https://custom-icon-badges.demolab.com/github/forks/GylanSalih/Skill-Issue-Chronicles?color=FF0000&logo=repo-forked&label=Forks&logoColor=white&style=for-the-badge&labelColor=000000
+[stars-shield]: https://custom-icon-badges.demolab.com/github/stars/GylanSalih/Skill-Issue-Chronicles?color=FF0000&label=Stars&style=for-the-badge&logo=star&logoColor=white&labelColor=000000
+
+<!-- Badges Links -->
+[contributors-url]: https://github.com/GylanSalih/Skill-Issue-Chronicles/graphs/contributors
+[forks-url]: https://github.com/GylanSalih/Skill-Issue-Chronicles/network/members
+[stars-url]: https://github.com/GylanSalih/Skill-Issue-Chronicles/stargazers
