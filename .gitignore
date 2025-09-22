@@ -5,6 +5,9 @@ node_modules/
 # Ignore Vite build output
 dist/
 
+# Ignore Vite cache
+.vite/
+
 # Ignore TypeScript build info
 tsconfig.tsbuildinfo
 

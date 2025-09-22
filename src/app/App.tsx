@@ -1,5 +1,5 @@
+import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
 import { GameProvider } from '../core/contexts/GameContext';
 // import { ActivityManagerProvider } from '../core/contexts/ActivityManager'
 import { SideMenu, GameHeader, ResourcePanel } from '../shared/components';

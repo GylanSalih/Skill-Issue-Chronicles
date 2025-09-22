@@ -1,4 +1,5 @@
 // SideMenu.tsx
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRoutePersistence } from '../../../core/hooks/useRoutePersistence';
 import styles from './SideMenu.module.scss';
