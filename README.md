@@ -2,9 +2,7 @@
 
 **Alpha v0.0.1** - Skill Issue Chronicles
 
-<a href="https://discord.gg/qwfa4c3bSH" target="_blank" rel="noopener noreferrer">
-  <img src="https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord">
-</a>
+<a href="https://discord.gg/qwfa4c3bSH" target="_blank">[![Discord](https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/qwfa4c3bSH)</a>
 [![Version](https://img.shields.io/badge/Version-0.0.1-blue?style=for-the-badge)](https://github.com/GylanSalih/Skill-Issue-Chronicles)
 [![Status](https://img.shields.io/badge/Status-Alpha%20Development-orange?style=for-the-badge)](https://github.com/GylanSalih/Skill-Issue-Chronicles)
 
