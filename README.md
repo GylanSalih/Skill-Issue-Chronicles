@@ -2,14 +2,14 @@
 
 <div align="center">
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
 [![Discord][discord-shield]][discord-url]
+[![Stargazers][stars-shield]][stars-url]
 [![Version][version-shield]][version-url]
 [![Status][status-shield]][status-url]
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
 
 </div>
 
