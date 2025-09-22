@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Resource Panel Container */
+.sidebar {
+  width: 20rem; // w-80
+  border-left: 1px solid #444;
+  height: 100vh;
+  overflow-y: auto;
+  
+  // Moderne, schlanke Scrollbar
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #374151 0%, #4b5563 100%);
+    border-radius: 3px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    
+    &:hover {
+      background: linear-gradient(135deg, #4b5563 0%, #6b7280 100%);
+    }
+  }
+  
+  &::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
+
+.panel {
+  background: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 100%);
+
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 12px 16px 8px 16px;
+  border-bottom: 2px solid #333;
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+}
+
+.title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.tabContainer {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background: transparent;
+  color: #ccc;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.tab:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  border-color: #666;
+  transform: translateY(-1px);
+}
+
+.tab.active {
+  color: #ffffff;
+  border-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(42, 74, 107, 0.3);
+}
+
+.tabIcon {
+  width: 16px;
+  height: 16px;
+  color: #888;
+  transition: all 0.2s ease;
+}
+
+.tab.active .tabIcon {
+  color: #fffefe;
+}
+
+.tab:hover .tabIcon {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.content {
+  padding: 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.resourceGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.resourceItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+  border: 1px solid #444;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.resourceItem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.resourceItem:hover::before {
+  opacity: 1;
+}
+
+.resourceItem:hover {
+  border-color: #666;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.resourceInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.resourceIconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  border: 1px solid #444;
+}
+
+.resourceIcon {
+  width: 14px;
+  height: 14px;
+  color: #888;
+  transition: all 0.2s ease;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.resourceItem:hover .resourceIcon {
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.resourceName {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 13px;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
+}
+
+.resourceValue {
+  font-weight: 600;
+  font-size: 13px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  
+  &.secondary {
+    color: #ffffff;
+    text-shadow: 0 0 4px rgba(96, 165, 250, 0.3);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .resourceGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .tabContainer {
+    flex-direction: column;
+    gap: 2px;
+  }
+  
+  .tab {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+}
