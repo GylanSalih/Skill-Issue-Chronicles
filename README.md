@@ -22,7 +22,7 @@
 - **🛡️ Discord Moderator** - Manage our community and keep Discord server active
 - **💻 Developer** - Contribute to game features, bug fixes, and new functionality
 
-**Interested?** Check out our [Development Guide](docs/showcase/DEVELOPMENT_GUIDE.md) and reach out!
+**Interested?** [Join our Discord](https://discord.gg/qwfa4c3bSH) and write me directly!
 
 ### 📚 Developer Documentation
 
