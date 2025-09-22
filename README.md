@@ -2,14 +2,9 @@
 
 **Alpha v0.0.1** - Skill Issue Chronicles
 
-### ⚠️  Installation
-
-- **Install dependencies**: `npm install`  
-- **Start development server**: `npm run dev`  
+#
 
 ### ⚠️ Attention Developer
-
-### ⚠️ Project Note
 
 - **Interested in this project?** Explore the codebase and docs.  
 - **Questions?** Reach out privately.  
