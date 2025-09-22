@@ -4,6 +4,9 @@
 
 ## 🚀 Installation
 
+```bash
+
+
 > **⚠️ ATTENTION DEVELOPER!** 
 > 
 > **Hey Developer! Interested in this project?** 
@@ -11,8 +14,6 @@
 > Check everything out - if you have questions, write me privately! 
 > 
 > **Need support for this cool Idle RPG!** 🎮✨
-
-```bash
 
 ## 📚 Developer Documentation
 
