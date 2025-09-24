@@ -44,11 +44,13 @@ const SaveLoadManager: React.FC<SaveLoadManagerProps> = ({ onSaveLoaded }) => {
     const savedCharacters = localStorage.getItem('idleGameCharacters');
     let charactersToExport: Record<number, any> = {};
 
-    if (savedCharacters) {
+    if (savedCharacters && savedCharacters.trim() !== '') {
       try {
         charactersToExport = JSON.parse(savedCharacters);
       } catch (error) {
         console.error('Error parsing characters for export:', error);
+        // Clear corrupted data
+        localStorage.removeItem('idleGameCharacters');
       }
     }
 

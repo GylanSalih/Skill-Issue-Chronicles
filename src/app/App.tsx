@@ -1,35 +1,71 @@
-import React, { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import { GameProvider } from '../core/contexts/GameContext';
+import { SaveManager } from '../core/services/saveManager';
 // import { ActivityManagerProvider } from '../core/contexts/ActivityManager'
-import { SideMenu, GameHeader, ResourcePanel } from '../shared/components';
 import {
-  Home,
-  Dashboard,
-  Statistics,
-  Settings,
-  News,
-  GameRules,
-  Character,
-  CharacterSelection,
-  CharacterCreation,
-  Login,
-  Woodcutting,
-  Fishing,
-  Cooking,
-  Mining,
-  Smithing,
   Bank,
-  Shop,
-  MyPets,
-  Dungeon,
   BossTower,
+  Character,
+  CharacterCreation,
+  CharacterSelection,
+  Cooking,
+  Dashboard,
+  Dungeon,
+  Fishing,
+  GameRules,
+  Home,
+  Login,
+  Mining,
+  MyPets,
+  News,
+  Settings,
+  Shop,
+  Smithing,
+  Statistics,
+  Woodcutting,
 } from '../features/pages';
+import { GameHeader, ResourcePanel, SideMenu } from '../shared/components';
 import styles from './App.module.scss';
 // import ActivityManagerDemo from '../shared/components/ActivityManagerDemo'
 
 function App() {
   const [isResourcePanelVisible, setIsResourcePanelVisible] = useState(true);
+
+  // Clear corrupted localStorage data on app start
+  useEffect(() => {
+    try {
+      // Check if there are any corrupted entries
+      const hasCorruptedData = Array.from(
+        { length: localStorage.length },
+        (_, i) => {
+          const key = localStorage.key(i);
+          if (key && (key.includes('idleGame') || key.includes('game'))) {
+            try {
+              const value = localStorage.getItem(key);
+              if (value && value.trim() !== '') {
+                JSON.parse(value);
+              }
+              return false;
+            } catch {
+              console.warn(`Corrupted data found for key: ${key}`);
+              return true;
+            }
+          }
+          return false;
+        }
+      ).some(Boolean);
+
+      if (hasCorruptedData) {
+        console.log('Corrupted localStorage data detected, clearing...');
+        SaveManager.clearCorruptedData();
+      }
+    } catch (error) {
+      console.error('Error checking localStorage:', error);
+      // If we can't even check localStorage, clear everything
+      SaveManager.clearCorruptedData();
+    }
+  }, []);
 
   const toggleResourcePanel = () => {
     setIsResourcePanelVisible(!isResourcePanelVisible);
@@ -39,6 +75,7 @@ function App() {
     <GameProvider>
       <div className={styles.app}>
         <Routes>
+          {/* Standalone routes (no layout) */}
           <Route path='/login' element={<Login />} />
           <Route path='/character-selection' element={<CharacterSelection />} />
           <Route path='/character-creation' element={<CharacterCreation />} />
@@ -46,6 +83,8 @@ function App() {
             path='/character-creation/:slotId'
             element={<CharacterCreation />}
           />
+
+          {/* Main app routes with layout */}
           <Route
             path='/*'
             element={
@@ -74,10 +113,6 @@ function App() {
                           path='/character/badges'
                           element={<Character />}
                         />
-                        <Route
-                          path='/character-selection'
-                          element={<CharacterSelection />}
-                        />
                         <Route path='/woodcutting' element={<Woodcutting />} />
                         <Route path='/fishing' element={<Fishing />} />
                         <Route path='/cooking' element={<Cooking />} />
@@ -92,6 +127,8 @@ function App() {
                         <Route path='/boss-tower' element={<BossTower />} />
                         <Route path='/news' element={<News />} />
                         <Route path='/game-rules' element={<GameRules />} />
+                        {/* Fallback route */}
+                        <Route path='*' element={<Dashboard />} />
                         {/* <Route path="/activity-demo" element={<ActivityManagerDemo />} /> */}
                       </Routes>
                     </div>

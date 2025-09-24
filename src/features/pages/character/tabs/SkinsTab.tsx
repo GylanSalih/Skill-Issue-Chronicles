@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 import { Palette, Star, Lock, Check } from 'lucide-react';
 import styles from '../Character.module.scss';
 
+// Import avatar images
+import warriorImg from '@assets/img/avatars/warrior.png';
+import warrior2Img from '@assets/img/avatars/warrior2.png';
+import magierImg from '@assets/img/avatars/magier.png';
+import assassineImg from '@assets/img/avatars/assassine.png';
+import elfeImg from '@assets/img/avatars/elfe.png';
+import paladinImg from '@assets/img/avatars/paladin.png';
+
 const SkinsTab: React.FC = () => {
   const [selectedSkin, setSelectedSkin] = useState<string>('default');
 
@@ -13,7 +21,7 @@ const SkinsTab: React.FC = () => {
       rarity: 'common',
       price: 0,
       owned: true,
-      image: '/img/avatars/warrior.png',
+      image: warriorImg,
     },
     {
       id: 'fire',
@@ -22,7 +30,7 @@ const SkinsTab: React.FC = () => {
       rarity: 'rare',
       price: 500,
       owned: false,
-      image: '/img/avatars/warrior2.png',
+      image: warrior2Img,
     },
     {
       id: 'ice',
@@ -31,7 +39,7 @@ const SkinsTab: React.FC = () => {
       rarity: 'epic',
       price: 1000,
       owned: true,
-      image: '/img/avatars/magier.png',
+      image: magierImg,
     },
     {
       id: 'shadow',
@@ -40,7 +48,7 @@ const SkinsTab: React.FC = () => {
       rarity: 'legendary',
       price: 2500,
       owned: false,
-      image: '/img/avatars/assassine.png',
+      image: assassineImg,
     },
     {
       id: 'nature',
@@ -49,7 +57,7 @@ const SkinsTab: React.FC = () => {
       rarity: 'rare',
       price: 750,
       owned: true,
-      image: '/img/avatars/elfe.png',
+      image: elfeImg,
     },
     {
       id: 'divine',
@@ -58,7 +66,7 @@ const SkinsTab: React.FC = () => {
       rarity: 'legendary',
       price: 3000,
       owned: false,
-      image: '/img/avatars/paladin.png',
+      image: paladinImg,
     },
   ];
 

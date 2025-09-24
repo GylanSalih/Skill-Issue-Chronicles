@@ -17,6 +17,18 @@ import {
 } from 'lucide-react';
 import styles from './Woodcutting.module.scss';
 
+// Import images
+import normalWoodImg from '@assets/img/Resources/Wood/NormalWood.png';
+import ebonyWoodImg from '@assets/img/Resources/Wood/EbonyWood.png';
+import frostbarkImg from '@assets/img/Resources/Wood/Frostbark.png';
+import glowwoodImg from '@assets/img/Resources/Wood/Glowwood.png';
+import softwoodImg from '@assets/img/Resources/Wood/Softwood.png';
+import voidbarkImg from '@assets/img/Resources/Wood/Voidbark.png';
+import willowWoodImg from '@assets/img/Resources/Wood/WillowWood.png';
+import yangWoodImg from '@assets/img/Resources/Wood/YangWood.png';
+import yingWoodImg from '@assets/img/Resources/Wood/YingWood.png';
+import normalImg from '@assets/img/Resources/Wood/normal.png';
+
 const Woodcutting = () => {
   const [playerLevel, setPlayerLevel] = useState(100);
   const [currentExp, setCurrentExp] = useState(12450);
@@ -32,7 +44,7 @@ const Woodcutting = () => {
       exp: 5,
       time: 2000,
       color: '#8B4513',
-      img: '/assets/img/Resources/Wood/NormalWood.png',
+      img: normalWoodImg,
     },
     {
       name: 'Softwood',
@@ -40,7 +52,7 @@ const Woodcutting = () => {
       exp: 8,
       time: 2500,
       color: '#DEB887',
-      img: '/assets/img/Resources/Wood/EbonyWood.png',
+      img: ebonyWoodImg,
     },
     {
       name: 'Oak Wood',
@@ -48,7 +60,7 @@ const Woodcutting = () => {
       exp: 12,
       time: 3000,
       color: '#CD853F',
-      img: '/assets/img/Resources/Wood/Frostbark.png',
+      img: frostbarkImg,
     },
     {
       name: 'Willow Wood',
@@ -56,7 +68,7 @@ const Woodcutting = () => {
       exp: 18,
       time: 3500,
       color: '#90EE90',
-      img: '/assets/img/Resources/Wood/Glowwood.png',
+      img: glowwoodImg,
     },
     {
       name: 'Maple Wood',
@@ -64,7 +76,7 @@ const Woodcutting = () => {
       exp: 25,
       time: 4000,
       color: '#FF6347',
-      img: '/assets/img/Resources/Wood/Softwood.png',
+      img: softwoodImg,
     },
     {
       name: 'Ash Wood',
@@ -72,7 +84,7 @@ const Woodcutting = () => {
       exp: 35,
       time: 4500,
       color: '#D2B48C',
-      img: '/assets/img/Resources/Wood/Voidbark.png',
+      img: voidbarkImg,
     },
     {
       name: 'Yew Wood',
@@ -80,7 +92,7 @@ const Woodcutting = () => {
       exp: 50,
       time: 5000,
       color: '#228B22',
-      img: '/assets/img/Resources/Wood/WillowWood.png',
+      img: willowWoodImg,
     },
     {
       name: 'Mahogany Wood',
@@ -88,7 +100,7 @@ const Woodcutting = () => {
       exp: 70,
       time: 5500,
       color: '#C04000',
-      img: '/assets/img/Resources/Wood/YangWood.png',
+      img: yangWoodImg,
     },
     {
       name: 'Ebony Wood',
@@ -96,7 +108,7 @@ const Woodcutting = () => {
       exp: 95,
       time: 6000,
       color: '#2F4F2F',
-      img: '/assets/img/Resources/Wood/YingWood.png',
+      img: yingWoodImg,
     },
     {
       name: 'Redwood',
@@ -104,7 +116,7 @@ const Woodcutting = () => {
       exp: 125,
       time: 6500,
       color: '#A0522D',
-      img: '/assets/img/Resources/Wood/WillowWood.png',
+      img: willowWoodImg,
     },
     {
       name: 'Glowwood',
@@ -112,7 +124,7 @@ const Woodcutting = () => {
       exp: 160,
       time: 7000,
       color: '#FFD700',
-      img: '/assets/img/Resources/Wood/YingWood.png',
+      img: yingWoodImg,
     },
     {
       name: 'Soulwood',
@@ -120,7 +132,7 @@ const Woodcutting = () => {
       exp: 200,
       time: 7500,
       color: '#9370DB',
-      img: '/assets/img/Resources/Wood/Softwood.png',
+      img: softwoodImg,
     },
     {
       name: 'Voidbark',
@@ -128,7 +140,7 @@ const Woodcutting = () => {
       exp: 250,
       time: 8000,
       color: '#191970',
-      img: '/assets/img/Resources/Wood/Frostbark.png',
+      img: frostbarkImg,
     },
     {
       name: 'Frostbark',
@@ -136,7 +148,7 @@ const Woodcutting = () => {
       exp: 310,
       time: 8500,
       color: '#87CEEB',
-      img: '/assets/img/Resources/Wood/normal.png',
+      img: normalImg,
     },
     {
       name: 'Scorchwood',
@@ -144,7 +156,7 @@ const Woodcutting = () => {
       exp: 380,
       time: 9000,
       color: '#FF4500',
-      img: '/assets/img/Resources/Wood/normal.png',
+      img: normalImg,
     },
     {
       name: 'Ancient Wood',
@@ -152,7 +164,7 @@ const Woodcutting = () => {
       exp: 460,
       time: 9500,
       color: '#800080',
-      img: '/assets/img/Resources/Wood/normal.png',
+      img: normalImg,
     },
     {
       name: 'Dreamwood',
@@ -160,7 +172,7 @@ const Woodcutting = () => {
       exp: 550,
       time: 10000,
       color: '#FF69B4',
-      img: '/assets/img/Resources/Wood/normal.png',
+      img: normalImg,
     },
   ];
 

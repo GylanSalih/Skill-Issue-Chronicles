@@ -15,6 +15,13 @@ import {
 } from 'lucide-react';
 import styles from './Dungeon.module.scss';
 
+// Import images
+import avatarWarriorImg from '@assets/img/avatars/warrior.png';
+import goblinWarriorImg from '@assets/img/avatars/berserk.png';
+import orcBerserkerImg from '@assets/img/avatars/berserk.png';
+import ancientDragonImg from '@assets/img/avatars/berserk.png';
+import dungeonImg from '@assets/img/scenery/dungeon.png';
+
 interface Player {
   id: string;
   name: string;
@@ -59,7 +66,7 @@ const Dungeon: React.FC = () => {
     maxMana: 400,
     attack: 125,
     defense: 95,
-    avatar: '/assets/img/avatars/avatar_warrior.jpg',
+    avatar: avatarWarriorImg,
     class: 'Warrior',
     rarity: 'epic',
   });
@@ -73,7 +80,7 @@ const Dungeon: React.FC = () => {
       maxHealth: 200,
       attack: 45,
       defense: 25,
-      avatar: '/assets/img/avatars/goblin_warrior.png',
+      avatar: goblinWarriorImg,
       type: 'Goblin',
       rarity: 'common',
       rewards: {
@@ -90,7 +97,7 @@ const Dungeon: React.FC = () => {
       maxHealth: 450,
       attack: 85,
       defense: 40,
-      avatar: '/assets/img/avatars/orc_berserker.png',
+      avatar: orcBerserkerImg,
       type: 'Orc',
       rarity: 'uncommon',
       rewards: {
@@ -107,7 +114,7 @@ const Dungeon: React.FC = () => {
       maxHealth: 1200,
       attack: 180,
       defense: 120,
-      avatar: '/assets/img/avatars/ancient_dragon.png',
+      avatar: ancientDragonImg,
       type: 'Dragon',
       rarity: 'legendary',
       rewards: {
@@ -175,7 +182,7 @@ const Dungeon: React.FC = () => {
       <div className={styles.scenerySection}>
         <div className={styles.sceneryImage}>
           <img
-            src='/assets/img/scenery/dungeon.png'
+            src={dungeonImg}
             alt='Epic Dungeon Arena'
             className={styles.sceneryImg}
           />

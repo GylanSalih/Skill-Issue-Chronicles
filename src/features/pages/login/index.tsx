@@ -3,6 +3,10 @@ import { Eye, EyeOff, User, Lock, ArrowRight, Mail } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Login.module.scss';
 
+// Import images
+import dungeon2Img from '@assets/img/scenery/dungeon2.png';
+import logo2Img from '@assets/logo/logo2.png';
+
 const Login = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -55,7 +59,7 @@ const Login = () => {
     <div className={styles.loginPage}>
       <div className={styles.background}>
         <img
-          src='/img/scenery/dungeon2.png'
+          src={dungeon2Img}
           alt='Background'
           className={styles.backgroundImage}
         />
@@ -65,7 +69,7 @@ const Login = () => {
         <div className={styles.logoSection}>
           <div className={styles.logoIcon}>
             <img
-              src='/assets/logo/logo2.png'
+              src={logo2Img}
               alt='Skill Issue Chronicles'
               className={styles.logoImage}
             />

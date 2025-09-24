@@ -6,6 +6,18 @@ import { SaveManager } from '../../../../core/services/saveManager';
 import { useCharacter } from '../../../../core/contexts/GameContext';
 import styles from './CharacterSelection.module.scss';
 
+// Import avatar images
+import warriorImg from '@assets/img/avatars/warrior.png';
+import magierImg from '@assets/img/avatars/magier.png';
+import schurke2Img from '@assets/img/avatars/schurke2.png';
+import elfeImg from '@assets/img/avatars/elfe.png';
+import heilerinImg from '@assets/img/avatars/heilerin.png';
+import berserkImg from '@assets/img/avatars/berserk.png';
+import paladinImg from '@assets/img/avatars/paladin.png';
+import assassine2Img from '@assets/img/avatars/assassine2.png';
+import tuefftlerImg from '@assets/img/avatars/tuefftler.png';
+import elementaristImg from '@assets/img/avatars/elementarist.png';
+
 const CharacterSelection = () => {
   const navigate = useNavigate();
   const [characters, setCharacters] = useState<Record<number, any>>({});
@@ -14,16 +26,16 @@ const CharacterSelection = () => {
 
   const getClassIcon = (characterClass: string) => {
     const iconMap: Record<string, string> = {
-      warrior: '/img/avatars/warrior.png',
-      mage: '/img/avatars/magier.png',
-      rogue: '/img/avatars/schurke2.png',
-      archer: '/img/avatars/elfe.png',
-      healer: '/img/avatars/heilerin.png',
-      berserker: '/img/avatars/berserk.png',
-      paladin: '/img/avatars/paladin.png',
-      assassin: '/img/avatars/assassine2.png',
-      tinkerer: '/img/avatars/tuefftler.png',
-      elementalist: '/img/avatars/elementarist.png',
+      warrior: warriorImg,
+      mage: magierImg,
+      rogue: schurke2Img,
+      archer: elfeImg,
+      healer: heilerinImg,
+      berserker: berserkImg,
+      paladin: paladinImg,
+      assassin: assassine2Img,
+      tinkerer: tuefftlerImg,
+      elementalist: elementaristImg,
     };
     return iconMap[characterClass] || '/img/avatars/warrior.png';
   };
@@ -39,11 +51,13 @@ const CharacterSelection = () => {
     const savedCharacters = localStorage.getItem('idleGameCharacters');
     let charactersFromOldFormat: Record<number, any> = {};
 
-    if (savedCharacters) {
+    if (savedCharacters && savedCharacters.trim() !== '') {
       try {
         charactersFromOldFormat = JSON.parse(savedCharacters);
       } catch (error) {
         console.error('Error parsing old character format:', error);
+        // Clear corrupted data
+        localStorage.removeItem('idleGameCharacters');
       }
     }
 

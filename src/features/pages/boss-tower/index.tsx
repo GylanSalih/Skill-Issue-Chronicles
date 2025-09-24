@@ -16,6 +16,10 @@ import {
   Gem,
 } from 'lucide-react';
 import styles from './BossTower.module.scss';
+
+// Import images
+import berserkImg from '@assets/img/avatars/berserk.png';
+import dungeon2Img from '@assets/img/scenery/dungeon2.png';
 import {
   bossTowerFloors,
   getBossRarityColor,
@@ -38,7 +42,7 @@ const BossTower: React.FC = () => {
     maxMana: 400,
     attack: 125,
     defense: 95,
-    avatar: '/img/avatars/berserk.png',
+    avatar: berserkImg,
     class: 'Berserker',
     rarity: 'common' as const,
   });
@@ -119,7 +123,7 @@ const BossTower: React.FC = () => {
       <div className={styles.scenerySection}>
         <div className={styles.sceneryImage}>
           <img
-            src='/img/scenery/dungeon2.png'
+            src={dungeon2Img}
             alt='Boss Tower'
             className={styles.sceneryImg}
           />

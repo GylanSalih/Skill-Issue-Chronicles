@@ -38,6 +38,9 @@ import { useGameState } from '../../../../core/hooks/useGameState';
 import { formatDate } from '../../../../core/services/dateUtils';
 import styles from '../Character.module.scss';
 
+// Import avatar images
+import warriorImg from '@assets/img/avatars/warrior.png';
+
 const ProfileTab: React.FC = () => {
   const { currentCharacter } = useCharacter();
   const { getClassById } = useCharacterClasses();
@@ -169,7 +172,7 @@ const ProfileTab: React.FC = () => {
 
   const getClassIcon = (characterClassId: string) => {
     const classData = getClassById(characterClassId);
-    return classData?.image || '/img/avatars/warrior.png';
+    return classData?.image || warriorImg;
   };
 
   // Stat allocation functions
@@ -349,7 +352,7 @@ const ProfileTab: React.FC = () => {
               alt={character.name}
               className={styles.characterAvatar}
               onError={e => {
-                e.currentTarget.src = '/img/avatars/warrior.png';
+                e.currentTarget.src = warriorImg;
               }}
             />
             <div className={styles.levelBadge}>{character.level}</div>

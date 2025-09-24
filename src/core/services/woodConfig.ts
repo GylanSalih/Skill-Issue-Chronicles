@@ -1,3 +1,14 @@
+// Import wood images
+import normalWoodImg from '../../assets/img/Resources/Wood/NormalWood.png';
+import softwoodImg from '../../assets/img/Resources/Wood/Softwood.png';
+import willowWoodImg from '../../assets/img/Resources/Wood/WillowWood.png';
+import glowwoodImg from '../../assets/img/Resources/Wood/Glowwood.png';
+import frostbarkImg from '../../assets/img/Resources/Wood/Frostbark.png';
+import ebonyWoodImg from '../../assets/img/Resources/Wood/EbonyWood.png';
+import voidbarkImg from '../../assets/img/Resources/Wood/Voidbark.png';
+import yangWoodImg from '../../assets/img/Resources/Wood/YangWood.png';
+import yingWoodImg from '../../assets/img/Resources/Wood/YingWood.png';
+
 export interface WoodTypeConfig {
   id: string;
   name: string;
@@ -29,7 +40,7 @@ export const WOOD_TYPES: Record<string, WoodTypeConfig> = {
   normalWood: {
     id: 'normalWood',
     name: 'Normal Wood',
-    image: '/img/img/Resources/Wood/NormalWood.png',
+    image: normalWoodImg,
     requiredLevel: 1,
     baseReward: 1,
     baseTime: 3,
@@ -47,7 +58,7 @@ export const WOOD_TYPES: Record<string, WoodTypeConfig> = {
   softwood: {
     id: 'softwood',
     name: 'Softwood',
-    image: '/img/img/Resources/Wood/Softwood.png',
+    image: softwoodImg,
     requiredLevel: 3,
     baseReward: 2,
     baseTime: 4,
@@ -65,7 +76,7 @@ export const WOOD_TYPES: Record<string, WoodTypeConfig> = {
   willowWood: {
     id: 'willowWood',
     name: 'Willow Wood',
-    image: '/img/img/Resources/Wood/WillowWood.png',
+    image: willowWoodImg,
     requiredLevel: 5,
     baseReward: 3,
     baseTime: 5,
@@ -83,7 +94,7 @@ export const WOOD_TYPES: Record<string, WoodTypeConfig> = {
   glowwood: {
     id: 'glowwood',
     name: 'Glowwood',
-    image: '/img/img/Resources/Wood/Glowwood.png',
+    image: glowwoodImg,
     requiredLevel: 8,
     baseReward: 5,
     baseTime: 6,
@@ -105,7 +116,7 @@ export const WOOD_TYPES: Record<string, WoodTypeConfig> = {
   frostbark: {
     id: 'frostbark',
     name: 'Frostbark',
-    image: '/img/img/Resources/Wood/Frostbark.png',
+    image: frostbarkImg,
     requiredLevel: 12,
     baseReward: 7,
     baseTime: 8,
@@ -127,7 +138,7 @@ export const WOOD_TYPES: Record<string, WoodTypeConfig> = {
   ebonyWood: {
     id: 'ebonyWood',
     name: 'Ebony Wood',
-    image: '/img/img/Resources/Wood/EbonyWood.png',
+    image: ebonyWoodImg,
     requiredLevel: 15,
     baseReward: 10,
     baseTime: 10,
@@ -150,7 +161,7 @@ export const WOOD_TYPES: Record<string, WoodTypeConfig> = {
   voidbark: {
     id: 'voidbark',
     name: 'Voidbark',
-    image: '/img/img/Resources/Wood/Voidbark.png',
+    image: voidbarkImg,
     requiredLevel: 20,
     baseReward: 15,
     baseTime: 12,
@@ -173,7 +184,7 @@ export const WOOD_TYPES: Record<string, WoodTypeConfig> = {
   yangWood: {
     id: 'yangWood',
     name: 'Yang Wood',
-    image: '/img/img/Resources/Wood/YangWood.png',
+    image: yangWoodImg,
     requiredLevel: 25,
     baseReward: 20,
     baseTime: 15,
@@ -197,7 +208,7 @@ export const WOOD_TYPES: Record<string, WoodTypeConfig> = {
   yingWood: {
     id: 'yingWood',
     name: 'Ying Wood',
-    image: '/img/img/Resources/Wood/YingWood.png',
+    image: yingWoodImg,
     requiredLevel: 25,
     baseReward: 20,
     baseTime: 15,

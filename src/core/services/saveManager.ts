@@ -35,12 +35,14 @@ export class SaveManager {
   static loadGame(): SaveData | null {
     try {
       const savedData = localStorage.getItem(this.SAVE_KEY);
-      if (savedData) {
+      if (savedData && savedData.trim() !== '') {
         const parsed = JSON.parse(savedData) as SaveData;
         return parsed;
       }
     } catch (error) {
       console.error('Error loading save data:', error);
+      // Clear corrupted data
+      localStorage.removeItem(this.SAVE_KEY);
     }
     return null;
   }
@@ -153,12 +155,16 @@ export class SaveManager {
       const key = localStorage.key(i);
       if (key && key.startsWith(`${this.SAVE_KEY}_backup_`)) {
         try {
-          const data = JSON.parse(localStorage.getItem(key) || '');
-          if (this.validateSaveData(data)) {
-            backups.push(data);
+          const dataString = localStorage.getItem(key);
+          if (dataString && dataString.trim() !== '') {
+            const data = JSON.parse(dataString);
+            if (this.validateSaveData(data)) {
+              backups.push(data);
+            }
           }
         } catch (error) {
-          // Ignore invalid entries
+          console.warn(`Invalid backup data for key ${key}, removing...`);
+          localStorage.removeItem(key);
         }
       }
     }
@@ -181,6 +187,46 @@ export class SaveManager {
 
     // Lösche alte Character-Daten
     localStorage.removeItem('idleGameCharacters');
+  }
+
+  // Clear corrupted data and reset to clean state
+  static clearCorruptedData(): void {
+    console.log('Clearing corrupted localStorage data...');
+
+    // Clear all game-related localStorage keys
+    const keysToRemove = [
+      this.SAVE_KEY,
+      'idleGameCharacters',
+      'idleGameSaveData',
+      'gameState',
+      'characters',
+    ];
+
+    // Remove specific keys
+    keysToRemove.forEach(key => {
+      try {
+        localStorage.removeItem(key);
+      } catch (error) {
+        console.warn(`Could not remove key ${key}:`, error);
+      }
+    });
+
+    // Remove any backup keys
+    for (let i = localStorage.length - 1; i >= 0; i--) {
+      const key = localStorage.key(i);
+      if (
+        key &&
+        (key.startsWith(`${this.SAVE_KEY}_backup_`) || key.includes('idleGame'))
+      ) {
+        try {
+          localStorage.removeItem(key);
+        } catch (error) {
+          console.warn(`Could not remove backup key ${key}:`, error);
+        }
+      }
+    }
+
+    console.log('Corrupted data cleared. Application will start fresh.');
   }
 
   // Erstelle neuen Save mit Standard-Werten

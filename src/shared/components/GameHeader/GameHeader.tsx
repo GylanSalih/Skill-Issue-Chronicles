@@ -22,6 +22,9 @@ import { getWoodTypeById } from '../../../core/services/woodConfig';
 import { formatTimeWithSeconds } from '../../../core/services/dateUtils';
 import styles from './GameHeader.module.scss';
 
+// Import avatar images
+import warriorImg from '@assets/img/avatars/warrior.png';
+
 interface GameHeaderProps {
   onToggleResourcePanel: () => void;
   isResourcePanelVisible: boolean;
@@ -103,9 +106,9 @@ const GameHeader: React.FC<GameHeaderProps> = ({
 
   // Get character icon
   const getCharacterIcon = () => {
-    if (!currentCharacter) return '/img/avatars/warrior.png';
+    if (!currentCharacter) return warriorImg;
     const classData = getClassById(currentCharacter.characterClassId);
-    return classData?.image || '/img/avatars/warrior.png';
+    return classData?.image || warriorImg;
   };
 
   // Get activity type and name based on active session
@@ -302,7 +305,7 @@ const GameHeader: React.FC<GameHeaderProps> = ({
                 alt={currentCharacter?.name || 'Character'}
                 className={styles.characterAvatar}
                 onError={e => {
-                  e.currentTarget.src = '/img/avatars/warrior.png';
+                  e.currentTarget.src = warriorImg;
                 }}
               />
             </div>

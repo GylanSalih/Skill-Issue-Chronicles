@@ -1,4 +1,15 @@
 // Character Classes Configuration
+import warriorImg from '../../assets/img/avatars/warrior.png';
+import magierImg from '../../assets/img/avatars/magier.png';
+import schurke2Img from '../../assets/img/avatars/schurke2.png';
+import elfeImg from '../../assets/img/avatars/elfe.png';
+import heilerinImg from '../../assets/img/avatars/heilerin.png';
+import berserkImg from '../../assets/img/avatars/berserk.png';
+import paladinImg from '../../assets/img/avatars/paladin.png';
+import assassine2Img from '../../assets/img/avatars/assassine2.png';
+import tuefftlerImg from '../../assets/img/avatars/tuefftler.png';
+import elementaristImg from '../../assets/img/avatars/elementarist.png';
+
 export interface CharacterClassStats {
   attack: number;
   defense: number;
@@ -28,7 +39,7 @@ export const CHARACTER_CLASSES: Record<string, CharacterClass> = {
     id: 'warrior',
     name: 'Krieger',
     description: 'Starker Nahkämpfer mit hoher Verteidigung und Lebenspunkten',
-    image: '/img/avatars/warrior.png',
+    image: warriorImg,
     stats: {
       attack: 90,
       defense: 85,
@@ -49,7 +60,7 @@ export const CHARACTER_CLASSES: Record<string, CharacterClass> = {
     id: 'mage',
     name: 'Magier',
     description: 'Mächtiger Zauberer mit hoher Magie und Mana',
-    image: '/img/avatars/magier.png',
+    image: magierImg,
     stats: {
       attack: 40,
       defense: 35,
@@ -71,7 +82,7 @@ export const CHARACTER_CLASSES: Record<string, CharacterClass> = {
     name: 'Schurke',
     description:
       'Schneller Kämpfer mit hoher Geschwindigkeit und kritischen Treffern',
-    image: '/img/avatars/schurke2.png',
+    image: schurke2Img,
     stats: {
       attack: 80,
       defense: 45,
@@ -92,7 +103,7 @@ export const CHARACTER_CLASSES: Record<string, CharacterClass> = {
     id: 'archer',
     name: 'Bogenschütze',
     description: 'Präziser Fernkämpfer mit hoher Trefferquote',
-    image: '/img/avatars/elfe.png',
+    image: elfeImg,
     stats: {
       attack: 75,
       defense: 50,
@@ -113,7 +124,7 @@ export const CHARACTER_CLASSES: Record<string, CharacterClass> = {
     id: 'healer',
     name: 'Heiler',
     description: 'Unterstützer mit Heilfähigkeiten und Buffs',
-    image: '/img/avatars/heilerin.png',
+    image: heilerinImg,
     stats: {
       attack: 35,
       defense: 60,
@@ -135,7 +146,7 @@ export const CHARACTER_CLASSES: Record<string, CharacterClass> = {
     name: 'Berserker',
     description:
       'Brutaler Kämpfer mit enormem Schaden aber niedriger Verteidigung',
-    image: '/img/avatars/berserk.png',
+    image: berserkImg,
     stats: {
       attack: 100,
       defense: 40,
@@ -156,7 +167,7 @@ export const CHARACTER_CLASSES: Record<string, CharacterClass> = {
     id: 'paladin',
     name: 'Paladin',
     description: 'Ausgewogener Kämpfer mit Heilung und hoher Verteidigung',
-    image: '/img/avatars/paladin.png',
+    image: paladinImg,
     stats: {
       attack: 70,
       defense: 80,
@@ -177,7 +188,7 @@ export const CHARACTER_CLASSES: Record<string, CharacterClass> = {
     id: 'assassin',
     name: 'Assassine',
     description: 'Heimlicher Kämpfer mit Stealth-Fähigkeiten und hohem Schaden',
-    image: '/img/avatars/assassine2.png',
+    image: assassine2Img,
     stats: {
       attack: 85,
       defense: 35,
@@ -198,7 +209,7 @@ export const CHARACTER_CLASSES: Record<string, CharacterClass> = {
     id: 'tinkerer',
     name: 'Tüftler',
     description: 'Handwerker mit technischen Fähigkeiten und Fallen',
-    image: '/img/avatars/tuefftler.png',
+    image: tuefftlerImg,
     stats: {
       attack: 50,
       defense: 70,
@@ -219,7 +230,7 @@ export const CHARACTER_CLASSES: Record<string, CharacterClass> = {
     id: 'elementalist',
     name: 'Elementarist',
     description: 'Meister der Elementar-Magie mit verschiedenen Elementen',
-    image: '/img/avatars/elementarist.png',
+    image: elementaristImg,
     stats: {
       attack: 45,
       defense: 40,

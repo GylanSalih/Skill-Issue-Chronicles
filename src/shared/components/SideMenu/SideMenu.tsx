@@ -4,6 +4,56 @@ import { useNavigate } from 'react-router-dom';
 import { useRoutePersistence } from '../../../core/hooks/useRoutePersistence';
 import styles from './SideMenu.module.scss';
 
+// Import logo images
+import {
+  Activity,
+  Anvil,
+  ArrowRight,
+  BookOpen,
+  ChefHat,
+  ChevronDown,
+  Coins,
+  Compass,
+  Crosshair,
+  Crown,
+  Eye,
+  FileText,
+  Fish,
+  Flame,
+  Gem,
+  Hammer,
+  Handshake,
+  Heart,
+  Home,
+  Leaf,
+  LogOut,
+  MapPin,
+  MessageCircle,
+  MessageSquare,
+  Newspaper,
+  Pickaxe,
+  RefreshCw,
+  Scroll,
+  ScrollText,
+  Settings,
+  Shield,
+  ShieldCheck,
+  ShoppingBag,
+  Skull,
+  Sparkles,
+  Star,
+  Sword,
+  SwordIcon,
+  Target,
+  Building2 as Tower,
+  TreePine,
+  Trophy,
+  Users,
+  Wand2,
+  BookOpen as Wiki,
+} from 'lucide-react';
+import logoImg from '../../../assets/logo/logo.png';
+
 interface MenuItem {
   id: string;
   title: string;
@@ -19,53 +69,6 @@ interface SubMenuItem {
   icon: React.ComponentType<any>;
   path: string;
 }
-import {
-  Home,
-  Sword,
-  Shield,
-  ShoppingBag,
-  Pickaxe,
-  TreePine,
-  Hammer,
-  Flame,
-  Trophy,
-  Settings,
-  ChevronDown,
-  Coins,
-  Star,
-  Heart,
-  Handshake,
-  Target,
-  MapPin,
-  Gem,
-  Crown,
-  Scroll,
-  BookOpen,
-  Compass,
-  Skull,
-  Crosshair,
-  Fish,
-  ChefHat,
-  Anvil,
-  Wand2,
-  ScrollText,
-  LogOut,
-  Leaf,
-  Sparkles,
-  SwordIcon,
-  ShieldCheck,
-  Eye,
-  ArrowRight,
-  MessageSquare,
-  BookOpen as Wiki,
-  MessageCircle,
-  FileText,
-  Users,
-  Newspaper,
-  RefreshCw,
-  Building2 as Tower,
-  Activity,
-} from 'lucide-react';
 
 const SideMenu = () => {
   const navigate = useNavigate();
@@ -399,19 +402,28 @@ const SideMenu = () => {
   // Menu is now always visible, no toggle needed
 
   const handleItemClick = (item: MenuItem) => {
+    console.log('Menu item clicked:', item);
     if (item.hasSubmenu) {
       toggleCategory(item.id);
     } else {
       setActiveItem(item.id);
       if (item.path) {
+        console.log('Navigating to:', item.path);
         navigate(item.path);
       }
     }
   };
 
   const handleSubmenuClick = (subItem: SubMenuItem) => {
+    console.log('Submenu item clicked:', subItem);
     setActiveItem(subItem.id);
-    navigate(`/${subItem.id}`);
+    if (subItem.path) {
+      console.log('Navigating to submenu path:', subItem.path);
+      navigate(subItem.path);
+    } else {
+      console.log('Navigating to submenu id:', `/${subItem.id}`);
+      navigate(`/${subItem.id}`);
+    }
   };
 
   return (
@@ -422,7 +434,7 @@ const SideMenu = () => {
         <div className={styles.header}>
           <div className={styles.logo}>
             <img
-              src='/logo/logo.png'
+              src={logoImg}
               alt='Skill Issue Chronicles'
               className={styles.logoImage}
             />

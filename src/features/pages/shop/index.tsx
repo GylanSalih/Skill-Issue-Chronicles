@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { ShoppingCart, DollarSign, Package, Coins } from 'lucide-react';
 import styles from './Shop.module.scss';
 
+// Import images
+import shopVendorImg from '@assets/img/characters/shopVendor.png';
+
 interface ShopItem {
   id: string;
   name: string;
@@ -177,7 +180,7 @@ const Shop = () => {
           <h2>Händler</h2>
           <div className={styles.vendorContainer}>
             <img
-              src='/assets/img/characters/shopVendor.png'
+              src={shopVendorImg}
               alt='Shop Vendor'
               className={styles.vendorImage}
               onError={e => {

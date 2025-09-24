@@ -87,7 +87,7 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
   const loadCharacters = () => {
     try {
       const savedCharacters = localStorage.getItem('idleGameCharacters');
-      if (savedCharacters) {
+      if (savedCharacters && savedCharacters.trim() !== '') {
         const parsedCharacters = JSON.parse(savedCharacters);
         setCharacters(parsedCharacters);
         console.log('GameContext - Loaded characters:', parsedCharacters);
@@ -102,6 +102,8 @@ export const GameProvider: React.FC<GameProviderProps> = ({ children }) => {
       }
     } catch (error) {
       console.error('Error loading characters:', error);
+      // Clear corrupted data
+      localStorage.removeItem('idleGameCharacters');
     }
   };
 

@@ -2,6 +2,9 @@ import React from 'react';
 import { Newspaper } from 'lucide-react';
 import styles from './News.module.scss';
 
+// Import images
+import newsSceneryImg from '@assets/img/scenery/halloffame_scenery.png';
+
 const News: React.FC = () => {
   return (
     <div className={styles.news}>
@@ -19,7 +22,7 @@ const News: React.FC = () => {
       <div className={styles.scenerySection}>
         <div className={styles.sceneryImage}>
           <img
-            src='/assets/img/scenery/news_scenery.png'
+            src={newsSceneryImg}
             alt='News and Updates'
             className={styles.sceneryImg}
           />

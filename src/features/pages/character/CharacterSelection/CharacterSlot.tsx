@@ -3,6 +3,18 @@ import { Character } from '../../../../core/contexts/GameContext';
 import { formatDate } from '../../../../core/services/dateUtils';
 import styles from './CharacterSlot.module.scss';
 
+// Import avatar images
+import warriorImg from '@assets/img/avatars/warrior.png';
+import magierImg from '@assets/img/avatars/magier.png';
+import schurke2Img from '@assets/img/avatars/schurke2.png';
+import elfeImg from '@assets/img/avatars/elfe.png';
+import heilerinImg from '@assets/img/avatars/heilerin.png';
+import berserkImg from '@assets/img/avatars/berserk.png';
+import paladinImg from '@assets/img/avatars/paladin.png';
+import assassine2Img from '@assets/img/avatars/assassine2.png';
+import tuefftlerImg from '@assets/img/avatars/tuefftler.png';
+import elementaristImg from '@assets/img/avatars/elementarist.png';
+
 interface CharacterSlotProps {
   slotId: number;
   character: Character | null;
@@ -20,18 +32,18 @@ const CharacterSlot: React.FC<CharacterSlotProps> = ({
 }) => {
   const getClassIcon = (characterClass: string) => {
     const iconMap: Record<string, string> = {
-      warrior: '/img/avatars/warrior.png',
-      mage: '/img/avatars/magier.png',
-      rogue: '/img/avatars/schurke2.png',
-      archer: '/img/avatars/elfe.png',
-      healer: '/img/avatars/heilerin.png',
-      berserker: '/img/avatars/berserk.png',
-      paladin: '/img/avatars/paladin.png',
-      assassin: '/img/avatars/assassine2.png',
-      tinkerer: '/img/avatars/tuefftler.png',
-      elementalist: '/img/avatars/elementarist.png',
+      warrior: warriorImg,
+      mage: magierImg,
+      rogue: schurke2Img,
+      archer: elfeImg,
+      healer: heilerinImg,
+      berserker: berserkImg,
+      paladin: paladinImg,
+      assassin: assassine2Img,
+      tinkerer: tuefftlerImg,
+      elementalist: elementaristImg,
     };
-    return iconMap[characterClass] || '/img/avatars/warrior.png';
+    return iconMap[characterClass] || warriorImg;
   };
 
   const getClassDisplayName = (characterClass: string) => {
@@ -68,7 +80,7 @@ const CharacterSlot: React.FC<CharacterSlotProps> = ({
                 alt={character.name}
                 className={styles.characterImage}
                 onError={e => {
-                  e.currentTarget.src = '/img/avatars/warrior.png';
+                  e.currentTarget.src = warriorImg;
                 }}
               />
             </div>

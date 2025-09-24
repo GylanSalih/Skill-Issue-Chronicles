@@ -1,3 +1,9 @@
+// Import boss avatar images
+import elfeImg from '../../assets/img/avatars/elfe.png';
+import assassine2Img from '../../assets/img/avatars/assassine2.png';
+import elementaristImg from '../../assets/img/avatars/elementarist.png';
+import berserkImg from '../../assets/img/avatars/berserk.png';
+
 export interface Boss {
   id: string;
   name: string;
@@ -44,7 +50,7 @@ export const bossTowerFloors: TowerFloor[] = [
       maxHealth: 500,
       attack: 60,
       defense: 30,
-      avatar: '/img/avatars/elfe.png',
+      avatar: elfeImg,
       type: 'Goblin',
       rarity: 'common',
       rewards: {
@@ -72,7 +78,7 @@ export const bossTowerFloors: TowerFloor[] = [
       maxHealth: 800,
       attack: 90,
       defense: 50,
-      avatar: '/img/avatars/assassine2.png',
+      avatar: assassine2Img,
       type: 'Orc',
       rarity: 'uncommon',
       rewards: {
@@ -100,7 +106,7 @@ export const bossTowerFloors: TowerFloor[] = [
       maxHealth: 600,
       attack: 120,
       defense: 40,
-      avatar: '/img/avatars/elementarist.png',
+      avatar: elementaristImg,
       type: 'Mage',
       rarity: 'rare',
       rewards: {
@@ -133,7 +139,7 @@ export const bossTowerFloors: TowerFloor[] = [
       maxHealth: 1200,
       attack: 150,
       defense: 80,
-      avatar: '/img/avatars/berserk.png',
+      avatar: berserkImg,
       type: 'Dragon',
       rarity: 'epic',
       rewards: {
@@ -166,7 +172,7 @@ export const bossTowerFloors: TowerFloor[] = [
       maxHealth: 1500,
       attack: 180,
       defense: 100,
-      avatar: '/img/avatars/assassine2.png',
+      avatar: assassine2Img,
       type: 'Demon',
       rarity: 'legendary',
       rewards: {
@@ -200,7 +206,7 @@ export const bossTowerFloors: TowerFloor[] = [
       maxHealth: 2000,
       attack: 250,
       defense: 150,
-      avatar: '/img/avatars/elementarist.png',
+      avatar: elementaristImg,
       type: 'Dragon',
       rarity: 'legendary',
       rewards: {

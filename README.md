@@ -17,9 +17,9 @@
 
 ### ⚠️ Attention Developer
 
-- **Interested in this project?** Explore the codebase and docs.  
-- **Questions?** Reach out privately.  
-- **Support Needed!** Contributions for this Idle RPG 🎮✨  
+- **Interested in this project?** Explore the codebase and docs.
+- **Questions?** Reach out privately.
+- **Support Needed!** Contributions for this Idle RPG 🎮✨
 
 ### 👥 We're Looking For
 
@@ -33,9 +33,9 @@
 
 ### 📚 Developer Documentation
 
-- **[📖 Development Guide](docs/showcase/DEVELOPMENT_GUIDE.md)** – Complete setup and development workflow  
-- **[📋 Changelog](docs/showcase/CHANGELOG.md)** – Version history and updates  
-- **[🗺️ Roadmap](docs/showcase/ROADMAP.md)** – Future features and development goals  
+- **[📖 Development Guide](docs/showcase/DEVELOPMENT_GUIDE.md)** – Complete setup and development workflow
+- **[📋 Changelog](docs/showcase/CHANGELOG.md)** – Version history and updates
+- **[🗺️ Roadmap](docs/showcase/ROADMAP.md)** – Future features and development goals
 
 #
 
@@ -269,6 +269,7 @@ This project is currently in **Alpha v0.0.1**. Features may be incomplete or sub
 **Status**: Alpha Development | **Version**: 0.0.1 | **Team Member**: 1
 
 <!-- Badges Shields -->
+
 [contributors-shield]: https://custom-icon-badges.demolab.com/github/contributors/GylanSalih/Skill-Issue-Chronicles?color=FF0000&logo=group&label=Contributors&logoColor=white&style=for-the-badge&labelColor=000000
 [forks-shield]: https://custom-icon-badges.demolab.com/github/forks/GylanSalih/Skill-Issue-Chronicles?color=FF0000&logo=repo-forked&label=Forks&logoColor=white&style=for-the-badge&labelColor=000000
 [stars-shield]: https://custom-icon-badges.demolab.com/github/stars/GylanSalih/Skill-Issue-Chronicles?color=FF0000&label=Stars&style=for-the-badge&logo=star&logoColor=white&labelColor=000000
@@ -279,6 +280,7 @@ This project is currently in **Alpha v0.0.1**. Features may be incomplete or sub
 [status-shield]: https://img.shields.io/badge/Status-Alpha%20Development-FF0000?style=for-the-badge&logoColor=white&labelColor=000000
 
 <!-- Badges Links -->
+
 [contributors-url]: https://github.com/GylanSalih/Skill-Issue-Chronicles/graphs/contributors
 [forks-url]: https://github.com/GylanSalih/Skill-Issue-Chronicles/network/members
 [stars-url]: https://github.com/GylanSalih/Skill-Issue-Chronicles/stargazers

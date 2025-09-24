@@ -27,6 +27,11 @@ import {
 import { useNavigate } from 'react-router-dom';
 import styles from './Dashboard.module.scss';
 
+// Import images
+import halloffame2Img from '@assets/img/scenery/halloffame2.png';
+import dungeonImg from '@assets/img/scenery/dungeon.png';
+import dungeon2Img from '@assets/img/scenery/dungeon2.png';
+
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -34,17 +39,17 @@ const Dashboard: React.FC = () => {
   // Image slider data
   const sliderImages = [
     {
-      src: '/img/scenery/halloffame2.png',
+      src: halloffame2Img,
       title: 'Hall of Fame',
       description: 'See the greatest warriors of our realm',
     },
     {
-      src: '/img/scenery/dungeon.png',
+      src: dungeonImg,
       title: 'Dark Dungeons',
       description: 'Explore dangerous underground realms',
     },
     {
-      src: '/img/scenery/dungeon2.png',
+      src: dungeon2Img,
       title: 'Forest Adventures',
       description: 'Gather resources in mystical forests',
     },

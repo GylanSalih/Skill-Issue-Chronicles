@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 // Mapping von Pfaden zu Menu-IDs
@@ -94,27 +94,39 @@ export const useRoutePersistence = () => {
     // Setze aktiven Menüpunkt
     setActiveItem(menuId);
 
-    // Erweitere die entsprechende Kategorie
+    // Erweitere die entsprechende Kategorie und speichere in localStorage
     if (categoryId && categoryId !== menuId) {
-      setExpandedCategories(prev => ({
-        ...prev,
-        [categoryId]: true,
-      }));
+      setExpandedCategories(prev => {
+        const newExpanded = {
+          ...prev,
+          [categoryId]: true,
+        };
+
+        // Speichere in localStorage mit den neuen expandedCategories
+        const routeData = {
+          activeItem: menuId,
+          expandedCategories: newExpanded,
+          path: currentPath,
+          timestamp: Date.now(),
+        };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(routeData));
+
+        return newExpanded;
+      });
+    } else {
+      // Speichere in localStorage ohne Kategorie-Änderung
+      setExpandedCategories(prev => {
+        const routeData = {
+          activeItem: menuId,
+          expandedCategories: prev,
+          path: currentPath,
+          timestamp: Date.now(),
+        };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(routeData));
+        return prev;
+      });
     }
-
-    // Speichere in localStorage
-    const routeData = {
-      activeItem: menuId,
-      expandedCategories: {
-        ...expandedCategories,
-        ...(categoryId && categoryId !== menuId ? { [categoryId]: true } : {}),
-      },
-      path: currentPath,
-      timestamp: Date.now(),
-    };
-
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(routeData));
-  }, [location.pathname, expandedCategories]);
+  }, [location.pathname]);
 
   // Manuelle Funktionen für SideMenu
   const setActiveItemManually = (itemId: string) => {

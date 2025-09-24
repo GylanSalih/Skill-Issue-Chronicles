@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { Heart, Star, Zap, Shield, Sword, Eye, Info } from 'lucide-react';
 import styles from './MyPets.module.scss';
 
+// Import images
+import dogImg from '@assets/img/pets/dog.jpg';
+import halloffameSceneryImg from '@assets/img/scenery/halloffame_scenery.png';
+import dungeonImg from '@assets/img/scenery/dungeon.png';
+
 interface Pet {
   id: number;
   name: string;
@@ -42,7 +47,7 @@ const MyPets = () => {
       description:
         'Ein legendärer Drache aus den Tiefen des Kosmos. Seine Macht ist unermesslich.',
       abilities: ['Sternenexplosion', 'Zeitverzerrung', 'Kosmische Heilung'],
-      image: '/assets/img/pets/dog.jpg',
+      image: dogImg,
       level: 50,
       experience: 2500,
       maxExperience: 5000,
@@ -287,11 +292,11 @@ const MyPets = () => {
       <div className={styles.scenerySection}>
         <div className={styles.sceneryImage}>
           <img
-            src='/assets/img/scenery/halloffame_scenery.png'
+            src={halloffameSceneryImg}
             alt='Pet Sanctuary'
             className={styles.sceneryImg}
             onError={e => {
-              e.currentTarget.src = '/assets/img/scenery/dungeon.png';
+              e.currentTarget.src = dungeonImg;
             }}
           />
         </div>

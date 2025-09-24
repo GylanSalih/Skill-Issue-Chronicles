@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import {
-  useCharacterStats,
-  useCharacter,
   Character,
+  useCharacter,
+  useCharacterStats,
 } from '../../../../core/contexts/GameContext';
 import { SaveManager } from '../../../../core/services/saveManager';
-import CharacterCreator from '../components/CharacterCreator';
 import CharacterSlot from '../CharacterSelection/CharacterSlot';
+import CharacterCreator from '../components/CharacterCreator';
 import styles from './CharacterCreation.module.scss';
 
 const CharacterCreation = () => {
@@ -39,11 +39,13 @@ const CharacterCreation = () => {
     const savedCharacters = localStorage.getItem('idleGameCharacters');
     let charactersFromOldFormat: Record<number, Character> = {};
 
-    if (savedCharacters) {
+    if (savedCharacters && savedCharacters.trim() !== '') {
       try {
         charactersFromOldFormat = JSON.parse(savedCharacters);
       } catch (error) {
         console.error('Error parsing old character format:', error);
+        // Clear corrupted data
+        localStorage.removeItem('idleGameCharacters');
       }
     }
 

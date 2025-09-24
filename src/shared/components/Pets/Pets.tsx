@@ -16,6 +16,9 @@ import {
 } from 'lucide-react';
 import styles from './Pets.module.scss';
 
+// Import pet images
+import dogImg from '../../../assets/img/pets/dog.jpg';
+
 const Pets = () => {
   const [selectedPet, setSelectedPet] = useState(null);
   const [collapsedRanks, setCollapsedRanks] = useState({});
@@ -37,7 +40,7 @@ const Pets = () => {
       description:
         'Ein legendärer Drache aus den Tiefen des Kosmos. Seine Macht ist unermesslich.',
       abilities: ['Sternenexplosion', 'Zeitverzerrung', 'Kosmische Heilung'],
-      image: '/assets/img/pets/dog.jpg',
+      image: dogImg,
     },
     {
       id: 2,

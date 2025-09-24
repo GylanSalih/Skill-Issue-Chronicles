@@ -7,6 +7,10 @@ import Tooltip from '../ui/tooltip';
 import WoodTooltip from './WoodTooltip';
 import styles from './WoodcuttingGrid.module.scss';
 
+// Import images
+import woodSceneryImg from '../../../assets/img/scenery/wood_scenery.png';
+import wood1Img from '../../../assets/img/Resources/Wood/NormalWood.png';
+
 const WoodcuttingGrid: React.FC = () => {
   const {
     woodTypes,
@@ -108,7 +112,7 @@ const WoodcuttingGrid: React.FC = () => {
       <div className={styles.scenerySection}>
         <div className={styles.sceneryImage}>
           <img
-            src='/assets/img/scenery/wood_scenery.png'
+            src={woodSceneryImg}
             alt='Mystical Forest with Elves'
             className={styles.sceneryImg}
           />
@@ -151,7 +155,7 @@ const WoodcuttingGrid: React.FC = () => {
                   <img
                     src={
                       woodTypes.find(w => w.id === activeSession.woodTypeId)
-                        ?.image || '/assets/img/Resources/Wood/wood1.png'
+                        ?.image || wood1Img
                     }
                     alt={
                       woodTypes.find(w => w.id === activeSession.woodTypeId)

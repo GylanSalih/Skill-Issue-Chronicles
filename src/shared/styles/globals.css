@@ -16,7 +16,7 @@
 body {
   font-family: 'Outfit', sans-serif;
   background-color: #000000;
-  background-image: url('/assets/img/cross.svg'); /* Pfad anpassen! */
+  background-image: url('../assets/img/cross.svg');
   background-repeat: repeat; /* wiederhole das Bild */
   background-position: 0 0; /* Startpunkt links oben */
   background-size: 50px 50px; /* Größe des Pokeballs, nach Wunsch anpassen */
