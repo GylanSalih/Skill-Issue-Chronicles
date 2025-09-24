@@ -1,19 +1,17 @@
 'use client';
 
-import React, { useState } from 'react';
 import {
-  Heart,
-  Star,
-  Zap,
-  Shield,
-  Sword,
-  Activity,
-  Award,
-  Eye,
   ChevronDown,
   ChevronUp,
+  Eye,
+  Heart,
   Info,
+  Shield,
+  Star,
+  Sword,
+  Zap,
 } from 'lucide-react';
+import { useState } from 'react';
 import styles from './Pets.module.scss';
 
 // Import pet images
@@ -56,7 +54,7 @@ const Pets = () => {
       description:
         'Ein unsterblicher Phönix der aus der Asche der Zeit entstanden ist.',
       abilities: ['Ewige Flamme', 'Wiedergeburt', 'Feuersturm'],
-      image: '/assets/pets/eternal-phoenix.png',
+      image: dogImg,
     },
 
     // SSS Rang
@@ -73,7 +71,7 @@ const Pets = () => {
       rarity: 'Epic',
       description: 'Eine mysteriöse Kreatur aus den Schatten der Unterwelt.',
       abilities: ['Schattenschlag', 'Unsichtbarkeit', 'Dunkle Magie'],
-      image: '/assets/pets/shadow-beast.png',
+      image: dogImg,
     },
     {
       id: 4,
@@ -88,7 +86,7 @@ const Pets = () => {
       rarity: 'Epic',
       description: 'Ein schneller Wolf mit der Macht des Donners.',
       abilities: ['Blitzschlag', 'Geschwindigkeitsschub', 'Donnerschrei'],
-      image: '/assets/pets/thunder-wolf.png',
+      image: dogImg,
     },
     {
       id: 5,
@@ -103,7 +101,7 @@ const Pets = () => {
       rarity: 'Epic',
       description: 'Ein majestätischer Drache mit kristalliner Haut.',
       abilities: ['Kristallspitzen', 'Heilkristall', 'Prismaschild'],
-      image: '/assets/pets/crystal-dragon.png',
+      image: dogImg,
     },
 
     // SS Rang
@@ -120,7 +118,7 @@ const Pets = () => {
       rarity: 'Rare',
       description: 'Ein wilder Tiger mit brennenden Streifen.',
       abilities: ['Feuerkrallen', 'Sprungattacke', 'Brandwunde'],
-      image: '/assets/pets/flame-tiger.png',
+      image: dogImg,
     },
     {
       id: 7,
@@ -135,7 +133,7 @@ const Pets = () => {
       rarity: 'Rare',
       description: 'Der Herrscher der eisigen Wildnis.',
       abilities: ['Eisschlag', 'Frostpanzer', 'Kälteschock'],
-      image: '/assets/pets/ice-bear.png',
+      image: dogImg,
     },
     {
       id: 8,
@@ -150,7 +148,7 @@ const Pets = () => {
       rarity: 'Rare',
       description: 'Ein eleganter Falke der die Winde beherrscht.',
       abilities: ['Windstoß', 'Sturzflug', 'Tornado'],
-      image: '/assets/pets/wind-falcon.png',
+      image: dogImg,
     },
     {
       id: 9,
@@ -165,7 +163,7 @@ const Pets = () => {
       rarity: 'Rare',
       description: 'Ein mächtiger Golem aus purem Stein.',
       abilities: ['Felsbrocken', 'Erdbeben', 'Steinpanzer'],
-      image: '/assets/pets/earth-golem.png',
+      image: dogImg,
     },
 
     // S Rang
@@ -182,7 +180,7 @@ const Pets = () => {
       rarity: 'Uncommon',
       description: 'Ein friedlicher Geist des Waldes.',
       abilities: ['Naturheilung', 'Rankengriff', 'Blätterschild'],
-      image: '/assets/pets/forest-spirit.png',
+      image: dogImg,
     },
     {
       id: 11,
@@ -197,7 +195,7 @@ const Pets = () => {
       rarity: 'Uncommon',
       description: 'Eine geschmeidige Schlange der Gewässer.',
       abilities: ['Wasserstrahl', 'Giftzähne', 'Flutattacke'],
-      image: '/assets/pets/water-snake.png',
+      image: dogImg,
     },
     {
       id: 12,
@@ -212,7 +210,7 @@ const Pets = () => {
       rarity: 'Uncommon',
       description: 'Ein treuer Kampfgefährte.',
       abilities: ['Bissattacke', 'Sprung', 'Kampfgeist'],
-      image: '/assets/pets/battle-dog.png',
+      image: dogImg,
     },
 
     // A Rang
@@ -229,7 +227,7 @@ const Pets = () => {
       rarity: 'Common',
       description: 'Eine flinke kleine Maus.',
       abilities: ['Schnellbiss', 'Ausweichen', 'Kratzer'],
-      image: '/assets/pets/field-mouse.png',
+      image: dogImg,
     },
     {
       id: 14,
@@ -244,7 +242,7 @@ const Pets = () => {
       rarity: 'Common',
       description: 'Eine harmlose Gartenschlange.',
       abilities: ['Wickeln', 'Giftspritzer', 'Tarnung'],
-      image: '/assets/pets/garden-snake.png',
+      image: dogImg,
     },
 
     // B Rang
@@ -261,7 +259,7 @@ const Pets = () => {
       rarity: 'Common',
       description: 'Ein gewöhnlicher Hauskater.',
       abilities: ['Krallen', 'Sprung', 'Miauen'],
-      image: '/assets/pets/house-cat.png',
+      image: dogImg,
     },
     {
       id: 16,
@@ -276,7 +274,7 @@ const Pets = () => {
       rarity: 'Common',
       description: 'Eine alltägliche Stadttaube.',
       abilities: ['Flattern', 'Picken', 'Flucht'],
-      image: '/assets/pets/city-pigeon.png',
+      image: dogImg,
     },
 
     // C Rang
@@ -293,7 +291,7 @@ const Pets = () => {
       rarity: 'Common',
       description: 'Ein einfacher Goldfisch.',
       abilities: ['Blubbern', 'Schwimmen', 'Glitzern'],
-      image: '/assets/pets/goldfish.png',
+      image: dogImg,
     },
     {
       id: 18,
@@ -308,7 +306,7 @@ const Pets = () => {
       rarity: 'Common',
       description: 'Ein niedlicher Hamster.',
       abilities: ['Knabbern', 'Rennen', 'Verstecken'],
-      image: '/assets/pets/hamster.png',
+      image: dogImg,
     },
 
     // D Rang
@@ -325,7 +323,7 @@ const Pets = () => {
       rarity: 'Common',
       description: 'Ein gewöhnlicher Regenwurm.',
       abilities: ['Graben', 'Schleim', 'Verstecken'],
-      image: '/assets/pets/earthworm.png',
+      image: dogImg,
     },
     {
       id: 20,
@@ -340,7 +338,7 @@ const Pets = () => {
       rarity: 'Common',
       description: 'Eine langsame aber zähe Schnecke.',
       abilities: ['Schleimspurt', 'Panzer', 'Zeitlupe'],
-      image: '/assets/pets/snail.png',
+      image: dogImg,
     },
 
     // F Rang
@@ -357,7 +355,7 @@ const Pets = () => {
       rarity: 'Common',
       description: 'Ein gewöhnlicher Käfer.',
       abilities: ['Krabbeln', 'Kneifen', 'Surren'],
-      image: '/assets/pets/beetle.png',
+      image: dogImg,
     },
     {
       id: 22,
@@ -372,7 +370,7 @@ const Pets = () => {
       rarity: 'Common',
       description: 'Eine fleißige Arbeiterameise.',
       abilities: ['Beißen', 'Teamwork', 'Tragen'],
-      image: '/assets/pets/ant.png',
+      image: dogImg,
     },
   ];
 

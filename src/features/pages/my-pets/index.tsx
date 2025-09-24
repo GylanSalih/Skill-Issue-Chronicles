@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { Heart, Star, Zap, Shield, Sword, Eye, Info } from 'lucide-react';
+import { Eye, Heart, Info, Shield, Star, Sword, Zap } from 'lucide-react';
+import { useState } from 'react';
 import styles from './MyPets.module.scss';
 
 // Import images
 import dogImg from '@assets/img/pets/dog.jpg';
-import halloffameSceneryImg from '@assets/img/scenery/halloffame_scenery.png';
 import dungeonImg from '@assets/img/scenery/dungeon.png';
+import halloffameSceneryImg from '@assets/img/scenery/halloffame_scenery.png';
 
 interface Pet {
   id: number;
@@ -66,7 +66,7 @@ const MyPets = () => {
       description:
         'Ein unsterblicher Phönix der aus der Asche der Zeit entstanden ist.',
       abilities: ['Ewige Flamme', 'Wiedergeburt', 'Feuersturm'],
-      image: '/assets/pets/eternal-phoenix.png',
+      image: dogImg,
       level: 45,
       experience: 1800,
       maxExperience: 4000,
@@ -85,7 +85,7 @@ const MyPets = () => {
       description:
         'Der Herrscher der Schattenwelt, geborener aus ewiger Dunkelheit.',
       abilities: ['Schattenherrschaft', 'Dunkle Macht', 'Schattenwand'],
-      image: '/assets/pets/shadow-lord.png',
+      image: dogImg,
       level: 48,
       experience: 3200,
       maxExperience: 4500,
@@ -104,7 +104,7 @@ const MyPets = () => {
       description:
         'Ein göttliches Wesen aus purem Eis, das die Kälte beherrscht.',
       abilities: ['Ewiger Frost', 'Eispanzer', 'Kältewelle'],
-      image: '/assets/pets/ice-god.png',
+      image: dogImg,
       level: 42,
       experience: 1500,
       maxExperience: 3500,
@@ -124,7 +124,7 @@ const MyPets = () => {
       rarity: 'Epic',
       description: 'Eine mysteriöse Kreatur aus den Schatten der Unterwelt.',
       abilities: ['Schattenschlag', 'Unsichtbarkeit', 'Dunkle Magie'],
-      image: '/assets/pets/shadow-beast.png',
+      image: dogImg,
       level: 35,
       experience: 800,
       maxExperience: 2000,
@@ -142,7 +142,7 @@ const MyPets = () => {
       rarity: 'Epic',
       description: 'Ein schneller Wolf mit der Macht des Donners.',
       abilities: ['Blitzschlag', 'Geschwindigkeitsschub', 'Donnerschrei'],
-      image: '/assets/pets/thunder-wolf.png',
+      image: dogImg,
       level: 38,
       experience: 1200,
       maxExperience: 2500,
@@ -162,7 +162,7 @@ const MyPets = () => {
       rarity: 'Rare',
       description: 'Ein wilder Tiger mit brennenden Streifen.',
       abilities: ['Feuerkrallen', 'Sprungattacke', 'Brandwunde'],
-      image: '/assets/pets/flame-tiger.png',
+      image: dogImg,
       level: 28,
       experience: 600,
       maxExperience: 1500,
@@ -180,7 +180,7 @@ const MyPets = () => {
       rarity: 'Rare',
       description: 'Der Herrscher der eisigen Wildnis.',
       abilities: ['Eisschlag', 'Frostpanzer', 'Kälteschock'],
-      image: '/assets/pets/ice-bear.png',
+      image: dogImg,
       level: 32,
       experience: 900,
       maxExperience: 1800,
@@ -200,7 +200,7 @@ const MyPets = () => {
       rarity: 'Uncommon',
       description: 'Ein friedlicher Geist des Waldes.',
       abilities: ['Naturheilung', 'Rankengriff', 'Blätterschild'],
-      image: '/assets/pets/forest-spirit.png',
+      image: dogImg,
       level: 22,
       experience: 400,
       maxExperience: 1000,
@@ -218,7 +218,7 @@ const MyPets = () => {
       rarity: 'Uncommon',
       description: 'Eine geschmeidige Schlange der Gewässer.',
       abilities: ['Wasserstrahl', 'Giftzähne', 'Flutattacke'],
-      image: '/assets/pets/water-snake.png',
+      image: dogImg,
       level: 25,
       experience: 500,
       maxExperience: 1200,
@@ -238,7 +238,7 @@ const MyPets = () => {
       rarity: 'Common',
       description: 'Ein treuer Kampfgefährte.',
       abilities: ['Bissattacke', 'Sprung', 'Kampfgeist'],
-      image: '/assets/pets/battle-dog.png',
+      image: dogImg,
       level: 18,
       experience: 300,
       maxExperience: 800,
@@ -256,7 +256,7 @@ const MyPets = () => {
       rarity: 'Common',
       description: 'Eine flinke kleine Maus.',
       abilities: ['Schnellbiss', 'Ausweichen', 'Kratzer'],
-      image: '/assets/pets/field-mouse.png',
+      image: dogImg,
       level: 15,
       experience: 200,
       maxExperience: 600,
