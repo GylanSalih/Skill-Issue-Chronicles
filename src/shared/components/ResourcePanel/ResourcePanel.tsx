@@ -293,7 +293,12 @@ const ResourcePanel = ({
       >
         {/* Header */}
         <div className={styles.header}>
-          <div className={styles.logo}>
+          <div
+            className={styles.logo}
+            onClick={() => navigate('/')}
+            style={{ cursor: 'pointer' }}
+            title='Go to Home'
+          >
             <Package className={styles.logoIcon} />
           </div>
           <p className={styles.version}>Resources</p>

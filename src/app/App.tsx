@@ -4,6 +4,9 @@ import { GameProvider } from '../core/contexts/GameContext';
 import { SaveManager } from '../core/services/saveManager';
 // import { ActivityManagerProvider } from '../core/contexts/ActivityManager'
 import {
+  Achievements,
+  Alchemy,
+  AuctionHouse,
   Bank,
   BossTower,
   Character,
@@ -11,19 +14,34 @@ import {
   CharacterSelection,
   Cooking,
   Dashboard,
+  Divination,
   Dungeon,
+  Enchanting,
+  Events,
+  Firemaking,
   Fishing,
+  Fletching,
+  Foraging,
   GameRules,
+  GuildBank,
+  Guilds,
+  Herblore,
   Home,
+  Hunting,
   Login,
   Mining,
   MyPets,
   News,
+  Quests,
+  Runecrafting,
   Settings,
   Shop,
   Smithing,
+  Spells,
   Statistics,
+  TradingPost,
   Woodcutting,
+  WorldMap,
 } from '../features/pages';
 import { GameHeader, ResourcePanel, SideMenu } from '../shared/components';
 import styles from './App.module.scss';
@@ -133,13 +151,47 @@ function App() {
                           path='/character/badges'
                           element={<Character />}
                         />
+                        {/* Skills */}
                         <Route path='/woodcutting' element={<Woodcutting />} />
                         <Route path='/fishing' element={<Fishing />} />
                         <Route path='/cooking' element={<Cooking />} />
                         <Route path='/mining' element={<Mining />} />
+                        <Route path='/hunting' element={<Hunting />} />
+                        <Route path='/foraging' element={<Foraging />} />
                         <Route path='/smithing' element={<Smithing />} />
+                        <Route path='/firemaking' element={<Firemaking />} />
+                        <Route path='/fletching' element={<Fletching />} />
+                        <Route path='/herblore' element={<Herblore />} />
+                        <Route
+                          path='/runecrafting'
+                          element={<Runecrafting />}
+                        />
+                        <Route path='/spells' element={<Spells />} />
+                        <Route path='/enchanting' element={<Enchanting />} />
+                        <Route path='/alchemy' element={<Alchemy />} />
+                        <Route path='/divination' element={<Divination />} />
+
+                        {/* Economy */}
                         <Route path='/bank' element={<Bank />} />
                         <Route path='/shop' element={<Shop />} />
+                        <Route
+                          path='/auction-house'
+                          element={<AuctionHouse />}
+                        />
+                        <Route path='/trading-post' element={<TradingPost />} />
+                        <Route path='/guild-bank' element={<GuildBank />} />
+
+                        {/* World */}
+                        <Route path='/world-map' element={<WorldMap />} />
+                        <Route path='/quests' element={<Quests />} />
+                        <Route path='/events' element={<Events />} />
+                        <Route path='/guilds' element={<Guilds />} />
+                        <Route
+                          path='/achievements'
+                          element={<Achievements />}
+                        />
+
+                        {/* Other */}
                         <Route path='/statistics' element={<Statistics />} />
                         <Route path='/settings' element={<Settings />} />
                         <Route path='/my-pets' element={<MyPets />} />

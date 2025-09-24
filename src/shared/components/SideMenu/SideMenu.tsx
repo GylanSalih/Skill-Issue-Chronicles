@@ -295,13 +295,13 @@ const SideMenu = ({ isCollapsed = false, onToggle }: SideMenuProps) => {
               id: 'auction',
               title: 'Auction House',
               icon: Gem,
-              path: '/auction',
+              path: '/auction-house',
             },
             {
               id: 'trading',
               title: 'Trading Post',
               icon: Handshake,
-              path: '/trading',
+              path: '/trading-post',
             },
             {
               id: 'guild',
@@ -322,7 +322,7 @@ const SideMenu = ({ isCollapsed = false, onToggle }: SideMenuProps) => {
           icon: MapPin,
           hasSubmenu: true,
           submenu: [
-            { id: 'map', title: 'World Map', icon: MapPin, path: '/map' },
+            { id: 'map', title: 'World Map', icon: MapPin, path: '/world-map' },
             { id: 'quests', title: 'Quests', icon: Scroll, path: '/quests' },
             { id: 'events', title: 'Events', icon: Star, path: '/events' },
             { id: 'guilds', title: 'Guilds', icon: Shield, path: '/guilds' },
@@ -449,7 +449,12 @@ const SideMenu = ({ isCollapsed = false, onToggle }: SideMenuProps) => {
       >
         {/* Header with Logo */}
         <div className={styles.header}>
-          <div className={styles.logo}>
+          <div
+            className={styles.logo}
+            onClick={() => navigate('/')}
+            style={{ cursor: 'pointer' }}
+            title='Go to Home'
+          >
             <img
               src={logoImg}
               alt='Skill Issue Chronicles'
