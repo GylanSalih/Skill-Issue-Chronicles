@@ -31,6 +31,9 @@ import styles from './App.module.scss';
 
 function App() {
   const [isResourcePanelVisible, setIsResourcePanelVisible] = useState(true);
+  const [isResourcePanelCollapsed, setIsResourcePanelCollapsed] =
+    useState(false);
+  const [isSideMenuCollapsed, setIsSideMenuCollapsed] = useState(false);
 
   // Clear corrupted localStorage data on app start
   useEffect(() => {
@@ -71,6 +74,14 @@ function App() {
     setIsResourcePanelVisible(!isResourcePanelVisible);
   };
 
+  const toggleResourcePanelCollapse = () => {
+    setIsResourcePanelCollapsed(!isResourcePanelCollapsed);
+  };
+
+  const toggleSideMenu = () => {
+    setIsSideMenuCollapsed(!isSideMenuCollapsed);
+  };
+
   return (
     <GameProvider>
       <div className={styles.app}>
@@ -89,11 +100,20 @@ function App() {
             path='/*'
             element={
               <>
-                <SideMenu />
-                <div className={styles.mainContent}>
+                <SideMenu
+                  isCollapsed={isSideMenuCollapsed}
+                  onToggle={toggleSideMenu}
+                />
+                <div
+                  className={`${styles.mainContent} ${isSideMenuCollapsed ? styles.sideMenuCollapsed : ''} ${isResourcePanelCollapsed ? styles.resourcePanelCollapsed : ''}`}
+                >
                   <GameHeader
                     onToggleResourcePanel={toggleResourcePanel}
                     isResourcePanelVisible={isResourcePanelVisible}
+                    onToggleResourcePanelCollapse={toggleResourcePanelCollapse}
+                    isResourcePanelCollapsed={isResourcePanelCollapsed}
+                    onToggleSideMenu={toggleSideMenu}
+                    isSideMenuCollapsed={isSideMenuCollapsed}
                   />
                   <main className={styles.content}>
                     <div className={styles.pageContent}>
@@ -132,7 +152,12 @@ function App() {
                         {/* <Route path="/activity-demo" element={<ActivityManagerDemo />} /> */}
                       </Routes>
                     </div>
-                    {isResourcePanelVisible && <ResourcePanel />}
+                    {isResourcePanelVisible && (
+                      <ResourcePanel
+                        isCollapsed={isResourcePanelCollapsed}
+                        onToggle={toggleResourcePanelCollapse}
+                      />
+                    )}
                   </main>
                 </div>
               </>

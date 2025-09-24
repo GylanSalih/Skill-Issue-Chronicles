@@ -5,6 +5,7 @@ import { useRoutePersistence } from '../../../core/hooks/useRoutePersistence';
 import styles from './SideMenu.module.scss';
 
 // Import logo images
+import logoImg from '@assets/logo/logo.png';
 import {
   Activity,
   Anvil,
@@ -52,7 +53,6 @@ import {
   Wand2,
   BookOpen as Wiki,
 } from 'lucide-react';
-import logoImg from '../../../assets/logo/logo.png';
 
 interface MenuItem {
   id: string;
@@ -70,7 +70,12 @@ interface SubMenuItem {
   path: string;
 }
 
-const SideMenu = () => {
+interface SideMenuProps {
+  isCollapsed?: boolean;
+  onToggle?: () => void;
+}
+
+const SideMenu = ({ isCollapsed = false, onToggle }: SideMenuProps) => {
   const navigate = useNavigate();
   const { activeItem, expandedCategories, setActiveItem, toggleCategory } =
     useRoutePersistence();
@@ -402,13 +407,23 @@ const SideMenu = () => {
   // Menu is now always visible, no toggle needed
 
   const handleItemClick = (item: MenuItem) => {
-    console.log('Menu item clicked:', item);
+    console.log(
+      'Clicked:',
+      item.id,
+      'hasSubmenu:',
+      item.hasSubmenu,
+      'isCollapsed:',
+      isCollapsed
+    );
+
     if (item.hasSubmenu) {
+      // Always toggle submenu for items with submenus
+      console.log('Toggling category:', item.id);
       toggleCategory(item.id);
     } else {
+      // No submenu, navigate directly
       setActiveItem(item.id);
       if (item.path) {
-        console.log('Navigating to:', item.path);
         navigate(item.path);
       }
     }
@@ -428,8 +443,10 @@ const SideMenu = () => {
 
   return (
     <>
-      {/* Side Menu - Always Visible */}
-      <div className={styles.sideMenu}>
+      {/* Side Menu - Collapsible */}
+      <div
+        className={`${styles.sideMenu} ${isCollapsed ? styles.collapsed : ''}`}
+      >
         {/* Header with Logo */}
         <div className={styles.header}>
           <div className={styles.logo}>
@@ -461,13 +478,16 @@ const SideMenu = () => {
                     <button
                       onClick={() => handleItemClick(item)}
                       className={`${styles.menuButton} ${isActive ? styles.active : ''}`}
+                      title={isCollapsed ? item.title : undefined}
                     >
                       <div className={styles.menuButtonContent}>
                         <IconComponent className={styles.menuIcon} />
-                        <span>{item.title}</span>
+                        <span className={isCollapsed ? styles.hiddenText : ''}>
+                          {item.title}
+                        </span>
                       </div>
 
-                      {item.hasSubmenu && (
+                      {item.hasSubmenu && !isCollapsed && (
                         <ChevronDown
                           className={`${styles.chevronIcon} ${isExpanded ? styles.expanded : ''}`}
                         />
@@ -477,7 +497,7 @@ const SideMenu = () => {
                     {/* Submenu */}
                     {item.hasSubmenu && (
                       <div
-                        className={`${styles.submenu} ${isExpanded ? styles.expanded : ''}`}
+                        className={`${styles.submenu} ${isExpanded ? styles.expanded : ''} ${isCollapsed ? styles.collapsedSubmenu : ''}`}
                       >
                         <div className={styles.submenuContainer}>
                           {item.submenu?.map(subItem => {
@@ -488,12 +508,19 @@ const SideMenu = () => {
                               <button
                                 key={subItem.id}
                                 onClick={() => handleSubmenuClick(subItem)}
-                                className={`${styles.submenuButton} ${isSubActive ? styles.active : ''}`}
+                                className={`${styles.submenuButton} ${isSubActive ? styles.active : ''} ${isCollapsed ? styles.collapsedSubmenuButton : ''}`}
+                                title={subItem.title}
                               >
                                 <SubIconComponent
                                   className={styles.submenuIcon}
                                 />
-                                <span>{subItem.title}</span>
+                                <span
+                                  className={
+                                    isCollapsed ? styles.hiddenText : ''
+                                  }
+                                >
+                                  {subItem.title}
+                                </span>
                               </button>
                             );
                           })}
@@ -508,33 +535,62 @@ const SideMenu = () => {
         </div>
 
         {/* Footer */}
-        <div className={styles.footer}>
+        <div
+          className={`${styles.footer} ${isCollapsed ? styles.collapsedFooter : ''}`}
+        >
           <div className={styles.footerContent}>
-            <div className={styles.activePlayers}>
-              <span className={styles.playerCount}>48,500</span>
-              <span className={styles.playerLabel}>Active Players</span>
-            </div>
-            <div className={styles.footerRight}>
-              <div className={styles.onlineStatus}>
-                <p className={styles.footerText}>Online</p>
-                <span className={styles.statusDot}></span>
-              </div>
+            {!isCollapsed ? (
+              <>
+                <div className={styles.activePlayers}>
+                  <span className={styles.playerCount}>48,500</span>
+                  <span className={styles.playerLabel}>Active Players</span>
+                </div>
+                <div className={styles.footerRight}>
+                  <div className={styles.onlineStatus}>
+                    <p className={styles.footerText}>Online</p>
+                    <span className={styles.statusDot}></span>
+                  </div>
 
-              {/* Logout Button */}
-              <button
-                className={styles.logoutButton}
-                onClick={() => {
-                  // Lösche alle gespeicherten Daten
-                  localStorage.removeItem('idleGameCharacters');
-                  localStorage.removeItem('isLoggedIn');
-                  // Navigiere zur Login-Seite
-                  navigate('/login');
-                }}
-              >
-                <LogOut className={styles.logoutIcon} size={12} />
-                <span>Logout</span>
-              </button>
-            </div>
+                  {/* Logout Button */}
+                  <button
+                    className={styles.logoutButton}
+                    onClick={() => {
+                      // Lösche alle gespeicherten Daten
+                      localStorage.removeItem('idleGameCharacters');
+                      localStorage.removeItem('isLoggedIn');
+                      // Navigiere zur Login-Seite
+                      navigate('/login');
+                    }}
+                  >
+                    <LogOut className={styles.logoutIcon} size={12} />
+                    <span>Logout</span>
+                  </button>
+                </div>
+              </>
+            ) : (
+              // Collapsed footer - only icons
+              <div className={styles.collapsedFooterContent}>
+                <div className={styles.collapsedPlayerInfo}>
+                  <span className={styles.collapsedPlayerCount}>48.5k</span>
+                  <div className={styles.collapsedOnlineStatus}>
+                    <span className={styles.statusDot}></span>
+                  </div>
+                </div>
+
+                {/* Collapsed Logout Button */}
+                <button
+                  className={styles.collapsedLogoutButton}
+                  onClick={() => {
+                    localStorage.removeItem('idleGameCharacters');
+                    localStorage.removeItem('isLoggedIn');
+                    navigate('/login');
+                  }}
+                  title='Logout'
+                >
+                  <LogOut size={14} />
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

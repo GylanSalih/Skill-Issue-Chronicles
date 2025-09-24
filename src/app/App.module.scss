@@ -6,11 +6,34 @@
 
 .mainContent {
   margin-left: 240px;
-  width: calc(100% - 240px);
+  margin-right: 240px; // Space for ResourcePanel
+  width: calc(100% - 480px); // 240px left + 240px right
   height: 100vh;
   display: flex;
   flex-direction: column;
   overflow: hidden; // Verhindert Scrollen des Hauptcontainers
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* When SideMenu is collapsed - only 60px width */
+.mainContent.sideMenuCollapsed {
+  margin-left: 60px;
+  margin-right: 240px; // Keep ResourcePanel space
+  width: calc(100% - 300px); // 60px left + 240px right
+}
+
+/* When ResourcePanel is collapsed - only 60px width */
+.mainContent.resourcePanelCollapsed {
+  margin-left: 240px;
+  margin-right: 60px; // Collapsed ResourcePanel space
+  width: calc(100% - 300px); // 240px left + 60px right
+}
+
+/* When both are collapsed */
+.mainContent.sideMenuCollapsed.resourcePanelCollapsed {
+  margin-left: 60px;
+  margin-right: 60px; // Both collapsed
+  width: calc(100% - 120px); // 60px left + 60px right
 }
 
 .content {

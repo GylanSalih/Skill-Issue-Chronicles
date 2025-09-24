@@ -15,7 +15,7 @@ import { useState } from 'react';
 import styles from './Pets.module.scss';
 
 // Import pet images
-import dogImg from '../../../assets/img/pets/dog.jpg';
+import dogImg from '@assets/img/pets/dog.jpg';
 
 const Pets = () => {
   const [selectedPet, setSelectedPet] = useState(null);

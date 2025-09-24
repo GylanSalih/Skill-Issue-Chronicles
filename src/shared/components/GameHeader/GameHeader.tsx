@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import {
+  Bell,
+  Coins,
+  Crown,
+  Gem,
+  MessageCircle,
+  Moon,
+  PanelLeft,
+  PanelRight,
+  Sun,
+  TreePine,
+} from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useGameState } from '../../../core/hooks/useGameState';
-import { useWoodcutting } from '../../../core/hooks/useWoodcutting';
 import {
   useCharacter,
   useCharacterClasses,
 } from '../../../core/contexts/GameContext';
-import {
-  Coins,
-  Crown,
-  PanelRight,
-  PanelLeft,
-  TreePine,
-  Bell,
-  MessageCircle,
-  Gem,
-  Sun,
-  Moon,
-} from 'lucide-react';
-import { getWoodTypeById } from '../../../core/services/woodConfig';
+import { useGameState } from '../../../core/hooks/useGameState';
+import { useWoodcutting } from '../../../core/hooks/useWoodcutting';
 import { formatTimeWithSeconds } from '../../../core/services/dateUtils';
+import { getWoodTypeById } from '../../../core/services/woodConfig';
 import styles from './GameHeader.module.scss';
 
 // Import avatar images
@@ -28,11 +28,19 @@ import warriorImg from '@assets/img/avatars/warrior.png';
 interface GameHeaderProps {
   onToggleResourcePanel: () => void;
   isResourcePanelVisible: boolean;
+  onToggleResourcePanelCollapse?: () => void;
+  isResourcePanelCollapsed?: boolean;
+  onToggleSideMenu?: () => void;
+  isSideMenuCollapsed?: boolean;
 }
 
 const GameHeader: React.FC<GameHeaderProps> = ({
   onToggleResourcePanel,
   isResourcePanelVisible,
+  onToggleResourcePanelCollapse,
+  isResourcePanelCollapsed,
+  onToggleSideMenu,
+  isSideMenuCollapsed,
 }) => {
   const navigate = useNavigate();
   const { gameState } = useGameState();
@@ -145,8 +153,26 @@ const GameHeader: React.FC<GameHeaderProps> = ({
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        {/* Left: Activity Progress */}
+        {/* Left: SideMenu Toggle + Activity Progress */}
         <div className={styles.leftSection}>
+          {/* SideMenu Toggle - links vom Content */}
+          {onToggleSideMenu && (
+            <div
+              className={styles.sideMenuToggle}
+              onClick={onToggleSideMenu}
+              title={
+                isSideMenuCollapsed
+                  ? 'SideMenu anzeigen'
+                  : 'SideMenu ausblenden'
+              }
+            >
+              {isSideMenuCollapsed ? (
+                <PanelRight size={20} />
+              ) : (
+                <PanelLeft size={20} />
+              )}
+            </div>
+          )}
           {(() => {
             const activityInfo = getActivityInfo();
             return activityInfo ? (
@@ -264,8 +290,12 @@ const GameHeader: React.FC<GameHeaderProps> = ({
           {isResourcePanelVisible ? (
             <div
               className={styles.toggleIcon}
-              onClick={onToggleResourcePanel}
-              title='Resource Panel ausblenden'
+              onClick={onToggleResourcePanelCollapse || onToggleResourcePanel}
+              title={
+                isResourcePanelCollapsed
+                  ? 'Resource Panel erweitern'
+                  : 'Resource Panel minimieren'
+              }
             >
               <PanelLeft size={20} />
             </div>

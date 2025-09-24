@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { TreePine, Lock, Clock, X } from 'lucide-react';
-import { useWoodcutting } from '../../../core/hooks/useWoodcutting';
+import { Clock, Lock, TreePine, X } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 import { useGameState } from '../../../core/hooks/useGameState';
+import { useWoodcutting } from '../../../core/hooks/useWoodcutting';
 // import { useActivityManager } from '../../contexts/ActivityManager';
 import Tooltip from '../ui/tooltip';
 import WoodTooltip from './WoodTooltip';
 import styles from './WoodcuttingGrid.module.scss';
 
 // Import images
-import woodSceneryImg from '../../../assets/img/scenery/wood_scenery.png';
-import wood1Img from '../../../assets/img/Resources/Wood/NormalWood.png';
+import wood1Img from '@assets/img/Resources/Wood/NormalWood.png';
+import woodSceneryImg from '@assets/img/scenery/wood_scenery.png';
 
 const WoodcuttingGrid: React.FC = () => {
   const {

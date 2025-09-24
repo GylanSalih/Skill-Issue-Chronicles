@@ -2,6 +2,14 @@
 
 /* SideMenu.module.scss - Enhanced RPG Game Theme */
 
+/* Collapsed header layout */
+.sideMenu.collapsed .header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
 .sideMenu {
   position: fixed;
   left: 0;
@@ -14,13 +22,23 @@
   z-index: 50;
   overflow: hidden;
   font-family: 'Inter', sans-serif;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(0);
+}
+
+.sideMenu.collapsed {
+  width: 60px;
+  transform: translateX(0);
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
 }
 
 .header {
-  padding: 12px 12px 8px 12px;
+  padding: 8px 12px 6px 12px;
   border-bottom: 2px solid #333;
   background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
   margin-top: 0;
+  min-height: 60px;
+  position: relative;
 }
 
 .logo {
@@ -43,6 +61,21 @@
   filter: drop-shadow(0 0 16px rgba(255, 107, 53, 0.6));
 }
 
+/* Collapsed state adjustments */
+.sideMenu.collapsed .logoImage {
+  width: 40px;
+  height: 40px;
+}
+
+.sideMenu.collapsed .header {
+  padding: 6px 4px;
+  min-height: 50px;
+}
+
+.sideMenu.collapsed .menuContainer {
+  padding: 4px 2px;
+}
+
 .version {
   color: #888;
   font-size: 10px;
@@ -56,12 +89,25 @@
   display: inline-block;
 }
 
+/* Collapsed version - smaller and positioned under logo */
+.sideMenu.collapsed .version {
+  font-size: 7px;
+  margin: 4px 0 0 0;
+  padding: 1px 3px;
+}
+
 .menuContainer {
   padding: 8px 6px;
-  height: calc(100vh - 200px);
+  height: calc(100vh - 120px);
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: #444 transparent;
+}
+
+/* Collapsed menu container */
+.sideMenu.collapsed .menuContainer {
+  height: calc(100vh - 80px);
+  padding: 4px 2px;
 }
 
 .menuContainer::-webkit-scrollbar {
@@ -98,6 +144,53 @@
   text-align: left;
   font-family: 'Inter', sans-serif;
   position: relative;
+}
+
+/* Collapsed state - center icons */
+.sideMenu.collapsed .menuButton {
+  justify-content: center;
+  padding: 8px 4px;
+  margin-bottom: 4px;
+}
+
+.sideMenu.collapsed .menuButtonContent {
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sideMenu.collapsed .menuIcon {
+  width: 20px;
+  height: 20px;
+}
+
+/* Special styling for collapsed menu items with submenus */
+.sideMenu.collapsed .menuButton:has(.menuIcon) {
+  position: relative;
+}
+
+.sideMenu.collapsed .menuButton:has(.menuIcon)::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 4px;
+  height: 4px;
+  background: #ff6b35;
+  border-radius: 50%;
+  opacity: 0.7;
+}
+
+/* Hidden text class */
+.hiddenText {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.2s ease;
+  pointer-events: none;
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
 }
 
 .menuButton.active {
@@ -144,16 +237,18 @@
 }
 
 .chevronIcon {
-  width: 14px;
-  height: 14px;
-  color: #666;
-  transition: all 0.2s ease;
+  width: 16px;
+  height: 16px;
+  color: #888;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   flex-shrink: 0;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 }
 
 .chevronIcon.expanded {
   transform: rotate(180deg);
   color: #ff6b35;
+  filter: drop-shadow(0 0 4px rgba(255, 107, 53, 0.4));
 }
 
 .submenu {
@@ -167,6 +262,54 @@
 .submenu.expanded {
   max-height: 300px;
   opacity: 1;
+}
+
+/* Collapsed submenu styles */
+.collapsedSubmenu {
+  margin-left: 8px;
+  margin-top: 4px;
+}
+
+.collapsedSubmenu.expanded {
+  max-height: 200px;
+}
+
+.collapsedSubmenuButton {
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  margin: 2px 0;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.collapsedSubmenuButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 107, 53, 0.3);
+  transform: scale(1.1);
+}
+
+.collapsedSubmenuButton.active {
+  background: linear-gradient(135deg, #2a4a6b 0%, #1e3a5f 100%);
+  border-color: #ff6b35;
+  box-shadow: 0 2px 8px rgba(42, 74, 107, 0.3);
+}
+
+.collapsedSubmenuButton .submenuIcon {
+  width: 16px;
+  height: 16px;
+  color: #888;
+}
+
+.collapsedSubmenuButton:hover .submenuIcon,
+.collapsedSubmenuButton.active .submenuIcon {
+  color: #ff6b35;
+  transform: scale(1.1);
 }
 
 .submenuContainer {
@@ -255,9 +398,10 @@
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 12px 8px;
+  padding: 8px;
   border-top: 2px solid #333;
   background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  min-height: 60px;
 }
 
 .footerContent {
@@ -361,6 +505,61 @@
   flex-shrink: 0;
 }
 
+/* Collapsed Footer Styles */
+.collapsedFooter {
+  padding: 6px 4px;
+  min-height: 50px;
+}
+
+.collapsedFooterContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.collapsedPlayerInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.collapsedPlayerCount {
+  font-size: 10px;
+  color: #ff6b35;
+  font-weight: 700;
+  text-shadow: 0 0 4px rgba(255, 107, 53, 0.3);
+}
+
+.collapsedOnlineStatus {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.collapsedLogoutButton {
+  background: rgba(255, 255, 255, 0.05);
+  color: #b8b8d1;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ef4444;
+    border-color: rgba(239, 68, 68, 0.3);
+    transform: scale(1.1);
+  }
+}
+
 /* Category Separators */
 .categorySeparator {
   height: 1px;
@@ -378,5 +577,22 @@
   .sideMenu {
     width: 100%;
     max-width: 240px;
+  }
+
+  .toggleButton {
+    top: 15px;
+    left: 15px;
+    padding: 10px;
+  }
+}
+
+/* Mobile: Auto-collapse on small screens */
+@media (max-width: 1024px) {
+  .sideMenu {
+    transform: translateX(-100%);
+  }
+
+  .sideMenu:not(.collapsed) {
+    transform: translateX(0);
   }
 }

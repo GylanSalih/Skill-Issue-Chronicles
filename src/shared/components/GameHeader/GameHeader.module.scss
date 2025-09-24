@@ -19,6 +19,23 @@
   align-items: center;
   height: 100%;
   max-width: 100%;
+  position: relative;
+}
+
+/* SideMenu Toggle - gleiches Styling wie ResourcePanel */
+.sideMenuToggle {
+  color: #a7a7a7;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  padding: 8px;
+  border-radius: 6px;
+  margin-right: 8px;
+
+  &:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+  }
 }
 
 .leftSection {
@@ -26,7 +43,7 @@
   align-items: center;
   gap: 8px;
   flex: 0 0 auto;
-  margin-left: 1rem;
+  margin-left: 0;
 }
 
 /* Simple Timer */
