@@ -1,0 +1,184 @@
+// Example usage of Character Profile colors
+@import './colors.scss';
+
+// Example component using Character Profile colors
+.character-component {
+  // Using Character Profile background colors
+  background: $character-bg-main;
+  color: $character-text-primary;
+
+  .character-card {
+    background: $character-bg-card;
+    border: 1px solid $character-border-primary;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px $character-shadow-medium;
+
+    &:hover {
+      background: $character-bg-hover;
+      border-color: $character-border-secondary;
+    }
+  }
+
+  .character-header {
+    h1 {
+      background: $text-gradient-primary;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    p {
+      color: $character-text-muted;
+    }
+  }
+
+  .character-button {
+    background: $character-btn-primary;
+    color: $character-text-primary;
+    border: none;
+    border-radius: 6px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px $character-shadow-orange;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px $character-shadow-orange-hover;
+    }
+
+    &.success {
+      background: $character-btn-success;
+      box-shadow: 0 2px 8px $character-shadow-success;
+
+      &:hover {
+        background: $character-btn-success-hover;
+        box-shadow: 0 4px 12px $character-shadow-success-hover;
+      }
+    }
+
+    &.danger {
+      background: $character-btn-danger;
+      box-shadow: 0 2px 8px $character-shadow-orange;
+    }
+  }
+
+  .character-input {
+    background: $character-bg-button;
+    border: 1px solid $character-border-white;
+    border-radius: 6px;
+    padding: 0.75rem;
+    color: $character-text-primary;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: $character-bg-button-hover;
+      border-color: $character-border-white-hover;
+    }
+
+    &:focus {
+      border-color: $character-border-orange;
+      box-shadow: 0 0 0 2px $character-border-orange;
+    }
+  }
+
+  .character-success-message {
+    background: $character-bg-success;
+    border: 1px solid $character-border-success;
+    color: $character-text-success;
+    padding: 0.75rem;
+    border-radius: 6px;
+  }
+
+  .character-error-message {
+    background: $character-bg-error;
+    border: 1px solid $character-border-error;
+    color: $character-text-error;
+    padding: 0.75rem;
+    border-radius: 6px;
+  }
+
+  .character-orange-accent {
+    background: $character-bg-orange;
+    border: 1px solid $character-border-orange;
+    color: $character-text-orange;
+    padding: 0.75rem;
+    border-radius: 6px;
+  }
+
+  .character-level-badge {
+    background: $character-btn-white;
+    color: $character-text-dark;
+    border: 3px solid $character-text-dark;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 12px $character-shadow-medium;
+  }
+
+  .character-stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid $character-border-white;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .stat-label {
+      color: $character-text-muted;
+      font-weight: 500;
+    }
+
+    .stat-value {
+      color: $character-text-primary;
+      font-weight: 600;
+    }
+
+    .stat-change {
+      &.positive {
+        color: $character-text-success;
+      }
+
+      &.negative {
+        color: $character-text-error;
+      }
+    }
+  }
+
+  .character-skill-card {
+    background: $character-bg-card;
+    border: 1px solid $character-border-primary;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 2px 8px $character-shadow-light;
+
+    &:hover {
+      transform: translateY(-2px);
+      border-color: $character-border-secondary;
+      box-shadow: 0 4px 16px $character-shadow-medium;
+    }
+
+    .skill-icon {
+      color: $character-text-orange;
+      filter: drop-shadow(0 2px 4px $character-shadow-medium);
+    }
+
+    .skill-name {
+      color: $character-text-subtle;
+      font-weight: 500;
+      margin-top: 0.5rem;
+    }
+  }
+}

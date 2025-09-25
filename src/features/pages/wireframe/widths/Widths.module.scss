@@ -1,0 +1,180 @@
+@import '../../../../shared/styles/globals.scss';
+@import '../../../../shared/styles/colors.scss';
+
+.widthExamples {
+  padding: 2rem;
+  min-height: 100vh;
+  background: $bg-main;
+  color: $text-primary;
+
+  .header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+      background: $text-gradient-primary;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: $text-muted;
+      margin: 0;
+    }
+  }
+
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section {
+    margin-bottom: 3rem;
+
+    h2 {
+      font-size: 1.8rem;
+      color: $accent-orange;
+      margin: 0 0 1.5rem 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid $border-primary;
+    }
+  }
+
+  .fullWidth {
+    width: 100%;
+    background: $bg-card;
+    border: 1px solid $border-primary;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px $shadow-light;
+
+    .contentBox {
+      h3 {
+        color: $accent-orange;
+        margin: 0 0 1rem 0;
+        font-size: 1.3rem;
+      }
+
+      p {
+        color: $text-secondary;
+        margin: 0;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  .normalWidth {
+    max-width: 800px;
+    margin: 0 auto;
+    background: $bg-card;
+    border: 1px solid $border-primary;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px $shadow-light;
+
+    .contentBox {
+      h3 {
+        color: $accent-blue;
+        margin: 0 0 1rem 0;
+        font-size: 1.3rem;
+      }
+
+      p {
+        color: $text-secondary;
+        margin: 0;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  .smallWidth {
+    max-width: 600px;
+    margin: 0 auto;
+    background: $bg-card;
+    border: 1px solid $border-primary;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px $shadow-light;
+
+    .contentBox {
+      h3 {
+        color: $accent-green;
+        margin: 0 0 1rem 0;
+        font-size: 1.3rem;
+      }
+
+      p {
+        color: $text-secondary;
+        margin: 0;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  .extraSmallWidth {
+    max-width: 400px;
+    margin: 0 auto;
+    background: $bg-card;
+    border: 1px solid $border-primary;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px $shadow-light;
+
+    .contentBox {
+      h3 {
+        color: $accent-yellow;
+        margin: 0 0 1rem 0;
+        font-size: 1.3rem;
+      }
+
+      p {
+        color: $text-secondary;
+        margin: 0;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  .responsiveWidth {
+    background: $bg-card;
+    border: 1px solid $border-primary;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px $shadow-light;
+
+    .contentBox {
+      h3 {
+        color: $skill-magic;
+        margin: 0 0 1rem 0;
+        font-size: 1.3rem;
+      }
+
+      p {
+        color: $text-secondary;
+        margin: 0 0 1.5rem 0;
+        line-height: 1.6;
+      }
+
+      .responsiveGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+
+        .gridItem {
+          background: $character-bg-hover;
+          border: 1px solid $character-border-white;
+          border-radius: 8px;
+          padding: 1rem;
+          text-align: center;
+          color: $text-primary;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}

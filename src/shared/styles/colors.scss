@@ -1,0 +1,197 @@
+// Color Palette for Skill-Issue-Chronicles
+// Centralized color definitions for consistent theming
+
+// Primary Colors
+$primary-dark: #0f0f0f;
+$primary-darker: #1a1a1a;
+$primary-gray: #2a2a2a;
+$primary-light: #444;
+$primary-lighter: #555;
+
+// Character Profile Colors (extracted from Character.module.scss)
+$character-bg-main: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 100%);
+$character-bg-card: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+$character-bg-hover: rgba(255, 255, 255, 0.05);
+$character-bg-hover-strong: rgba(255, 255, 255, 0.1);
+$character-bg-button: rgba(255, 255, 255, 0.05);
+$character-bg-button-hover: rgba(255, 255, 255, 0.1);
+$character-bg-success: rgba(16, 185, 129, 0.1);
+$character-bg-success-hover: rgba(16, 185, 129, 0.2);
+$character-bg-error: rgba(239, 68, 68, 0.2);
+$character-bg-orange: rgba(255, 107, 53, 0.1);
+$character-bg-orange-strong: rgba(255, 107, 53, 0.3);
+
+// Text Colors
+$text-primary: #ffffff;
+$text-secondary: #e5e7eb;
+$text-muted: #9ca3af;
+$text-subtle: #d1d5db;
+
+// Character Profile Text Colors
+$character-text-primary: #ffffff;
+$character-text-secondary: #e5e7eb;
+$character-text-muted: #9ca3af;
+$character-text-subtle: #d1d5db;
+$character-text-strong: #ffffff;
+$character-text-success: #10b981;
+$character-text-warning: #f59e0b;
+$character-text-error: #ef4444;
+$character-text-orange: #ff6b35;
+$character-text-dark: #1a1a2e;
+
+// Background Gradients
+$bg-main: linear-gradient(180deg, #0f0f0f 0%, #1a1a1a 100%);
+$bg-card: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+$bg-card-hover: linear-gradient(135deg, #2a1a1a 0%, #3a2a2a 100%);
+
+// Accent Colors (harmonized with Character Profile)
+$accent-green: #10b981;
+$accent-green-dark: #059669;
+$accent-blue: #0ea5e9;
+$accent-blue-dark: #0284c7;
+$accent-yellow: #f59e0b;
+$accent-yellow-dark: #d97706;
+$accent-red: #ef4444;
+$accent-red-dark: #dc2626;
+$accent-orange: #ff6b35;
+$accent-orange-dark: #ff8c42;
+
+// Skill-specific Colors (harmonized with Character Profile)
+$skill-woodcutting: #10b981;
+$skill-mining: #6b7280;
+$skill-fishing: #0ea5e9;
+$skill-cooking: #f59e0b;
+$skill-smithing: #ef4444;
+$skill-firemaking: #ff6b35;
+$skill-fletching: #8b5cf6;
+$skill-herblore: #10b981;
+$skill-runecrafting: #6366f1;
+$skill-magic: #8b5cf6;
+$skill-enchanting: #a855f7;
+$skill-alchemy: #f59e0b;
+$skill-divination: #06b6d4;
+
+// Status Colors (harmonized with Character Profile)
+$status-success: #10b981;
+$status-warning: #f59e0b;
+$status-error: #ef4444;
+$status-info: #0ea5e9;
+
+// Border Colors
+$border-primary: #444;
+$border-secondary: #555;
+$border-accent: #666;
+
+// Character Profile Border Colors
+$character-border-primary: #444;
+$character-border-secondary: #555;
+$character-border-accent: #666;
+$character-border-success: rgba(16, 185, 129, 0.3);
+$character-border-success-hover: rgba(16, 185, 129, 0.4);
+$character-border-error: rgba(239, 68, 68, 0.4);
+$character-border-orange: rgba(255, 107, 53, 0.3);
+$character-border-orange-hover: rgba(255, 107, 53, 0.5);
+$character-border-white: rgba(255, 255, 255, 0.1);
+$character-border-white-hover: rgba(255, 255, 255, 0.2);
+$character-border-white-strong: rgba(255, 255, 255, 0.3);
+
+// Shadow Colors
+$shadow-light: rgba(0, 0, 0, 0.3);
+$shadow-medium: rgba(0, 0, 0, 0.4);
+$shadow-heavy: rgba(0, 0, 0, 0.5);
+
+// Character Profile Shadow Colors
+$character-shadow-light: rgba(0, 0, 0, 0.2);
+$character-shadow-medium: rgba(0, 0, 0, 0.3);
+$character-shadow-heavy: rgba(0, 0, 0, 0.4);
+$character-shadow-orange: rgba(255, 107, 53, 0.3);
+$character-shadow-orange-hover: rgba(255, 107, 53, 0.4);
+$character-shadow-success: rgba(16, 185, 129, 0.3);
+$character-shadow-success-hover: rgba(16, 185, 129, 0.4);
+$character-shadow-white: rgba(255, 255, 255, 0.1);
+$character-shadow-white-hover: rgba(255, 255, 255, 0.2);
+
+// Glow Colors (harmonized with Character Profile)
+$glow-green: rgba(16, 185, 129, 0.3);
+$glow-blue: rgba(14, 165, 233, 0.3);
+$glow-yellow: rgba(245, 158, 11, 0.3);
+$glow-red: rgba(239, 68, 68, 0.3);
+$glow-orange: rgba(255, 107, 53, 0.3);
+
+// Button Gradients (harmonized with Character Profile)
+$btn-primary: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+$btn-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
+$btn-warning: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+$btn-danger: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+$btn-info: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+
+// Character Profile Button Gradients
+$character-btn-primary: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+$character-btn-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
+$character-btn-success-hover: linear-gradient(135deg, #059669 0%, #047857 100%);
+$character-btn-danger: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+$character-btn-white: linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%);
+
+// Text Gradients
+$text-gradient-primary: linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%);
+$text-gradient-accent: linear-gradient(135deg, #10b981 0%, #059669 100%);
+
+// Card Top Borders
+$border-top-green: linear-gradient(
+  90deg,
+  #10b981 0%,
+  #059669 50%,
+  #10b981 100%
+);
+$border-top-blue: linear-gradient(90deg, #0ea5e9 0%, #38bdf8 50%, #0ea5e9 100%);
+$border-top-yellow: linear-gradient(
+  90deg,
+  #f59e0b 0%,
+  #fbbf24 50%,
+  #f59e0b 100%
+);
+$border-top-red: linear-gradient(90deg, #ef4444 0%, #ff6b35 50%, #ef4444 100%);
+$border-top-orange: linear-gradient(
+  90deg,
+  #f97316 0%,
+  #fbbf24 50%,
+  #f97316 100%
+);
+
+// Utility Classes
+.text-primary {
+  color: $text-primary;
+}
+.text-secondary {
+  color: $text-secondary;
+}
+.text-muted {
+  color: $text-muted;
+}
+.text-subtle {
+  color: $text-subtle;
+}
+
+.bg-primary {
+  background: $bg-main;
+}
+.bg-card {
+  background: $bg-card;
+}
+
+.border-primary {
+  border-color: $border-primary;
+}
+.border-secondary {
+  border-color: $border-secondary;
+}
+
+.shadow-light {
+  box-shadow: 0 4px 12px $shadow-light;
+}
+.shadow-medium {
+  box-shadow: 0 8px 25px $shadow-medium;
+}
+.shadow-heavy {
+  box-shadow: 0 12px 40px $shadow-heavy;
+}

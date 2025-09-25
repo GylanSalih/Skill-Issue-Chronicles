@@ -1,10 +1,11 @@
 @import '../../../shared/styles/globals.scss';
+@import '../../../shared/styles/colors.scss';
 
 .spells {
   padding: 2rem;
   min-height: 100vh;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-  color: white;
+  background: $bg-main;
+  color: $text-primary;
 
   .header {
     display: flex;
@@ -12,10 +13,10 @@
     align-items: center;
     margin-bottom: 2rem;
     padding: 1.5rem;
-    background: rgba(255, 255, 255, 0.05);
+    background: $bg-card;
     border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    border: 1px solid $border-primary;
+    box-shadow: 0 4px 12px $shadow-light;
 
     .titleSection {
       display: flex;
@@ -25,27 +26,27 @@
       .titleIcon {
         width: 2.5rem;
         height: 2.5rem;
-        color: #8b5cf6;
-        filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5));
+        color: $text-primary;
+        filter: drop-shadow(0 0 10px $character-shadow-white-hover);
       }
 
       h1 {
         font-size: 2.5rem;
         font-weight: 700;
         margin: 0;
-        background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+        background: $text-gradient-primary;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
 
       .level {
-        background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+        background: $btn-primary;
         padding: 0.5rem 1rem;
         border-radius: 20px;
         font-weight: 600;
         font-size: 1.1rem;
-        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        box-shadow: 0 4px 15px $glow-orange;
       }
     }
 
@@ -59,14 +60,14 @@
         .statLabel {
           display: block;
           font-size: 0.9rem;
-          color: #a0a0a0;
+          color: $text-muted;
           margin-bottom: 0.5rem;
         }
 
         .statValue {
           font-size: 1.2rem;
           font-weight: 600;
-          color: #8b5cf6;
+          color: $accent-orange;
         }
       }
     }
@@ -87,7 +88,7 @@
     h3 {
       font-size: 1.5rem;
       margin-bottom: 1rem;
-      color: #8b5cf6;
+      color: $accent-orange;
     }
 
     .spellGrid {
@@ -97,25 +98,26 @@
     }
 
     .spellCard {
-      background: rgba(255, 255, 255, 0.05);
-      border: 2px solid rgba(255, 255, 255, 0.1);
+      background: $bg-card;
+      border: 2px solid $border-primary;
       border-radius: 12px;
       padding: 1rem;
       cursor: pointer;
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 4px 12px $shadow-light;
 
       &:hover {
         transform: translateY(-2px);
-        border-color: rgba(139, 92, 246, 0.5);
-        box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
+        border-color: $accent-orange;
+        box-shadow: 0 8px 25px $glow-orange;
       }
 
       &.selected {
-        border-color: #8b5cf6;
-        background: rgba(139, 92, 246, 0.1);
-        box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+        border-color: $accent-orange;
+        background: $character-bg-orange;
+        box-shadow: 0 0 20px $glow-orange;
       }
 
       &.locked {
@@ -135,17 +137,17 @@
           margin: 0 0 0.25rem 0;
           font-size: 1rem;
           font-weight: 600;
-          color: #8b5cf6;
+          color: $accent-orange;
         }
 
         p {
           margin: 0 0 0.25rem 0;
           font-size: 0.9rem;
-          color: #a0a0a0;
+          color: $text-muted;
         }
 
         .effect {
-          color: #fbbf24 !important;
+          color: $accent-yellow !important;
           font-weight: 500;
           font-size: 0.85rem;
         }
@@ -157,12 +159,12 @@
           margin-top: 0.5rem;
 
           .material {
-            background: rgba(139, 92, 246, 0.2);
-            color: #8b5cf6;
+            background: $character-bg-orange;
+            color: $accent-orange;
             padding: 0.25rem 0.5rem;
             border-radius: 12px;
             font-size: 0.8rem;
-            border: 1px solid rgba(139, 92, 246, 0.3);
+            border: 1px solid $character-border-orange;
           }
         }
       }
@@ -186,19 +188,20 @@
       position: relative;
       width: 300px;
       height: 300px;
-      background: rgba(255, 255, 255, 0.05);
+      background: $bg-card;
       border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid $border-primary;
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 4px 12px $shadow-light;
     }
 
     .runeCircle {
       position: relative;
       width: 200px;
       height: 200px;
-      border: 2px solid rgba(139, 92, 246, 0.3);
+      border: 2px solid $character-border-orange;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -220,7 +223,7 @@
           position: absolute;
           width: 8px;
           height: 8px;
-          background: #8b5cf6;
+          background: $accent-orange;
           border-radius: 50%;
           animation: runeGlow 2s ease-in-out infinite;
 
@@ -277,24 +280,24 @@
       transform: translate(-50%, -50%);
       width: 80px;
       height: 80px;
-      background: radial-gradient(circle, #8b5cf6 0%, #7c3aed 100%);
+      background: $btn-primary;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.3s ease;
-      box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+      box-shadow: 0 0 20px $glow-orange;
 
       &.active {
         animation: spellCast 1.5s ease-in-out infinite;
-        box-shadow: 0 0 40px rgba(139, 92, 246, 0.6);
+        box-shadow: 0 0 40px $glow-orange;
       }
 
       .zapIcon {
         width: 2.5rem;
         height: 2.5rem;
-        color: white;
-        filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+        color: $text-primary;
+        filter: drop-shadow(0 0 10px $character-shadow-white-hover);
       }
 
       .magicParticles {
@@ -309,7 +312,7 @@
           position: absolute;
           width: 3px;
           height: 3px;
-          background: #8b5cf6;
+          background: $accent-orange;
           border-radius: 50%;
           animation: particleSpiral 2s ease-in-out infinite;
 
@@ -379,20 +382,20 @@
 
     .controls {
       .startButton {
-        background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+        background: $btn-primary;
         border: none;
         padding: 1rem 2rem;
         border-radius: 25px;
-        color: white;
+        color: $text-primary;
         font-size: 1.1rem;
         font-weight: 600;
         cursor: pointer;
         transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+        box-shadow: 0 4px 15px $glow-orange;
 
         &:hover {
           transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+          box-shadow: 0 6px 20px $glow-orange;
         }
 
         &:disabled {
@@ -402,7 +405,7 @@
         }
 
         &.active {
-          background: linear-gradient(135deg, #dc2626, #b91c1c);
+          background: $btn-danger;
           animation: pulse 1s ease-in-out infinite;
         }
       }
@@ -416,7 +419,7 @@
     h3 {
       font-size: 1.5rem;
       margin-bottom: 1rem;
-      color: #8b5cf6;
+      color: $text-primary;
     }
 
     .bonusGrid {
@@ -426,8 +429,8 @@
     }
 
     .bonusCard {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: $character-bg-hover;
+      border: 1px solid $character-border-white;
       border-radius: 12px;
       padding: 1.5rem;
       text-align: center;
@@ -435,26 +438,26 @@
 
       &:hover {
         transform: translateY(-2px);
-        border-color: rgba(139, 92, 246, 0.5);
-        box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
+        border-color: $character-border-white-hover;
+        box-shadow: 0 8px 25px $character-shadow-white-hover;
       }
 
       .bonusIcon {
         width: 2rem;
         height: 2rem;
-        color: #8b5cf6;
+        color: $text-primary;
         margin-bottom: 0.5rem;
       }
 
       h4 {
         margin: 0 0 0.5rem 0;
         font-size: 1.1rem;
-        color: #8b5cf6;
+        color: $text-primary;
       }
 
       p {
         margin: 0;
-        color: #a0a0a0;
+        color: $text-muted;
         font-size: 0.9rem;
       }
     }

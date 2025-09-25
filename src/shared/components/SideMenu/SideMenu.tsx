@@ -22,13 +22,16 @@ import {
   Fish,
   Flame,
   Gem,
+  Grid3X3,
   Hammer,
   Handshake,
   Heart,
   Home,
+  Layout,
   Leaf,
   LogOut,
   MapPin,
+  Maximize2,
   MessageCircle,
   MessageSquare,
   Newspaper,
@@ -49,6 +52,7 @@ import {
   Building2 as Tower,
   TreePine,
   Trophy,
+  Type,
   Users,
   Wand2,
   BookOpen as Wiki,
@@ -100,6 +104,86 @@ const SideMenu = ({ isCollapsed = false, onToggle }: SideMenuProps) => {
           title: 'Character',
           icon: Crown,
           path: '/character/profile',
+        },
+      ],
+    },
+    // 2.5. Wireframe – Fundamentale UI-Komponenten
+    {
+      items: [
+        {
+          id: 'wireframe',
+          title: 'Wireframe',
+          icon: Layout,
+          hasSubmenu: true,
+          submenu: [
+            {
+              id: 'wireframe-widths',
+              title: 'Width Examples',
+              icon: Layout,
+              path: '/wireframe/widths',
+            },
+            {
+              id: 'wireframe-grids',
+              title: 'Grid Designs',
+              icon: Grid3X3,
+              path: '/wireframe/grids',
+            },
+            {
+              id: 'wireframe-buttons',
+              title: 'Buttons',
+              icon: Target,
+              path: '/wireframe/buttons',
+            },
+            {
+              id: 'wireframe-typography',
+              title: 'Typography',
+              icon: Type,
+              path: '/wireframe/typography',
+            },
+          ],
+        },
+      ],
+    },
+    // 2.6. Content Width – Verschiedene Layout-Varianten
+    {
+      items: [
+        {
+          id: 'content-width',
+          title: 'Content Width',
+          icon: Maximize2,
+          hasSubmenu: true,
+          submenu: [
+            {
+              id: 'content-width-full',
+              title: 'Full Width',
+              icon: Maximize2,
+              path: '/content-width/full',
+            },
+            {
+              id: 'content-width-wide',
+              title: 'Wide Width',
+              icon: Layout,
+              path: '/content-width/wide',
+            },
+            {
+              id: 'content-width-normal',
+              title: 'Normal Width',
+              icon: Grid3X3,
+              path: '/content-width/normal',
+            },
+            {
+              id: 'content-width-narrow',
+              title: 'Narrow Width',
+              icon: Target,
+              path: '/content-width/narrow',
+            },
+            {
+              id: 'content-width-compact',
+              title: 'Compact Width',
+              icon: Type,
+              path: '/content-width/compact',
+            },
+          ],
         },
       ],
     },
@@ -461,7 +545,7 @@ const SideMenu = ({ isCollapsed = false, onToggle }: SideMenuProps) => {
               className={styles.logoImage}
             />
           </div>
-          <p className={styles.version}>v0.0.1</p>
+          <p className={styles.version}>v0.0.4</p>
         </div>
 
         {/* Menu Categories */}

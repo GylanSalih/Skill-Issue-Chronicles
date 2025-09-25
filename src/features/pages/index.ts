@@ -51,3 +51,16 @@ export { default as MyPets } from './my-pets/index.tsx';
 // Combat pages
 export { default as BossTower } from './boss-tower/index.tsx';
 export { default as Dungeon } from './dungeon/index.tsx';
+
+// Wireframe pages
+export { default as Buttons } from './wireframe/buttons/index.tsx';
+export { default as GridDesigns } from './wireframe/grids/index.tsx';
+export { default as Typography } from './wireframe/typography/index.tsx';
+export { default as WidthExamples } from './wireframe/widths/index.tsx';
+
+// Content Width pages
+export { default as CompactWidth } from './content-width/compact/index.tsx';
+export { default as FullWidth } from './content-width/full/index.tsx';
+export { default as NarrowWidth } from './content-width/narrow/index.tsx';
+export { default as NormalWidth } from './content-width/normal/index.tsx';
+export { default as WideWidth } from './content-width/wide/index.tsx';

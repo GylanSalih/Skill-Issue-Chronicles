@@ -211,7 +211,7 @@ npm run build
 
 ## ⚠️ Alpha Status
 
-This project is currently in **Alpha v0.0.1**. Features may be incomplete or subject to change.
+This project is currently in **Alpha v0.0.4**. Features may be incomplete or subject to change.
 
 ## 🎯 Core Mechanics
 

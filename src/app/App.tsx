@@ -9,9 +9,11 @@ import {
   AuctionHouse,
   Bank,
   BossTower,
+  Buttons,
   Character,
   CharacterCreation,
   CharacterSelection,
+  CompactWidth,
   Cooking,
   Dashboard,
   Divination,
@@ -22,7 +24,9 @@ import {
   Fishing,
   Fletching,
   Foraging,
+  FullWidth,
   GameRules,
+  GridDesigns,
   GuildBank,
   Guilds,
   Herblore,
@@ -31,7 +35,9 @@ import {
   Login,
   Mining,
   MyPets,
+  NarrowWidth,
   News,
+  NormalWidth,
   Quests,
   Runecrafting,
   Settings,
@@ -40,6 +46,9 @@ import {
   Spells,
   Statistics,
   TradingPost,
+  Typography,
+  WideWidth,
+  WidthExamples,
   Woodcutting,
   WorldMap,
 } from '../features/pages';
@@ -189,6 +198,46 @@ function App() {
                         <Route
                           path='/achievements'
                           element={<Achievements />}
+                        />
+
+                        {/* Wireframe */}
+                        <Route
+                          path='/wireframe/widths'
+                          element={<WidthExamples />}
+                        />
+                        <Route
+                          path='/wireframe/grids'
+                          element={<GridDesigns />}
+                        />
+                        <Route
+                          path='/wireframe/buttons'
+                          element={<Buttons />}
+                        />
+                        <Route
+                          path='/wireframe/typography'
+                          element={<Typography />}
+                        />
+
+                        {/* Content Width */}
+                        <Route
+                          path='/content-width/full'
+                          element={<FullWidth />}
+                        />
+                        <Route
+                          path='/content-width/wide'
+                          element={<WideWidth />}
+                        />
+                        <Route
+                          path='/content-width/normal'
+                          element={<NormalWidth />}
+                        />
+                        <Route
+                          path='/content-width/narrow'
+                          element={<NarrowWidth />}
+                        />
+                        <Route
+                          path='/content-width/compact'
+                          element={<CompactWidth />}
                         />
 
                         {/* Other */}

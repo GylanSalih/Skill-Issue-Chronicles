@@ -1,0 +1,440 @@
+@import '../../../../shared/styles/globals.scss';
+@import '../../../../shared/styles/colors.scss';
+
+.buttons {
+  padding: 2rem;
+  min-height: 100vh;
+  background: $bg-main;
+  color: $text-primary;
+
+  .header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+      background: $text-gradient-primary;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: $text-muted;
+      margin: 0;
+    }
+  }
+
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section {
+    margin-bottom: 3rem;
+
+    h2 {
+      font-size: 1.8rem;
+      color: $accent-orange;
+      margin: 0 0 1.5rem 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid $border-primary;
+    }
+  }
+
+  .buttonGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  // Base button styles
+  button {
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    &:not(:disabled):hover {
+      transform: translateY(-2px);
+    }
+
+    &:not(:disabled):active {
+      transform: translateY(0);
+    }
+  }
+
+  // Primary Buttons
+  .btnPrimary {
+    background: $btn-primary;
+    color: $text-primary;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px $glow-orange;
+
+    &:not(:disabled):hover {
+      box-shadow: 0 6px 20px $glow-orange;
+    }
+  }
+
+  .btnPrimaryLarge {
+    @extend .btnPrimary;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+
+  .btnPrimarySmall {
+    @extend .btnPrimary;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  // Secondary Buttons
+  .btnSecondary {
+    background: $bg-card;
+    color: $text-primary;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border: 1px solid $border-primary;
+    box-shadow: 0 4px 12px $shadow-light;
+
+    &:not(:disabled):hover {
+      background: $character-bg-hover;
+      border-color: $accent-orange;
+      box-shadow: 0 6px 20px $shadow-medium;
+    }
+  }
+
+  .btnSecondaryLarge {
+    @extend .btnSecondary;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+
+  .btnSecondarySmall {
+    @extend .btnSecondary;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  // Success Buttons
+  .btnSuccess {
+    background: $btn-success;
+    color: $text-primary;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px $glow-green;
+
+    &:not(:disabled):hover {
+      box-shadow: 0 6px 20px $glow-green;
+    }
+  }
+
+  .btnSuccessLarge {
+    @extend .btnSuccess;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+
+  .btnSuccessSmall {
+    @extend .btnSuccess;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  // Warning Buttons
+  .btnWarning {
+    background: $btn-warning;
+    color: $text-primary;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px $glow-yellow;
+
+    &:not(:disabled):hover {
+      box-shadow: 0 6px 20px $glow-yellow;
+    }
+  }
+
+  .btnWarningLarge {
+    @extend .btnWarning;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+
+  .btnWarningSmall {
+    @extend .btnWarning;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  // Danger Buttons
+  .btnDanger {
+    background: $btn-danger;
+    color: $text-primary;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px $glow-red;
+
+    &:not(:disabled):hover {
+      box-shadow: 0 6px 20px $glow-red;
+    }
+  }
+
+  .btnDangerLarge {
+    @extend .btnDanger;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+  }
+
+  .btnDangerSmall {
+    @extend .btnDanger;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  // Outline Buttons
+  .btnOutline {
+    background: transparent;
+    color: $accent-orange;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border: 2px solid $accent-orange;
+
+    &:not(:disabled):hover {
+      background: $accent-orange;
+      color: $text-primary;
+    }
+  }
+
+  .btnOutlineSecondary {
+    @extend .btnOutline;
+    color: $text-secondary;
+    border-color: $text-secondary;
+
+    &:not(:disabled):hover {
+      background: $text-secondary;
+      color: $text-primary;
+    }
+  }
+
+  .btnOutlineSuccess {
+    @extend .btnOutline;
+    color: $accent-green;
+    border-color: $accent-green;
+
+    &:not(:disabled):hover {
+      background: $accent-green;
+      color: $text-primary;
+    }
+  }
+
+  .btnOutlineWarning {
+    @extend .btnOutline;
+    color: $accent-yellow;
+    border-color: $accent-yellow;
+
+    &:not(:disabled):hover {
+      background: $accent-yellow;
+      color: $text-primary;
+    }
+  }
+
+  .btnOutlineDanger {
+    @extend .btnOutline;
+    color: $accent-red;
+    border-color: $accent-red;
+
+    &:not(:disabled):hover {
+      background: $accent-red;
+      color: $text-primary;
+    }
+  }
+
+  // Ghost Buttons
+  .btnGhost {
+    background: transparent;
+    color: $accent-orange;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+
+    &:not(:disabled):hover {
+      background: $character-bg-orange;
+    }
+  }
+
+  .btnGhostSecondary {
+    @extend .btnGhost;
+    color: $text-secondary;
+
+    &:not(:disabled):hover {
+      background: $character-bg-hover;
+    }
+  }
+
+  .btnGhostSuccess {
+    @extend .btnGhost;
+    color: $accent-green;
+
+    &:not(:disabled):hover {
+      background: $character-bg-success;
+    }
+  }
+
+  .btnGhostWarning {
+    @extend .btnGhost;
+    color: $accent-yellow;
+
+    &:not(:disabled):hover {
+      background: rgba(245, 158, 11, 0.1);
+    }
+  }
+
+  .btnGhostDanger {
+    @extend .btnGhost;
+    color: $accent-red;
+
+    &:not(:disabled):hover {
+      background: $character-bg-error;
+    }
+  }
+
+  // Icon Buttons
+  .btnIcon {
+    background: $btn-primary;
+    color: $text-primary;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: 0 4px 15px $glow-orange;
+
+    &:not(:disabled):hover {
+      box-shadow: 0 6px 20px $glow-orange;
+    }
+  }
+
+  .btnIconSecondary {
+    @extend .btnIcon;
+    background: $bg-card;
+    border: 1px solid $border-primary;
+    box-shadow: 0 4px 12px $shadow-light;
+
+    &:not(:disabled):hover {
+      background: $character-bg-hover;
+      border-color: $accent-orange;
+      box-shadow: 0 6px 20px $shadow-medium;
+    }
+  }
+
+  .btnIconSuccess {
+    @extend .btnIcon;
+    background: $btn-success;
+    box-shadow: 0 4px 15px $glow-green;
+
+    &:not(:disabled):hover {
+      box-shadow: 0 6px 20px $glow-green;
+    }
+  }
+
+  .btnIconWarning {
+    @extend .btnIcon;
+    background: $btn-warning;
+    box-shadow: 0 4px 15px $glow-yellow;
+
+    &:not(:disabled):hover {
+      box-shadow: 0 6px 20px $glow-yellow;
+    }
+  }
+
+  .btnIconDanger {
+    @extend .btnIcon;
+    background: $btn-danger;
+    box-shadow: 0 4px 15px $glow-red;
+
+    &:not(:disabled):hover {
+      box-shadow: 0 6px 20px $glow-red;
+    }
+  }
+
+  // Button Groups
+  .btnGroup {
+    display: flex;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px $shadow-light;
+
+    button {
+      border-radius: 0;
+      border-right: 1px solid $border-primary;
+
+      &:last-child {
+        border-right: none;
+      }
+
+      &:not(:disabled):hover {
+        transform: none;
+        z-index: 1;
+        position: relative;
+      }
+    }
+  }
+
+  .btnGroupVertical {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px $shadow-light;
+
+    button {
+      border-radius: 0;
+      border-bottom: 1px solid $border-primary;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:not(:disabled):hover {
+        transform: none;
+        z-index: 1;
+        position: relative;
+      }
+    }
+  }
+
+  // Loading States
+  .spinner {
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

@@ -1,0 +1,135 @@
+@import '../../../../shared/styles/globals.scss';
+@import '../../../../shared/styles/colors.scss';
+
+.compactWidth {
+  min-height: 100vh;
+  background: $bg-main;
+  color: $text-primary;
+  padding: 0;
+
+  .header {
+    background: $bg-card;
+    padding: 0;
+    border-bottom: 1px solid $border-primary;
+    box-shadow: 0 4px 12px $shadow-light;
+    display: flex;
+    align-items: center;
+    min-height: 80px;
+
+    .headerContent {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0 6rem;
+      width: 100%;
+
+      h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 0;
+        background: $text-gradient-primary;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      p {
+        font-size: 1rem;
+        color: $text-muted;
+        margin: 0;
+        line-height: 1.4;
+      }
+    }
+  }
+
+  .content {
+    padding: 2rem 6rem; // Abstand nach oben und unten, maximale seitliche Abstände
+    max-width: 600px; // Sehr schmale Breitenbegrenzung
+    margin: 0 auto;
+  }
+
+  .section {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    margin-bottom: 2rem;
+
+    h2 {
+      font-size: 1.8rem;
+      color: $skill-magic;
+      margin: 0 0 1rem 0;
+    }
+
+    p {
+      font-size: 1rem;
+      color: $text-secondary;
+      margin: 0;
+      line-height: 1.6;
+    }
+  }
+
+  .cardGrid {
+    display: grid;
+    grid-template-columns: 1fr; // Einspaltig für kompakte Layouts
+    gap: 2rem;
+    margin: 2rem 0;
+
+    .card {
+      background: $character-bg-hover;
+      padding: 3rem;
+      border: 1px solid $character-border-white;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px $shadow-light;
+
+      &:hover {
+        transform: translateY(-2px);
+        border-color: $skill-magic;
+        box-shadow: 0 8px 25px $shadow-medium;
+      }
+
+      h3 {
+        color: $skill-magic;
+        margin: 0 0 1rem 0;
+        font-size: 1.5rem;
+        text-align: center;
+      }
+
+      p {
+        color: $text-secondary;
+        margin: 0;
+        line-height: 1.6;
+        font-size: 1rem;
+        text-align: center;
+      }
+    }
+  }
+
+  .compactSection {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    margin-bottom: 2rem;
+
+    h2 {
+      color: $skill-magic;
+      margin: 0 0 1rem 0;
+      font-size: 1.8rem;
+      text-align: center;
+    }
+
+    p {
+      color: $text-secondary;
+      margin: 0;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+  }
+}

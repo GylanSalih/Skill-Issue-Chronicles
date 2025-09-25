@@ -1,0 +1,455 @@
+@import '../../../../shared/styles/globals.scss';
+@import '../../../../shared/styles/colors.scss';
+
+.typography {
+  padding: 2rem;
+  min-height: 100vh;
+  background: $bg-main;
+  color: $text-primary;
+
+  .header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 0 0 1rem 0;
+      background: $text-gradient-primary;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: $text-muted;
+      margin: 0;
+    }
+  }
+
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section {
+    margin-bottom: 3rem;
+
+    h2 {
+      font-size: 1.8rem;
+      color: $accent-orange;
+      margin: 0 0 1.5rem 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid $border-primary;
+    }
+  }
+
+  // Headings
+  .headingGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: $accent-orange;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: $accent-blue;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .h4 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: $accent-green;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  .h5 {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: $accent-yellow;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .h6 {
+    font-size: 1rem;
+    font-weight: 500;
+    color: $accent-red;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  // Body Text
+  .bodyGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .bodyLarge {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: $text-primary;
+    margin: 0;
+  }
+
+  .body {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: $text-secondary;
+    margin: 0;
+  }
+
+  .bodySmall {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: $text-muted;
+    margin: 0;
+  }
+
+  // Text Colors
+  .colorGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .textPrimary {
+    color: $text-primary;
+    margin: 0;
+  }
+
+  .textSecondary {
+    color: $text-secondary;
+    margin: 0;
+  }
+
+  .textMuted {
+    color: $text-muted;
+    margin: 0;
+  }
+
+  .textSubtle {
+    color: $text-subtle;
+    margin: 0;
+  }
+
+  .textSuccess {
+    color: $status-success;
+    margin: 0;
+  }
+
+  .textWarning {
+    color: $status-warning;
+    margin: 0;
+  }
+
+  .textError {
+    color: $status-error;
+    margin: 0;
+  }
+
+  .textInfo {
+    color: $status-info;
+    margin: 0;
+  }
+
+  // Font Weights
+  .weightGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .weightThin {
+    font-weight: 100;
+    margin: 0;
+  }
+
+  .weightLight {
+    font-weight: 300;
+    margin: 0;
+  }
+
+  .weightNormal {
+    font-weight: 400;
+    margin: 0;
+  }
+
+  .weightMedium {
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .weightSemiBold {
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .weightBold {
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .weightExtraBold {
+    font-weight: 800;
+    margin: 0;
+  }
+
+  // Text Styles
+  .styleGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .italic {
+    font-style: italic;
+    margin: 0;
+  }
+
+  .underline {
+    text-decoration: underline;
+    margin: 0;
+  }
+
+  .strikethrough {
+    text-decoration: line-through;
+    margin: 0;
+  }
+
+  .uppercase {
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .lowercase {
+    text-transform: lowercase;
+    margin: 0;
+  }
+
+  .capitalize {
+    text-transform: capitalize;
+    margin: 0;
+  }
+
+  .monospace {
+    font-family: 'Courier New', monospace;
+    margin: 0;
+  }
+
+  // Text Alignment
+  .alignmentGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .alignLeft {
+    text-align: left;
+    margin: 0;
+  }
+
+  .alignCenter {
+    text-align: center;
+    margin: 0;
+  }
+
+  .alignRight {
+    text-align: right;
+    margin: 0;
+  }
+
+  .alignJustify {
+    text-align: justify;
+    margin: 0;
+  }
+
+  // Line Heights
+  .lineHeightGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .lineHeightTight {
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .lineHeightNormal {
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .lineHeightRelaxed {
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  // Text Gradients
+  .gradientGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .gradientPrimary {
+    background: $text-gradient-primary;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .gradientAccent {
+    background: $text-gradient-accent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .gradientRainbow {
+    background: linear-gradient(
+      45deg,
+      #ff6b35,
+      #f7931e,
+      #ffd23f,
+      #06ffa5,
+      #3b82f6,
+      #8b5cf6
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .gradientOrange {
+    background: linear-gradient(135deg, #ff6b35, #ff8c42);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .gradientBlue {
+    background: linear-gradient(135deg, #0ea5e9, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  // Code Text
+  .codeGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .inlineCode {
+    background: $character-bg-hover;
+    border: 1px solid $character-border-white;
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.875rem;
+    color: $accent-orange;
+  }
+
+  .codeBlock {
+    background: $character-bg-card;
+    border: 1px solid $character-border-white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    overflow-x: auto;
+    margin: 0;
+
+    code {
+      font-family: 'Courier New', monospace;
+      font-size: 0.875rem;
+      color: $text-primary;
+      white-space: pre;
+    }
+  }
+
+  // Text Sizes
+  .sizeGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .textXs {
+    font-size: 0.75rem;
+    margin: 0;
+  }
+
+  .textSm {
+    font-size: 0.875rem;
+    margin: 0;
+  }
+
+  .textBase {
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .textLg {
+    font-size: 1.125rem;
+    margin: 0;
+  }
+
+  .textXl {
+    font-size: 1.25rem;
+    margin: 0;
+  }
+
+  .text2xl {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+
+  .text3xl {
+    font-size: 1.875rem;
+    margin: 0;
+  }
+
+  .text4xl {
+    font-size: 2.25rem;
+    margin: 0;
+  }
+}

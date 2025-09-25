@@ -24,6 +24,15 @@
 
 ## Lookbook: Updates & Fixes
 
+### **v0.0.4 - Gylan - "Fundamental Builds"** (Sep 25, 2025)
+
+• **Colors**: Added global color definitions in `styles/colors.scss`.
+• **Wireframe System**: Implemented comprehensive wireframe system for DRY methodology and easier future development. This system will be expanded and made visible in a private developer dashboard (not for end users). The visualization and interface updates are planned and in development:
+• **Wireframe Pages**: Width Examples, Grid Designs, Buttons, Typography
+• **Content Width Pages**: Full Width, Wide Width, Normal Width, Narrow Width, Compact Width
+• **Purpose**: Centralized UI component library for consistent design patterns
+• **Future**: Will extract reusable props to reduce code repetition and standardize layouts
+
 ### **v0.0.3 - "The Great Restructure"** (Sep 22, 2025)
 
 • **MAJOR**: Complete project restructure - moved all pages to `src/features/pages/`
