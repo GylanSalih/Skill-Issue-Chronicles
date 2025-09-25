@@ -21,17 +21,8 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: false,
     minify: 'esbuild',
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          router: ['react-router-dom'],
-          ui: ['lucide-react', '@radix-ui/react-slot', '@radix-ui/react-label'],
-          three: ['three', '@react-three/fiber', '@react-three/drei'],
-          utils: ['lodash', 'uuid', 'clsx'],
-        },
-      },
-    },
+    target: 'esnext',
+    cssCodeSplit: false,
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom'],
