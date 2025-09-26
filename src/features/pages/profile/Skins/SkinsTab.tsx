@@ -1,4 +1,4 @@
-import { Check, Lock, Palette, Star } from 'lucide-react';
+import { Lock, Palette, Star } from 'lucide-react';
 import React, { useState } from 'react';
 import styles from './SkinsTab.module.scss';
 
@@ -120,36 +120,6 @@ const SkinsTab: React.FC = () => {
           </div>
         </div>
 
-        {/* Current Skin Display */}
-        <div className={styles.section}>
-          <h2>Currently Equipped</h2>
-          <div className={styles.currentSkinDisplay}>
-            <div className={styles.skinPreview}>
-              <img
-                src={currentSkin?.image || warriorImg}
-                alt='Current Skin'
-                className={styles.currentSkinImage}
-              />
-              <div className={styles.equippedBadge}>
-                <Check size={16} />
-                Equipped
-              </div>
-            </div>
-            <div className={styles.currentSkinInfo}>
-              <h3>{currentSkin?.name || 'Default Skin'}</h3>
-              <p>{currentSkin?.description || 'The classic look'}</p>
-              <span
-                className={`${styles.rarityBadge} ${styles[currentSkin?.rarity || 'common']}`}
-                style={{
-                  background: getRarityColor(currentSkin?.rarity || 'common'),
-                }}
-              >
-                {(currentSkin?.rarity || 'common').toUpperCase()}
-              </span>
-            </div>
-          </div>
-        </div>
-
         {/* Skin Collection */}
         <div className={styles.section}>
           <h2>Skin Collection</h2>
@@ -159,10 +129,9 @@ const SkinsTab: React.FC = () => {
                 key={skin.id}
                 className={`${styles.skinCard} ${
                   skin.owned ? styles.owned : styles.locked
-                } ${selectedSkin === skin.id ? styles.selected : ''}`}
-                onClick={() => skin.owned && setSelectedSkin(skin.id)}
+                } ${selectedSkin === skin.id ? styles.equipped : ''}`}
               >
-                <div className={styles.skinImageContainer}>
+                <div className={styles.skinIcon}>
                   <img
                     src={skin.image}
                     alt={skin.name}
@@ -170,51 +139,30 @@ const SkinsTab: React.FC = () => {
                   />
                   {!skin.owned && (
                     <div className={styles.lockedOverlay}>
-                      <Lock size={20} />
-                    </div>
-                  )}
-                  {selectedSkin === skin.id && skin.owned && (
-                    <div className={styles.selectedIndicator}>
-                      <Check size={16} />
+                      <Lock size={24} />
                     </div>
                   )}
                 </div>
 
-                <div className={styles.skinDetails}>
+                <div className={styles.skinInfo}>
                   <h4 className={styles.skinName}>{skin.name}</h4>
-                  <div className={styles.skinMeta}>
-                    <span
-                      className={`${styles.rarityTag} ${styles[skin.rarity]}`}
-                      style={{ background: getRarityColor(skin.rarity) }}
-                    >
-                      {skin.rarity.charAt(0).toUpperCase() +
-                        skin.rarity.slice(1)}
-                    </span>
-                    {!skin.owned && (
-                      <span className={styles.price}>{skin.price}g</span>
-                    )}
-                  </div>
+                  <p className={styles.skinDescription}>{skin.description}</p>
                 </div>
 
                 <div className={styles.skinActions}>
                   {skin.owned ? (
                     <button
-                      className={`${styles.actionButton} ${
+                      className={`${styles.skinButton} ${
                         selectedSkin === skin.id
                           ? styles.equipped
-                          : styles.equip
+                          : styles.normal
                       }`}
-                      onClick={e => {
-                        e.stopPropagation();
-                        setSelectedSkin(skin.id);
-                      }}
+                      onClick={() => setSelectedSkin(skin.id)}
                     >
                       {selectedSkin === skin.id ? 'Equipped' : 'Equip'}
                     </button>
                   ) : (
-                    <button
-                      className={`${styles.actionButton} ${styles.purchase}`}
-                    >
+                    <button className={`${styles.skinButton} ${styles.locked}`}>
                       Buy {skin.price}g
                     </button>
                   )}
