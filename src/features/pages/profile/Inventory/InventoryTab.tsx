@@ -161,212 +161,221 @@ const InventoryTab: React.FC = () => {
   };
 
   return (
-    <>
-      {/* Inventory Header */}
-      <div className={`${styles.section} ${styles.inventoryHeader}`}>
-        <div className={styles.inventoryHeaderContent}>
-          <div className={styles.inventoryHeaderIcon}>
-            <Package size={32} />
-          </div>
-          <div className={styles.inventoryHeaderText}>
-            <h2>Inventory</h2>
-            <p>Manage your items, equipment, and materials</p>
-          </div>
-        </div>
-        <div className={styles.inventoryStats}>
-          <div className={styles.inventoryStat}>
-            <span className={styles.inventoryStatValue}>{totalItems}</span>
-            <span className={styles.inventoryStatLabel}>Total Items</span>
-          </div>
-          <div className={styles.inventoryStat}>
-            <span className={styles.inventoryStatValue}>{uniqueItems}</span>
-            <span className={styles.inventoryStatLabel}>Unique</span>
-          </div>
-          <div className={styles.inventoryStat}>
-            <span className={styles.inventoryStatValue}>
-              {usedSlots}/{inventory.maxSlots}
-            </span>
-            <span className={styles.inventoryStatLabel}>Slots</span>
-          </div>
+    <div className={styles.normalWidth}>
+      <div className={styles.header}>
+        <div className={styles.headerContent}>
+          <h1>Character Inventory</h1>
+          <p>Verwalte deine Gegenstände, Ausrüstung und Materialien</p>
         </div>
       </div>
 
-      {/* Search and Filter */}
-      <div className={`${styles.section} ${styles.inventoryControls}`}>
-        <div className={styles.searchContainer}>
-          <Search size={16} />
-          <input
-            type='text'
-            placeholder='Search items...'
-            value={searchTerm}
-            onChange={e => setSearchTerm(e.target.value)}
-            className={styles.searchInput}
-          />
+      <div className={styles.content}>
+        {/* Inventory Header */}
+        <div className={`${styles.section} ${styles.inventoryHeader}`}>
+          <div className={styles.inventoryHeaderContent}>
+            <div className={styles.inventoryHeaderIcon}>
+              <Package size={32} />
+            </div>
+            <div className={styles.inventoryHeaderText}>
+              <h2>Inventory</h2>
+              <p>Manage your items, equipment, and materials</p>
+            </div>
+          </div>
+          <div className={styles.inventoryStats}>
+            <div className={styles.inventoryStat}>
+              <span className={styles.inventoryStatValue}>{totalItems}</span>
+              <span className={styles.inventoryStatLabel}>Total Items</span>
+            </div>
+            <div className={styles.inventoryStat}>
+              <span className={styles.inventoryStatValue}>{uniqueItems}</span>
+              <span className={styles.inventoryStatLabel}>Unique</span>
+            </div>
+            <div className={styles.inventoryStat}>
+              <span className={styles.inventoryStatValue}>
+                {usedSlots}/{inventory.maxSlots}
+              </span>
+              <span className={styles.inventoryStatLabel}>Slots</span>
+            </div>
+          </div>
         </div>
-        <div className={styles.categoryButtons}>
-          {categories.map(category => (
-            <button
-              key={category.id}
-              className={`${styles.categoryButton} ${selectedCategory === category.id ? styles.active : ''}`}
-              onClick={() => setSelectedCategory(category.id as any)}
-            >
-              <category.icon size={16} />
-              <span>{category.name}</span>
-            </button>
-          ))}
-        </div>
-      </div>
 
-      {/* Inventory Grid */}
-      <div className={`${styles.section} ${styles.inventoryGrid}`}>
-        <h3>
-          {selectedCategory === 'all'
-            ? 'All Items'
-            : `${categories.find(c => c.id === selectedCategory)?.name}`}{' '}
-          ({filteredItems.length})
-        </h3>
-        <div className={styles.itemGrid}>
-          {filteredItems.map(item => (
-            <div
-              key={item.id}
-              className={`${styles.itemCard} ${selectedItem?.id === item.id ? styles.selected : ''}`}
-              onClick={() => handleItemClick(item)}
-            >
-              <div className={styles.itemIcon}>
-                <span className={styles.itemEmoji}>{item.icon}</span>
-                <div className={styles.itemQuantity}>
-                  {item.quantity > 1 && (
-                    <span className={styles.quantityBadge}>
-                      {item.quantity}
+        {/* Search and Filter */}
+        <div className={`${styles.section} ${styles.inventoryControls}`}>
+          <div className={styles.searchContainer}>
+            <Search size={16} />
+            <input
+              type='text'
+              placeholder='Search items...'
+              value={searchTerm}
+              onChange={e => setSearchTerm(e.target.value)}
+              className={styles.searchInput}
+            />
+          </div>
+          <div className={styles.categoryButtons}>
+            {categories.map(category => (
+              <button
+                key={category.id}
+                className={`${styles.categoryButton} ${selectedCategory === category.id ? styles.active : ''}`}
+                onClick={() => setSelectedCategory(category.id as any)}
+              >
+                <category.icon size={16} />
+                <span>{category.name}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Inventory Grid */}
+        <div className={`${styles.section} ${styles.inventoryGrid}`}>
+          <h3>
+            {selectedCategory === 'all'
+              ? 'All Items'
+              : `${categories.find(c => c.id === selectedCategory)?.name}`}{' '}
+            ({filteredItems.length})
+          </h3>
+          <div className={styles.itemGrid}>
+            {filteredItems.map(item => (
+              <div
+                key={item.id}
+                className={`${styles.itemCard} ${selectedItem?.id === item.id ? styles.selected : ''}`}
+                onClick={() => handleItemClick(item)}
+              >
+                <div className={styles.itemIcon}>
+                  <span className={styles.itemEmoji}>{item.icon}</span>
+                  <div className={styles.itemQuantity}>
+                    {item.quantity > 1 && (
+                      <span className={styles.quantityBadge}>
+                        {item.quantity}
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <div className={styles.itemInfo}>
+                  <h4>{item.name}</h4>
+                  <div className={styles.itemMeta}>
+                    <span
+                      className={styles.rarityTag}
+                      style={{
+                        color: getRarityColor(item.level),
+                        backgroundColor: getRarityBg(item.level),
+                      }}
+                    >
+                      {getRarityName(item.level)}
                     </span>
+                    <span className={styles.levelTag}>Lv. {item.level}</span>
+                  </div>
+                  {item.stats && (
+                    <div className={styles.itemStats}>
+                      {Object.entries(item.stats).map(([stat, value]) => (
+                        <span key={stat} className={styles.statBadge}>
+                          {stat}: +{value}
+                        </span>
+                      ))}
+                    </div>
                   )}
                 </div>
               </div>
-              <div className={styles.itemInfo}>
-                <h4>{item.name}</h4>
-                <div className={styles.itemMeta}>
+            ))}
+
+            {/* Empty slots */}
+            {Array.from({
+              length: Math.max(0, inventory.maxSlots - uniqueItems),
+            }).map((_, index) => (
+              <div key={`empty-${index}`} className={styles.emptySlot}>
+                <Plus size={24} className={styles.emptySlotIcon} />
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Item Details Panel */}
+        {selectedItem && (
+          <div className={`${styles.section} ${styles.itemDetails}`}>
+            <div className={styles.itemDetailsHeader}>
+              <div className={styles.itemDetailsIcon}>
+                <span className={styles.itemEmoji}>{selectedItem.icon}</span>
+              </div>
+              <div className={styles.itemDetailsInfo}>
+                <h3>{selectedItem.name}</h3>
+                <div className={styles.itemDetailsMeta}>
                   <span
                     className={styles.rarityTag}
                     style={{
-                      color: getRarityColor(item.level),
-                      backgroundColor: getRarityBg(item.level),
+                      color: getRarityColor(selectedItem.level),
+                      backgroundColor: getRarityBg(selectedItem.level),
                     }}
                   >
-                    {getRarityName(item.level)}
+                    {getRarityName(selectedItem.level)}
                   </span>
-                  <span className={styles.levelTag}>Lv. {item.level}</span>
+                  <span className={styles.levelTag}>
+                    Level {selectedItem.level}
+                  </span>
+                  <span className={styles.typeTag}>
+                    {selectedItem.type.charAt(0).toUpperCase() +
+                      selectedItem.type.slice(1)}
+                  </span>
                 </div>
-                {item.stats && (
-                  <div className={styles.itemStats}>
-                    {Object.entries(item.stats).map(([stat, value]) => (
-                      <span key={stat} className={styles.statBadge}>
-                        {stat}: +{value}
-                      </span>
-                    ))}
-                  </div>
-                )}
               </div>
-            </div>
-          ))}
-
-          {/* Empty slots */}
-          {Array.from({
-            length: Math.max(0, inventory.maxSlots - uniqueItems),
-          }).map((_, index) => (
-            <div key={`empty-${index}`} className={styles.emptySlot}>
-              <Plus size={24} className={styles.emptySlotIcon} />
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Item Details Panel */}
-      {selectedItem && (
-        <div className={`${styles.section} ${styles.itemDetails}`}>
-          <div className={styles.itemDetailsHeader}>
-            <div className={styles.itemDetailsIcon}>
-              <span className={styles.itemEmoji}>{selectedItem.icon}</span>
-            </div>
-            <div className={styles.itemDetailsInfo}>
-              <h3>{selectedItem.name}</h3>
-              <div className={styles.itemDetailsMeta}>
-                <span
-                  className={styles.rarityTag}
-                  style={{
-                    color: getRarityColor(selectedItem.level),
-                    backgroundColor: getRarityBg(selectedItem.level),
-                  }}
+              <div className={styles.itemDetailsActions}>
+                <button
+                  className={styles.actionButton}
+                  onClick={() => handleDeleteItem(selectedItem)}
                 >
-                  {getRarityName(selectedItem.level)}
+                  <Trash2 size={16} />
+                </button>
+              </div>
+            </div>
+
+            {selectedItem.stats && (
+              <div className={styles.itemDetailsStats}>
+                <h4>Stats</h4>
+                <div className={styles.statsGrid}>
+                  {Object.entries(selectedItem.stats).map(([stat, value]) => (
+                    <div key={stat} className={styles.statItem}>
+                      <span className={styles.statName}>
+                        {stat.charAt(0).toUpperCase() + stat.slice(1)}
+                      </span>
+                      <span className={styles.statValue}>+{value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className={styles.itemDetailsQuantity}>
+              <h4>Quantity</h4>
+              <div className={styles.quantityControls}>
+                <span className={styles.quantityValue}>
+                  {selectedItem.quantity}
                 </span>
-                <span className={styles.levelTag}>
-                  Level {selectedItem.level}
-                </span>
-                <span className={styles.typeTag}>
-                  {selectedItem.type.charAt(0).toUpperCase() +
-                    selectedItem.type.slice(1)}
+                <span className={styles.quantityLabel}>
+                  {selectedItem.quantity === 1 ? 'item' : 'items'}
                 </span>
               </div>
             </div>
-            <div className={styles.itemDetailsActions}>
-              <button
-                className={styles.actionButton}
-                onClick={() => handleDeleteItem(selectedItem)}
-              >
-                <Trash2 size={16} />
-              </button>
-            </div>
           </div>
+        )}
 
-          {selectedItem.stats && (
-            <div className={styles.itemDetailsStats}>
-              <h4>Stats</h4>
-              <div className={styles.statsGrid}>
-                {Object.entries(selectedItem.stats).map(([stat, value]) => (
-                  <div key={stat} className={styles.statItem}>
-                    <span className={styles.statName}>
-                      {stat.charAt(0).toUpperCase() + stat.slice(1)}
-                    </span>
-                    <span className={styles.statValue}>+{value}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          <div className={styles.itemDetailsQuantity}>
-            <h4>Quantity</h4>
-            <div className={styles.quantityControls}>
-              <span className={styles.quantityValue}>
-                {selectedItem.quantity}
-              </span>
-              <span className={styles.quantityLabel}>
-                {selectedItem.quantity === 1 ? 'item' : 'items'}
-              </span>
-            </div>
+        {/* Quick Actions */}
+        <div className={`${styles.section} ${styles.quickActions}`}>
+          <h3>Quick Actions</h3>
+          <div className={styles.actionButtons}>
+            <button className={styles.quickActionButton}>
+              <Archive size={16} />
+              <span>Sort Items</span>
+            </button>
+            <button className={styles.quickActionButton}>
+              <Trash2 size={16} />
+              <span>Clear Junk</span>
+            </button>
+            <button className={styles.quickActionButton}>
+              <Package size={16} />
+              <span>Expand Slots</span>
+            </button>
           </div>
-        </div>
-      )}
-
-      {/* Quick Actions */}
-      <div className={`${styles.section} ${styles.quickActions}`}>
-        <h3>Quick Actions</h3>
-        <div className={styles.actionButtons}>
-          <button className={styles.quickActionButton}>
-            <Archive size={16} />
-            <span>Sort Items</span>
-          </button>
-          <button className={styles.quickActionButton}>
-            <Trash2 size={16} />
-            <span>Clear Junk</span>
-          </button>
-          <button className={styles.quickActionButton}>
-            <Package size={16} />
-            <span>Expand Slots</span>
-          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

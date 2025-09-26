@@ -79,8 +79,18 @@ const UiStuffRandomTab: React.FC = () => {
   ];
 
   return (
-    <>
-      {/* UI Components Header */}
+    <div className={styles.normalWidth}>
+      <div className={styles.header}>
+        <div className={styles.headerContent}>
+          <h1>UI Components</h1>
+          <p>
+            Verschiedene UI-Elemente und Interface-Komponenten
+          </p>
+        </div>
+      </div>
+
+      <div className={styles.content}>
+        {/* UI Components Header */}
       <div className={`${styles.section} ${styles.uiStuffRandomHeader}`}>
         <div className={styles.uiStuffRandomHeaderContent}>
           <div className={styles.uiStuffRandomHeaderIcon}>
@@ -222,7 +232,8 @@ const UiStuffRandomTab: React.FC = () => {
           ))}
         </div>
       </div>
-    </>
+      </div>
+    </div>
   );
 };
 

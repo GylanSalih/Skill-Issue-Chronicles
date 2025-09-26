@@ -1,4 +1,75 @@
+@import '../../../../shared/styles/globals.scss';
+@import '../../../../shared/styles/colors.scss';
+
 /* Skins Tab Styles */
+.normalWidth {
+  min-height: 100vh;
+  background: $bg-main;
+  color: $text-primary;
+  padding: 0;
+
+  .header {
+    background: $bg-card;
+    padding: 0;
+    border-bottom: 1px solid $border-primary;
+    box-shadow: 0 4px 12px $shadow-light;
+    display: flex;
+    align-items: center;
+    min-height: 80px;
+
+    .headerContent {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0 2rem;
+      width: 100%;
+
+      h1 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin: 0;
+        background: $text-gradient-primary;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      p {
+        font-size: 1rem;
+        color: $text-muted;
+        margin: 0;
+        line-height: 1.4;
+      }
+    }
+  }
+
+  .content {
+    padding: 2rem 2rem;
+  }
+
+  .section {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    margin-bottom: 2rem;
+
+    h2 {
+      font-size: 1.8rem;
+      color: $accent-blue;
+      margin: 0 0 1rem 0;
+    }
+
+    p {
+      font-size: 1rem;
+      color: $text-secondary;
+      margin: 0;
+      line-height: 1.6;
+    }
+  }
+}
 .skinHeader {
   grid-column: 1 / -1;
   display: flex;

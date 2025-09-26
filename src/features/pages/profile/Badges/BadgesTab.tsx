@@ -170,8 +170,18 @@ const BadgesTab: React.FC = () => {
   const totalBadges = badges.length;
 
   return (
-    <>
-      {/* Badge Collection Header */}
+    <div className={styles.normalWidth}>
+      <div className={styles.header}>
+        <div className={styles.headerContent}>
+          <h1>Character Badges</h1>
+          <p>
+            Sammle und zeige deine Errungenschaften und Abzeichen
+          </p>
+        </div>
+      </div>
+
+      <div className={styles.content}>
+        {/* Badge Collection Header */}
       <div className={`${styles.section} ${styles.badgeHeader}`}>
         <div className={styles.badgeHeaderContent}>
           <div className={styles.badgeHeaderIcon}>
@@ -300,7 +310,8 @@ const BadgesTab: React.FC = () => {
           ))}
         </div>
       </div>
-    </>
+      </div>
+    </div>
   );
 };
 
