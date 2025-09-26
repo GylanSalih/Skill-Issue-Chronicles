@@ -1,0 +1,437 @@
+/* Profile Tab Styles */
+.tabContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.characterOverview {
+  grid-column: 1 / -1;
+}
+
+.characterHeader {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 1rem;
+  position: relative;
+  z-index: 1;
+  will-change: auto;
+}
+
+.characterImage {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.characterAvatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid #444;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.levelBadge {
+  position: absolute;
+  bottom: -5px;
+  right: -5px;
+  background: linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%);
+  color: #1a1a2e;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: 3px solid #1a1a2e;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.characterInfo {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+
+  p {
+    margin: 0.75rem 0;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    strong {
+      color: #ffffff;
+      font-weight: 600;
+      display: inline-block;
+    }
+  }
+}
+
+/* Player Stats */
+.playerStats {
+  grid-column: 1 / -1;
+
+  .statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .statCard {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+    will-change: auto;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .statHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .statIcon {
+    color: #ff6b35;
+    flex-shrink: 0;
+  }
+
+  .statTitle {
+    color: #9ca3af;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .statValue {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.25rem;
+  }
+
+  .statSubtext {
+    color: #9ca3af;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .progressBar {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .progressFill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff6b35 0%, #ff8c42 100%);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+  }
+}
+
+.attributes {
+  .pointsInfo {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 6px;
+
+    .availablePoints {
+      color: #10b981;
+      font-weight: 600;
+      font-size: 0.95rem;
+
+      .pendingPoints {
+        color: #f59e0b;
+        font-weight: 500;
+        margin-left: 0.5rem;
+      }
+    }
+  }
+
+  .statItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    .statValueContainer {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+
+      .statValue {
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 1rem;
+        min-width: 30px;
+        text-align: right;
+
+        .pendingChange {
+          font-size: 0.85rem;
+          font-weight: 500;
+          margin-left: 0.25rem;
+
+          &.positive {
+            color: #10b981;
+          }
+
+          &.negative {
+            color: #ef4444;
+          }
+
+          // Verstecke leere Klammern (wenn der Wert 0 ist)
+          &:empty {
+            display: none;
+          }
+        }
+      }
+
+      .statControls {
+        display: flex;
+        gap: 0.25rem;
+      }
+    }
+  }
+
+  .statButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+    will-change: auto;
+    font-size: 0.8rem;
+
+    &:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      background: rgba(255, 255, 255, 0.02);
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    &.increaseButton:not(:disabled) {
+      &:hover {
+        background: rgba(16, 185, 129, 0.2);
+        border-color: rgba(16, 185, 129, 0.4);
+        color: #10b981;
+      }
+    }
+
+    &.decreaseButton:not(:disabled) {
+      &:hover {
+        background: rgba(239, 68, 68, 0.2);
+        border-color: rgba(239, 68, 68, 0.4);
+        color: #ef4444;
+      }
+    }
+  }
+
+  .statActions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .resetButton,
+  .applyButton {
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+    will-change: auto;
+    font-size: 0.9rem;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  .resetButton {
+    &:hover {
+      background: rgba(107, 114, 128, 0.2);
+      border-color: rgba(107, 114, 128, 0.4);
+      color: #9ca3af;
+    }
+  }
+
+  .applyButton {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border-color: rgba(16, 185, 129, 0.3);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+
+    &:hover {
+      background: linear-gradient(135deg, #059669 0%, #047857 100%);
+      border-color: rgba(16, 185, 129, 0.5);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+    }
+  }
+}
+
+.gameInfo {
+  .infoItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+.inventory {
+  grid-column: 1 / -1;
+
+  .inventoryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .inventoryItem {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+    will-change: auto;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    p {
+      margin: 0.25rem 0;
+
+      &:first-child {
+        font-weight: 600;
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+.pets {
+  grid-column: 1 / -1;
+
+  .petsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .petItem {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+    will-change: auto;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    &.active {
+      border-color: #444;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    p {
+      margin: 0.25rem 0;
+
+      &:first-child {
+        font-weight: 600;
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+/* Attributes and Info Container */
+.attributesAndInfoContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  grid-column: 1 / -1;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}

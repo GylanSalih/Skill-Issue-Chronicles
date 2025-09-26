@@ -1,14 +1,14 @@
+import { Check, Lock, Palette, Star } from 'lucide-react';
 import React, { useState } from 'react';
-import { Palette, Star, Lock, Check } from 'lucide-react';
-import styles from '../Character.module.scss';
+import styles from './SkinsTab.module.scss';
 
 // Import avatar images
-import warriorImg from '@assets/img/avatars/warrior.png';
-import warrior2Img from '@assets/img/avatars/warrior2.png';
-import magierImg from '@assets/img/avatars/magier.png';
 import assassineImg from '@assets/img/avatars/assassine.png';
 import elfeImg from '@assets/img/avatars/elfe.png';
+import magierImg from '@assets/img/avatars/magier.png';
 import paladinImg from '@assets/img/avatars/paladin.png';
+import warriorImg from '@assets/img/avatars/warrior.png';
+import warrior2Img from '@assets/img/avatars/warrior2.png';
 
 const SkinsTab: React.FC = () => {
   const [selectedSkin, setSelectedSkin] = useState<string>('default');

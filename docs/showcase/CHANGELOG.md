@@ -44,7 +44,7 @@
 • **ASSETS**: Optimized asset structure (only `public/` for static files)
 • **CONFIG**: Updated `.gitignore`, `components.json`, and VS Code settings
 
-### **v0.0.2 - Core Features Development** (Jun-Aug 2025)
+### **v0.0.2 - Core Starting Features Development** (Jun-Aug 2025)
 
 • **CHARACTER**: Implemented character creation, selection, and management system
 • **SKILLS**: Added woodcutting, mining, fishing, cooking, smithing, magic skills

@@ -1,0 +1,306 @@
+/**
+ * 🎨 DEBUG PANEL STYLES
+ */
+
+.debugIcon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10000;
+
+  width: 32px;
+  height: 32px;
+
+  background: rgba(239, 68, 68, 0.9);
+  border: 1px solid #dc2626;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: white;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(239, 68, 68, 1);
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.debugPanel {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10001;
+
+  width: 320px;
+  max-height: 80vh;
+
+  background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+  border: 1px solid #4b5563;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+
+  color: #f9fafb;
+  font-size: 0.85rem;
+
+  overflow: hidden;
+
+  &.minimized {
+    height: auto;
+
+    .content {
+      display: none;
+    }
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid #4b5563;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: #ef4444;
+}
+
+.controls {
+  display: flex;
+  gap: 4px;
+}
+
+.minimizeBtn,
+.closeBtn {
+  width: 24px;
+  height: 24px;
+
+  background: transparent;
+  border: 1px solid #6b7280;
+  border-radius: 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #9ca3af;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #9ca3af;
+    color: #f9fafb;
+  }
+}
+
+.closeBtn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.content {
+  max-height: calc(80vh - 60px);
+  overflow-y: auto;
+  padding: 16px;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+  }
+}
+
+.section {
+  margin-bottom: 20px;
+
+  h3 {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 12px 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fbbf24;
+    border-bottom: 1px solid #374151;
+    padding-bottom: 6px;
+  }
+}
+
+.setting {
+  margin-bottom: 10px;
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: #d1d5db;
+
+    input[type='checkbox'] {
+      width: 16px;
+      height: 16px;
+      accent-color: #10b981;
+      cursor: pointer;
+    }
+
+    input[type='number'] {
+      width: 80px;
+      padding: 4px 8px;
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid #4b5563;
+      border-radius: 4px;
+      color: #f9fafb;
+      font-size: 0.8rem;
+
+      &:focus {
+        outline: none;
+        border-color: #10b981;
+        box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+      }
+    }
+  }
+
+  > label:first-child {
+    margin-bottom: 4px;
+    font-weight: 500;
+    color: #f9fafb;
+  }
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid #374151;
+}
+
+.resetBtn,
+.exportBtn {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #6b7280;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.2);
+  color: #d1d5db;
+  font-size: 0.8rem;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #9ca3af;
+    color: #f9fafb;
+  }
+}
+
+.resetBtn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.exportBtn:hover {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: #10b981;
+  color: #10b981;
+}
+
+// ==================== OVERLAY COMPONENTS ====================
+
+.fpsCounter,
+.memoryUsage {
+  position: fixed;
+  top: 20px;
+  z-index: 9999;
+
+  padding: 4px 8px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid #374151;
+  border-radius: 4px;
+
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #10b981;
+
+  pointer-events: none;
+}
+
+.fpsCounter {
+  right: 20px;
+}
+
+.memoryUsage {
+  right: 100px;
+  color: #3b82f6;
+}
+
+// ==================== DEBUG HITBOXES ====================
+
+:global(body) {
+  &[data-debug-hitboxes='true'] {
+    * {
+      outline: var(--debug-hitboxes, none) !important;
+    }
+  }
+}
+
+// ==================== RESPONSIVE ====================
+
+@media (max-width: 768px) {
+  .debugPanel {
+    width: calc(100vw - 40px);
+    max-width: 320px;
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .debugIcon {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .fpsCounter {
+    top: 10px;
+    right: 10px;
+  }
+
+  .memoryUsage {
+    top: 10px;
+    right: 80px;
+  }
+}

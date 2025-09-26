@@ -1,0 +1,312 @@
+.tooltipWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+  backdrop-filter: blur(2px);
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 1000;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid #4a5568;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  padding: 0;
+  min-width: 200px;
+  max-width: 300px;
+  font-size: 14px;
+  color: #e2e8f0;
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+  }
+
+  &.top {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 8px;
+
+    &::before {
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-top-color: #4a5568;
+    }
+  }
+
+  &.bottom {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 8px;
+
+    &::before {
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-bottom-color: #4a5568;
+    }
+  }
+
+  &.left {
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 8px;
+
+    &::before {
+      left: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      border-left-color: #4a5568;
+    }
+  }
+
+  &.right {
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 8px;
+
+    &::before {
+      right: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      border-right-color: #4a5568;
+    }
+  }
+
+  &.centerTooltip {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    margin: 0;
+    min-width: 300px;
+    max-width: 400px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    opacity: 1;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  &.visible {
+    opacity: 1;
+  }
+}
+
+.tooltipContent {
+  padding: 12px;
+}
+
+.tooltipHeader {
+  margin-bottom: 8px;
+  border-bottom: 1px solid #4a5568;
+  padding-bottom: 8px;
+}
+
+.tooltipTitle {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #f7fafc;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.tooltipDescription {
+  margin: 0;
+  font-size: 12px;
+  color: #a0aec0;
+  line-height: 1.4;
+}
+
+.tooltipStats {
+  margin-bottom: 8px;
+}
+
+.statRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+  padding: 2px 0;
+}
+
+.statLabel {
+  font-size: 12px;
+  color: #a0aec0;
+  font-weight: 500;
+}
+
+.statValue {
+  font-size: 12px;
+  color: #f7fafc;
+  font-weight: 600;
+}
+
+.progressBar {
+  flex: 1;
+  height: 4px;
+  background: #2d3748;
+  border-radius: 2px;
+  margin: 0 8px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #48bb78 0%, #38a169 100%);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.progressText {
+  font-size: 11px;
+  color: #68d391;
+  font-weight: 500;
+  min-width: 35px;
+  text-align: right;
+}
+
+.tooltipResources {
+  margin-bottom: 8px;
+}
+
+.resourcesTitle {
+  margin: 0 0 6px 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #e2e8f0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.resourceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3px;
+  padding: 1px 0;
+}
+
+.resourceName {
+  font-size: 11px;
+  color: #a0aec0;
+  font-weight: 500;
+}
+
+.resourceAmount {
+  font-size: 11px;
+  color: #f7fafc;
+  font-weight: 600;
+}
+
+.tooltipRequirements {
+  border-top: 1px solid #4a5568;
+  padding-top: 8px;
+}
+
+.requirementsTitle {
+  margin: 0 0 6px 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #e2e8f0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.requirementRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3px;
+  padding: 1px 0;
+}
+
+.requirementLabel {
+  font-size: 11px;
+  color: #a0aec0;
+  font-weight: 500;
+}
+
+.requirementValue {
+  font-size: 11px;
+  color: #f7fafc;
+  font-weight: 600;
+}
+
+.requirementItems {
+  margin-top: 4px;
+}
+
+.tooltipActions {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #4a5568;
+  display: flex;
+  justify-content: center;
+}
+
+.startButton {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .tooltip {
+    min-width: 180px;
+    max-width: 250px;
+    font-size: 13px;
+  }
+
+  .tooltipContent {
+    padding: 10px;
+  }
+
+  .tooltipTitle {
+    font-size: 15px;
+  }
+}

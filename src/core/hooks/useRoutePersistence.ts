@@ -33,6 +33,16 @@ const PATH_TO_MENU_ID: Record<string, string> = {
   '/pet-training': 'pet-training',
   '/news': 'news',
   '/game-rules': 'game-rules',
+  // Wireframe routes
+  '/wireframe/widths': 'wireframe-widths',
+  '/wireframe/grids': 'wireframe-grids',
+  '/wireframe/buttons': 'wireframe-buttons',
+  '/wireframe/typography': 'wireframe-typography',
+  '/wireframe/content-width': 'wireframe-content-width',
+  '/wireframe/full-width': 'wireframe-full-width',
+  '/wireframe/wide-width': 'wireframe-wide-width',
+  '/wireframe/normal-width': 'wireframe-normal-width',
+  '/wireframe/compact-width': 'wireframe-compact-width',
 };
 
 // Mapping von Menu-IDs zu übergeordneten Kategorien

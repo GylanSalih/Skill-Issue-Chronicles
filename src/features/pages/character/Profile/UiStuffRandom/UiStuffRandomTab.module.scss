@@ -1,0 +1,395 @@
+/* UiStuffRandom Tab Styles */
+// Base section styling
+.section {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+  border: 1px solid #444;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  margin-bottom: 1.5rem;
+
+  h2,
+  h3,
+  h4 {
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 1rem 0;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #444;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+  }
+
+  p {
+    margin: 0.5rem 0;
+    color: #9ca3af;
+    font-size: 1rem;
+
+    &:first-of-type {
+      margin-top: 0;
+    }
+  }
+}
+
+/* Player Stats */
+.playerStats {
+  grid-column: 1 / -1;
+
+  .statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .statCard {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+    will-change: auto;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .statHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .statIcon {
+    color: #ff6b35;
+    flex-shrink: 0;
+  }
+
+  .statTitle {
+    color: #9ca3af;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .statValue {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.25rem;
+  }
+
+  .statSubtext {
+    color: #9ca3af;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .progressBar {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .progressFill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff6b35 0%, #ff8c42 100%);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+  }
+}
+
+.inventory {
+  grid-column: 1 / -1;
+
+  .inventoryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .inventoryItem {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+    will-change: auto;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    p {
+      margin: 0.25rem 0;
+
+      &:first-child {
+        font-weight: 600;
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+.pets {
+  grid-column: 1 / -1;
+
+  .petsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .petItem {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+    will-change: auto;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    &.active {
+      border-color: #444;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    p {
+      margin: 0.25rem 0;
+
+      &:first-child {
+        font-weight: 600;
+        color: #ffffff;
+      }
+    }
+  }
+}
+.uiStuffRandomHeader {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .uiStuffRandomHeaderContent {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .uiStuffRandomHeaderIcon {
+    color: #ff6b35;
+    flex-shrink: 0;
+  }
+
+  .uiStuffRandomHeaderText {
+    h2 {
+      margin: 0 0 0.5rem 0;
+      color: #ffffff;
+    }
+
+    p {
+      margin: 0;
+      color: #9ca3af;
+    }
+  }
+}
+
+.sortOptions {
+  grid-column: 1 / -1;
+
+  .sortButtons {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .sortButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #9ca3af;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+    will-change: auto;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+    }
+
+    &.active {
+      background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+      color: #ffffff;
+      border-color: #ff6b35;
+    }
+  }
+
+  .sortOrderToggle {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .orderButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #9ca3af;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+    will-change: auto;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+    }
+
+    &.active {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #ffffff;
+      border-color: #10b981;
+    }
+  }
+}
+
+.filterOptions {
+  grid-column: 1 / -1;
+
+  .filterButtons {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .filterButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #9ca3af;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+    will-change: auto;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+    }
+
+    &.active {
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      color: #ffffff;
+      border-color: #3b82f6;
+    }
+  }
+}
+
+.sortierenPreview {
+  grid-column: 1 / -1;
+
+  .previewInfo {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1rem;
+
+    p {
+      margin: 0.5rem 0;
+      color: #9ca3af;
+
+      strong {
+        color: #ffffff;
+        font-weight: 600;
+      }
+    }
+  }
+
+  .previewActions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    justify-content: center;
+  }
+
+  .applyButton {
+    background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+    border: none;
+    border-radius: 6px;
+    color: #ffffff;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+    will-change: auto;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+    }
+  }
+
+  .resetButton {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #9ca3af;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+    will-change: auto;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+    }
+  }
+}

@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
 import {
-  Award,
-  Star,
-  Target,
-  Shield,
-  Sword,
   Activity,
+  Award,
   Crown,
-  Zap,
   Heart,
+  Shield,
+  Star,
+  Sword,
+  Target,
   Trophy,
+  Zap,
 } from 'lucide-react';
-import styles from '../Character.module.scss';
+import React, { useState } from 'react';
+import styles from './BadgesTab.module.scss';
 
 const BadgesTab: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<

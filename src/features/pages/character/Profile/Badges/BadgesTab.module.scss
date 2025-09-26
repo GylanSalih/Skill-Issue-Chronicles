@@ -1,0 +1,259 @@
+/* Badges Tab Styles */
+.badgeHeader {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .badgeHeaderContent {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .badgeHeaderIcon {
+    color: #ff6b35;
+    flex-shrink: 0;
+  }
+
+  .badgeHeaderText {
+    h2 {
+      margin: 0 0 0.5rem 0;
+      color: #ffffff;
+    }
+
+    p {
+      margin: 0;
+      color: #9ca3af;
+    }
+  }
+
+  .badgeStats {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .badgeStat {
+    text-align: center;
+
+    .badgeStatValue {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ff6b35;
+    }
+
+    .badgeStatLabel {
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+  }
+}
+
+.badgeFilter {
+  grid-column: 1 / -1;
+
+  .categoryButtons {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .categoryButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: #9ca3af;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+    will-change: auto;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+    }
+
+    &.active {
+      background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
+      color: #ffffff;
+      border-color: #ff6b35;
+    }
+  }
+}
+
+.badgeGrid {
+  grid-column: 1 / -1;
+
+  .badgesList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .badgeCard {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+    will-change: auto;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    &.owned {
+      border-color: #10b981;
+      background: rgba(16, 185, 129, 0.1);
+    }
+
+    &.locked {
+      opacity: 0.6;
+    }
+  }
+
+  .badgeIcon {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1rem;
+
+    .ownedIndicator {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #10b981;
+      color: #ffffff;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .badgeInfo {
+    h4 {
+      margin: 0 0 0.5rem 0;
+      color: #ffffff;
+      font-size: 1rem;
+    }
+
+    p {
+      margin: 0 0 1rem 0;
+      color: #9ca3af;
+      font-size: 0.8rem;
+    }
+  }
+
+  .badgeFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .rarityTag {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .xpReward {
+    color: #f59e0b;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .progressContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .progressBar {
+      flex: 1;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progressFill {
+      height: 100%;
+      background: linear-gradient(90deg, #ff6b35 0%, #ff8c42 100%);
+      border-radius: 2px;
+    }
+
+    .progressText {
+      color: #9ca3af;
+      font-size: 0.7rem;
+    }
+  }
+}
+
+.recentBadges {
+  grid-column: 1 / -1;
+
+  .recentBadgesList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .recentBadgeItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
+    will-change: auto;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateX(4px);
+    }
+  }
+
+  .recentBadgeIcon {
+    flex-shrink: 0;
+  }
+
+  .recentBadgeInfo {
+    flex: 1;
+
+    h4 {
+      margin: 0 0 0.25rem 0;
+      color: #ffffff;
+      font-size: 0.9rem;
+    }
+
+    p {
+      margin: 0;
+      color: #9ca3af;
+      font-size: 0.8rem;
+    }
+  }
+
+  .recentBadgeXp {
+    color: #f59e0b;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+}

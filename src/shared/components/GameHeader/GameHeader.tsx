@@ -3,12 +3,16 @@ import {
   Coins,
   Crown,
   Gem,
+  LogOut,
   MessageCircle,
   Moon,
   PanelLeft,
   PanelRight,
+  Settings,
   Sun,
   TreePine,
+  User,
+  Users,
 } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -16,10 +20,9 @@ import {
   useCharacter,
   useCharacterClasses,
 } from '../../../core/contexts/GameContext';
+import { useSkill } from '../../../core/engine';
 import { useGameState } from '../../../core/hooks/useGameState';
-import { useWoodcutting } from '../../../core/hooks/useWoodcutting';
 import { formatTimeWithSeconds } from '../../../core/services/dateUtils';
-import { getWoodTypeById } from '../../../core/services/woodConfig';
 import styles from './GameHeader.module.scss';
 
 // Import avatar images
@@ -44,12 +47,15 @@ const GameHeader: React.FC<GameHeaderProps> = ({
 }) => {
   const navigate = useNavigate();
   const { gameState } = useGameState();
-  const { activeSession, stopChopping } = useWoodcutting();
+  const woodcuttingSkill = useSkill('woodcutting');
   const { currentCharacter } = useCharacter();
   const { getClassById } = useCharacterClasses();
 
   // Einfacher Ladebalken State
   const [simpleProgress, setSimpleProgress] = useState(0);
+
+  // Character dropdown state
+  const [isCharacterDropdownOpen, setIsCharacterDropdownOpen] = useState(false);
 
   // Current time state
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -61,37 +67,18 @@ const GameHeader: React.FC<GameHeaderProps> = ({
   };
 
   // Handle Woodcutting Progress
-  const currentWoodTypeConfig = activeSession
-    ? getWoodTypeById(activeSession.woodTypeId)
-    : null;
-  const isWoodcutting = activeSession?.isActive || false;
+  const isWoodcutting = woodcuttingSkill.isActive;
+  const currentActivity = woodcuttingSkill.activeActivity;
 
   // Einfacher Timer basierend auf Resource-Zeit
   useEffect(() => {
-    let interval: NodeJS.Timeout;
-
-    if (isWoodcutting && currentWoodTypeConfig) {
-      setSimpleProgress(0);
-
-      const duration = currentWoodTypeConfig.baseTime * 1000; // in ms
-      const updateInterval = duration / 100; // 100 Updates für smooth progress
-
-      interval = setInterval(() => {
-        setSimpleProgress(prev => {
-          if (prev >= 100) {
-            return 0; // Zurück auf 0% setzen
-          }
-          return prev + 1;
-        });
-      }, updateInterval);
+    if (isWoodcutting && currentActivity) {
+      // Use the progress from the engine
+      setSimpleProgress(woodcuttingSkill.progress);
     } else {
       setSimpleProgress(0);
     }
-
-    return () => {
-      if (interval) clearInterval(interval);
-    };
-  }, [isWoodcutting, currentWoodTypeConfig]);
+  }, [isWoodcutting, currentActivity, woodcuttingSkill.progress]);
 
   // Update current time every second
   useEffect(() => {
@@ -102,14 +89,63 @@ const GameHeader: React.FC<GameHeaderProps> = ({
     return () => clearInterval(timer);
   }, []);
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (
+        isCharacterDropdownOpen &&
+        !target.closest(`.${styles.playerProfile}`)
+      ) {
+        setIsCharacterDropdownOpen(false);
+      }
+    };
+
+    if (isCharacterDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isCharacterDropdownOpen]);
+
   // const handleStopWoodcutting = () => {
-  //   if (activeSession) {
-  //     stopChopping();
+  //   if (woodcuttingSkill.isActive) {
+  //     woodcuttingSkill.stopActivity();
   //   }
   // };
 
   const handlePlayerProfileClick = () => {
     navigate('/character');
+  };
+
+  const handleCharacterDropdownToggle = () => {
+    setIsCharacterDropdownOpen(!isCharacterDropdownOpen);
+  };
+
+  const handleCharacterDropdownClose = () => {
+    setIsCharacterDropdownOpen(false);
+  };
+
+  const handleProfileClick = () => {
+    navigate('/character/profile');
+    setIsCharacterDropdownOpen(false);
+  };
+
+  const handleCharacterSelectionClick = () => {
+    navigate('/character-selection');
+    setIsCharacterDropdownOpen(false);
+  };
+
+  const handleSettingsClick = () => {
+    navigate('/settings');
+    setIsCharacterDropdownOpen(false);
+  };
+
+  const handleLogoutClick = () => {
+    navigate('/login');
+    setIsCharacterDropdownOpen(false);
   };
 
   // Get character icon
@@ -121,10 +157,10 @@ const GameHeader: React.FC<GameHeaderProps> = ({
 
   // Get activity type and name based on active session
   const getActivityInfo = () => {
-    if (isWoodcutting && currentWoodTypeConfig) {
+    if (isWoodcutting && currentActivity) {
       return {
         type: 'Woodcutting',
-        name: currentWoodTypeConfig.name,
+        name: currentActivity.activityId,
         icon: <TreePine size={16} />,
       };
     }
@@ -182,10 +218,7 @@ const GameHeader: React.FC<GameHeaderProps> = ({
                 title={`Click to go to ${activityInfo.name}`}
               >
                 <div className={styles.timerIcon}>
-                  <img
-                    src={currentWoodTypeConfig?.image}
-                    alt={activityInfo.name}
-                  />
+                  <TreePine size={20} />
                 </div>
                 <div className={styles.timerInfo}>
                   <div className={styles.timerName}>
@@ -310,7 +343,7 @@ const GameHeader: React.FC<GameHeaderProps> = ({
           )}
           <div
             className={styles.playerProfile}
-            onClick={handlePlayerProfileClick}
+            onClick={handleCharacterDropdownToggle}
             style={{ cursor: 'pointer' }}
             title='Character öffnen'
           >
@@ -339,6 +372,40 @@ const GameHeader: React.FC<GameHeaderProps> = ({
                 }}
               />
             </div>
+
+            {/* Character Dropdown Menu */}
+            {isCharacterDropdownOpen && (
+              <div className={styles.characterDropdown}>
+                <div
+                  className={styles.dropdownItem}
+                  onClick={handleProfileClick}
+                >
+                  <User size={16} />
+                  <span>Profile</span>
+                </div>
+                <div
+                  className={styles.dropdownItem}
+                  onClick={handleCharacterSelectionClick}
+                >
+                  <Users size={16} />
+                  <span>Switch Char</span>
+                </div>
+                <div
+                  className={styles.dropdownItem}
+                  onClick={handleSettingsClick}
+                >
+                  <Settings size={16} />
+                  <span>Settings</span>
+                </div>
+                <div
+                  className={styles.dropdownItem}
+                  onClick={handleLogoutClick}
+                >
+                  <LogOut size={16} />
+                  <span>Logout</span>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

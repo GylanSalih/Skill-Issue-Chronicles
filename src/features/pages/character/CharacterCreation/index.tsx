@@ -1,5 +1,5 @@
 import { ArrowLeft } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
   Character,
@@ -26,15 +26,10 @@ const CharacterCreation = () => {
     } else if (!slotId) {
       setCurrentView('overview');
     }
-  }, [slotId]); // Nur slotId als Dependency, nicht characters
-
-  // Lade Charaktere nur beim Mount
-  useEffect(() => {
-    loadCharacters();
-  }, []); // Nur beim Mount
+  }, [slotId, characters]);
 
   // Funktion zum Laden der Charaktere aus beiden Quellen
-  const loadCharacters = () => {
+  const loadCharacters = useCallback(() => {
     // Lade zuerst aus dem alten Format
     const savedCharacters = localStorage.getItem('idleGameCharacters');
     let charactersFromOldFormat: Record<number, Character> = {};
@@ -63,188 +58,117 @@ const CharacterCreation = () => {
       ...charactersFromSaveManager,
     };
 
-    console.log('Character Creation - Loading characters:', {
-      fromOldFormat: charactersFromOldFormat,
-      fromSaveManager: charactersFromSaveManager,
-      merged: mergedCharacters,
-    });
-
     setCharacters(mergedCharacters);
-  };
+  }, []);
+
+  // Lade Charaktere nur beim Mount
+  useEffect(() => {
+    loadCharacters();
+  }, [loadCharacters]);
 
   // Funktion zum Speichern der Charaktere
-  const saveCharacters = (charactersToSave: Record<number, Character>) => {
-    console.log('Saving characters:', charactersToSave);
-
-    // Speichere im alten Format für Kompatibilität
-    localStorage.setItem(
-      'idleGameCharacters',
-      JSON.stringify(charactersToSave)
-    );
-    console.log('Saved to localStorage (old format)');
-
-    // Speichere auch im SaveManager Format
-    const saveData = SaveManager.loadGame();
-    if (saveData) {
-      // Aktualisiere nur die Charaktere, behalte den Rest bei
-      SaveManager.saveGame(
-        saveData.gameState,
-        charactersToSave,
-        saveData.description
+  const saveCharacters = useCallback(
+    (charactersToSave: Record<number, Character>) => {
+      // Speichere im alten Format für Kompatibilität
+      localStorage.setItem(
+        'idleGameCharacters',
+        JSON.stringify(charactersToSave)
       );
-      console.log('Updated SaveManager with characters');
-    } else {
-      // Falls kein Save existiert, erstelle einen neuen
+
+      // Speichere auch im neuen SaveManager Format
       const defaultGameState = {
         resources: {
           primary: 0,
-          secondary: {
-            wood: 0,
-            stone: 0,
-            metal: 0,
-            food: 0,
-            normalWood: 0,
-            softwood: 0,
-            willowWood: 0,
-            glowwood: 0,
-            frostbark: 0,
-            ebonyWood: 0,
-            voidbark: 0,
-            yangWood: 0,
-            yingWood: 0,
-            essences: 0,
-            rareItems: 0,
-          },
-        },
-        character: {
-          id: '1',
-          name: 'Player',
-          level: 1,
-          experience: 0,
-          totalLevel: 1,
-          stats: {
-            attack: 1,
-            defense: 1,
-            intelligence: 1,
-            stamina: 1,
-            melee: 1,
-            ranged: 1,
-            magic: 1,
-          },
-          equipment: {},
+          wood: 0,
+          stone: 0,
+          iron: 0,
+          gold: 0,
         },
         skills: {
           woodcutting: {
-            id: 'woodcutting',
-            name: 'Woodcutting',
             level: 1,
             experience: 0,
             isActive: false,
-            progress: 0,
-            baseTime: 5,
-          },
-          cooking: {
-            id: 'cooking',
-            name: 'Cooking',
-            level: 1,
-            experience: 0,
-            isActive: false,
-            progress: 0,
-            baseTime: 8,
-          },
-          mining: {
-            id: 'mining',
-            name: 'Mining',
-            level: 1,
-            experience: 0,
-            isActive: false,
-            progress: 0,
-            baseTime: 10,
+            currentActivity: null,
           },
         },
-        inventory: { items: [], maxSlots: 50 },
         settings: {
-          autoSave: true,
-          notifications: true,
-          soundEnabled: true,
-          theme: 'dark' as const,
+          autoSave: false,
+          autoSaveInterval: 0,
         },
       };
-      SaveManager.saveGame(
-        defaultGameState,
-        charactersToSave,
-        'Character Creation Save'
-      );
-      console.log('Created new SaveManager save with characters');
-    }
-  };
 
-  const createCharacter = (slotId: number, characterData: any) => {
-    const baseStats = getClassBaseStats(characterData.characterClass);
+      if (Object.keys(charactersToSave).length > 0) {
+        SaveManager.saveGame(
+          defaultGameState,
+          charactersToSave,
+          'Character Creation Save'
+        );
+      }
+    },
+    []
+  );
 
-    const newCharacter: Character = {
-      id: `char_${slotId}_${Date.now()}`,
-      name: characterData.playerName,
-      gender: characterData.gender || 'Unbekannt',
-      characterClass: characterData.characterClass,
-      characterClassId: characterData.characterClass,
-      slotId: slotId,
-      level: 1,
-      experience: 0,
-      maxExperience: 100,
-      stats: baseStats,
-      availableStatPoints: 5,
-      createdAt: new Date().toISOString(),
-      lastLogin: new Date().toISOString(),
-    };
+  const createCharacter = useCallback(
+    (slotId: number, characterData: any) => {
+      const baseStats = getClassBaseStats(characterData.characterClass);
 
-    console.log(
-      'Creating character for slot:',
-      slotId,
-      'Character data:',
-      newCharacter
-    );
-    console.log('Current characters before update:', characters);
-
-    setCharacters(prev => {
-      const updated = {
-        ...prev,
-        [slotId]: newCharacter,
+      const newCharacter: Character = {
+        id: `char_${slotId}_${Date.now()}`,
+        name: characterData.playerName,
+        gender: characterData.gender || 'Unbekannt',
+        characterClass: characterData.characterClass,
+        characterClassId: characterData.characterClass,
+        slotId: slotId,
+        level: 1,
+        experience: 0,
+        maxExperience: 100,
+        stats: baseStats,
+        availableStatPoints: 5,
+        createdAt: new Date().toISOString(),
+        lastLogin: new Date().toISOString(),
       };
-      console.log('Updated characters after setState:', updated);
 
-      // Speichere die Charaktere direkt nach dem Update
-      saveCharacters(updated);
+      setCharacters(prev => {
+        const updated = {
+          ...prev,
+          [slotId]: newCharacter,
+        };
 
-      return updated;
-    });
+        // Speichere die Charaktere direkt nach dem Update
+        saveCharacters(updated);
 
-    // Set as current character
-    setCurrentCharacter(newCharacter);
+        return updated;
+      });
 
-    // Charakter wurde erstellt - bleibt im Preview
-    console.log('Character created:', newCharacter);
-  };
+      // Set as current character
+      setCurrentCharacter(newCharacter);
+    },
+    [getClassBaseStats, setCurrentCharacter, saveCharacters]
+  );
 
-  const handleSlotClick = (slotId: number) => {
-    if (characters[slotId]) {
-      // Wenn bereits ein Charakter vorhanden ist, zum Spiel weiterleiten
-      navigate('/');
-    } else {
-      // Zur Character Creation für diesen Slot weiterleiten
-      navigate(`/character-creation/${slotId}`);
-    }
-  };
+  const handleSlotClick = useCallback(
+    (slotId: number) => {
+      if (characters[slotId]) {
+        // Wenn bereits ein Charakter vorhanden ist, zum Spiel weiterleiten
+        navigate('/');
+      } else {
+        // Zur Character Creation für diesen Slot weiterleiten
+        navigate(`/character-creation/${slotId}`);
+      }
+    },
+    [characters, navigate]
+  );
 
-  const handleBackToSelection = () => {
+  const handleBackToSelection = useCallback(() => {
     navigate('/character-selection');
-  };
+  }, [navigate]);
 
-  const handleCreateForSlot = () => {
+  const handleCreateForSlot = useCallback(() => {
     if (slotId) {
       setCurrentView('create');
     }
-  };
+  }, [slotId]);
 
   // Wenn Slot-Parameter vorhanden ist, zeige direkt den Character Creator
   if (slotId) {

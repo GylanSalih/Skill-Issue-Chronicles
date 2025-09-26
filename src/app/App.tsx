@@ -52,7 +52,12 @@ import {
   Woodcutting,
   WorldMap,
 } from '../features/pages';
-import { GameHeader, ResourcePanel, SideMenu } from '../shared/components';
+import {
+  DebugPanel,
+  GameHeader,
+  ResourcePanel,
+  SideMenu,
+} from '../shared/components';
 import styles from './App.module.scss';
 // import ActivityManagerDemo from '../shared/components/ActivityManagerDemo'
 
@@ -160,6 +165,16 @@ function App() {
                           path='/character/badges'
                           element={<Character />}
                         />
+                        <Route
+                          path='/character/uistuffrandom'
+                          element={<Character />}
+                        />
+                        <Route
+                          path='/character/inventory'
+                          element={<Character />}
+                        />
+                        {/* Economy */}
+                        <Route path='/inventory' element={<Dashboard />} />
                         {/* Skills */}
                         <Route path='/woodcutting' element={<Woodcutting />} />
                         <Route path='/fishing' element={<Fishing />} />
@@ -265,6 +280,9 @@ function App() {
             }
           />
         </Routes>
+
+        {/* Debug Panel - nur in Development */}
+        <DebugPanel />
       </div>
     </GameProvider>
   );

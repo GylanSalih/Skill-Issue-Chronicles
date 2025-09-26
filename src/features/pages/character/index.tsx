@@ -1,10 +1,13 @@
-import React from 'react';
-import { User, Palette, Award } from 'lucide-react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import ProfileTab from './tabs/ProfileTab';
-import SkinsTab from './tabs/SkinsTab';
-import BadgesTab from './tabs/BadgesTab';
+import { Award, BarChart3, Package, Palette, User } from 'lucide-react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './Character.module.scss';
+import {
+  BadgesTab,
+  InventoryTab,
+  ProfileTab,
+  SkinsTab,
+  UiStuffRandomTab,
+} from './Profile';
 
 const Character = () => {
   const navigate = useNavigate();
@@ -13,16 +16,26 @@ const Character = () => {
   // Characters are already loaded by GameContext, no need to load again
 
   // Get current tab from URL
-  const getCurrentTab = () => {
+  const getCurrentTab = ():
+    | 'profile'
+    | 'skins'
+    | 'badges'
+    | 'uistuffrandom'
+    | 'inventory' => {
     const path = location.pathname;
     if (path.includes('/skins')) return 'skins';
     if (path.includes('/badges')) return 'badges';
+    if (path.includes('/uistuffrandom')) return 'uistuffrandom';
+    if (path.includes('/inventory')) return 'inventory';
+
     return 'profile';
   };
 
   const activeTab = getCurrentTab();
 
-  const handleTabClick = (tab: 'profile' | 'skins' | 'badges') => {
+  const handleTabClick = (
+    tab: 'profile' | 'skins' | 'badges' | 'uistuffrandom' | 'inventory'
+  ) => {
     navigate(`/character/${tab}`);
   };
 
@@ -59,6 +72,20 @@ const Character = () => {
           <Award size={16} />
           <span>Badges</span>
         </button>
+        <button
+          className={`${styles.tabButton} ${activeTab === 'uistuffrandom' ? styles.active : ''}`}
+          onClick={() => handleTabClick('uistuffrandom')}
+        >
+          <BarChart3 size={16} />
+          <span>UI Stuff</span>
+        </button>
+        <button
+          className={`${styles.tabButton} ${activeTab === 'inventory' ? styles.active : ''}`}
+          onClick={() => handleTabClick('inventory')}
+        >
+          <Package size={16} />
+          <span>Inventory</span>
+        </button>
       </div>
 
       {/* Tab Content */}
@@ -66,6 +93,8 @@ const Character = () => {
         {activeTab === 'profile' && <ProfileTab />}
         {activeTab === 'skins' && <SkinsTab />}
         {activeTab === 'badges' && <BadgesTab />}
+        {activeTab === 'uistuffrandom' && <UiStuffRandomTab />}
+        {activeTab === 'inventory' && <InventoryTab />}
       </div>
     </div>
   );
