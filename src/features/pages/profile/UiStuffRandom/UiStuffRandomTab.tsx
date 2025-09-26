@@ -11,8 +11,8 @@ import React from 'react';
 import {
   useCharacter,
   useCharacterClasses,
-} from '../../../../../core/contexts/GameContext';
-import { useResources } from '../../../../../core/engine';
+} from '../../../../core/contexts/GameContext';
+import { useResources } from '../../../../core/engine';
 import styles from './UiStuffRandomTab.module.scss';
 
 const UiStuffRandomTab: React.FC = () => {

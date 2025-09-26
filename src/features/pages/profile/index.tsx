@@ -1,13 +1,13 @@
 import { Award, BarChart3, Package, Palette, User } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import styles from './Character.module.scss';
+import styles from '../character/Character.module.scss';
 import {
   BadgesTab,
   InventoryTab,
   ProfileTab,
   SkinsTab,
   UiStuffRandomTab,
-} from '../profile';
+} from './index';
 
 const Character = () => {
   const navigate = useNavigate();

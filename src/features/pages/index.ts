@@ -12,6 +12,9 @@ export { default as CharacterSelection } from './character/CharacterSelection/in
 export { default as Character } from './character/index.tsx';
 export { default as Login } from './login/index.tsx';
 
+// Profile pages
+export { BadgesTab, InventoryTab, ProfileTab, SkinsTab, UiStuffRandomTab } from './profile/index.ts';
+
 // Skills pages
 export { default as Cooking } from './cooking/index.tsx';
 export { default as Fishing } from './fishing/index.tsx';

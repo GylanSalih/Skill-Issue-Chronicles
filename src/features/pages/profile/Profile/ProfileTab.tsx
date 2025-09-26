@@ -4,9 +4,9 @@ import {
   useCharacter,
   useCharacterClasses,
   useStatAllocation,
-} from '../../../../../core/contexts/GameContext';
-// import { useActivityManager } from '../../../../../core/contexts/ActivityManager';
-import { formatDate } from '../../../../../core/services/dateUtils';
+} from '../../../../core/contexts/GameContext';
+// import { useActivityManager } from '../../../../core/contexts/ActivityManager';
+import { formatDate } from '../../../../core/services/dateUtils';
 import styles from './ProfileTab.module.scss';
 
 // Import avatar images

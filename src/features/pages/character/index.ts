@@ -1,3 +1,3 @@
 // Character feature exports
-export { default as Character } from './index.tsx';
+export { default } from './index.tsx';
 export { CharacterSelection, CharacterCreation } from './CharacterFlow';

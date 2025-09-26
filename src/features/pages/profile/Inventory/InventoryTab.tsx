@@ -9,8 +9,8 @@ import {
   Zap,
 } from 'lucide-react';
 import React, { useState } from 'react';
-import { useGameState } from '../../../../../core/hooks/useGameState';
-import { Item } from '../../../../../core/types/game';
+import { useGameState } from '../../../../core/hooks/useGameState';
+import { Item } from '../../../../core/types/game';
 import styles from './InventoryTab.module.scss';
 
 const InventoryTab: React.FC = () => {

@@ -101,41 +101,41 @@ const SideMenu = ({ isCollapsed = false, onToggle }: SideMenuProps) => {
         },
       ],
     },
-    // 2. Character – Verwaltung der Spielfigur
+    // 2. Profile – Profil-Verwaltung
     {
       items: [
         {
-          id: 'character',
-          title: 'Character',
-          icon: Crown,
+          id: 'profile',
+          title: 'Profile',
+          icon: User,
           hasSubmenu: true,
           submenu: [
             {
-              id: 'character-profile',
+              id: 'profile-profile',
               title: 'Profile',
               icon: User,
               path: '/character/profile',
             },
             {
-              id: 'character-inventory',
+              id: 'profile-inventory',
               title: 'Inventory',
               icon: Package,
               path: '/character/inventory',
             },
             {
-              id: 'character-skins',
+              id: 'profile-skins',
               title: 'Skins',
               icon: Palette,
               path: '/character/skins',
             },
             {
-              id: 'character-badges',
+              id: 'profile-badges',
               title: 'Badges',
               icon: Award,
               path: '/character/badges',
             },
             {
-              id: 'character-uistuffrandom',
+              id: 'profile-uistuffrandom',
               title: 'UI Stuff',
               icon: BarChart3,
               path: '/character/uistuffrandom',
@@ -144,7 +144,7 @@ const SideMenu = ({ isCollapsed = false, onToggle }: SideMenuProps) => {
         },
       ],
     },
-    // 2.5. Wireframe – Fundamentale UI-Komponenten
+    // 2.1. Wireframe – Fundamentale UI-Komponenten
     {
       items: [
         {
@@ -181,7 +181,7 @@ const SideMenu = ({ isCollapsed = false, onToggle }: SideMenuProps) => {
         },
       ],
     },
-    // 2.6. Content Width – Verschiedene Layout-Varianten
+    // 2.2. Content Width – Verschiedene Layout-Varianten
     {
       items: [
         {
