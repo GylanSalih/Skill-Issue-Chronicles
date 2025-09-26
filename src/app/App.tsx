@@ -53,6 +53,13 @@ import {
   WorldMap,
 } from '../features/pages';
 import {
+  BadgesTab,
+  InventoryTab,
+  ProfileTab,
+  SkinsTab,
+  UiStuffRandomTab,
+} from '../features/pages/profile';
+import {
   DebugPanel,
   GameHeader,
   ResourcePanel,
@@ -155,23 +162,20 @@ function App() {
                         <Route path='/character' element={<Character />} />
                         <Route
                           path='/character/profile'
-                          element={<Character />}
+                          element={<ProfileTab />}
                         />
-                        <Route
-                          path='/character/skins'
-                          element={<Character />}
-                        />
+                        <Route path='/character/skins' element={<SkinsTab />} />
                         <Route
                           path='/character/badges'
-                          element={<Character />}
+                          element={<BadgesTab />}
                         />
                         <Route
                           path='/character/uistuffrandom'
-                          element={<Character />}
+                          element={<UiStuffRandomTab />}
                         />
                         <Route
                           path='/character/inventory'
-                          element={<Character />}
+                          element={<InventoryTab />}
                         />
                         {/* Economy */}
                         <Route path='/inventory' element={<Dashboard />} />
